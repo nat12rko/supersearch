@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.resurs.supersearch</groupId>
+    <artifactId>supersearch</artifactId>
+    <version>0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <address.request.version>1.3.5</address.request.version>
+        <junit.version>4.8.2</junit.version>
+        <mockito.version>1.8.5</mockito.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <elastichsearch.version>1.0.0</elastichsearch.version>
+        <jackson.version>1.9.13</jackson.version>
+        <spring.framework.version>4.0.1.RELEASE</spring.framework.version>
+        <jersey-version>1.18</jersey-version>
+    </properties>
+
+    <scm>
+        <connection>scm:git://git.resurs.loc/projects/XXX</connection>
+        <developerConnection>scm:git://git.resurs.loc/projects/XXX</developerConnection>
+    </scm>
+
+    <dependencyManagement>
+        <dependencies>
+
+            <!-- Imported -->
+            <dependency>
+                <groupId>com.resurs</groupId>
+                <artifactId>resurs-common-dependencies</artifactId>
+                <version>2.0</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!--        <dependency>
+                     <groupId>com.resurs</groupId>
+                     <artifactId>resurs-spring-dependencies</artifactId>
+                     <version>2.0</version>
+                     <type>pom</type>
+                     <scope>import</scope>
+                 </dependency>-->
+
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-framework-bom</artifactId>
+                <version>${spring.framework.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- End Imported -->
+        </dependencies>
+    </dependencyManagement>
+
+    <modules>
+        <module>web</module>
+        <module>rest</module>
+    </modules>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>${mockito.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.5.1</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+                <inherited>true</inherited>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.9</version>
+                <configuration>
+                    <includes>
+                        <include>**/*Test.java</include>
+                    </includes>
+                    <excludes>
+                        <include>**/*ITest.java</include>
+                        <include>**/*WTest.java</include>
+                        <include>**/Abstract*Test.java</include>
+                    </excludes>
+                </configuration>
+                <inherited>true</inherited>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>2.12</version>
+                <executions>
+                    <execution>
+                        <id>integration-test</id>
+                        <phase>integration-test</phase>
+                        <goals>
+                            <goal>integration-test</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>verify</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <includes>
+                        <include>**/*ITest.java</include>
+                        <include>**/*WTest.java</include>
+                    </includes>
+                    <excludes>
+                        <exclude>**/Abstract*Test.java</exclude>
+                    </excludes>
+                </configuration>
+                <inherited>true</inherited>
+            </plugin>
+
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>buildnumber-maven-plugin</artifactId>
+                <version>1.2</version>
+                <executions>
+                    <execution>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>create</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <doCheck>false</doCheck>
+                    <doUpdate>false</doUpdate>
+                </configuration>
+            </plugin>
+
+
+        </plugins>
+    </build>
+
+    <distributionManagement>
+        <repository>
+            <uniqueVersion>false</uniqueVersion>
+            <id>nexus_releases</id>
+            <name>Resurs Repository</name>
+            <url>http://nexus.resurs.loc/content/repositories/releases/</url>
+            <layout>default</layout>
+        </repository>
+
+        <snapshotRepository>
+            <uniqueVersion>false</uniqueVersion>
+            <id>nexus_snapshots</id>
+            <name>Resurs Snapshots</name>
+            <url>http://nexus.resurs.loc/content/repositories/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+</project>

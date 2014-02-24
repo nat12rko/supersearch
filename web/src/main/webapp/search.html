@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>SuperSearch</title>
+    <script src="webjars/knockout/3.0.0/knockout.js"></script>
+    <script src="webjars/jquery/2.1.0/jquery.js"></script>
+</head>
+<body>
+
+<link href="css/table.css" rel="stylesheet"/>
+
+
+<form id="searchform" data-bind="submit:search">
+    Search: <input type="text"  size="150" data-bind='value:searchString, valueUpdate: "afterkeydown"'/>
+    <button type="submit">Search</button>
+</form>
+<div class="CSSTableGenerator">
+    <table id="searchtable">
+
+        <thead>
+        <th>Type</th>
+        <th>System</th>
+        <th colspan="10">Object</th>
+        </thead>
+        <tbody data-bind="foreach: { data: hits, as: 'hit', afterAdd: colorFadeIn }">
+        <tr>
+            <td data-bind="text: type"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script type="text/javascript" src="js/views.js"></script>
+
+</body>
+</html>
