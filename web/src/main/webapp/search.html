@@ -3,42 +3,133 @@
 <html>
 <head>
     <title>SuperSearch</title>
-    <script src="webjars/knockout/3.0.0/knockout.js"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <script src="webjars/jquery/2.1.0/jquery.js"></script>
+
+
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+    <script src="webjars/knockout/3.0.0/knockout.js"></script>
+
+    <script type="text/javascript" src="js/bootstrap-select.js"></script>
+
+    <link href="css/bootstrap-select.css" rel="stylesheet"/>
+
+    <script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
+
+    <script src="js/locales/bootstrap-datepicker.sv.js" charset="UTF-8"></script>
+
+
+    <link href="css/datepicker3.css" rel="stylesheet"/>
+
+
+    <link href="css/table.css" rel="stylesheet"/>
+
+
 </head>
 <body>
 
-<link href="css/table.css" rel="stylesheet"/>
+
+<style>
+    .container {
+        width: 95%;
+    }
+</style>
 
 
-<form id="searchform" data-bind="submit:search">
-    Search: <input type="text"  size="150" data-bind='value:searchString, valueUpdate: "afterkeydown"'/> <br/>
+<div class="container">
+    <div class="page-header">
+        SuperSök
+    </div>
 
-    <select data-bind="options: availableCountries, selectedOptions: countryCodes" size="4" multiple="true"></select>
-    <select data-bind="options: availableSystems, selectedOptions: systems" size="4" multiple="true"></select>
 
-    <input data-bind="value: fromDate" />
-    <input data-bind="value: toDate" />
+    <form id="searchform" data-bind="submit:search">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="input-group input-group-sm">
+                    <span class="input-group-addon glyphicon glyphicon-zoom-in"></span>
+                    <input type="text" class="form-control" placeholder="Sök test" size="150"
+                           data-bind='value:searchString, valueUpdate: "afterkeydown"'/> <br/>
+                </div>
+            </div>
 
-    <button type="submit">Search</button>
-</form>
-<div class="CSSTableGenerator">
-    <table id="searchtable">
 
-        <thead>
-        <th>Type</th>
-        <th>System</th>
-        <th colspan="10">Object</th>
-        </thead>
-        <tbody data-bind="foreach: { data: hits, as: 'hit', afterAdd: colorFadeIn }">
-        <tr>
-            <td data-bind="text: type"></td>
-        </tr>
-        </tbody>
-    </table>
+        </div>
+        <br/>
+
+        <div class="row">
+            <div class="col-lg-2">
+                <div class="input-daterange input-group  input-group-sm" id="datepicker">
+                    <span class="input-group-addon   glyphicon glyphicon-calendar"></span>
+
+                    <input type="text" class="input-sm form-control" name="start" data-bind="value: fromDate"/>
+                    <span class="input-group-addon">to</span>
+                    <input type="text" class="input-sm form-control" name="end" data-bind="value: toDate"/>
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="input-daterange input-group  input-group-sm">
+
+                    <span class="input-group-addon glyphicon glyphicon-flag"></span>
+
+                    <select data-width="auto"
+                            data-bind="selectPicker: countryCodes, optionsText: 'text', optionsValue : 'id', selectPickerOptions: { optionsArray: availableCountries }"
+                            size="4"
+                            multiple="true"></select>
+                </div>
+
+            </div>
+            <div class="col-lg-2">
+                <div class="input-daterange input-group  input-group-sm">
+                    <span class="input-group-addon   glyphicon glyphicon-hdd"></span>
+
+                    <select class="selectpicker" data-width="auto"
+                            data-bind="selectPicker: systems, optionsText: 'text', optionsValue : 'id', selectPickerOptions: { optionsArray: availableSystems }"
+                            size="4" multiple="true"></select>
+
+                </div>
+            </div>
+
+
+        </div>
+
+        <br/>
+
+        <button type="submit" class="btn btn-default btn-sm">Search</button>
+    </form>
+    <br/>
+
+    <div class="CSSTableGenerator">
+        <table id="searchtable">
+
+            <thead>
+            <th>Type</th>
+            <th>System</th>
+            <th colspan="10">Object</th>
+            </thead>
+            <tbody data-bind="foreach: { data: hits, as: 'hit', afterAdd: colorFadeIn }">
+            <tr>
+                <td data-bind="text: type"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
+
 
 <script type="text/javascript" src="js/views.js"></script>
 
+
+<script>
+
+</script>
 </body>
 </html>

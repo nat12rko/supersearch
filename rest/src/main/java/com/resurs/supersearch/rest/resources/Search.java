@@ -21,7 +21,7 @@ import java.util.List;
 public class Search {
 
 
-    List<CountryCode> countryCodes;
+    List<CountryCode> countryCodes = new ArrayList<>();
     Integer page = 0;
     Integer pageSize = 25;
 
