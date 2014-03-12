@@ -1,6 +1,17 @@
 function SearchViewModel() {
     var self = this;
-    self.searchString = "";
+    self.searchString = ko.observable();
+
+    self.fromDate = ko.observable();
+    self.toDate = ko.observable();
+
+
+    self.availableSystems = ko.observableArray(['ECOMMERCE', 'FRAUD', 'LIMIT', 'MULTIUPPLYS']);
+    self.systems = ko.observableArray(['ECOMMERCE', 'FRAUD', 'LIMIT', 'MULTIUPPLYS']);
+
+    self.availableCountries = ko.observableArray(['SE', 'FI', 'NO', 'DK']);
+    self.countryCodes = ko.observableArray(['SE']);
+
 
     self.search = function () {
         resultViewModel.search();
@@ -68,7 +79,6 @@ ko.applyBindings(resultViewModel, document.getElementById('searchtable'));
 ko.applyBindings(searchViewModel, document.getElementById('searchform'));
 
 
-
 function objectToView(ob, element) {
     if (ob.type === "creditcase") {
         createMultiupplysRow(element, ob);
@@ -86,10 +96,9 @@ function createMultiupplysRow(element, ob) {
 }
 
 function createGenericRow(element, ob) {
-    $(element).append("<td>Unknown - "+ob.type+"</td>");
+    $(element).append("<td>Unknown - " + ob.type + "</td>");
     $(element).append("<td colspan='10'>" + ko.toJSON(ob.object) + "</td>");
 }
-
 
 
 function formToJSON() {

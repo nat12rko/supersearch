@@ -1,0 +1,6 @@
+.idea/.name
+.idea/
+rest/target/
+web/target/
+*.iml
+rebel.xml

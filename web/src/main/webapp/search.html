@@ -12,7 +12,14 @@
 
 
 <form id="searchform" data-bind="submit:search">
-    Search: <input type="text"  size="150" data-bind='value:searchString, valueUpdate: "afterkeydown"'/>
+    Search: <input type="text"  size="150" data-bind='value:searchString, valueUpdate: "afterkeydown"'/> <br/>
+
+    <select data-bind="options: availableCountries, selectedOptions: countryCodes" size="4" multiple="true"></select>
+    <select data-bind="options: availableSystems, selectedOptions: systems" size="4" multiple="true"></select>
+
+    <input data-bind="value: fromDate" />
+    <input data-bind="value: toDate" />
+
     <button type="submit">Search</button>
 </form>
 <div class="CSSTableGenerator">

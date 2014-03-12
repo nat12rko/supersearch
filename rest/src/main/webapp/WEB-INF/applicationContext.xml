@@ -12,8 +12,18 @@
 
     <context:component-scan base-package="com.resurs.supersearch"/>
 
-   <bean id="superSearchRestService" class="com.resurs.supersearch.rest.impl.SearchServiceRest">
+    <bean id="superSearchRestService" class="com.resurs.supersearch.rest.impl.SearchServiceRest">
     </bean>
+
+   <!-- <bean id="ecommerceQueryBuilder"
+          class="com.resurs.supersearch.rest.elasticsearch.impl.querybuilders.EcommerceQueryBuilder"/>
+    <bean id="fraudQueryBuilder"
+          class="com.resurs.supersearch.rest.elasticsearch.impl.querybuilders.FraudQueryBuilder"/>
+    <bean id="limitQueryBuilder"
+          class="com.resurs.supersearch.rest.elasticsearch.impl.querybuilders.LimitQueryBuilder"/>
+    <bean id="multiupplysQueryBuilder"
+          class="com.resurs.supersearch.rest.elasticsearch.impl.querybuilders.MultiupplysQueryBuilder"/>
+-->
 
     <!--
         <bean id="fraudRestService" class="com.resurs.fraud.rest.service.FraudRestServiceImpl">
