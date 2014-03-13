@@ -27,7 +27,7 @@ public class Search {
 
     String sortField;
     SortOrder sortOrder;
-    String searchString = "*";
+    String searchString = "";
 
     /**
      * http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/mapping-date-format.html

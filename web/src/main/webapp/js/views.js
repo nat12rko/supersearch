@@ -32,7 +32,7 @@ function SearchViewModel() {
         {text: 'Norge', id: 'NO'},
         {text: 'Danmark', id: 'DK'}
     ]);
-    self.countryCodes = ko.observableArray(['SE']);
+    self.countryCodes = ko.observableArray(['SE','DK','NO','FI']);
 
     self.setPage = function (value) {
         self.page(value);
@@ -45,12 +45,8 @@ function SearchViewModel() {
     self.searchWithValue = function (value) {
         searchViewModel.page(0);
         self.searchString(value);
+        resultViewModel.search()
     }
-
-    self.searchString.subscribe(function (newValue) {
-        resultViewModel.search();
-    });
-
 
     self.countryCodes.subscribe(function (newValue) {
         resultViewModel.search();
