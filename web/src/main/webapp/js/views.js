@@ -1,3 +1,13 @@
+function SearchViewWidgetsModel() {
+    var self = this;
+
+    self.searchTime = ko.observableArray();
+    self.amountHits = ko.observableArray();
+    self.amountPages = ko.observableArray();
+
+
+}
+
 function SearchViewModel() {
     var self = this;
     self.searchString = ko.observable();
@@ -69,9 +79,6 @@ function ResultViewModel() {
     self.tasksURI = "http://localhost:8080/rest/search";
 
     self.hits = ko.observableArray();
-    self.searchTime = ko.observableArray();
-    self.amountHits = ko.observableArray();
-    self.amountPages = ko.observableArray();
 
     self.colorFadeIn = function (element, index, data) {
 
@@ -122,9 +129,9 @@ function ResultViewModel() {
             if (searchViewModel.page() > (pages - 1)) {
                 searchViewModel.page(0);
             }
-            resultViewModel.amountHits(data.totalSize);
-            resultViewModel.searchTime(data.searchTime);
-            resultViewModel.amountPages(pages);
+            searchViewWidgetsModel.amountHits(data.totalSize);
+            searchViewWidgetsModel.searchTime(data.searchTime);
+            searchViewWidgetsModel.amountPages(pages);
 
 
             options = {
@@ -145,6 +152,7 @@ function ResultViewModel() {
 
 var resultViewModel = new ResultViewModel();
 var searchViewModel = new SearchViewModel();
+var searchViewWidgetsModel = new SearchViewWidgetsModel();
 
 
 function objectToView(ob, element) {
@@ -319,6 +327,9 @@ ko.bindingHandlers.selectPicker = {
 
 ko.applyBindings(resultViewModel, document.getElementById('searchtable'));
 ko.applyBindings(searchViewModel, document.getElementById('searchform'));
+ko.applyBindings(searchViewWidgetsModel, document.getElementById('widgets'));
+
+
 
 $(function () {
     $('.input-daterange').datepicker({

@@ -73,103 +73,112 @@
     }
 </style>
 
-    <div class="aggregations" id="aggs"></div>
 
 <div class="container">
     <div class="page-header">
         SuperSök
     </div>
 
+    <div class="col-md-9">
 
-    <form id="searchform" data-bind="submit:search">
-        <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-9 col-xs-12">
-                <div class="input-group input-group-sm">
-                    <span class="input-group-addon glyphicon glyphicon-zoom-in"></span>
-                    <input id="searchinput" type="text" class="form-control" placeholder="Sök test" size="150"
-                           data-bind='value:searchString, valueUpdate: "afterkeydown"'/> <br/>
-                </div>
-            </div>
-
-
-        </div>
-        <br/>
-
-        <div class="row">
-            <div class="col-lg-2 col-md-2  col-sm-3 col-xs-12">
-                <div class="input-daterange input-group  input-group-sm" id="datepicker">
-                    <span class="input-group-addon   glyphicon glyphicon-calendar"></span>
-
-                    <input type="text" class="input-sm form-control" name="start" data-bind="value: fromDate"/>
-                    <span class="input-group-addon">to</span>
-                    <input type="text" class="input-sm form-control" name="end" data-bind="value: toDate"/>
-                </div>
-            </div>
-            <div class="col-lg-2 col-md-2 col-sm-3  col-xs-12">
-                <div class="input-daterange input-group  input-group-sm">
-
-                    <span class="input-group-addon glyphicon glyphicon-flag"></span>
-
-                    <select data-width="250px"
-                            data-bind="selectPicker: countryCodes, optionsText: 'text', optionsValue : 'id', selectPickerOptions: { optionsArray: availableCountries }"
-                            size="4"
-                            multiple="true"></select>
-                </div>
-
-            </div>
-            <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                <div class="input-daterange input-group  input-group-sm">
-                    <span class="input-group-addon   glyphicon glyphicon-hdd"></span>
-
-                    <select class="selectpicker" data-width="250px"
-                            data-bind="selectPicker: systems, optionsText: 'text', optionsValue : 'id', selectPickerOptions: { optionsArray: availableSystems }"
-                            size="4" multiple="true"></select>
-                </div>
-            </div>
-        </div>
-
-        <br/>
-
-        <button type="submit" class="btn btn-default btn-sm">Search</button>
-    </form>
-    <br/>
-
-    <div class="row" id="searchtable">
-        <div class="col-lg-2 col-sm-2 hidden-xs">
-        </div>
-
-        <div class="col-lg-10 col-sm-10 col-xs-12">
-            <div class="row hidden-xs">
-                <div class="col-xs-0 col-sm-6 col-sm-offset-3">
-                    <ul id='paginatortop'></ul>
-                </div>
-                <div class="panel panel-info col-sm-3">
-                    Antal träffar: <span data-bind="text: amountHits"></span>
-                    Antal sidor: <span data-bind="text: amountPages"></span>
-                    Sök tid: <span data-bind="text: searchTime">ms</span>
-                </div>
-            </div>
+        <form id="searchform" data-bind="submit:search">
             <div class="row">
-                <table class="table table-hover table-condensed table-responsive" >
-                    <thead>
-                    <th>System</th>
-                    <th>Id</th>
-                    <th colspan="10">Innehåll</th>
-                    </thead>
-                    <tbody data-bind="foreach: { data: hits, as: 'hit', afterAdd: colorFadeIn }">
-                    <tr>
-                        <td data-bind="text: type"></td>
-                    </tr>
-                    </tbody>
-                </table>
+                <div class="col-lg-6 col-md-6 col-sm-9 col-xs-12">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-addon glyphicon glyphicon-zoom-in"></span>
+                        <input id="searchinput" type="text" class="form-control" placeholder="Sök test" size="150"
+                               data-bind='value:searchString, valueUpdate: "afterkeydown"'/> <br/>
+                    </div>
+                </div>
+
+
             </div>
-            <div class="row hidden-xs">
-                <div class="col-sm-6 col-sm-offset-3">
-                    <ul id='paginatorbuttom'></ul>
+            <br/>
+
+            <div class="row">
+                <div class="col-lg-2 col-md-2  col-sm-3 col-xs-12">
+                    <div class="input-daterange input-group  input-group-sm" id="datepicker">
+                        <span class="input-group-addon   glyphicon glyphicon-calendar"></span>
+
+                        <input type="text" class="input-sm form-control" name="start" data-bind="value: fromDate"/>
+                        <span class="input-group-addon">to</span>
+                        <input type="text" class="input-sm form-control" name="end" data-bind="value: toDate"/>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3  col-xs-12">
+                    <div class="input-daterange input-group  input-group-sm">
+
+                        <span class="input-group-addon glyphicon glyphicon-flag"></span>
+
+                        <select data-width="250px"
+                                data-bind="selectPicker: countryCodes, optionsText: 'text', optionsValue : 'id', selectPickerOptions: { optionsArray: availableCountries }"
+                                size="4"
+                                multiple="true"></select>
+                    </div>
+
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12">
+                    <div class="input-daterange input-group  input-group-sm">
+                        <span class="input-group-addon   glyphicon glyphicon-hdd"></span>
+
+                        <select class="selectpicker" data-width="250px"
+                                data-bind="selectPicker: systems, optionsText: 'text', optionsValue : 'id', selectPickerOptions: { optionsArray: availableSystems }"
+                                size="4" multiple="true"></select>
+                    </div>
+                </div>
+            </div>
+
+            <br/>
+
+            <button type="submit" class="btn btn-default btn-sm">Search</button>
+        </form>
+        <br/>
+
+        <div class="row" id="searchtable">
+            <div class="col-lg-2 col-sm-2 hidden-xs">
+            </div>
+
+            <div class="col-lg-10 col-sm-10 col-xs-12">
+                <div class="row hidden-xs">
+                    <div class="col-xs-0 col-sm-6 col-sm-offset-3">
+                        <ul id='paginatortop'></ul>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <table class="table table-hover table-condensed table-responsive">
+                        <thead>
+                        <th>System</th>
+                        <th>Id</th>
+                        <th colspan="10">Innehåll</th>
+                        </thead>
+                        <tbody data-bind="foreach: { data: hits, as: 'hit', afterAdd: colorFadeIn }">
+                        <tr>
+                            <td data-bind="text: type"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row hidden-xs">
+                    <div class="col-sm-6 col-sm-offset-3">
+                        <ul id='paginatorbuttom'></ul>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <div class="col-md-3" id="widgets">
+        <div class="panel panel-info col-sm-12">
+            Antal träffar: <span data-bind="text: amountHits"></span>
+            Antal sidor: <span data-bind="text: amountPages"></span>
+            Sök tid: <span data-bind="text: searchTime">ms</span>
+        </div>
+
+        <div class="col-sm-12" id="aggs"></div>
+
+    </div>
+
+
 </div>
 
 
