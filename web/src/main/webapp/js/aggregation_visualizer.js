@@ -19,7 +19,7 @@ var Aggregation = function (aggregations) {
         });
 
         var margin = 10,
-            outerDiameter = 400,
+            outerDiameter = 300,
             innerDiameter = outerDiameter - margin - margin;
 
         var x = d3.scale.linear()
@@ -39,6 +39,9 @@ var Aggregation = function (aggregations) {
             .value(function(d) {
                   return d.hits; });
 
+
+        d3.select("svg")
+            .remove();
 
         var svg = d3.select("#aggs").append("svg")
             .attr("width", outerDiameter)
