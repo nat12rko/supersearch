@@ -3,6 +3,8 @@ function SearchViewModel() {
     self.searchString = ko.observable();
     self.fromDate = ko.observable();
     self.toDate = ko.observable();
+    self.page = ko.observable(0);
+    self.pageSize = ko.observable(25);
 
     self.availableSystems = ko.observableArray([
         {text: 'Ehandel', id: 'ECOMMERCE'},
@@ -22,19 +24,26 @@ function SearchViewModel() {
     ]);
     self.countryCodes = ko.observableArray(['SE']);
 
-
+    self.setPage = function (value) {
+        self.page(value);
+        resultViewModel.search();
+    }
     self.search = function () {
         resultViewModel.search();
     }
 
     self.searchWithValue = function (value) {
+        searchViewModel.page(0);
         self.searchString(value);
-        resultViewModel.search();
     }
+
+    self.searchString.subscribe(function (newValue) {
+        resultViewModel.search();
+    });
+
 
     self.countryCodes.subscribe(function (newValue) {
         resultViewModel.search();
-
     });
 
     self.systems.subscribe(function (newValue) {
@@ -51,6 +60,8 @@ function SearchViewModel() {
         resultViewModel.search();
 
     });
+
+
 }
 
 function ResultViewModel() {
@@ -58,6 +69,9 @@ function ResultViewModel() {
     self.tasksURI = "http://localhost:8080/rest/search";
 
     self.hits = ko.observableArray();
+    self.searchTime = ko.observableArray();
+    self.amountHits = ko.observableArray();
+    self.amountPages = ko.observableArray();
 
     self.colorFadeIn = function (element, index, data) {
 
@@ -92,17 +106,36 @@ function ResultViewModel() {
     self.search = function () {
 
         var jsonData = ko.toJSON(searchViewModel);
-
         if (!jsonData) {
             jsonData = formToJSON();
         }
         self.ajax(self.tasksURI, 'POST', jsonData).done(function (data) {
-                self.hits.removeAll();
-                for (var i = 0; i < data.hits.length; i++) {
-                    self.hits.push(data.hits[i]);
-                }
+            self.hits.removeAll();
+            for (var i = 0; i < data.hits.length; i++) {
+                self.hits.push(data.hits[i]);
             }
-        );
+
+            var pages = Math.ceil(data.totalSize / searchViewModel.pageSize());
+            if (searchViewModel.page() > (pages - 1)) {
+                searchViewModel.page(0);
+            }
+            resultViewModel.amountHits(data.totalSize);
+            resultViewModel.searchTime(data.searchTime);
+            resultViewModel.amountPages(pages);
+
+
+            options = {
+                numberOfPages: pages > 10 ? 10 : pages,
+                bootstrapMajorVersion: 3,
+                currentPage: searchViewModel.page() + 1,
+                totalPages: pages
+            }
+            $('#paginatorbuttom').bootstrapPaginator(options);
+            $('#paginatortop').bootstrapPaginator(options);
+
+
+        });
+
     }
     self.search();
 }
@@ -320,9 +353,21 @@ Date.prototype.customFormat = function (formatString) {
 
 
 function createClickableObjectForSearch(value) {
+    value = checkValue(value);
     var string = "<span onClick='loadValueToSearch(\"" + value + "\")'>" + value + "</span>"
     return string;
 }
+
+function checkValue(value) {
+    try {
+        if (value)
+            return value;
+    } catch (e) {
+    }
+    return "";
+
+}
+
 
 function loadValueToSearch(value) {
     searchViewModel.searchWithValue(value);
