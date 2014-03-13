@@ -249,11 +249,12 @@ public class SearchServiceImpl implements SearchService {
                     aggregateResult.setValue(bucket.getKey());
                     aggregateResult.setHits(bucket.getDocCount());
 
-                    aggregate.getAggregateResults().add(aggregateResult);
+                    aggregate.getChildren().add(aggregateResult);
 
                     if (bucket.getAggregations().asList().size() > 0) {
-                        createAggregateResult(bucket.getAggregations().asList(), aggregateResult.getAggregates());
+                        createAggregateResult(bucket.getAggregations().asList(), aggregateResult.getChildren());
                     }
+
 
                 }
             }

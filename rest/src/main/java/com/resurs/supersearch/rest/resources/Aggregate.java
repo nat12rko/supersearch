@@ -19,7 +19,7 @@ public class Aggregate {
         this.name = name;
     }
 
-    public List<AggregateResult> getAggregateResults() {
+    public List<AggregateResult> getChildren() {
         return aggregateResults;
     }
 

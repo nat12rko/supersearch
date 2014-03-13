@@ -8,10 +8,10 @@ import java.util.List;
  */
 public class AggregateResult {
     List<Aggregate> aggregates = new ArrayList<>();
-    String value;
+    String name;
     long hits;
 
-    public List<Aggregate> getAggregates() {
+    public List<Aggregate> getChildren() {
         return aggregates;
     }
 
@@ -20,11 +20,15 @@ public class AggregateResult {
     }
 
     public String getValue() {
-        return value;
+        return name;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void setValue(String value) {
-        this.value = value;
+        this.name = value;
     }
 
     public long getHits() {
