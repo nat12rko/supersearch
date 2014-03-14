@@ -4,9 +4,19 @@ function SearchViewWidgetsModel() {
     self.searchTime = ko.observableArray();
     self.amountHits = ko.observableArray();
     self.amountPages = ko.observableArray();
+    self.searchQueries = ko.observableArray();
+
+    self.loadThis = function () {
+/*
+        ko.cleanNode($("#searchform")[0]);
+*/
+        //ko.applyBindings(this, document.getElementById('searchform'));
 
 
+        searchViewModel = ko.mapping.fromJS(ko.mapping.toJS(this)); ;
+    }
 }
+
 
 function SearchViewModel() {
     var self = this;
@@ -32,7 +42,7 @@ function SearchViewModel() {
         {text: 'Norge', id: 'NO'},
         {text: 'Danmark', id: 'DK'}
     ]);
-    self.countryCodes = ko.observableArray(['SE','DK','NO','FI']);
+    self.countryCodes = ko.observableArray(['SE', 'DK', 'NO', 'FI']);
 
     self.setPage = function (value) {
         self.page(value);
@@ -40,6 +50,16 @@ function SearchViewModel() {
     }
     self.search = function () {
         resultViewModel.search();
+    }
+
+    self.updateObject = function (valuesearchString, valuefromDate, valuetoDate, valuepage, valuepageSize, valuesystems, valuecountryCodes) {
+        self.searchString = valuesearchString;
+        self.fromDate = valuefromDate;
+        self.toDate = valuetoDate;
+        self.page = valuepage;
+        self.pageSize = valuepageSize;
+        self.systems = valuesystems;
+        self.countryCodes = valuecountryCodes;
     }
 
     self.searchWithValue = function (value) {
@@ -112,6 +132,8 @@ function ResultViewModel() {
         if (!jsonData) {
             jsonData = formToJSON();
         }
+
+
         self.ajax(self.tasksURI, 'POST', jsonData).done(function (data) {
 
             Aggregation(data.aggregates[0]);
@@ -121,10 +143,12 @@ function ResultViewModel() {
                 self.hits.push(data.hits[i]);
             }
 
+
             var pages = Math.ceil(data.totalSize / searchViewModel.pageSize());
             if (searchViewModel.page() > (pages - 1)) {
                 searchViewModel.page(0);
             }
+            searchViewWidgetsModel.searchQueries.unshift(ko.mapping.fromJS(ko.mapping.toJS(searchViewModel)));
             searchViewWidgetsModel.amountHits(data.totalSize);
             searchViewWidgetsModel.searchTime(data.searchTime);
             searchViewWidgetsModel.amountPages(pages);
@@ -146,8 +170,8 @@ function ResultViewModel() {
     self.search();
 }
 
-var resultViewModel = new ResultViewModel();
 var searchViewModel = new SearchViewModel();
+var resultViewModel = new ResultViewModel();
 var searchViewWidgetsModel = new SearchViewWidgetsModel();
 
 
@@ -324,7 +348,6 @@ ko.bindingHandlers.selectPicker = {
 ko.applyBindings(resultViewModel, document.getElementById('searchtable'));
 ko.applyBindings(searchViewModel, document.getElementById('searchform'));
 ko.applyBindings(searchViewWidgetsModel, document.getElementById('widgets'));
-
 
 
 $(function () {
