@@ -148,14 +148,9 @@ public class SearchServiceImpl implements SearchService {
         }
 
         addFiltersToSearch(search, allFilterBuilder);
-
         SearchResponse response = executeQuery(search, queryBuilder, indexList, typesList, aggregationBuilders, allFilterBuilder);
-
-
         SearchResult searchResult = new SearchResult();
-
         createSearchResult(response, searchResult);
-
         return searchResult;
 
     }

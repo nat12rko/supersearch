@@ -33,6 +33,9 @@
 
     <script src="js/bootstrap-paginator.min.js" charset="UTF-8"></script>
 
+    <script src="js/facets.js" charset="UTF-8"></script>
+
+
     <link href="css/datepicker3.css" rel="stylesheet"/>
 
     <link href="css/page.css" rel="stylesheet"/>
@@ -73,6 +76,21 @@
     .node--leaf {
         pointer-events: none;
     }
+
+    .list-group-item-facets{
+        border: 0px solid #FFFFFF;
+        padding: 5px 0px;
+    }
+
+     .list-group-facets{
+        font-size:10px;
+         box-shadow: 0 0px 0px rgba(0, 0, 0, 0);
+    }
+
+    .badge-facets {
+        font-size:7px;
+    }
+
 </style>
 
 
@@ -138,6 +156,12 @@
 
         <div class="row" id="searchtable">
             <div class="col-lg-2 col-sm-2 hidden-xs">
+
+                <ul class="list-group list-group-facets" id="facets">
+
+                </ul>
+
+
             </div>
 
             <div class="col-lg-10 col-sm-10 col-xs-12">
