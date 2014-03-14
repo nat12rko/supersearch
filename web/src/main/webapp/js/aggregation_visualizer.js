@@ -90,7 +90,7 @@ var updateAggregation = function (aggregations) {
         svg.append("g").selectAll("text")
             .data(nodes)
             .enter().append("text")
-            .attr("class", "label")
+            .attr("class", "graph-label")
             .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
             .style("fill-opacity", function(d) { return d.parent === root ? 1 : 0; })
             .style("display", function(d) { return d.parent === root ? null : "none"; })
