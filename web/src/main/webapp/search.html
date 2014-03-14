@@ -78,18 +78,18 @@
         /*pointer-events: none;*/
     }
 
-    .list-group-item-facets{
+    .list-group-item-facets {
         border: 0px solid #FFFFFF;
         padding: 5px 0px;
     }
 
-     .list-group-facets{
-        font-size:10px;
-         box-shadow: 0 0px 0px rgba(0, 0, 0, 0);
+    .list-group-facets {
+        font-size: 10px;
+        box-shadow: 0 0px 0px rgba(0, 0, 0, 0);
     }
 
     .badge-facets {
-        font-size:7px;
+        font-size: 7px;
     }
 
 </style>
@@ -100,7 +100,7 @@
         SuperSök
     </div>
 
-    <div class="col-md-9 col-sm-12">
+    <div class="col-md-9 col-sm-12" id="test">
 
         <form id="searchform" data-bind="submit:search">
             <div class="row">
@@ -148,6 +148,14 @@
                     </div>
                 </div>
             </div>
+
+            <br/>
+
+            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" data-bind="foreach: filters">
+                <span class="label label-default" data-bind="click: $parent.removeFilter" >
+                    <span data-bind="text: $data.field"></span>:<span data-bind="text: $data.value"></span></span>
+            </div>
+            <br/>
 
             <br/>
 
@@ -209,6 +217,7 @@
                 </li>
             </ul>
         </div>
+
 
     </div>
 

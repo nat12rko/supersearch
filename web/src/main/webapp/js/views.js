@@ -5,6 +5,8 @@ function SearchViewWidgetsModel() {
     self.amountHits = ko.observableArray();
     self.amountPages = ko.observableArray();
     self.searchQueries = ko.observableArray();
+    self.filters = ko.observableArray();
+
 
     self.loadThis = function () {
         searchViewModel.updateObject(this.searchString(), this.fromDate(), this.toDate(), this.page(), this.pageSize(), this.systems(), this.countryCodes());
@@ -21,6 +23,7 @@ function SearchViewModel() {
     self.pageSize = ko.observable(25);
     self.filters = ko.observableArray();
 
+
     self.availableSystems = ko.observableArray([
         {text: 'Ehandel', id: 'ECOMMERCE'},
         {text: 'Bedrägeri', id: 'FRAUD'},
@@ -28,6 +31,12 @@ function SearchViewModel() {
         {text: 'Multiupplys', id: 'MULTIUPPLYS'}
     ]);
 
+
+    self.removeFilter = function () {
+        self.filters.remove(this);
+        resultViewModel.search();
+
+    }
 
     self.systems = ko.observableArray(['ECOMMERCE', 'FRAUD', 'LIMIT', 'MULTIUPPLYS']);
 
@@ -172,11 +181,6 @@ function ResultViewModel() {
     }
     self.search();
 }
-
-var searchViewModel = new SearchViewModel();
-var resultViewModel = new ResultViewModel();
-var searchViewWidgetsModel = new SearchViewWidgetsModel();
-
 
 function objectToView(ob, element) {
     if (ob.type === "creditcase") {
@@ -348,9 +352,7 @@ ko.bindingHandlers.selectPicker = {
     }
 };
 
-ko.applyBindings(resultViewModel, document.getElementById('searchtable'));
-ko.applyBindings(searchViewModel, document.getElementById('searchform'));
-ko.applyBindings(searchViewWidgetsModel, document.getElementById('widgets'));
+
 
 
 $(function () {
@@ -410,3 +412,10 @@ function loadValueToSearch(value) {
 }
 
 
+var searchViewModel = new SearchViewModel();
+var resultViewModel = new ResultViewModel();
+var searchViewWidgetsModel = new SearchViewWidgetsModel();
+
+ko.applyBindings(resultViewModel, document.getElementById('searchtable'));
+ko.applyBindings(searchViewModel, document.getElementById('searchform'));
+ko.applyBindings(searchViewWidgetsModel, document.getElementById('widgets'));
