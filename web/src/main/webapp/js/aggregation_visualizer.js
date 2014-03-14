@@ -103,14 +103,10 @@ var updateAggregation = function (aggregations) {
 
 
         function onLeafClicked(d) {
-                zoom(d);
-//            if (!d.children) {
-//                console.log("leaf!");
-//                zoom(d.parent);
-//                return;
-//            } else {
-//                zoom(focus == d ? root : d);
-//            }
+            if (!d.children) {
+                console.log("leaf, filter: " + );
+            }
+            zoom(d);
         }
 
         function generateText(d) {
@@ -139,10 +135,15 @@ var updateAggregation = function (aggregations) {
 
             transition.filter("text")
                 //.filter(function(d) { return d.parent === focus || d.parent === focus0; })
-                .style("fill-opacity", function(d) { return d.parent === focus ? 1 : 0; })
-                .each("start", function(d) { if (d.parent === focus) this.style.display = "inline"; })
-                .each("end", function(d) { if (d.parent !== focus) this.style.display = "none"; });
-
+                .style("fill-opacity", function(d) { return (d.parent === focus || (!d.children && d === focus)) ? 1 : 0; })
+                .each("start", function(d) { if (d.parent === focus || (!d.children && d === focus)) {this.style.display = "inline";} else  {this.style.display = "none";} })
+                .each("end", function(d) {
+                    if (d === focus) {
+                        this.style.display = "inline";
+                    } else if (d.parent !== focus) {
+                        this.style.display = "none";
+                    }
+                    });
             }
 
         function getColor(d) {
