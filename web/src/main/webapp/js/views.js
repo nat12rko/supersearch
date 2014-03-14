@@ -19,6 +19,7 @@ function SearchViewModel() {
     self.toDate = ko.observable();
     self.page = ko.observable(0);
     self.pageSize = ko.observable(25);
+    self.filters = ko.observableArray();
 
     self.availableSystems = ko.observableArray([
         {text: 'Ehandel', id: 'ECOMMERCE'},

@@ -59,7 +59,15 @@ var updateAggregation = function (aggregations) {
             .value(function(d) {
                   return d.hits; });
 
-        d3.selectAll("circle").remove();
+
+        d3.selectAll("circle").transition()
+            .attr("r", function(d) {return d.r; })
+            .each("end",function() {
+                d3.select(this).
+                    remove();
+         });
+
+        //d3.selectAll("circle").remove();
 
         var root = JSON.parse(JSON.stringify((aggregations)));
         var focus = root;
@@ -77,6 +85,15 @@ var updateAggregation = function (aggregations) {
             })
             .attr("r", function(d) { return 0; })
             .transition().ease("elastic",1,1.1).duration(800).attr("r", function(d) { return d.r; });
+
+//        $('circle').tipsy({
+//            gravity: 'w',
+//            html: true,
+//            title: function() {
+//                var d = this.__data__, c = getColor(d.i);
+//                return 'Hi there! My color is <span style="color:' + c + '">' + c + '</span>';
+//            }
+//        });
 
         svg.append("g").selectAll("text")
             .data(nodes)
@@ -104,7 +121,9 @@ var updateAggregation = function (aggregations) {
 
         function onLeafClicked(d) {
             if (!d.children) {
-                console.log("leaf, filter: " + );
+                var filter = {field:d.parent.name, value:d.name};
+                searchViewModel.filters().push(filter);
+                searchViewModel.search();
             }
             zoom(d);
         }
@@ -149,7 +168,7 @@ var updateAggregation = function (aggregations) {
         function getColor(d) {
             var comp = d.name.toLowerCase();
             if (greens.indexOf(comp) != -1) {
-                return "#8DF293";
+                return "#A4FF94";
             }
             else if (reds.indexOf(comp) != -1) {
                 return "#F24646";
