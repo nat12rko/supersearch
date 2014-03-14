@@ -154,7 +154,7 @@
 
             <div class="row">
                 <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" data-bind="foreach: filters">
-                <span class="label label-default" data-bind="click: $parent.removeFilter">
+                <span class="label label-success" data-bind="click: $parent.removeFilter">
                     <span data-bind="text: $data.field"></span>:<span data-bind="text: $data.value"></span></span>
                 </div>
             </div>
@@ -220,6 +220,8 @@
         <div class="col-sm-12">
             <ul class="list-group" data-bind="foreach: searchQueries">
                 <li class="list-group-item" data-bind="click: $parent.loadThis"/>
+                <span data-bind="text: $data.searchDate"> </span>
+
                 <span data-bind="text: $data.searchString"> </span>
                 </li>
             </ul>

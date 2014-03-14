@@ -22,7 +22,7 @@ function SearchViewModel() {
     self.page = ko.observable(0);
     self.pageSize = ko.observable(25);
     self.filters = ko.observableArray();
-
+    self.searchDate = ko.observable();
 
     self.availableSystems = ko.observableArray([
         {text: 'Ehandel', id: 'ECOMMERCE'},
@@ -150,6 +150,8 @@ function ResultViewModel() {
     }
 
     self.search = function () {
+        searchViewModel.searchDate = new Date().customFormat('#YYYY#-#MM#-#DD# #hh#:#mm#:#ss#');
+
 
         var jsonData = ko.toJSON(searchViewModel);
         if (!jsonData) {

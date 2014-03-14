@@ -52,7 +52,8 @@ public class EcommerceQueryBuilder implements com.resurs.supersearch.rest.elasti
 
         List<AggregationBuilder> aggregationBuilders = new ArrayList<>();
 
-        aggregationBuilders.add(AggregationBuilders.terms("payment.stateIdentifier.lifePhase").size(5).field("payment.stateIdentifier.lifePhase"));
+        aggregationBuilders.add(AggregationBuilders.terms("payment.stateIdentifier.lifePhase").size(5).field("payment.stateIdentifier.lifePhase").subAggregation(AggregationBuilders.terms("annulled").size(5).field("annulled")));
+
         aggregationBuilders.add(AggregationBuilders.terms("payment.representative.name").size(5).field("payment.representative.name"));
         return aggregationBuilders;
     }

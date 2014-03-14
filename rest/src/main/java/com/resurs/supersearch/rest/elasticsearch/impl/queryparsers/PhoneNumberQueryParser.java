@@ -21,11 +21,14 @@ public class PhoneNumberQueryParser implements QueryParser {
             countryCodes.addAll(Arrays.asList(CountryCode.values()));
         }
 
+        final String workQuery = (query.startsWith("\"") && query.endsWith("\"")) ?
+                query.substring(1, query.length() - 1) : query;
+
         StringBuilder returnQuery = new StringBuilder("");
         for (CountryCode countryCode : countryCodes) {
             try {
 
-                Phonenumber.PhoneNumber phoneNumber = PhoneNumberUtil.getInstance().parse(query, countryCode.name());
+                Phonenumber.PhoneNumber phoneNumber = PhoneNumberUtil.getInstance().parse(workQuery, countryCode.name());
                 if (PhoneNumberUtil.getInstance().isPossibleNumber(phoneNumber)
                         && PhoneNumberUtil.getInstance().getRegionCodeForNumber(phoneNumber).equals(countryCode.name())) {
                     returnQuery.append("\"" +PhoneNumberUtil.getInstance().format(phoneNumber, PhoneNumberUtil.PhoneNumberFormat.E164)+ "\"");

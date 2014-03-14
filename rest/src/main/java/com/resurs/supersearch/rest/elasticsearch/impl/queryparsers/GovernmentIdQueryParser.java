@@ -15,7 +15,10 @@ import java.util.List;
 @Service
 public class GovernmentIdQueryParser implements QueryParser {
     @Override
-    public String parseString(String query, List<CountryCode> countryCodes) {
+    public String parseString(final String query, List<CountryCode> countryCodes) {
+
+        final String workQuery = (query.startsWith("\"") && query.endsWith("\"")) ?
+                query.substring(1, query.length() - 1) : query;
 
         if (countryCodes.size() == 0) {
             countryCodes.addAll(Arrays.asList(CountryCode.values()));
@@ -24,7 +27,7 @@ public class GovernmentIdQueryParser implements QueryParser {
         StringBuilder returnQuery = new StringBuilder("");
         for (CountryCode countryCode : countryCodes) {
             try {
-                returnQuery.append(" \"" + GovernmentIdFactory.guessAndConstructGovernmentId(countryCode, query).getAsLongString()+"\"");
+                returnQuery.append(" \"" + GovernmentIdFactory.guessAndConstructGovernmentId(countryCode, workQuery).getAsLongString() + "\"");
             } catch (Exception e) {
 
             }
