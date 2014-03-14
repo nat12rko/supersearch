@@ -72,7 +72,7 @@ var updateAggregation = function (aggregations) {
             .style("fill", function(d) { return getColor(d); }) // return getColorFromName(d.name, d.depth);}) //d.children ? color2(d.depth) : color2(d.depth); })
             .on("click", function(d) { return zoom(focus == d ? root : d); })
             .attr("r", function(d) { return 0; })
-            .transition().ease("elastic",1.1,1.1).duration(800).attr("r", function(d) { return d.r; });
+            .transition().ease("elastic",1,1.1).duration(800).attr("r", function(d) { return d.r; });
 
         svg.append("g").selectAll("text")
             .data(nodes)
@@ -81,7 +81,7 @@ var updateAggregation = function (aggregations) {
             .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
             .style("fill-opacity", function(d) { return d.parent === root ? 1 : 0; })
             .style("display", function(d) { return d.parent === root ? null : "none"; })
-            .text(function(d) { return d.name; });
+            .text(function(d) { return generateText(d); });
 
         d3.select(window)
             .on("click", function() { zoom(root); });
@@ -95,6 +95,13 @@ var updateAggregation = function (aggregations) {
                 return shouldFocus(d.parent, focus)
             }
 
+        }
+
+        function generateText(d) {
+            if (d.hits === undefined) {
+                return d.name;
+            }
+            return d.name + " (" + d.hits + ")";
         }
 
         function zoom(d, i) {
