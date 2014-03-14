@@ -28,8 +28,9 @@ var aggregation = function() {
 
 var updateAggregation = function (aggregations) {
 
-    console.log("lets" + aggregations);
+    console.log("Build aggregation graph");
     if (aggregations === undefined) {
+        d3.selectAll("circle").remove();
         return;
     }
 
@@ -58,11 +59,20 @@ var updateAggregation = function (aggregations) {
             .value(function(d) {
                   return d.hits; });
 
+
+        d3.selectAll("circle").transition()
+            .attr("r", function(d) {return d.r; })
+            .each("end",function() {
+                d3.select(this).
+                    remove();
+         });
+
+        //d3.selectAll("circle").remove();
+
         var root = JSON.parse(JSON.stringify((aggregations)));
         var focus = root;
         var nodes = pack.nodes(root);
 
-        d3.selectAll("circle").remove();
 
         svg.append("g").selectAll("circle")
             .data(nodes)
@@ -70,9 +80,20 @@ var updateAggregation = function (aggregations) {
             .attr("class", function(d) { return d.parent ? d.children ? "node" : "node node--leaf" : "node node--root"; })
             .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
             .style("fill", function(d) { return getColor(d); }) // return getColorFromName(d.name, d.depth);}) //d.children ? color2(d.depth) : color2(d.depth); })
-            .on("click", function(d) { return zoom(focus == d ? root : d); })
+            .on("click", function(d) {
+                return onLeafClicked(d);
+            })
             .attr("r", function(d) { return 0; })
             .transition().ease("elastic",1,1.1).duration(800).attr("r", function(d) { return d.r; });
+
+//        $('circle').tipsy({
+//            gravity: 'w',
+//            html: true,
+//            title: function() {
+//                var d = this.__data__, c = getColor(d.i);
+//                return 'Hi there! My color is <span style="color:' + c + '">' + c + '</span>';
+//            }
+//        });
 
         svg.append("g").selectAll("text")
             .data(nodes)
@@ -83,8 +104,8 @@ var updateAggregation = function (aggregations) {
             .style("display", function(d) { return d.parent === root ? null : "none"; })
             .text(function(d) { return generateText(d); });
 
-        d3.select(window)
-            .on("click", function() { zoom(root); });
+//        d3.select(window)
+//            .on("dblclick", function() { zoom(root); });
 
         function shouldFocus(d, focus) {
             if (d === focus || d.parent === focus) {
@@ -95,6 +116,16 @@ var updateAggregation = function (aggregations) {
                 return shouldFocus(d.parent, focus)
             }
 
+        }
+
+
+        function onLeafClicked(d) {
+            if (!d.children) {
+                var filter = {field:d.parent.name, value:d.name};
+                searchViewModel.filters().push(filter);
+                searchViewModel.search();
+            }
+            zoom(d);
         }
 
         function generateText(d) {
@@ -122,16 +153,22 @@ var updateAggregation = function (aggregations) {
                 .attr("r", function(d) { return k * d.r; });
 
             transition.filter("text")
-                .filter(function(d) { return d.parent === focus || d.parent === focus0; })
-                .style("fill-opacity", function(d) { return d.parent === focus ? 1 : 0; })
-                .each("start", function(d) { if (d.parent === focus) this.style.display = "inline"; })
-                .each("end", function(d) { if (d.parent !== focus) this.style.display = "none"; });
+                //.filter(function(d) { return d.parent === focus || d.parent === focus0; })
+                .style("fill-opacity", function(d) { return (d.parent === focus || (!d.children && d === focus)) ? 1 : 0; })
+                .each("start", function(d) { if (d.parent === focus || (!d.children && d === focus)) {this.style.display = "inline";} else  {this.style.display = "none";} })
+                .each("end", function(d) {
+                    if (d === focus) {
+                        this.style.display = "inline";
+                    } else if (d.parent !== focus) {
+                        this.style.display = "none";
+                    }
+                    });
             }
 
         function getColor(d) {
             var comp = d.name.toLowerCase();
             if (greens.indexOf(comp) != -1) {
-                return "#8DF293";
+                return "#A4FF94";
             }
             else if (reds.indexOf(comp) != -1) {
                 return "#F24646";
