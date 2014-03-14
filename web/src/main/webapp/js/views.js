@@ -7,7 +7,7 @@ function SearchViewWidgetsModel() {
     self.searchQueries = ko.observableArray();
 
     self.loadThis = function () {
-        searchViewModel.updateObject(this.searchString(),this.fromDate(),this.toDate(),this.page(),this.pageSize(),this.systems(),this.countryCodes());
+        searchViewModel.updateObject(this.searchString(), this.fromDate(), this.toDate(), this.page(), this.pageSize(), this.systems(), this.countryCodes());
     }
 }
 
@@ -61,28 +61,28 @@ function SearchViewModel() {
 
     self.searchWithValue = function (value) {
         searchViewModel.page(0);
-        self.searchString(value);
+        self.searchString("\""+value+"\"");
         resultViewModel.search()
     }
 
-/*    self.countryCodes.subscribe(function (newValue) {
-        resultViewModel.search();
-    });
+    /*    self.countryCodes.subscribe(function (newValue) {
+     resultViewModel.search();
+     });
 
-    self.systems.subscribe(function (newValue) {
-        resultViewModel.search();
+     self.systems.subscribe(function (newValue) {
+     resultViewModel.search();
 
-    });
+     });
 
-    self.fromDate.subscribe(function (newValue) {
-        resultViewModel.search();
+     self.fromDate.subscribe(function (newValue) {
+     resultViewModel.search();
 
-    });
+     });
 
-    self.toDate.subscribe(function (newValue) {
-        resultViewModel.search();
+     self.toDate.subscribe(function (newValue) {
+     resultViewModel.search();
 
-    });*/
+     });*/
 
 
 }
@@ -134,6 +134,7 @@ function ResultViewModel() {
         self.ajax(self.tasksURI, 'POST', jsonData).done(function (data) {
 
             updateAggregation(data.aggregates[0]);
+            updateFacets(data.aggregates);
 
             self.hits.removeAll();
             for (var i = 0; i < data.hits.length; i++) {
@@ -146,7 +147,7 @@ function ResultViewModel() {
                 searchViewModel.page(0);
             }
             searchViewWidgetsModel.searchQueries.unshift(ko.mapping.fromJS(ko.mapping.toJS(searchViewModel)));
-            if(searchViewWidgetsModel.searchQueries().length> 10) {
+            if (searchViewWidgetsModel.searchQueries().length > 10) {
                 searchViewWidgetsModel.searchQueries(searchViewWidgetsModel.searchQueries.splice(0, 10));
             }
 
@@ -245,12 +246,12 @@ function createEcommerceRow(element, ob) {
         "</tr>" +
         "<tr>" +
         "<td width=\"14.2%\">Namn: " + createClickableObjectForSearch(ob.object.customer.address.fullName) + "</td>" +
-        "<td width=\"14.2%\">Gata: " + ob.object.customer.address.street + "</td>" +
-        "<td width=\"14.2%\">Stad: " + ob.object.customer.address.city + "</td>" +
-        "<td width=\"14.2%\">Postnummer: " + ob.object.customer.address.zipCode + "</td>" +
+        "<td width=\"14.2%\">Gata: " + createClickableObjectForSearch(ob.object.customer.address.street) + "</td>" +
+        "<td width=\"14.2%\">Stad: " + createClickableObjectForSearch(ob.object.customer.address.city) + "</td>" +
+        "<td width=\"14.2%\">Postnummer: " + createClickableObjectForSearch(ob.object.customer.address.zipCode) + "</td>" +
         "<td width=\"14.2%\">Epost: " + createClickableObjectForSearch(ob.object.customer.address.email) + "</td>" +
         "<td width=\"14.2%\">Kontonummer: " + createClickableObjectForSearch(ob.object.accountNumber) + "</td>" +
-        "<td width=\"14.2%\">Status: " + ob.object.stateIdentifier.lifePhase + "</td>  " +
+        "<td width=\"14.2%\">Status: " + createClickableObjectForSearch(ob.object.stateIdentifier.lifePhase) + "</td>  " +
         "</tr>" +
         "</table>" +
         "</td>")
@@ -271,13 +272,13 @@ function createLimitRow(element, ob) {
         "<td width=\"20%\">MupReference: " + createClickableObjectForSearch(ob.object.mupRefNumber) + " </td> " +
 
         "<td width=\"20%\">Belopp (beviljat/sökt): " + ob.object.approvedAmount + "/" + ob.object.requestedAmount + " </td> " +
-        "<td width=\"20%\">Status: " + ob.object.decision + "</td>  " +
+        "<td width=\"20%\">Status: " + createClickableObjectForSearch(ob.object.decision) + "</td>  " +
         "</tr>" +
         "<tr>" +
         "<td width=\"20%\">Namn: " + createClickableObjectForSearch(ob.object.customer.fullName) + "</td>  " +
-        "<td width=\"20%\">Gata: " + ob.object.customer.address.streetAddress + "</td>  " +
-        "<td width=\"20%\">Stad: " + ob.object.customer.address.postalArea + "</td>  " +
-        "<td width=\"20%\">Postnummer: " + ob.object.customer.address.postalCode + "</td>  " +
+        "<td width=\"20%\">Gata: " + createClickableObjectForSearch(ob.object.customer.address.streetAddress) + "</td>  " +
+        "<td width=\"20%\">Stad: " + createClickableObjectForSearch(ob.object.customer.address.postalArea) + "</td>  " +
+        "<td width=\"20%\">Postnummer: " +createClickableObjectForSearch(ob.object.customer.address.postalCode) + "</td>  " +
         "<td width=\"20%\">Epost: " + createClickableObjectForSearch(ob.object.customer.email) + "</td>  " +
         "</tr>" +
         "</table>" +

@@ -111,7 +111,7 @@ public class SearchServiceImpl implements SearchService {
         List<AggregationBuilder> aggregationBuilders = new ArrayList<>();
 
 
-        AggregationBuilder aggregationBuilder = AggregationBuilders.terms("type").field("_type").size(5);
+        AggregationBuilder aggregationBuilder = AggregationBuilders.terms("_type").field("_type").size(5);
         aggregationBuilders.add(aggregationBuilder);
 
         BoolFilterBuilder allFilterBuilder = FilterBuilders.boolFilter();
@@ -148,14 +148,9 @@ public class SearchServiceImpl implements SearchService {
         }
 
         addFiltersToSearch(search, allFilterBuilder);
-
         SearchResponse response = executeQuery(search, queryBuilder, indexList, typesList, aggregationBuilders, allFilterBuilder);
-
-
         SearchResult searchResult = new SearchResult();
-
         createSearchResult(response, searchResult);
-
         return searchResult;
 
     }
