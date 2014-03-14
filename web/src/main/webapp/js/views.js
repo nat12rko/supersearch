@@ -118,7 +118,7 @@ function ResultViewModel() {
         }
         self.ajax(self.tasksURI, 'POST', jsonData).done(function (data) {
 
-            Aggregation(data.aggregates[0]);
+            updateAggregation(data.aggregates[0]);
 
             self.hits.removeAll();
             for (var i = 0; i < data.hits.length; i++) {
