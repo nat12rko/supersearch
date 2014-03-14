@@ -129,7 +129,9 @@ public class SearchServiceImpl implements SearchService {
                     aggregationBuilder.subAggregation(sub);
                 }
             }
-            if (search.getCountryCodes() != null && search.getCountryCodes().size() != 0 && search.getCountryCodes().size() != CountryCode.values().length) {
+            if (search.getCountryCodes() != null &&
+                    search.getCountryCodes().size() != 0 &&
+                    search.getCountryCodes().size() != (CountryCode.values().length-1)) {
                 FilterBuilder filterBuilder = qb.createCountryCodeFilter(search.getCountryCodes());
                 if (filterBuilder != null) {
                     if (countryFilter == null) {
@@ -242,7 +244,6 @@ public class SearchServiceImpl implements SearchService {
                 Aggregate aggregate = new Aggregate();
                 aggregates.add(aggregate);
                 aggregate.setName(aggregation.getName());
-
                 for (org.elasticsearch.search.aggregations.bucket.terms.Terms.Bucket bucket : ((org.elasticsearch.search.aggregations.bucket.terms.Terms) aggregation).getBuckets()) {
 
                     AggregateResult aggregateResult = new AggregateResult();
