@@ -37,7 +37,5 @@ function createSpaces(amt) {
     return spaces;
 }
  function addFilter(name,value){
-     var filter = {field:name, value:value};
-     searchViewModel.filters.push(filter);
-     searchViewModel.search();
+    searchViewModel.addFilter(name,value);
  }

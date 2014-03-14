@@ -152,20 +152,26 @@
 
             <br/>
 
-            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" data-bind="foreach: filters">
-                <span class="label label-default" data-bind="click: $parent.removeFilter" >
+            <div class="row">
+                <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" data-bind="foreach: filters">
+                <span class="label label-default" data-bind="click: $parent.removeFilter">
                     <span data-bind="text: $data.field"></span>:<span data-bind="text: $data.value"></span></span>
+                </div>
             </div>
             <br/>
 
             <br/>
 
-            <button type="submit" class="btn btn-default btn-sm">Search</button>
+            <div class="row">
+                <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                    <button type="submit" class="btn btn-default btn-sm">Search</button>
+                </div>
+            </div>
         </form>
         <br/>
 
         <div class="row" id="searchtable">
-            <div class="col-lg-2 col-sm-2 hidden-xs">
+            <div class="col-lg-3 hidden-md hidden-xs hidden-sm">
 
                 <ul class="list-group list-group-facets" id="facets">
 
@@ -174,7 +180,7 @@
 
             </div>
 
-            <div class="col-lg-10 col-sm-10 col-xs-12">
+            <div class="col-lg-9 col-xs-12">
                 <div class="row hidden-xs">
                     <div class="col-xs-0 col-md-8 col-md-offset-2">
                         <ul id='paginatortop'></ul>
