@@ -86,14 +86,6 @@ var updateAggregation = function (aggregations) {
             .attr("r", function(d) { return 0; })
             .transition().ease("elastic",1,1.1).duration(800).attr("r", function(d) { return d.r; });
 
-//        $('circle').tipsy({
-//            gravity: 'w',
-//            html: true,
-//            title: function() {
-//                var d = this.__data__, c = getColor(d.i);
-//                return 'Hi there! My color is <span style="color:' + c + '">' + c + '</span>';
-//            }
-//        });
 
         svg.append("g").selectAll("text")
             .data(nodes)
