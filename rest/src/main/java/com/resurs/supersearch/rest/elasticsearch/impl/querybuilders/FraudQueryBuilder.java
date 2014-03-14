@@ -54,7 +54,7 @@ public class FraudQueryBuilder implements com.resurs.supersearch.rest.elasticsea
 
         List<AggregationBuilder> aggregationBuilders = new ArrayList<>();
 
-        aggregationBuilders.add(AggregationBuilders.terms("recommendation").size(5).field("FraudSummary.recommendation"));
+        aggregationBuilders.add(AggregationBuilders.terms("FraudSummary.recommendation").size(5).field("FraudSummary.recommendation"));
         return aggregationBuilders;
     }
 

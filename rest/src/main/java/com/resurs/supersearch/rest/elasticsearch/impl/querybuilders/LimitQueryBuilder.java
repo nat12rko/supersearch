@@ -55,7 +55,7 @@ public class LimitQueryBuilder implements com.resurs.supersearch.rest.elasticsea
 
         List<AggregationBuilder> aggregationBuilders = new ArrayList<>();
 
-        aggregationBuilders.add(AggregationBuilders.terms("decision").size(5).field("limitresponse.decision"));
+        aggregationBuilders.add(AggregationBuilders.terms("limitresponse.decision").size(5).field("limitresponse.decision"));
         return aggregationBuilders;
     }
 

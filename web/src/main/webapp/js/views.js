@@ -7,13 +7,7 @@ function SearchViewWidgetsModel() {
     self.searchQueries = ko.observableArray();
 
     self.loadThis = function () {
-/*
-        ko.cleanNode($("#searchform")[0]);
-*/
-        //ko.applyBindings(this, document.getElementById('searchform'));
-
-
-        searchViewModel = ko.mapping.fromJS(ko.mapping.toJS(this)); ;
+        searchViewModel.updateObject(this.searchString(),this.fromDate(),this.toDate(),this.page(),this.pageSize(),this.systems(),this.countryCodes());
     }
 }
 
@@ -53,13 +47,15 @@ function SearchViewModel() {
     }
 
     self.updateObject = function (valuesearchString, valuefromDate, valuetoDate, valuepage, valuepageSize, valuesystems, valuecountryCodes) {
-        self.searchString = valuesearchString;
-        self.fromDate = valuefromDate;
-        self.toDate = valuetoDate;
-        self.page = valuepage;
-        self.pageSize = valuepageSize;
-        self.systems = valuesystems;
-        self.countryCodes = valuecountryCodes;
+        self.searchString(valuesearchString);
+        self.fromDate(valuefromDate);
+        self.toDate(valuetoDate);
+        self.page(valuepage);
+        self.pageSize(valuepageSize);
+        self.systems(valuesystems);
+        self.countryCodes(valuecountryCodes);
+        resultViewModel.search()
+
     }
 
     self.searchWithValue = function (value) {
@@ -68,7 +64,7 @@ function SearchViewModel() {
         resultViewModel.search()
     }
 
-    self.countryCodes.subscribe(function (newValue) {
+/*    self.countryCodes.subscribe(function (newValue) {
         resultViewModel.search();
     });
 
@@ -85,7 +81,7 @@ function SearchViewModel() {
     self.toDate.subscribe(function (newValue) {
         resultViewModel.search();
 
-    });
+    });*/
 
 
 }
@@ -149,6 +145,11 @@ function ResultViewModel() {
                 searchViewModel.page(0);
             }
             searchViewWidgetsModel.searchQueries.unshift(ko.mapping.fromJS(ko.mapping.toJS(searchViewModel)));
+            if(searchViewWidgetsModel.searchQueries().length> 10) {
+                searchViewWidgetsModel.searchQueries(searchViewWidgetsModel.searchQueries.splice(0, 10));
+            }
+
+
             searchViewWidgetsModel.amountHits(data.totalSize);
             searchViewWidgetsModel.searchTime(data.searchTime);
             searchViewWidgetsModel.amountPages(pages);

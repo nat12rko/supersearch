@@ -57,9 +57,9 @@ public class MultiupplysQueryBuilder implements com.resurs.supersearch.rest.elas
     public List<AggregationBuilder> createAggregations(Search search) {
         List<AggregationBuilder> aggregationBuilders = new ArrayList<>();
 
-        aggregationBuilders.add(AggregationBuilders.terms("State").size(5).field("creditcase.currentState.state"));
-        aggregationBuilders.add(AggregationBuilders.terms("REPRESENTATIVE_NAME").size(5).field("creditcase.creditCaseTags.REPRESENTATIVE_NAME"));
-        aggregationBuilders.add(AggregationBuilders.terms("creditProductCode").size(5).field("creditcase.creditProductCode"));
+        aggregationBuilders.add(AggregationBuilders.terms("creditcase.currentState.state").size(5).field("creditcase.currentState.state"));
+        aggregationBuilders.add(AggregationBuilders.terms("creditcase.creditCaseTags.REPRESENTATIVE_NAME").size(5).field("creditcase.creditCaseTags.REPRESENTATIVE_NAME"));
+        aggregationBuilders.add(AggregationBuilders.terms("creditcase.creditProductCode").size(5).field("creditcase.creditProductCode"));
 
 
         return aggregationBuilders;
