@@ -86,19 +86,11 @@ var updateAggregation = function (aggregations) {
             .attr("r", function(d) { return 0; })
             .transition().ease("elastic",1,1.1).duration(800).attr("r", function(d) { return d.r; });
 
-//        $('circle').tipsy({
-//            gravity: 'w',
-//            html: true,
-//            title: function() {
-//                var d = this.__data__, c = getColor(d.i);
-//                return 'Hi there! My color is <span style="color:' + c + '">' + c + '</span>';
-//            }
-//        });
 
         svg.append("g").selectAll("text")
             .data(nodes)
             .enter().append("text")
-            .attr("class", "label")
+            .attr("class", "graph-label")
             .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
             .style("fill-opacity", function(d) { return d.parent === root ? 1 : 0; })
             .style("display", function(d) { return d.parent === root ? null : "none"; })
