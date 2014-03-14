@@ -113,9 +113,7 @@ var updateAggregation = function (aggregations) {
 
         function onLeafClicked(d) {
             if (!d.children) {
-                var filter = {field:d.parent.name, value:d.name};
-                searchViewModel.filters().push(filter);
-                searchViewModel.search();
+                searchViewModel.addFilter(d.parent.name,d.name);
             }
             zoom(d);
         }

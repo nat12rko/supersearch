@@ -5,9 +5,11 @@ function SearchViewWidgetsModel() {
     self.amountHits = ko.observableArray();
     self.amountPages = ko.observableArray();
     self.searchQueries = ko.observableArray();
+    self.filters = ko.observableArray();
+
 
     self.loadThis = function () {
-        searchViewModel.updateObject(this.searchString(), this.fromDate(), this.toDate(), this.page(), this.pageSize(), this.systems(), this.countryCodes());
+        searchViewModel.updateObject(this.searchString(), this.fromDate(), this.toDate(), this.page(), this.pageSize(), this.systems(), this.countryCodes(), this.filters());
     }
 }
 
@@ -21,12 +23,35 @@ function SearchViewModel() {
     self.pageSize = ko.observable(25);
     self.filters = ko.observableArray();
 
+
     self.availableSystems = ko.observableArray([
         {text: 'Ehandel', id: 'ECOMMERCE'},
         {text: 'Bedrägeri', id: 'FRAUD'},
         {text: 'Limit', id: 'LIMIT'},
         {text: 'Multiupplys', id: 'MULTIUPPLYS'}
     ]);
+
+
+    self.removeFilter = function () {
+        self.filters.remove(this);
+        resultViewModel.search();
+
+    }
+
+    self.addFilter = function (name, value) {
+        var exists = false;
+        ko.utils.arrayForEach(self.filters(), function (feature) {
+            if (feature.field === name && feature.value === value) {
+                exists = true;
+            }
+        });
+
+        if (!exists) {
+            var filter = {field: name, value: value};
+            searchViewModel.filters.push(filter);
+            searchViewModel.search();
+        }
+    }
 
 
     self.systems = ko.observableArray(['ECOMMERCE', 'FRAUD', 'LIMIT', 'MULTIUPPLYS']);
@@ -47,7 +72,7 @@ function SearchViewModel() {
         resultViewModel.search();
     }
 
-    self.updateObject = function (valuesearchString, valuefromDate, valuetoDate, valuepage, valuepageSize, valuesystems, valuecountryCodes) {
+    self.updateObject = function (valuesearchString, valuefromDate, valuetoDate, valuepage, valuepageSize, valuesystems, valuecountryCodes, valuefilters) {
         self.searchString(valuesearchString);
         self.fromDate(valuefromDate);
         self.toDate(valuetoDate);
@@ -55,13 +80,14 @@ function SearchViewModel() {
         self.pageSize(valuepageSize);
         self.systems(valuesystems);
         self.countryCodes(valuecountryCodes);
+        self.filters(valuefilters)
         resultViewModel.search()
 
     }
 
     self.searchWithValue = function (value) {
         searchViewModel.page(0);
-        self.searchString("\""+value+"\"");
+        self.searchString("\"" + value + "\"");
         resultViewModel.search()
     }
 
@@ -173,11 +199,6 @@ function ResultViewModel() {
     self.search();
 }
 
-var searchViewModel = new SearchViewModel();
-var resultViewModel = new ResultViewModel();
-var searchViewWidgetsModel = new SearchViewWidgetsModel();
-
-
 function objectToView(ob, element) {
     if (ob.type === "creditcase") {
         createMultiupplysRow(element, ob);
@@ -278,7 +299,7 @@ function createLimitRow(element, ob) {
         "<td width=\"20%\">Namn: " + createClickableObjectForSearch(ob.object.customer.fullName) + "</td>  " +
         "<td width=\"20%\">Gata: " + createClickableObjectForSearch(ob.object.customer.address.streetAddress) + "</td>  " +
         "<td width=\"20%\">Stad: " + createClickableObjectForSearch(ob.object.customer.address.postalArea) + "</td>  " +
-        "<td width=\"20%\">Postnummer: " +createClickableObjectForSearch(ob.object.customer.address.postalCode) + "</td>  " +
+        "<td width=\"20%\">Postnummer: " + createClickableObjectForSearch(ob.object.customer.address.postalCode) + "</td>  " +
         "<td width=\"20%\">Epost: " + createClickableObjectForSearch(ob.object.customer.email) + "</td>  " +
         "</tr>" +
         "</table>" +
@@ -348,10 +369,6 @@ ko.bindingHandlers.selectPicker = {
     }
 };
 
-ko.applyBindings(resultViewModel, document.getElementById('searchtable'));
-ko.applyBindings(searchViewModel, document.getElementById('searchform'));
-ko.applyBindings(searchViewWidgetsModel, document.getElementById('widgets'));
-
 
 $(function () {
     $('.input-daterange').datepicker({
@@ -410,3 +427,10 @@ function loadValueToSearch(value) {
 }
 
 
+var searchViewModel = new SearchViewModel();
+var resultViewModel = new ResultViewModel();
+var searchViewWidgetsModel = new SearchViewWidgetsModel();
+
+ko.applyBindings(resultViewModel, document.getElementById('searchtable'));
+ko.applyBindings(searchViewModel, document.getElementById('searchform'));
+ko.applyBindings(searchViewWidgetsModel, document.getElementById('widgets'));
