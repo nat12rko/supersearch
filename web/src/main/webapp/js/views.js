@@ -220,16 +220,16 @@ function objectToView(ob, element) {
 function createMultiupplysRow(element, ob) {
     $(element).removeClass().addClass("multiupplys")
     $(element).append("<td>Multiupplys</td>")
-    $(element).append("<td>" + createClickableObjectForSearch(ob.object.publicReferenceNumber) + "</td>")
+    $(element).append("<td>" + createClickableObjectForSearch(getJsonValue(ob, 'object.publicReferenceNumber')) + "</td>")
 
     $(element).append("<td colspan='9'>" +
 
         "<table width='100%'><tr>" +
-        "<td width=\"20%\">Pers/Org -nr: " + createClickableObjectForSearch(ob.object.application.applicant.governmentId.value) + "</td>" +
-        "<td width=\"20%\">Skapad: " + new Date(ob.object.created).customFormat('#YYYY#-#MM#-#DD# #hh#:#mm#:#ss#') + "  </td>" +
-        "<td width=\"20%\">Ombudskod: " + createClickableObjectForSearch(ob.object.creditCaseTags.BANKSYSTEM_REPRESENTATIVE_CODE) + " </td> " +
-        "<td width=\"20%\">Belopp (beviljat/sökt): " + ob.object.currentState.amount + "/" + ob.object.application.amount + " </td> " +
-        "<td width=\"20%\">Status: " + createClickableObjectForSearch(ob.object.currentState.state) + "</td>  " +
+        "<td width=\"20%\">Pers/Org -nr: " + createClickableObjectForSearch(getJsonValue(ob, 'object.application.applicant.governmentId.value')) + "</td>" +
+        "<td width=\"20%\">Skapad: " + new Date(getJsonValue(ob, 'object.created')).customFormat('#YYYY#-#MM#-#DD# #hh#:#mm#:#ss#') + "  </td>" +
+        "<td width=\"20%\">Ombudskod: " + createClickableObjectForSearch(getJsonValue(ob, 'object.creditCaseTags.BANKSYSTEM_REPRESENTATIVE_CODE')) + " </td> " +
+        "<td width=\"20%\">Belopp (beviljat/sökt): " + getJsonValue(ob, 'object.currentState.amount') + "/" + getJsonValue(ob, 'object.application.amount') + " </td> " +
+        "<td width=\"20%\">Status: " + createClickableObjectForSearch(getJsonValue(ob, 'object.currentState.state')) + "</td>  " +
         "</tr></table>" +
         "</td>")
 }
@@ -237,44 +237,57 @@ function createMultiupplysRow(element, ob) {
 function createFraudRow(element, ob) {
     $(element).removeClass().addClass("fraud")
     $(element).append("<td>Bedrägeri</td>")
-    $(element).append("<td>" + createClickableObjectForSearch(ob.object.id) + "</td>")
+    $(element).append("<td>" + createClickableObjectForSearch(getJsonValue(ob, 'object.id')) + "</td>")
 
     $(element).append("<td colspan='9'>" +
         "<table width='100%'><tr>" +
-        "<td width=\"20%\">Pers/Org -nr: " + createClickableObjectForSearch(ob.object.controlRequestJson.customer.governmentId) + "</td>" +
-        "<td width=\"20%\">Skapad: " + new Date(ob.object.timestamp).customFormat('#YYYY#-#MM#-#DD# #hh#:#mm#:#ss#') + "  </td>" +
-        "<td width=\"20%\">MupReference: " + createClickableObjectForSearch(ob.object.controlRequestJson.ids.MUP_ID) + " </td> " +
-        "<td width=\"20%\">BedrägerId: " + createClickableObjectForSearch(ob.object.controlRequestJson.ids.LIMITBOX_ID) + " </td> " +
-        "<td width=\"20%\">Status: " + createClickableObjectForSearch(ob.object.recommendation) + "</td>  " +
+        "<td width=\"20%\">Pers/Org -nr: " + createClickableObjectForSearch(getJsonValue(ob, 'object.controlRequestJson.customer.governmentId')) + "</td>" +
+        "<td width=\"20%\">Skapad: " + new Date(getJsonValue(ob, 'object.timestamp')).customFormat('#YYYY#-#MM#-#DD# #hh#:#mm#:#ss#') + "  </td>" +
+        "<td width=\"20%\">MupReference: " + createClickableObjectForSearch(getJsonValue(ob, 'object.controlRequestJson.ids.MUP_ID')) + " </td> " +
+        "<td width=\"20%\">BedrägerId: " + createClickableObjectForSearch(getJsonValue(ob, 'object.controlRequestJson.ids.LIMITBOX_ID')) + " </td> " +
+        "<td width=\"20%\">Status: " + createClickableObjectForSearch(getJsonValue(ob, 'object.recommendation')) + "</td>  " +
         "</tr>" +
         "</table>" +
         "</td>")
+}
+
+function getJsonValue(ob, field) {
+    var fields = field.split(".");
+    var useOb = ob;
+    for (var i = 0; i < fields.length; i++) {
+        if (useOb) {
+            useOb = useOb[fields[i]];
+        } else {
+            return "";
+        }
+    }
+    return useOb;
 }
 
 function createEcommerceRow(element, ob) {
 
     $(element).removeClass().addClass("ecommerce")
     $(element).append("<td>Ehandel</td>")
-    $(element).append("<td>" + ob.object.representative.name + " " + createClickableObjectForSearch(ob.object.externalId) + "</td>")
+    $(element).append("<td>" + getJsonValue(ob, 'object.representative.name') + " " + createClickableObjectForSearch(getJsonValue(ob, 'object.externalId')) + "</td>")
 
     $(element).append("<td colspan='9'>" +
         "<table width='100%'><tr>" +
-        "<td width=\"14.2%\">Pers/Org -nr: " + createClickableObjectForSearch(ob.object.customer.governmentId.value) + "</td>" +
-        "<td width=\"14.2%\">Skapad: " + new Date(ob.object.created).customFormat('#YYYY#-#MM#-#DD# #hh#:#mm#:#ss#') + "  </td>" +
-        "<td width=\"14.2%\">Debiterad: " + ob.object.debited + " </td> " +
-        "<td width=\"14.2%\">Crediterad: " + ob.object.credited + " </td> " +
-        "<td width=\"14.2%\">Anullerad: " + ob.object.annulled + " </td> " +
-        "<td width=\"14.2%\">Krediterbar: " + ob.object.creditable + " </td> " +
-        "<td width=\"14.2%\">Debiterbar: " + ob.object.debitable + " </td> " +
+        "<td width=\"14.2%\">Pers/Org -nr: " + createClickableObjectForSearch(getJsonValue(ob, 'object.customer.governmentId.value')) + "</td>" +
+        "<td width=\"14.2%\">Skapad: " + new Date(getJsonValue(ob, 'object.created')).customFormat('#YYYY#-#MM#-#DD# #hh#:#mm#:#ss#') + "  </td>" +
+        "<td width=\"14.2%\">Debiterad: " + getJsonValue(ob, 'object.debited') + " </td> " +
+        "<td width=\"14.2%\">Crediterad: " + getJsonValue(ob, 'object.credited') + " </td> " +
+        "<td width=\"14.2%\">Anullerad: " + getJsonValue(ob, 'object.annulled') + " </td> " +
+        "<td width=\"14.2%\">Krediterbar: " + getJsonValue(ob, 'object.creditable') + " </td> " +
+        "<td width=\"14.2%\">Debiterbar: " + getJsonValue(ob, 'object.debitable') + " </td> " +
         "</tr>" +
         "<tr>" +
-        "<td width=\"14.2%\">Namn: " + createClickableObjectForSearch(ob.object.customer.address.fullName) + "</td>" +
-        "<td width=\"14.2%\">Gata: " + createClickableObjectForSearch(ob.object.customer.address.street) + "</td>" +
-        "<td width=\"14.2%\">Stad: " + createClickableObjectForSearch(ob.object.customer.address.city) + "</td>" +
-        "<td width=\"14.2%\">Postnummer: " + createClickableObjectForSearch(ob.object.customer.address.zipCode) + "</td>" +
-        "<td width=\"14.2%\">Epost: " + createClickableObjectForSearch(ob.object.customer.address.email) + "</td>" +
-        "<td width=\"14.2%\">Kontonummer: " + createClickableObjectForSearch(ob.object.accountNumber) + "</td>" +
-        "<td width=\"14.2%\">Status: " + createClickableObjectForSearch(ob.object.stateIdentifier.lifePhase) + "</td>  " +
+        "<td width=\"14.2%\">Namn: " + createClickableObjectForSearch(getJsonValue(ob, 'object.customer.address.fullName')) + "</td>" +
+        "<td width=\"14.2%\">Gata: " + createClickableObjectForSearch(getJsonValue(ob, 'object.customer.address.street')) + "</td>" +
+        "<td width=\"14.2%\">Stad: " + createClickableObjectForSearch(getJsonValue(ob, 'object.customer.address.city')) + "</td>" +
+        "<td width=\"14.2%\">Postnummer: " + createClickableObjectForSearch(getJsonValue(ob, 'object.customer.address.zipCode')) + "</td>" +
+        "<td width=\"14.2%\">Epost: " + createClickableObjectForSearch(getJsonValue(ob, 'object.customer.address.email')) + "</td>" +
+        "<td width=\"14.2%\">Kontonummer: " + createClickableObjectForSearch(getJsonValue(ob, 'object.accountNumber')) + "</td>" +
+        "<td width=\"14.2%\">Status: " + createClickableObjectForSearch(getJsonValue(ob, 'object.stateIdentifier.lifePhase')) + "</td>  " +
         "</tr>" +
         "</table>" +
         "</td>")
@@ -284,25 +297,25 @@ function createEcommerceRow(element, ob) {
 function createLimitRow(element, ob) {
     $(element).removeClass().addClass("limit")
     $(element).append("<td>Limit</td>")
-    $(element).append("<td>" + createClickableObjectForSearch(ob.object.reservationId) + "</td>")
+    $(element).append("<td>" + createClickableObjectForSearch(getJsonValue(ob, 'object.reservationId')) + "</td>")
 
 
     $(element).append("<td colspan='9'>" +
 
         "<table width='100%'><tr>" +
-        "<td width=\"20%\">Pers/Org -nr: " + createClickableObjectForSearch(ob.object.application.applicant.governmentId.value) + "</td>" +
-        "<td width=\"20%\">Skapad: " + new Date(ob.object.timestamp).customFormat('#YYYY#-#MM#-#DD# #hh#:#mm#:#ss#') + "  </td>" +
-        "<td width=\"20%\">MupReference: " + createClickableObjectForSearch(ob.object.mupRefNumber) + " </td> " +
+        "<td width=\"20%\">Pers/Org -nr: " + createClickableObjectForSearch(getJsonValue(ob, 'object.application.applicant.governmentId.value')) + "</td>" +
+        "<td width=\"20%\">Skapad: " + new Date(getJsonValue(ob, 'object.timestamp')).customFormat('#YYYY#-#MM#-#DD# #hh#:#mm#:#ss#') + "  </td>" +
+        "<td width=\"20%\">MupReference: " + createClickableObjectForSearch(getJsonValue(ob, 'object.mupRefNumber')) + " </td> " +
 
-        "<td width=\"20%\">Belopp (beviljat/sökt): " + ob.object.approvedAmount + "/" + ob.object.requestedAmount + " </td> " +
-        "<td width=\"20%\">Status: " + createClickableObjectForSearch(ob.object.decision) + "</td>  " +
+        "<td width=\"20%\">Belopp (beviljat/sökt): " + getJsonValue(ob, 'object.approvedAmount') + "/" + getJsonValue(ob, 'object.requestedAmount') + " </td> " +
+        "<td width=\"20%\">Status: " + createClickableObjectForSearch(getJsonValue(ob, 'object.decision')) + "</td>  " +
         "</tr>" +
         "<tr>" +
-        "<td width=\"20%\">Namn: " + createClickableObjectForSearch(ob.object.customer.fullName) + "</td>  " +
-        "<td width=\"20%\">Gata: " + createClickableObjectForSearch(ob.object.customer.address.streetAddress) + "</td>  " +
-        "<td width=\"20%\">Stad: " + createClickableObjectForSearch(ob.object.customer.address.postalArea) + "</td>  " +
-        "<td width=\"20%\">Postnummer: " + createClickableObjectForSearch(ob.object.customer.address.postalCode) + "</td>  " +
-        "<td width=\"20%\">Epost: " + createClickableObjectForSearch(ob.object.customer.email) + "</td>  " +
+        "<td width=\"20%\">Namn: " + createClickableObjectForSearch(getJsonValue(ob, 'object.customer.fullName')) + "</td>  " +
+        "<td width=\"20%\">Gata: " + createClickableObjectForSearch(getJsonValue(ob, 'object.customer.address.streetAddress')) + "</td>  " +
+        "<td width=\"20%\">Stad: " + createClickableObjectForSearch(getJsonValue(ob, 'object.customer.address.postalArea')) + "</td>  " +
+        "<td width=\"20%\">Postnummer: " + createClickableObjectForSearch(getJsonValue(ob, 'object.customer.address.postalCode')) + "</td>  " +
+        "<td width=\"20%\">Epost: " + createClickableObjectForSearch(getJsonValue(ob, 'object.customer.email')) + "</td>  " +
         "</tr>" +
         "</table>" +
         "</td>")
