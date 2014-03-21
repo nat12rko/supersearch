@@ -5,9 +5,9 @@
  */
 
 
-var margin = 10,
-    outerDiameter = 360,
-    innerDiameter = outerDiameter - margin - margin;
+var margin = 10;
+var outerDiameter = 360;
+var innerDiameter = outerDiameter - margin - margin;
 
 var svg;
 
@@ -18,6 +18,10 @@ var reds = ["denied", "rejected", "confirmed_fraud"];
 var yellows = ["suspected_fraud", "manual_inspection", "booked_frozen", "under_manual_inspection"];
 
 var aggregation = function() {
+
+    margin = 10;
+    outerDiameter = document.getElementById('aggs').offsetWidth;
+    innerDiameter = outerDiameter - margin - margin;
 
     svg = d3.select("#aggs").append("svg")
         .attr("width", outerDiameter)
@@ -158,14 +162,15 @@ var updateAggregation = function (aggregations) {
         function getColor(d) {
             var comp = d.name.toLowerCase();
             if (greens.indexOf(comp) != -1) {
-                return "#A4FF94";
+                return "#7AD66F";
             }
             else if (reds.indexOf(comp) != -1) {
                 return "#F24646";
             }
             else if (yellows.indexOf(comp) != -1) {
                 return "#F2F18D";
-            } else {
+            }
+            else {
                 return color2(d.depth);
             }
         }
