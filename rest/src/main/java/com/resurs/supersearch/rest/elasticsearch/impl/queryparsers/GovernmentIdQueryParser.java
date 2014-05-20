@@ -27,14 +27,23 @@ public class GovernmentIdQueryParser implements QueryParser {
         StringBuilder returnQuery = new StringBuilder("");
         for (CountryCode countryCode : countryCodes) {
             try {
+
                 returnQuery.append(" \"" + GovernmentIdFactory.guessAndConstructGovernmentId(countryCode, workQuery).getAsLongString() + "\"");
+                if (countryCode.equals(CountryCode.NO)) {
+                    //Nasty fix for norweigen
+                    returnQuery.append(" \"" +
+                            GovernmentIdFactory.guessAndConstructGovernmentId(countryCode, workQuery).getAsLongString().substring(0,6)+"-" +
+                            GovernmentIdFactory.guessAndConstructGovernmentId(countryCode, workQuery).getAsLongString().substring(6,11)+"\"");
+
+                }
+
             } catch (Exception e) {
 
             }
         }
 
         if (StringUtils.isNotEmpty(returnQuery.toString())) {
-            return "+(" + returnQuery.toString() + ")";
+            return "+(" + returnQuery.toString()+ "\")";
         }
 
         return query;

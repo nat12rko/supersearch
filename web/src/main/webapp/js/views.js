@@ -218,6 +218,18 @@ function objectToView(ob, element) {
 }
 
 function createMultiupplysRow(element, ob) {
+
+    var ip = getJsonValue(ob, 'object.customerIP.ipParts');
+    var ipString;
+
+
+    for(var i=0; i<ip.length; i++)  {
+        if(ipString)
+            ipString = ipString + "."+ ip[i];
+        else
+        ipString = ip[i];
+    }
+
     $(element).removeClass().addClass("multiupplys")
     $(element).append("<td>Multiupplys</td>")
     $(element).append("<td>" + createClickableObjectForSearch(getJsonValue(ob, 'object.publicReferenceNumber')) + "</td>")
@@ -230,6 +242,9 @@ function createMultiupplysRow(element, ob) {
         "<td width=\"20%\">Ombudskod: " + createClickableObjectForSearch(getJsonValue(ob, 'object.creditCaseTags.BANKSYSTEM_REPRESENTATIVE_CODE')) + " </td> " +
         "<td width=\"20%\">Belopp (beviljat/sökt): " + getJsonValue(ob, 'object.currentState.amount') + "/" + getJsonValue(ob, 'object.application.amount') + " </td> " +
         "<td width=\"20%\">Status: " + createClickableObjectForSearch(getJsonValue(ob, 'object.currentState.state')) + "</td>  " +
+        "<tr>"+
+        "<td width=\"20%\">Ipnummer: " + ipString+ "</td>  " +
+        "</tr>"+
         "</tr></table>" +
         "</td>")
 }

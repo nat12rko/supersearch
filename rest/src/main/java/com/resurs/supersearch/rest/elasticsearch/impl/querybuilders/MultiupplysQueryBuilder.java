@@ -61,7 +61,6 @@ public class MultiupplysQueryBuilder implements com.resurs.supersearch.rest.elas
         aggregationBuilders.add(AggregationBuilders.terms("creditcase.creditCaseTags.REPRESENTATIVE_NAME").size(5).field("creditcase.creditCaseTags.REPRESENTATIVE_NAME"));
         aggregationBuilders.add(AggregationBuilders.terms("creditcase.creditProductCode").size(5).field("creditcase.creditProductCode"));
 
-
         return aggregationBuilders;
     }
 
@@ -71,7 +70,8 @@ public class MultiupplysQueryBuilder implements com.resurs.supersearch.rest.elas
         BoolFilterBuilder boolFilterBuilder = FilterBuilders.boolFilter().filterName(getQueryName());
 
         for (CountryCode countryCode : countryCodes) {
-            boolFilterBuilder.should(FilterBuilders.termFilter("application.applicant.governmentId.countryCode", countryCode.name()));
+            boolFilterBuilder.should(FilterBuilders.queryFilter(QueryBuilders.matchQuery("application.applicant.governmentId.countryCode",
+                    countryCode.name())));
         }
 
         return FilterBuilders.boolFilter().must(boolFilterBuilder);

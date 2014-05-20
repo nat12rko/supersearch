@@ -10,7 +10,7 @@
     <packaging>pom</packaging>
 
     <properties>
-        <java.version>1.8</java.version>
+        <java.version>1.7</java.version>
         <address.request.version>1.3.5</address.request.version>
         <junit.version>4.8.2</junit.version>
         <mockito.version>1.8.5</mockito.version>
