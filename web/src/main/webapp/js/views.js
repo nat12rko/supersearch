@@ -115,7 +115,7 @@ function SearchViewModel() {
 
 function ResultViewModel() {
     var self = this;
-    self.tasksURI = "http://localhost:8080/rest/search";
+    self.tasksURI = "http://supersearch.pte.loc/rest/search";
 
     self.hits = ko.observableArray();
 
@@ -262,6 +262,13 @@ function createFraudRow(element, ob) {
         "<td width=\"20%\">BedrägerId: " + createClickableObjectForSearch(getJsonValue(ob, 'object.controlRequestJson.ids.LIMITBOX_ID')) + " </td> " +
         "<td width=\"20%\">Status: " + createClickableObjectForSearch(getJsonValue(ob, 'object.recommendation')) + "</td>  " +
         "</tr>" +
+        "<tr>"+
+        "<td width=\"20%\">Ipnummer: " + getJsonValue(ob, 'object.controlRequestJson.ipAddress')+ "</td>  " +
+        "<td width=\"20%\">Namn: " + getJsonValue(ob, 'object.controlRequestJson.billingAddress.firstName')+ " " +  getJsonValue(ob, 'object.controlRequestJson.billingAddress.lastName')+ "</td>  " +
+        "<td width=\"20%\">E-Post: " + createClickableObjectForSearch(getJsonValue(ob, 'object.controlRequestJson.emails.email'))+"</td>  " +
+        "<td width=\"20%\">Extern reference: " + createClickableObjectForSearch(getJsonValue(ob, 'object.controlRequestJson.ids.ECOMMERCE_EXTERNAL_ID'))+"</td>  " +
+
+        "</tr>"+
         "</table>" +
         "</td>")
 }
