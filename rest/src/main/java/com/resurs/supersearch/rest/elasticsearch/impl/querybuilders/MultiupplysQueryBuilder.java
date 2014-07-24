@@ -45,6 +45,8 @@ public class MultiupplysQueryBuilder implements com.resurs.supersearch.rest.elas
                         QueryBuilders.queryString(search.getSearchString())))
                 .should(QueryBuilders.queryString(search.getSearchString()));
 
+
+        queryBuilder = QueryBuilders.boolQuery().must(queryBuilder).must(QueryBuilders.termsQuery("_type", getTypes()));
         return QueryBuilders.indicesQuery(queryBuilder, getIndexes().toArray(new String[0])).queryName(getQueryName());
     }
 

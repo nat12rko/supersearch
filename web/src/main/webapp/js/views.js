@@ -17,7 +17,7 @@ function SearchViewWidgetsModel() {
 function SearchViewModel() {
     var self = this;
     self.searchString = ko.observable();
-    self.fromDate = ko.observable();
+    self.fromDate = ko.observable("now-14d");
     self.toDate = ko.observable();
     self.page = ko.observable(0);
     self.pageSize = ko.observable(25);
@@ -115,7 +115,7 @@ function SearchViewModel() {
 
 function ResultViewModel() {
     var self = this;
-    self.tasksURI = "http://supersearch.pte.loc/rest/search";
+    self.tasksURI = "http://localhost:8080/rest/search";
 
     self.hits = ko.observableArray();
 
@@ -311,6 +311,12 @@ function createEcommerceRow(element, ob) {
         "<td width=\"14.2%\">Kontonummer: " + createClickableObjectForSearch(getJsonValue(ob, 'object.accountNumber')) + "</td>" +
         "<td width=\"14.2%\">Status: " + createClickableObjectForSearch(getJsonValue(ob, 'object.stateIdentifier.lifePhase')) + "</td>  " +
         "</tr>" +
+        "<tr>" +
+        "<td width=\"14.2%\">IP: " + createClickableObjectForSearch(getJsonValue(ob, 'object.booking.endUserIp')) + "</td>" +
+        "</tr>" +
+
+
+
         "</table>" +
         "</td>")
 

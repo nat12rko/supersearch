@@ -21,7 +21,6 @@ import com.resurs.supersearch.rest.resources.SystemQueryEnum;
 import org.apache.commons.lang3.StringUtils;
 import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
-import org.elasticsearch.action.search.SearchType;
 import org.elasticsearch.index.query.BoolFilterBuilder;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.FilterBuilder;
@@ -122,7 +121,19 @@ public class SearchServiceImpl implements SearchService {
         for (QueryBuilder qb : getSelectedQueryBuilders(search.getSystems())) {
             indexList.addAll(qb.getIndexes());
             typesList.addAll(qb.getTypes());
-            queryBuilder = queryBuilder.must(qb.createQuery(search));
+
+            BoolQueryBuilder typesQuery = QueryBuilders.boolQuery();
+
+            typesQuery.must(QueryBuilders.termsQuery("_type", qb.getTypes()));
+            typesQuery.must(qb.createQuery(search));
+
+
+            queryBuilder = queryBuilder.should(
+                    QueryBuilders.filteredQuery(qb.createQuery(search),
+                            FilterBuilders.queryFilter(QueryBuilders.termsQuery("_type", qb.getTypes())))
+            );
+
+
             List<AggregationBuilder> aggregations = qb.createAggregations(search);
             if (aggregations != null) {
                 for (AggregationBuilder sub : aggregations) {
@@ -131,7 +142,7 @@ public class SearchServiceImpl implements SearchService {
             }
             if (search.getCountryCodes() != null &&
                     search.getCountryCodes().size() != 0 &&
-                    search.getCountryCodes().size() != (CountryCode.values().length-1)) {
+                    search.getCountryCodes().size() != (CountryCode.values().length - 1)) {
                 FilterBuilder filterBuilder = qb.createCountryCodeFilter(search.getCountryCodes());
                 if (filterBuilder != null) {
                     if (countryFilter == null) {
@@ -146,7 +157,6 @@ public class SearchServiceImpl implements SearchService {
             allFilterBuilder.must(countryFilter);
 
         }
-
         addFiltersToSearch(search, allFilterBuilder);
         SearchResponse response = executeQuery(search, queryBuilder, indexList, typesList, aggregationBuilders, allFilterBuilder);
         SearchResult searchResult = new SearchResult();
@@ -165,11 +175,11 @@ public class SearchServiceImpl implements SearchService {
                 rangeFilterBuilder.to(search.getToDate());
 
             }
-            allFilterBuilder.must(rangeFilterBuilder.cache(true));
+            allFilterBuilder.must(rangeFilterBuilder);
         }
 
         for (Filter filter : search.getFilters()) {
-            allFilterBuilder.must(FilterBuilders.termFilter(filter.getField(), filter.getValue()).cache(true));
+            allFilterBuilder.must(FilterBuilders.termFilter(filter.getField(), filter.getValue()));
         }
     }
 
@@ -187,19 +197,13 @@ public class SearchServiceImpl implements SearchService {
     private SearchResponse executeQuery(Search search, BoolQueryBuilder queryBuilder, List<String> indexList, List<String> typesList, List<AggregationBuilder> aggregationBuilders, BoolFilterBuilder allFilterBuilder) {
         SearchRequestBuilder searchRequestBuilder =
                 elasticSearchService.getClient().prepareSearch(indexList.toArray(new String[0]))
-                        .setTypes(typesList.toArray(new String[0]))
-                        .setSearchType(SearchType.DFS_QUERY_THEN_FETCH)
-                        .setQuery(queryBuilder);
-
+                        .setQuery(QueryBuilders.filteredQuery(queryBuilder, allFilterBuilder));
 
         setSortField(search, searchRequestBuilder);
 
-
         for (AggregationBuilder agg : aggregationBuilders) {
-           searchRequestBuilder = searchRequestBuilder.addAggregation(agg);
+            searchRequestBuilder = searchRequestBuilder.addAggregation(agg);
         }
-        searchRequestBuilder = searchRequestBuilder.setPostFilter(allFilterBuilder);
-
         return searchRequestBuilder.setFrom(search.getPage() * search.getPageSize())
                 .setSize(search.getPageSize()).setExplain(false)
                 .execute()
