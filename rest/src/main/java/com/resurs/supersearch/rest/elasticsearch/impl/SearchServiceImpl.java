@@ -122,12 +122,6 @@ public class SearchServiceImpl implements SearchService {
             indexList.addAll(qb.getIndexes());
             typesList.addAll(qb.getTypes());
 
-            BoolQueryBuilder typesQuery = QueryBuilders.boolQuery();
-
-            typesQuery.must(QueryBuilders.termsQuery("_type", qb.getTypes()));
-            typesQuery.must(qb.createQuery(search));
-
-
             queryBuilder = queryBuilder.should(
                     QueryBuilders.filteredQuery(qb.createQuery(search),
                             FilterBuilders.queryFilter(QueryBuilders.termsQuery("_type", qb.getTypes())))
