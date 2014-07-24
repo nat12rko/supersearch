@@ -165,11 +165,11 @@ public class SearchServiceImpl implements SearchService {
                 rangeFilterBuilder.to(search.getToDate());
 
             }
-            allFilterBuilder.must(rangeFilterBuilder);
+            allFilterBuilder.must(rangeFilterBuilder.cache(true));
         }
 
         for (Filter filter : search.getFilters()) {
-            allFilterBuilder.must(FilterBuilders.termFilter(filter.getField(), filter.getValue()));
+            allFilterBuilder.must(FilterBuilders.termFilter(filter.getField(), filter.getValue()).cache(true));
         }
     }
 
@@ -189,18 +189,19 @@ public class SearchServiceImpl implements SearchService {
                 elasticSearchService.getClient().prepareSearch(indexList.toArray(new String[0]))
                         .setTypes(typesList.toArray(new String[0]))
                         .setSearchType(SearchType.DFS_QUERY_THEN_FETCH)
-                        .setQuery(QueryBuilders.filteredQuery(queryBuilder, allFilterBuilder));
+                        .setQuery(queryBuilder);
 
 
         setSortField(search, searchRequestBuilder);
 
 
         for (AggregationBuilder agg : aggregationBuilders) {
-            searchRequestBuilder = searchRequestBuilder.addAggregation(agg);
+           searchRequestBuilder = searchRequestBuilder.addAggregation(agg);
         }
         searchRequestBuilder = searchRequestBuilder.setPostFilter(allFilterBuilder);
 
-        return searchRequestBuilder.setFrom(search.getPage() * search.getPageSize()).setSize(search.getPageSize()).setExplain(false)
+        return searchRequestBuilder.setFrom(search.getPage() * search.getPageSize())
+                .setSize(search.getPageSize()).setExplain(false)
                 .execute()
                 .actionGet();
     }
