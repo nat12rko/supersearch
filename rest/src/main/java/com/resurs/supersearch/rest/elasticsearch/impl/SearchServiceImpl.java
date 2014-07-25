@@ -21,6 +21,7 @@ import com.resurs.supersearch.rest.resources.SystemQueryEnum;
 import org.apache.commons.lang3.StringUtils;
 import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
+import org.elasticsearch.action.search.SearchType;
 import org.elasticsearch.index.query.BoolFilterBuilder;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.FilterBuilder;
@@ -191,7 +192,9 @@ public class SearchServiceImpl implements SearchService {
     private SearchResponse executeQuery(Search search, BoolQueryBuilder queryBuilder, List<String> indexList, List<String> typesList, List<AggregationBuilder> aggregationBuilders, BoolFilterBuilder allFilterBuilder) {
         SearchRequestBuilder searchRequestBuilder =
                 elasticSearchService.getClient().prepareSearch(indexList.toArray(new String[0]))
-                        .setQuery(QueryBuilders.filteredQuery(queryBuilder, allFilterBuilder));
+                        .setQuery(QueryBuilders.filteredQuery(queryBuilder, allFilterBuilder)).
+                        setSearchType(SearchType.QUERY_THEN_FETCH).setTrackScores(false)
+                ;
 
         setSortField(search, searchRequestBuilder);
 
