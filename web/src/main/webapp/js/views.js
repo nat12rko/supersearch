@@ -116,6 +116,7 @@ function SearchViewModel() {
 function ResultViewModel() {
     var self = this;
     self.tasksURI = "http://supersearch.pte.loc/rest/search";
+    //self.tasksURI = "http://localhost:8080/rest/search";
 
     self.hits = ko.observableArray();
 
@@ -450,7 +451,7 @@ Date.prototype.customFormat = function (formatString) {
 
 function createClickableObjectForSearch(value) {
     value = checkValue(value);
-    var string = "<span onClick='loadValueToSearch(\"" + value + "\")'>" + value + "</span>"
+    var string = "<span onClick='loadValueToSearch(\"" + value + "\")'><b>" + value + "</b></span>"
     return string;
 }
 
