@@ -295,7 +295,7 @@ function createEcommerceRow(element, ob) {
 
     $(element).append("<td colspan='9'>" +
         "<table width='100%'><tr>" +
-        "<td width=\"14.2%\">Pers/Org -nr: " + createClickableObjectForSearch(getJsonValue(ob, 'object.customer.governmentId.value')) + "</td>" +
+        "<td width=\"14.2%\">Pers/Org -nr: " + createClickableObjectForSearch(getJsonValue(ob, 'object.customer.governmentId')) + "</td>" +
         "<td width=\"14.2%\">Skapad: " + new Date(getJsonValue(ob, 'object.created')).customFormat('#YYYY#-#MM#-#DD# #hh#:#mm#:#ss#') + "  </td>" +
         "<td width=\"14.2%\">Debiterad: " + getJsonValue(ob, 'object.debited') + " </td> " +
         "<td width=\"14.2%\">Crediterad: " + getJsonValue(ob, 'object.credited') + " </td> " +
@@ -304,16 +304,20 @@ function createEcommerceRow(element, ob) {
         "<td width=\"14.2%\">Debiterbar: " + getJsonValue(ob, 'object.debitable') + " </td> " +
         "</tr>" +
         "<tr>" +
-        "<td width=\"14.2%\">Namn: " + createClickableObjectForSearch(getJsonValue(ob, 'object.customer.address.fullName')) + "</td>" +
-        "<td width=\"14.2%\">Gata: " + createClickableObjectForSearch(getJsonValue(ob, 'object.customer.address.street')) + "</td>" +
-        "<td width=\"14.2%\">Stad: " + createClickableObjectForSearch(getJsonValue(ob, 'object.customer.address.city')) + "</td>" +
-        "<td width=\"14.2%\">Postnummer: " + createClickableObjectForSearch(getJsonValue(ob, 'object.customer.address.zipCode')) + "</td>" +
-        "<td width=\"14.2%\">Epost: " + createClickableObjectForSearch(getJsonValue(ob, 'object.customer.address.email')) + "</td>" +
+        "<td width=\"14.2%\">Namn: " + createClickableObjectForSearch(getJsonValue(ob, 'object.billingAddress.fullName')) + "</td>" +
+        "<td width=\"14.2%\">Gata: " + createClickableObjectForSearch(getJsonValue(ob, 'object.billingAddress.street')) + "</td>" +
+        "<td width=\"14.2%\">Stad: " + createClickableObjectForSearch(getJsonValue(ob, 'object.billingAddress.city')) + "</td>" +
+        "<td width=\"14.2%\">Postnummer: " + createClickableObjectForSearch(getJsonValue(ob, 'object.billingAddress.zipCode')) + "</td>" +
+        "<td width=\"14.2%\">Epost: " + createClickableObjectForSearch(getJsonValue(ob, 'object.billingAddress.email')) + "</td>" +
         "<td width=\"14.2%\">Kontonummer: " + createClickableObjectForSearch(getJsonValue(ob, 'object.accountNumber')) + "</td>" +
-        "<td width=\"14.2%\">Status: " + createClickableObjectForSearch(getJsonValue(ob, 'object.stateIdentifier.lifePhase')) + "</td>  " +
+        "<td width=\"14.2%\">Status: " + createClickableObjectForSearch(getJsonValue(ob, 'object.lifePhase')) + "</td>  " +
         "</tr>" +
         "<tr>" +
-        "<td width=\"14.2%\">IP: " + createClickableObjectForSearch(getJsonValue(ob, 'object.booking.endUserIp')) + "</td>" +
+        "<td width=\"14.2%\">IP: " + createClickableObjectForSearch(getJsonValue(ob, 'object.ip')) + "</td>" +
+        "<td width=\"14.2%\">Signerad: " + createClickableObjectForSearch(getJsonValue(ob, 'object.signed')) + "</td>" +
+        "<td width=\"14.2%\">Betalmetod: " + createClickableObjectForSearch(getJsonValue(ob, 'object.paymentMethod.name')) + "</td>" +
+        "<td width=\"14.2%\">Totalt belop: " + createClickableObjectForSearch(getJsonValue(ob, 'object.totalValue.withVat')) + "</td>" +
+
         "</tr>" +
 
 
