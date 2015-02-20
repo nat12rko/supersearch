@@ -7,7 +7,6 @@ function SearchViewWidgetsModel() {
     self.searchQueries = ko.observableArray();
     self.filters = ko.observableArray();
 
-
     self.loadThis = function () {
         searchViewModel.updateObject(this.searchString(), this.fromDate(), this.toDate(), this.page(), this.pageSize(), this.systems(), this.countryCodes(), this.filters());
     }
@@ -17,7 +16,7 @@ function SearchViewWidgetsModel() {
 function SearchViewModel() {
     var self = this;
     self.searchString = ko.observable();
-    self.fromDate = ko.observable("now-14d");
+    self.fromDate = ko.observable();
     self.toDate = ko.observable();
     self.page = ko.observable(0);
     self.pageSize = ko.observable(25);
@@ -202,6 +201,36 @@ function ResultViewModel() {
     self.search();
 }
 
+function SpecLineModel() {
+    var self = this;
+    self.auth = ko.observableArray();
+    self.deb = ko.observableArray();
+    self.cred = ko.observableArray();
+    self.annul = ko.observableArray();
+
+    self.addAnnul = function(line) {
+        self.annul.push(line)
+    }
+
+    self.addCred = function(line) {
+        self.cred.push(line)
+    }
+
+    self.addDeb = function(line) {
+        self.deb.push(line)
+    }
+
+    self.addAuth = function(line){
+        self.auth.push(line)}
+
+    self.reset = function() {
+        self.auth.removeAll();
+        self.deb.removeAll();
+        self.cred.removeAll();
+        self.annul.removeAll();
+    }
+}
+
 function objectToView(ob, element) {
     if (ob.type === "creditcase") {
         createMultiupplysRow(element, ob);
@@ -287,43 +316,108 @@ function getJsonValue(ob, field) {
     return useOb;
 }
 
+// Ugly
+var payment;
+
 function createEcommerceRow(element, ob) {
 
     $(element).removeClass().addClass("ecommerce")
     $(element).append("<td>Ehandel</td>")
-    $(element).append("<td>" + getJsonValue(ob, 'object.representative.name') + " " + createClickableObjectForSearch(getJsonValue(ob, 'object.externalId')) + "</td>")
+    $(element).append("<td>" + getJsonValue(ob, 'object.representative.name') + "<br> " + createClickableObjectForSearch(getJsonValue(ob, 'object.externalId')) + "</td>")
 
-    $(element).append("<td colspan='9'>" +
+    $(element).append("<td colspan='3'>" +
         "<table width='100%'><tr>" +
-        "<td width=\"14.2%\">Pers/Org -nr: " + createClickableObjectForSearch(getJsonValue(ob, 'object.customer.governmentId')) + "</td>" +
-        "<td width=\"14.2%\">Skapad: " + new Date(getJsonValue(ob, 'object.created')).customFormat('#YYYY#-#MM#-#DD# #hh#:#mm#:#ss#') + "  </td>" +
-        "<td width=\"14.2%\">Debiterad: " + getJsonValue(ob, 'object.debited') + " </td> " +
-        "<td width=\"14.2%\">Crediterad: " + getJsonValue(ob, 'object.credited') + " </td> " +
-        "<td width=\"14.2%\">Anullerad: " + getJsonValue(ob, 'object.annulled') + " </td> " +
-        "<td width=\"14.2%\">Krediterbar: " + getJsonValue(ob, 'object.creditable') + " </td> " +
-        "<td width=\"14.2%\">Debiterbar: " + getJsonValue(ob, 'object.debitable') + " </td> " +
+            "<td width=\"14.2%\">Pers/Org -nr: " + createClickableObjectForSearch(getJsonValue(ob, 'object.customer.governmentId')) + "</td>"+
+            "<td width=\"14.2%\">Skapad: " + new Date(getJsonValue(ob, 'object.created')).customFormat('#YYYY#-#MM#-#DD# #hh#:#mm#:#ss#') + "  </td>" +
+            "<td width=\"14.2%\">Debiterad: " + getJsonValue(ob, 'object.debited') + " </td> " +
         "</tr>" +
         "<tr>" +
-        "<td width=\"14.2%\">Namn: " + createClickableObjectForSearch(getJsonValue(ob, 'object.billingAddress.fullName')) + "</td>" +
-        "<td width=\"14.2%\">Gata: " + createClickableObjectForSearch(getJsonValue(ob, 'object.billingAddress.street')) + "</td>" +
-        "<td width=\"14.2%\">Stad: " + createClickableObjectForSearch(getJsonValue(ob, 'object.billingAddress.city')) + "</td>" +
-        "<td width=\"14.2%\">Postnummer: " + createClickableObjectForSearch(getJsonValue(ob, 'object.billingAddress.zipCode')) + "</td>" +
-        "<td width=\"14.2%\">Epost: " + createClickableObjectForSearch(getJsonValue(ob, 'object.billingAddress.email')) + "</td>" +
-        "<td width=\"14.2%\">Kontonummer: " + createClickableObjectForSearch(getJsonValue(ob, 'object.accountNumber')) + "</td>" +
-        "<td width=\"14.2%\">Status: " + createClickableObjectForSearch(getJsonValue(ob, 'object.lifePhase')) + "</td>  " +
+            "<td width=\"14.2%\">Namn: " + createClickableObjectForSearch(getJsonValue(ob, 'object.billingAddress.fullName')) + "</td>" +
+            "<td width=\"14.2%\">Status: " + createClickableObjectForSearch(getJsonValue(ob, 'object.lifePhase')) + "</td>  " +
+            "<td width=\"14.2%\">Krediterad: " + getJsonValue(ob, 'object.credited') + " </td> " +
         "</tr>" +
         "<tr>" +
-        "<td width=\"14.2%\">IP: " + createClickableObjectForSearch(getJsonValue(ob, 'object.ip')) + "</td>" +
-        "<td width=\"14.2%\">Signerad: " + createClickableObjectForSearch(getJsonValue(ob, 'object.signed')) + "</td>" +
-        "<td width=\"14.2%\">Betalmetod: " + createClickableObjectForSearch(getJsonValue(ob, 'object.paymentMethod.name')) + "</td>" +
-        "<td width=\"14.2%\">Totalt belop: " + createClickableObjectForSearch(getJsonValue(ob, 'object.totalValue.withVat')) + "</td>" +
-
+            "<td width=\"14.2%\">Gata: " + createClickableObjectForSearch(getJsonValue(ob, 'object.billingAddress.street')) + "</td>" +
+            "<td width=\"14.2%\">IP: " + createClickableObjectForSearch(getJsonValue(ob, 'object.ip')) + "</td>" +
+            "<td width=\"14.2%\">Anullerad: " + getJsonValue(ob, 'object.annulled') + " </td> " +
         "</tr>" +
-
-
-
+        "<tr>" +
+            "<td width=\"14.2%\">Stad: " + createClickableObjectForSearch(getJsonValue(ob, 'object.billingAddress.city')) + "</td>" +
+            "<td width=\"14.2%\">Signerad: " + createClickableObjectForSearch(getJsonValue(ob, 'object.signed')) + "</td>" +
+            "<td width=\"14.2%\">Krediterbar: " + getJsonValue(ob, 'object.creditable') + " </td> " +
+        "</tr>" +
+        "<tr>" +
+            "<td width=\"14.2%\">Epost: " + createClickableObjectForSearch(getJsonValue(ob, 'object.billingAddress.email')) + "</td>" +
+            "<td width=\"14.2%\">Betalmetod: " + createClickableObjectForSearch(getJsonValue(ob, 'object.paymentMethod.name')) + "</td>" +
+            "<td width=\"14.2%\">Debiterbar: " + getJsonValue(ob, 'object.debitable') + " </td> " +
+        "</tr>" +
         "</table>" +
         "</td>")
+
+    $(element).dblclick(
+        function() {
+            payment = ob.object
+            $('#paymentModal').modal()
+     })
+    $(element).data("payment", "test")
+
+
+}
+
+$('#paymentModal').on('show.bs.modal', function (event) {
+    extractSpecLines(payment)
+
+    var modal = $(this)
+    modal.find('.modal-title').text(payment.externalId)
+
+    modal.find('.payment-total').text(payment.totalValue.withVat)
+    modal.find('.payment-credited').text(payment.totalCreditValue.withVat)
+    modal.find('.payment-finalized').text(payment.totalFinalized.withVat)
+    modal.find('.payment-unfinalized').text(payment.totalUnfinalized.withVat)
+})
+
+function extractSpecLines(payment) {
+
+    specLineModel.reset()
+
+    var paymentDiffs = payment['paymentDiffs']
+    for (pos in paymentDiffs) {
+        var paymentSpec = paymentDiffs[pos]['paymentSpecification']
+
+        if (paymentSpec.lines.length > 0) {
+            for (var n in paymentSpec.lines) {
+                var line = paymentSpec.lines[n]
+                if (paymentDiffs[pos].type === "AUTHORIZE") {
+                    specLineModel.addAuth(line)
+                } else if (paymentDiffs[pos].type === "DEBIT") {
+                    specLineModel.addDeb(line)
+                } else if (paymentDiffs[pos].type === "ANNUL") {
+                    specLineModel.addAnnul(line)
+                } else if (paymentDiffs[pos].type === "CREDIT") {
+                    specLineModel.addCred(line)
+                }
+            }
+        } else {
+            if (paymentDiffs[pos].type === "AUTHORIZE") {
+                specLineModel.addAuth(createUnspecifiedLine(paymentSpec))
+            } else if (paymentDiffs[pos].type === "DEBIT") {
+                specLineModel.addDeb(createUnspecifiedLine(paymentSpec))
+            } else if (paymentDiffs[pos].type === "ANNUL") {
+                specLineModel.addAnnul(createUnspecifiedLine(paymentSpec))
+            } else if (paymentDiffs[pos].type === "CREDIT") {
+                specLineModel.addCred(createUnspecifiedLine(paymentSpec))
+            }
+        }
+    }
+}
+
+function createUnspecifiedLine(spec) {
+    return {"description":"Unspecified",
+        "articleNo":"",
+        "quantity":"",
+        "unitAmountWithoutVat":spec.totalAmountWithoutVat,
+        "unitMeasure":"",
+        "vatPercentage":spec.vatPercentage};
 
 }
 
@@ -469,7 +563,6 @@ function checkValue(value) {
 
 }
 
-
 function loadValueToSearch(value) {
     searchViewModel.searchWithValue(value);
 }
@@ -478,7 +571,9 @@ function loadValueToSearch(value) {
 var searchViewModel = new SearchViewModel();
 var resultViewModel = new ResultViewModel();
 var searchViewWidgetsModel = new SearchViewWidgetsModel();
+var specLineModel = new SpecLineModel();
 
 ko.applyBindings(resultViewModel, document.getElementById('searchtable'));
 ko.applyBindings(searchViewModel, document.getElementById('searchform'));
 ko.applyBindings(searchViewWidgetsModel, document.getElementById('widgets'));
+ko.applyBindings(specLineModel, document.getElementById('paymentModal'));
