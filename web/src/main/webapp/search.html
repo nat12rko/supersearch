@@ -299,7 +299,7 @@
                         <td data-bind="text: quantity"></td>
                         <td data-bind="text: unitAmountWithoutVat"></td>
                         <td data-bind="text: unitMeasure"></td>
-                        <td data-bind="text: vatPercentage"></td>
+                        <td data-bind="text: vatPercentage">%</td>
                     </tr>
                     </tbody>
                 </table>
@@ -312,7 +312,8 @@
                         <th>Quantity</th>
                         <th>Price excl. VAT</th>
                         <th>Unit measure</th>
-                        <th>%-VAT</th>                    </tr>
+                        <th>%-VAT</th>
+                    </tr>
                     </thead>
                     <tbody data-bind="foreach: deb">
                     <tr>
@@ -355,10 +356,7 @@
 
 <script type="text/javascript" src="js/views.js"></script>
 <script type='text/javascript' src="js/paginator.js"></script>
-
 <script type="text/javascript" src="js/aggregation_visualizer.js">
-
-
 </script>
 
 

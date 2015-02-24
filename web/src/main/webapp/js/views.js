@@ -295,7 +295,7 @@ function createFraudRow(element, ob) {
         "<tr>"+
         "<td width=\"20%\">Ipnummer: " + getJsonValue(ob, 'object.controlRequestJson.ipAddress')+ "</td>  " +
         "<td width=\"20%\">Namn: " + getJsonValue(ob, 'object.controlRequestJson.billingAddress.firstName')+ " " +  getJsonValue(ob, 'object.controlRequestJson.billingAddress.lastName')+ "</td>  " +
-        "<td width=\"20%\">E-Post: " + createClickableObjectForSearch(getJsonValue(ob, 'object.controlRequestJson.emails.email'))+"</td>  " +
+        "<td width=\"20%\">E-Post: " + getJsonValue(ob, 'object.controlRequestJson.emails.email')+"</td>  " +
         "<td width=\"20%\">Extern reference: " + createClickableObjectForSearch(getJsonValue(ob, 'object.controlRequestJson.ids.ECOMMERCE_EXTERNAL_ID'))+"</td>  " +
 
         "</tr>"+
@@ -322,17 +322,18 @@ var payment;
 function createEcommerceRow(element, ob) {
 
     $(element).removeClass().addClass("ecommerce")
-    $(element).append("<td>Ehandel</td>")
-    $(element).append("<td>" + getJsonValue(ob, 'object.representative.name') + "<br> " + createClickableObjectForSearch(getJsonValue(ob, 'object.externalId')) + "</td>")
+    $(element).append("<td>Ehandel <br> " + getJsonValue(ob, 'object.representative.name'))
+    $(element).append("<td>" + createClickableObjectForSearch(getJsonValue(ob, 'object.externalId')) + "<br><br>Pers/org:<br>" +
+    createClickableObjectForSearch(getJsonValue(ob, 'object.customer.governmentId')) + "</td>")
 
     $(element).append("<td colspan='3'>" +
         "<table width='100%'><tr>" +
-            "<td width=\"14.2%\">Pers/Org -nr: " + createClickableObjectForSearch(getJsonValue(ob, 'object.customer.governmentId')) + "</td>"+
+            "<td width=\"14.2%\">Namn: " + createClickableObjectForSearch(getJsonValue(ob, 'object.billingAddress.fullName')) + "</td>" +
             "<td width=\"14.2%\">Skapad: " + new Date(getJsonValue(ob, 'object.created')).customFormat('#YYYY#-#MM#-#DD# #hh#:#mm#:#ss#') + "  </td>" +
             "<td width=\"14.2%\">Debiterad: " + getJsonValue(ob, 'object.debited') + " </td> " +
         "</tr>" +
         "<tr>" +
-            "<td width=\"14.2%\">Namn: " + createClickableObjectForSearch(getJsonValue(ob, 'object.billingAddress.fullName')) + "</td>" +
+            "<td width=\"14.2%\">Telefon: " + createClickableObjectForSearch(getJsonValue(ob, 'object.billingAddress.phone1')) + "</td>" +
             "<td width=\"14.2%\">Status: " + createClickableObjectForSearch(getJsonValue(ob, 'object.lifePhase')) + "</td>  " +
             "<td width=\"14.2%\">Krediterad: " + getJsonValue(ob, 'object.credited') + " </td> " +
         "</tr>" +
@@ -368,7 +369,7 @@ $('#paymentModal').on('show.bs.modal', function (event) {
     extractSpecLines(payment)
 
     var modal = $(this)
-    modal.find('.modal-title').text(payment.externalId)
+    modal.find('.modal-title').text("Payment Id: " + payment.externalId)
 
     modal.find('.payment-total').text(payment.totalValue.withVat)
     modal.find('.payment-credited').text(payment.totalCreditValue.withVat)
