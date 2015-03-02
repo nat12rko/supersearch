@@ -267,6 +267,7 @@
                         <th>Price excl. VAT</th>
                         <th>Unit measure</th>
                         <th>%-VAT</th>
+                        <th>Total with VAT</th>
                     </tr>
                     </thead>
                     <tbody data-bind="foreach: auth">
@@ -277,6 +278,7 @@
                         <td data-bind="text: unitAmountWithoutVat"></td>
                         <td data-bind="text: unitMeasure"></td>
                         <td data-bind="text: vatPercentage">%</td>
+                        <td data-bind="text: sum"></td>
                     </tr>
                     </tbody>
                 </table>
@@ -290,6 +292,7 @@
                         <th>Price excl. VAT</th>
                         <th>Unit measure</th>
                         <th>%-VAT</th>
+                        <th>Total with VAT</th>
                     </tr>
                     </thead>
                     <tbody data-bind="foreach: annul">
@@ -300,6 +303,7 @@
                         <td data-bind="text: unitAmountWithoutVat"></td>
                         <td data-bind="text: unitMeasure"></td>
                         <td data-bind="text: vatPercentage">%</td>
+                        <td data-bind="text: sum"></td>
                     </tr>
                     </tbody>
                 </table>
@@ -313,6 +317,7 @@
                         <th>Price excl. VAT</th>
                         <th>Unit measure</th>
                         <th>%-VAT</th>
+                        <th>Total with VAT</th>
                     </tr>
                     </thead>
                     <tbody data-bind="foreach: deb">
@@ -323,6 +328,7 @@
                         <td data-bind="text: unitAmountWithoutVat"></td>
                         <td data-bind="text: unitMeasure"></td>
                         <td data-bind="text: vatPercentage"></td>
+                        <td data-bind="text: sum"></td>
                     </tr>
                     </tbody>
                 </table>
@@ -336,6 +342,7 @@
                         <th>Price excl. VAT</th>
                         <th>Unit measure</th>
                         <th>%-VAT</th>
+                        <th>Total with VAT</th>
                     </tr>
                     </thead>
                     <tbody data-bind="foreach: cred">
@@ -346,6 +353,7 @@
                         <td data-bind="text: unitAmountWithoutVat"></td>
                         <td data-bind="text: unitMeasure"></td>
                         <td data-bind="text: vatPercentage"></td>
+                        <td data-bind="text: sum"></td>
                     </tr>
                     </tbody>
                 </table>

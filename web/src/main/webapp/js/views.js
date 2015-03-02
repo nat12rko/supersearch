@@ -316,9 +316,6 @@ function getJsonValue(ob, field) {
     return useOb;
 }
 
-// Ugly
-var payment;
-
 function createEcommerceRow(element, ob) {
 
     $(element).removeClass().addClass("ecommerce")
@@ -357,25 +354,27 @@ function createEcommerceRow(element, ob) {
 
     $(element).dblclick(
         function() {
-            payment = ob.object
-            $('#paymentModal').modal()
+            showPaymentModal(ob.object);
      })
-    $(element).data("payment", "test")
 
 
 }
 
-$('#paymentModal').on('show.bs.modal', function (event) {
-    extractSpecLines(payment)
+function showPaymentModal(payment) {
 
-    var modal = $(this)
-    modal.find('.modal-title').text("Payment Id: " + payment.externalId)
+    var paymentModal = $('#paymentModal');
 
-    modal.find('.payment-total').text(payment.totalValue.withVat)
-    modal.find('.payment-credited').text(payment.totalCreditValue.withVat)
-    modal.find('.payment-finalized').text(payment.totalFinalized.withVat)
-    modal.find('.payment-unfinalized').text(payment.totalUnfinalized.withVat)
-})
+    // Create KO-bindings
+    extractSpecLines(payment);
+
+    paymentModal.find('.modal-title').text("Payment Id: " + payment.externalId);
+    paymentModal.find('.payment-total').text(payment.totalValue.withVat);
+    paymentModal.find('.payment-credited').text(payment.totalCreditValue.withVat);
+    paymentModal.find('.payment-finalized').text(payment.totalFinalized.withVat);
+    paymentModal.find('.payment-unfinalized').text(payment.totalUnfinalized.withVat);
+
+    paymentModal.modal('show');
+}
 
 function extractSpecLines(payment) {
 
@@ -388,14 +387,15 @@ function extractSpecLines(payment) {
         if (paymentSpec.lines.length > 0) {
             for (var n in paymentSpec.lines) {
                 var line = paymentSpec.lines[n]
+                addLineSum(line);
                 if (paymentDiffs[pos].type === "AUTHORIZE") {
-                    specLineModel.addAuth(line)
+                    specLineModel.addAuth(line);
                 } else if (paymentDiffs[pos].type === "DEBIT") {
-                    specLineModel.addDeb(line)
+                    specLineModel.addDeb(line);
                 } else if (paymentDiffs[pos].type === "ANNUL") {
-                    specLineModel.addAnnul(line)
+                    specLineModel.addAnnul(line);
                 } else if (paymentDiffs[pos].type === "CREDIT") {
-                    specLineModel.addCred(line)
+                    specLineModel.addCred(line);
                 }
             }
         } else {
@@ -412,14 +412,28 @@ function extractSpecLines(payment) {
     }
 }
 
+function addLineSum(spec) {
+    var vat = parseFloat('1.' + parseInt(spec.vatPercentage));
+    var quantity = parseInt(spec.quantity);
+    var priceExclVat = parseFloat(spec.unitAmountWithoutVat);
+
+    var sum = quantity * priceExclVat * vat;
+    spec.sum = sum.toFixed(2);
+}
+
 function createUnspecifiedLine(spec) {
+    var priceExclVat = parseFloat(spec.unitAmountWithoutVat);
+    var vat = parseFloat('1.' + parseInt(spec.vatPercentage));
+
+    var sum = priceExclVat * vat;
+
     return {"description":"Unspecified",
         "articleNo":"",
         "quantity":"",
         "unitAmountWithoutVat":spec.totalAmountWithoutVat,
         "unitMeasure":"",
-        "vatPercentage":spec.vatPercentage};
-
+        "vatPercentage":spec.vatPercentage,
+        "sum":sum.toFixed(2)};
 }
 
 function createLimitRow(element, ob) {
