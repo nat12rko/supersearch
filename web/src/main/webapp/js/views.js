@@ -158,6 +158,13 @@ function ResultViewModel() {
             jsonData = formToJSON();
         }
 
+        var url = window.location.protocol
+            + "//"
+            + window.location.host
+            + window.location.pathname
+            + '?jsonData='+encodeURIComponent(jsonData);
+
+        window.history.pushState("q", "Title",url);
 
         self.ajax(self.tasksURI, 'POST', jsonData).done(function (data) {
 
@@ -197,6 +204,30 @@ function ResultViewModel() {
 
         });
 
+    }
+
+
+    var jsonData = $.query.get('jsonData');
+
+    if(jsonData) {
+
+        var parsed = JSON.parse(jsonData);
+
+        searchViewModel.page(parsed.page);
+        searchViewModel.fromDate(parsed.fromDate);
+        searchViewModel.toDate(parsed.toDate);
+        searchViewModel.searchDate(parsed.searchDate);
+        searchViewModel.pageSize(parsed.pageSize)
+        searchViewModel.searchString(parsed.searchString);
+
+        searchViewModel.systems(parsed.systems);
+        searchViewModel.countryCodes(parsed.countryCodes);
+        searchViewModel.filters(parsed.filters);
+    }
+    var q = $.query.get('q');
+
+    if (q) {
+        searchViewModel.searchString(q);
     }
     self.search();
 }
@@ -657,3 +688,5 @@ ko.applyBindings(resultViewModel, document.getElementById('searchtable'));
 ko.applyBindings(searchViewModel, document.getElementById('searchform'));
 ko.applyBindings(searchViewWidgetsModel, document.getElementById('widgets'));
 ko.applyBindings(specLineModel, document.getElementById('paymentModal'));
+
+
