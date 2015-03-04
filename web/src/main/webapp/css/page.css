@@ -14,7 +14,7 @@
     background-color: #c199c1;
 }
 
-.table > tbody > tr > td {
+.fraud > .table > tbody > tr > td, .ecommerce > .table > tbody > tr > td, .limit > .table > tbody > tr > td, .multiupplys > .table > tbody > tr > td{
     border-bottom: 10px solid #ffffff;
 }
 

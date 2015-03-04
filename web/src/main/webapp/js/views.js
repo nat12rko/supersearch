@@ -114,8 +114,8 @@ function SearchViewModel() {
 
 function ResultViewModel() {
     var self = this;
-    self.tasksURI = "http://supersearch.pte.loc/rest/search";
-    //self.tasksURI = "http://localhost:8080/rest/search";
+    //self.tasksURI = "http://supersearch.pte.loc/rest/search";
+    self.tasksURI = "http://localhost:8080/rest/search";
 
     self.hits = ko.observableArray();
 
@@ -231,6 +231,33 @@ function SpecLineModel() {
     }
 }
 
+function FraudAnalysisModel() {
+    var self = this;
+    self.high = ko.observableArray();
+    self.medium = ko.observableArray();
+    self.low = ko.observableArray();
+    self.none = ko.observableArray();
+
+    self.addHigh = function(analysis){
+        self.high.push(analysis)}
+
+    self.addMedium = function(analysis){
+        self.medium.push(analysis)}
+
+    self.addLow = function(analysis){
+        self.low.push(analysis)}
+
+    self.addNone = function(analysis){
+        self.none.push(analysis)}
+
+    self.reset = function() {
+        self.high.removeAll();
+        self.medium.removeAll();
+        self.low.removeAll();
+        self.none.removeAll();
+    }
+}
+
 function objectToView(ob, element) {
     if (ob.type === "creditcase") {
         createMultiupplysRow(element, ob);
@@ -301,6 +328,44 @@ function createFraudRow(element, ob) {
         "</tr>"+
         "</table>" +
         "</td>")
+    $(element).dblclick(
+        function() {
+            showFraudModal(ob.object);
+        })
+}
+
+function showFraudModal(fraud) {
+
+    fraudAnalysisModel.reset();
+
+    var fraudModal = $('#fraudModal');
+
+    // Create KO-bindings
+    extractFraudAnalysis(fraud)
+
+    //fraudModal.find('.modal-title').text("Payment Id: " + payment.externalId);
+
+
+    fraudModal.modal('show');
+}
+
+function extractFraudAnalysis(fraud) {
+
+    fraudAnalysisModel.reset()
+
+    var analysises = fraud['fraudAnalysisResults']
+    for (pos in analysises) {
+        var analysis = analysises[pos];
+        if (analysis.fraudRiskEstmation == "HIGH") {
+            fraudAnalysisModel.addHigh(analysis);
+        } else if (analysis.fraudRiskEstmation == "MEDIUM") {
+            fraudAnalysisModel.addMedium(analysis);
+        } else if (analysis.fraudRiskEstmation == "LOW") {
+            fraudAnalysisModel.addLow(analysis);
+        } else if (analysis.fraudRiskEstmation == "NONE") {
+            fraudAnalysisModel.addNone(analysis);
+        }
+    }
 }
 
 function getJsonValue(ob, field) {
@@ -582,11 +647,11 @@ function loadValueToSearch(value) {
     searchViewModel.searchWithValue(value);
 }
 
-
 var searchViewModel = new SearchViewModel();
 var resultViewModel = new ResultViewModel();
 var searchViewWidgetsModel = new SearchViewWidgetsModel();
 var specLineModel = new SpecLineModel();
+var fraudAnalysisModel = new FraudAnalysisModel();
 
 ko.applyBindings(resultViewModel, document.getElementById('searchtable'));
 ko.applyBindings(searchViewModel, document.getElementById('searchform'));

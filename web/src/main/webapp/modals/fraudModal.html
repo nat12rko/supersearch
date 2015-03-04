@@ -1,0 +1,64 @@
+<div class="modal fade out bs-example-modal-lg" id="fraudModal" tabindex="-1" role="dialog"
+     aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="fraudModalLabel"></h4>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+
+
+                </div>
+                <div class="panel panel-danger" data-bind="visible:high().length">
+                    <div class="panel-heading">High risk</div>
+                    <table class="table table-condensed table-danger" >
+                        <!--<caption class="text-left">High risk</caption>-->
+                        <tbody data-bind="foreach: high">
+                        <tr class="danger">
+                            <td data-bind="text: analysisName"></td>
+                            <td data-bind="text: resultDescription"></td>
+                            <td data-bind="text: totalTime"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="panel panel-warning" data-bind="visible:medium().length">
+                    <div class="panel-heading">Medium risk</div>
+                    <table class="table table-condensed">
+                        <tbody data-bind="foreach: medium">
+                        <tr class="warning">
+                            <td data-bind="text: analysisName"></td>
+                            <td data-bind="text: resultDescription"></td>
+                            <td data-bind="text: totalTime"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="panel panel-success" data-bind="visible:low().length">
+                    <div class="panel-heading">Low risk</div>
+                    <table class="table table-condensed">
+                        <tbody data-bind="foreach: low">
+                        <tr class="success">
+                            <td data-bind="text: analysisName"></td>
+                            <td data-bind="text: resultDescription"></td>
+                            <td data-bind="text: totalTime"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="panel panel-default" data-bind="visible:none().length">
+                    <div class="panel-heading">Unknown risk</div>
+                    <table class="table table-condensed">
+                        <tbody data-bind="foreach: none">
+                        <tr class="default">
+                            <td data-bind="text: analysisName"></td>
+                            <td data-bind="text: resultDescription"></td>
+                            <td data-bind="text: totalTime"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
