@@ -1,8 +1,8 @@
 package com.resurs.supersearch.rest.resources;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.resurs.commons.l10n.CountryCode;
 import org.apache.commons.lang3.StringUtils;
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.elasticsearch.search.sort.SortOrder;
 
 import javax.xml.bind.annotation.XmlRootElement;
