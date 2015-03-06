@@ -1,4 +1,4 @@
-<div class="modal fade out bs-example-modal-lg" id="fraudModal" tabindex="-1" role="dialog"
+<div class="modal fade bs-example-modal-lg" id="fraudModal" tabindex="-1" role="dialog"
      aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -6,14 +6,142 @@
                 <h4 class="modal-title" id="fraudModalLabel"></h4>
             </div>
             <div class="modal-body">
-                <div class="container">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="panel panel-danger">
+                                <div class="panel-heading">Summary</div>
+                                <!--<div class="panel-body">-->
+                                <table class="table table-condensed table-danger" data-bind="with : fraud">
+                                    <tbody>
+                                    <tr>
+                                        <td>Recommendation:</td>
+                                        <td data-bind="text: recommendation"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Fraud product:</td>
+                                        <td data-bind="text: fraudProduct.code"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>ExternalReference:</td>
+                                        <td data-bind="text: externalReference"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mup id:</td>
+                                        <td data-bind="text: controlRequestJson.ids.MUP_ID"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Limit id:</td>
+                                        <td data-bind="text: controlRequestJson.ids.LIMITBOX_ID"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total execution time:</td>
+                                        <td data-bind="text: totalTime"></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="panel panel-info">
+                                <div class="panel-heading">Customer information</div>
+                                <table class="table table-condensed table-danger" data-bind="with : customer">
+                                    <tbody>
+                                    <tr class="info">
+                                        <td>Name:</td>
+                                        <td data-bind="text: fullName"></td>
+                                    </tr>
 
-
+                                    <tr class="info">
+                                        <td>Government id:</td>
+                                        <td data-bind="text: gid"></td>
+                                    </tr>
+                                    <tr class="info">
+                                        <td>Phone number:</td>
+                                        <td data-bind="text: phone"></td>
+                                    </tr>
+                                    <tr class="info">
+                                        <td>Email:</td>
+                                        <td data-bind="text: email"></td>
+                                    </tr>
+                                    <tr class="info">
+                                        <td>IP:</td>
+                                        <td data-bind="text: ip"></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="panel panel-info">
+                                <div class="panel-heading">Products</div>
+                                <table class="table table-condensed table-danger" >
+                                    <thead>
+                                    <tr class="info">
+                                        <th>Product name</th>
+                                        <th>Price</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody data-bind="foreach : products">
+                                    <tr class="info">
+                                        <td data-bind="text: productName"></td>
+                                        <td data-bind="text: unitAmountWithVat"></td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">Billing address</div>
+                                <div class="panel-body">
+                                    <div data-bind="with: billing">
+                                        <div data-bind="text: fullName"></div>
+                                        <div data-bind="text: addressRow1"></div>
+                                        <div data-bind="text: addressRow2"></div>
+                                        <div data-bind="text: postalArea"></div>
+                                    <div data-bind="text: postalCode"></div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">Delivery address</div>
+                                <div class="panel-body">
+                                <div data-bind="with: delivery">
+                                    <div data-bind="text: fullName"></div>
+                                    <div data-bind="text: addressRow1"></div>
+                                    <div data-bind="text: addressRow2"></div>
+                                    <div data-bind="text: postalArea"></div>
+                                    <div data-bind="text: postalCode"></div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">Customer given address</div>
+                                <div class="panel-body">
+                                <div data-bind="with: given">
+                                    <div data-bind="text: fullName"></div>
+                                    <div data-bind="text: addressRow1"></div>
+                                    <div data-bind="text: addressRow2"></div>
+                                    <div data-bind="text: postalArea"></div>
+                                    <div data-bind="text: postalCode"></div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
+                <hr>
                 <div class="panel panel-danger" data-bind="visible:high().length">
                     <div class="panel-heading">High risk</div>
-                    <table class="table table-condensed table-danger" >
-                        <!--<caption class="text-left">High risk</caption>-->
+                    <table class="table table-condensed table-danger">
                         <tbody data-bind="foreach: high">
                         <tr class="danger">
                             <td data-bind="text: analysisName"></td>
@@ -48,7 +176,7 @@
                     </table>
                 </div>
                 <div class="panel panel-default" data-bind="visible:none().length">
-                    <div class="panel-heading">Unknown risk</div>
+                    <div class="panel-heading">None/unknown risk</div>
                     <table class="table table-condensed">
                         <tbody data-bind="foreach: none">
                         <tr class="default">
@@ -62,3 +190,4 @@
             </div>
         </div>
     </div>
+</div>

@@ -268,6 +268,39 @@ function FraudAnalysisModel() {
     self.medium = ko.observableArray();
     self.low = ko.observableArray();
     self.none = ko.observableArray();
+    self.products = ko.observableArray();
+
+    self.fraud = ko.observable();
+
+    self.billing = ko.observable();
+    self.delivery = ko.observable();
+    self.given = ko.observable();
+
+    self.customer = ko.observable();
+
+    self.addProduct = function(line){
+        self.products.push(line);
+    }
+
+    self.setBilling = function(address){
+        self.billing(address);
+    }
+
+    self.setDelivery = function(address){
+        self.delivery(address);
+    }
+
+    self.setGiven = function(address){
+        self.given(address);
+    }
+
+    self.setFraud = function(fraud) {
+        self.fraud(fraud);
+    }
+
+    self.addCustomerInfo = function(info) {
+        self.customer(info);
+    }
 
     self.addHigh = function(analysis){
         self.high.push(analysis)}
@@ -286,6 +319,12 @@ function FraudAnalysisModel() {
         self.medium.removeAll();
         self.low.removeAll();
         self.none.removeAll();
+        self.products.removeAll();
+        self.customer();
+        self.billing();
+        self.delivery();
+        self.given();
+        self.fraud();
     }
 }
 
@@ -382,10 +421,12 @@ function showFraudModal(fraud) {
 
 function extractFraudAnalysis(fraud) {
 
-    fraudAnalysisModel.reset()
+    fraudAnalysisModel.reset();
+
+    fraudAnalysisModel.setFraud(fraud);
 
     var analysises = fraud['fraudAnalysisResults']
-    for (pos in analysises) {
+    for (var pos in analysises) {
         var analysis = analysises[pos];
         if (analysis.fraudRiskEstmation == "HIGH") {
             fraudAnalysisModel.addHigh(analysis);
@@ -396,6 +437,38 @@ function extractFraudAnalysis(fraud) {
         } else if (analysis.fraudRiskEstmation == "NONE") {
             fraudAnalysisModel.addNone(analysis);
         }
+    }
+
+    var customer = new Object();
+    var fraudInData = fraud['controlRequestJson'];
+
+    if (fraudInData['billingAddress']) {
+        fraudAnalysisModel.setBilling(fraudInData['billingAddress'])
+        customer.fullName = fraudInData['billingAddress']['fullName'];
+    }
+    if (fraudInData['deliveryAddress']) {
+        fraudAnalysisModel.setDelivery(fraudInData['deliveryAddress'])
+    }
+    if (fraudInData['customerGivenAddress']) {
+        fraudAnalysisModel.setGiven(fraudInData['customerGivenAddress'])
+    }
+
+    // Customer data
+    customer.gid = fraud.governmentId + " (" + fraud.customerType + ")";
+    customer.email = fraudInData['emails']['email'];
+    customer.ip    = fraudInData['ipAddress'];
+    if (fraudInData['phoneNumbers']['phone1']) {
+        customer.phone = fraudInData['phoneNumbers']['phone1'];
+    }
+    if (fraudInData['phoneNumbers']['phone2']) {
+        customer.phone = fraudInData['phoneNumbers']['phone2'];
+    }
+    fraudAnalysisModel.addCustomerInfo(customer);
+
+    // Products
+    var products = fraudInData['products'];
+    for (var l in products) {
+        fraudAnalysisModel.addProduct(products[l]);
     }
 }
 
@@ -687,6 +760,6 @@ var fraudAnalysisModel = new FraudAnalysisModel();
 ko.applyBindings(resultViewModel, document.getElementById('searchtable'));
 ko.applyBindings(searchViewModel, document.getElementById('searchform'));
 ko.applyBindings(searchViewWidgetsModel, document.getElementById('widgets'));
-ko.applyBindings(specLineModel, document.getElementById('paymentModal'));
+
 
 
