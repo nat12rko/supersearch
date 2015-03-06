@@ -4,3 +4,4 @@ rest/target/
 web/target/
 *.iml
 rebel.xml
+target/
