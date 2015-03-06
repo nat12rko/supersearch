@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="fraudModalLabel"></h4>
+                <h4 class="modal-title" id="fraudModalLabel">Fraud summary</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
@@ -14,29 +14,47 @@
                                 <!--<div class="panel-body">-->
                                 <table class="table table-condensed table-danger" data-bind="with : fraud">
                                     <tbody>
-                                    <tr>
+                                    <tr class="danger">
                                         <td>Recommendation:</td>
                                         <td data-bind="text: recommendation"></td>
+                                        <td></td>
                                     </tr>
-                                    <tr>
+                                    <tr class="danger">
                                         <td>Fraud product:</td>
                                         <td data-bind="text: fraudProduct.code"></td>
+                                        <td></td>
                                     </tr>
-                                    <tr>
+                                    <tr class="danger">
                                         <td>ExternalReference:</td>
                                         <td data-bind="text: externalReference"></td>
+                                        <td>
+                                            <span class="glyphicon glyphicon-search" aria-hidden="true"
+                                                  data-bind="click: testSearch.bind($data, $data.externalReference)">
+                                            </span>
+                                        </td>
                                     </tr>
-                                    <tr>
+                                    <tr class="danger">
                                         <td>Mup id:</td>
                                         <td data-bind="text: controlRequestJson.ids.MUP_ID"></td>
+                                        <td>
+                                            <span class="glyphicon glyphicon-search" aria-hidden="true"
+                                                  data-bind="click: testSearch.bind($data, $data.controlRequestJson.ids.MUP_ID)">
+                                            </span>
+                                        </td>
                                     </tr>
-                                    <tr>
+                                    <tr class="danger">
                                         <td>Limit id:</td>
                                         <td data-bind="text: controlRequestJson.ids.LIMITBOX_ID"></td>
+                                        <td>
+                                            <span class="glyphicon glyphicon-search" aria-hidden="true"
+                                                  data-bind="click: testSearch.bind($data, $data.controlRequestJson.ids.LIMITBOX_ID)">
+                                            </span>
+                                        </td>
                                     </tr>
-                                    <tr>
+                                    <tr class="danger">
                                         <td>Total execution time:</td>
                                         <td data-bind="text: totalTime"></td>
+                                        <td></td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -52,23 +70,45 @@
                                     <tr class="info">
                                         <td>Name:</td>
                                         <td data-bind="text: fullName"></td>
+                                        <td>
+                                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                        </td>
                                     </tr>
-
                                     <tr class="info">
                                         <td>Government id:</td>
                                         <td data-bind="text: gid"></td>
+                                        <td>
+                                            <span class="glyphicon glyphicon-search" aria-hidden="true"
+                                                  data-bind="click: testSearch.bind($data, $data.gid)">
+                                            </span>
+                                        </td>
                                     </tr>
                                     <tr class="info">
                                         <td>Phone number:</td>
                                         <td data-bind="text: phone"></td>
+                                        <td>
+                                            <span class="glyphicon glyphicon-search" aria-hidden="true"
+                                                  data-bind="click: testSearch.bind($data, $data.phone)">
+                                            </span>
+                                        </td>
                                     </tr>
                                     <tr class="info">
                                         <td>Email:</td>
                                         <td data-bind="text: email"></td>
+                                        <td>
+                                            <span class="glyphicon glyphicon-search" aria-hidden="true"
+                                                  data-bind="click: testSearch.bind($data, $data.email)">
+                                            </span>
+                                        </td>
                                     </tr>
                                     <tr class="info">
                                         <td>IP:</td>
                                         <td data-bind="text: ip"></td>
+                                        <td>
+                                            <span class="glyphicon glyphicon-search" aria-hidden="true"
+                                                  data-bind="click: testSearch.bind($data, $data.email)">
+                                            </span>
+                                        </td>
                                     </tr>
                                     </tbody>
                                 </table>

@@ -262,6 +262,11 @@ function SpecLineModel() {
     }
 }
 
+function testSearch(data) {
+    var target = "http://supersearch.pte.loc/web/search.html?q=\""+data+"\"";
+    window.open(target);
+}
+
 function FraudAnalysisModel() {
     var self = this;
     self.high = ko.observableArray();
@@ -277,6 +282,10 @@ function FraudAnalysisModel() {
     self.given = ko.observable();
 
     self.customer = ko.observable();
+
+    self.searchGid = function(customer) {
+        alert(customer.gid);
+    }
 
     self.addProduct = function(line){
         self.products.push(line);
@@ -411,13 +420,7 @@ function showFraudModal(fraud) {
     fraudAnalysisModel.reset();
 
     var fraudModal = $('#fraudModal');
-
-    // Create KO-bindings
     extractFraudAnalysis(fraud)
-
-    //fraudModal.find('.modal-title').text("Payment Id: " + payment.externalId);
-
-
     fraudModal.modal('show');
 }
 
@@ -456,7 +459,7 @@ function extractFraudAnalysis(fraud) {
     }
 
     // Customer data
-    customer.gid = fraud.governmentId + " (" + fraud.customerType + ")";
+    customer.gid = fraud.governmentId;
     customer.email = fraudInData['emails']['email'];
     customer.ip    = fraudInData['ipAddress'];
     if (fraudInData['phoneNumbers']['phone1']) {
