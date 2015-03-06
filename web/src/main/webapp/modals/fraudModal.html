@@ -8,7 +8,7 @@
             <div class="modal-body">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-lg-4">
+                        <div class="col-lg-6">
                             <div class="panel panel-danger">
                                 <div class="panel-heading">Summary</div>
                                 <!--<div class="panel-body">-->
@@ -42,7 +42,7 @@
                                 </table>
                             </div>
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-6">
                             <div class="panel panel-info">
                                 <div class="panel-heading">Customer information
                                     <span class="glyphicon glyphicon-search pull-right" aria-hidden="true"></span>
@@ -74,25 +74,27 @@
                                 </table>
                             </div>
                         </div>
-                        <div class="col-lg-4">
-                            <div class="panel panel-info">
-                                <div class="panel-heading">Products</div>
-                                <table class="table table-condensed table-danger" >
-                                    <thead>
-                                    <tr class="info">
-                                        <th>Product name</th>
-                                        <th>Price</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody data-bind="foreach : products">
-                                    <tr class="info">
-                                        <td data-bind="text: productName"></td>
-                                        <td data-bind="text: unitAmountWithVat"></td>
-                                    </tr>
-                                  </tbody>
-                                </table>
-                            </div>
-                        </div>
+                      </div>
+                    <div class="panel panel-info">
+                        <div class="panel-heading">Products</div>
+                        <table class="table table-condensed table-danger table-hover" >
+                            <thead>
+                            <tr class="info">
+                                <th>Art. no.</th>
+                                <th>Product</th>
+                                <th>Description</th>
+                                <th>Price with VAT</th>
+                            </tr>
+                            </thead>
+                            <tbody data-bind="foreach : products">
+                            <tr class="info">
+                                <td data-bind="text: articleNo"></td>
+                                <td data-bind="text: productName"></td>
+                                <td data-bind="text: description"></td>
+                                <td data-bind="text: unitAmountWithVat"></td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
                     <div class="row">
                         <div class="col-lg-4">

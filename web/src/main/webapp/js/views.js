@@ -321,9 +321,11 @@ function FraudAnalysisModel() {
         self.none.removeAll();
         self.products.removeAll();
         self.customer();
-        self.billing();
-        self.delivery();
-        self.given();
+
+        self.billing(null);
+        self.delivery(null);
+        self.given(null);
+
         self.fraud();
     }
 }
