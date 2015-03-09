@@ -223,6 +223,8 @@ function ResultViewModel() {
         searchViewModel.systems(parsed.systems);
         searchViewModel.countryCodes(parsed.countryCodes);
         searchViewModel.filters(parsed.filters);
+
+
     }
     var q = $.query.get('q');
 
