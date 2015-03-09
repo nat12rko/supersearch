@@ -97,7 +97,8 @@
                                         <td data-bind="text: email"></td>
                                         <td>
                                             <span class="glyphicon glyphicon-search" aria-hidden="true"
-                                                  data-bind="click: testSearch.bind($data, $data.email)">
+                                                  data-bind="click: testSearch.bind($data, $data.email)"
+                                                    data-toggle="tooltip" data-placement="top" title="Test test">
                                             </span>
                                         </td>
                                     </tr>
@@ -106,7 +107,7 @@
                                         <td data-bind="text: ip"></td>
                                         <td>
                                             <span class="glyphicon glyphicon-search" aria-hidden="true"
-                                                  data-bind="click: testSearch.bind($data, $data.email)">
+                                                  data-bind="click: testSearch.bind($data, $data.ip)">
                                             </span>
                                         </td>
                                     </tr>
