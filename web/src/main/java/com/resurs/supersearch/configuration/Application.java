@@ -12,7 +12,7 @@ import org.springframework.context.annotation.ComponentScan;
  */
 @SpringBootApplication
 @EnableAutoConfiguration
-@ComponentScan("com.resurs.supersearch.rest")
+@ComponentScan("com.resurs.supersearch.configuration")
 public class Application extends SpringBootServletInitializer {
 
     @Override
