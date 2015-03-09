@@ -1,0 +1,36 @@
+<tr class="ecommerce" data-bind="event: { dblclick: show }">
+    <td>Ehandel <br><span-search params="value:row.object.representative.name"/>
+    <td><span-search params="value:row.object.externalId"></span-search>
+    <br/><br/>Pers/org:<br/>
+    <span-search params="value:row.object.customer.governmentId"></span-search>
+    </td>
+
+    <td colspan='3'>
+    <table width='100%'><tr>
+        <td width=\"14.2%\">Namn: <span-search params="value:row.object.billingAddress.fullName"/></td>
+        <td width=\"14.2%\">Skapad: <span-date params="raw:row.object.created"/> </td>
+        <td width=\"14.2%\">Debiterad: <span-search params="value:row.object.debited"/></td>
+        </tr>
+        <tr>
+            <td width=\"14.2%\">Telefon: <span-search params="value:row.object.billingAddress.phone1"/></td>
+            <td width=\"14.2%\">Status: <span-search params="value:row.object.lifePhase"/></td>
+            <td width=\"14.2%\">Krediterad: <span-search params="value:row.object.credited"/> </td>
+            </tr>
+        <tr>
+            <td width=\"14.2%\">Gata: <span-search params="value:row.object.billingAddress.street"/></td>
+            <td width=\"14.2%\">IP: <span-search params="value:row.object.ip"/></td>
+            <td width=\"14.2%\">Anullerad: <span-search params="value:row.object.annulled"/></td>
+            </tr>
+        <tr>
+            <td width=\"14.2%\">Stad: <span-search params="value:row.object.billingAddress.city"/></td>
+            <td width=\"14.2%\">Signerad: <span-search params="value:row.object.signed"/></td>
+            <td width=\"14.2%\">Krediterbar: <span-search params="value:row.object.creditable"/> </td>
+            </tr>
+        <tr>
+            <td width=\"14.2%\">Epost: <span-search params="value:row.object.billingAddress.email"/></td>
+            <td width=\"14.2%\">Betalmetod: <span-search params="value:row.object.paymentMethod.name"/></td>
+            <td width=\"14.2%\">Debiterbar: <span-search params="value:row.object.debitable"/></td>
+            </tr>
+        </table>
+    </td>
+</tr>

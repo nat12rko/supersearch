@@ -1,0 +1,24 @@
+<tr class="limit">
+<td>Limit</td>
+<td><span-search params="value: row.object.reservationId"/></td>
+
+
+<td colspan='9'>
+
+    <table width='100%'><tr>
+        <td width=\"20%\">Pers/Org -nr: <span-search params="value: row.object.application.applicant.governmentId.value"/></td>
+        <td width=\"20%\">Skapad: <span-date params="raw: row.object.timestamp"/></td>
+        <td width=\"20%\">MupReference: <span-search params="value: row.object.mupRefNumber"/> </td>
+        <td width=\"20%\">Belopp (beviljat/sökt): <span data-bind="text:row.object.approvedAmount"/>/<span data-bind="text:row.object.requestedAmount"/></td>
+        <td width=\"20%\">Status: <span-search params="value: row.object.decision"/></td>
+        </tr>
+        <tr>
+            <td width=\"20%\">Namn: <span-search params="value: row.object.customer.fullName"/></td>
+            <td width=\"20%\">Gata: <span-search params="value: row.object.customer.address.streetAddress"/></td>
+            <td width=\"20%\">Stad: <span-search params="value: row.object.customer.address.postalArea"/></td>
+            <td width=\"20%\">Postnummer: <span-search params="value: row.object.customer.address.postalCode"/></td>
+            <td width=\"20%\">Epost: <span-search params="value: row.object.customer.email"/></td>
+            </tr>
+        </table>
+    </td>
+</tr>
