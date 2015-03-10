@@ -40,7 +40,7 @@ public class GovernmentIdQueryParser implements QueryParser {
         }
 
         if (StringUtils.isNotEmpty(returnQuery.toString())) {
-            return "+(" + returnQuery.toString()+ ")";
+            return "+("+query+" "+ returnQuery.toString() + ")";
         }
 
         return query;
