@@ -9,8 +9,13 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-6">
-                            <div class="panel panel-danger">
-                                <div class="panel-heading">Summary</div>
+                            <div class="panel panel-danger" >
+                                <div class="panel-heading" data-bind="with : fraud">Summary
+                                <button type="button" class="btn btn-primary btn-danger btn-xs pull-right"
+                                         data-bind="click: openFraud.bind($data, $data.externalReference)">
+                                    Open in Fraud
+                                </button>
+                                </div>
                                 <!--<div class="panel-body">-->
                                 <table class="table table-condensed table-danger" data-bind="with : fraud">
                                     <tbody>
@@ -58,7 +63,9 @@
                                     </tr>
                                     </tbody>
                                 </table>
+
                             </div>
+
                         </div>
                         <div class="col-lg-6">
                             <div class="panel panel-info">

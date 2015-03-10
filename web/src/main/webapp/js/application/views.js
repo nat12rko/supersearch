@@ -269,6 +269,32 @@ function testSearch(data) {
     window.open(target);
 }
 
+function openFraud(extRef) {
+    var exRef = {"externalrefno" : extRef};
+    openNewWindow('POST', 'http://172.16.1.97/gui/reports/detailsext', exRef, '_blank');
+}
+
+// Arguments :
+//  verb : 'GET'|'POST'
+//  target : an optional opening target (a name, or "_blank"), defaults to "_self"
+openNewWindow = function(verb, url, data, target) {
+    var form = document.createElement("form");
+    form.action = url;
+    form.method = verb;
+    form.target = target || "_self";
+    if (data) {
+        for (var key in data) {
+            var input = document.createElement("textarea");
+            input.name = key;
+            input.value = typeof data[key] === "object" ? JSON.stringify(data[key]) : data[key];
+            form.appendChild(input);
+        }
+    }
+    form.style.display = 'none';
+    document.body.appendChild(form);
+    form.submit();
+};
+
 function FraudAnalysisModel() {
     var self = this;
     self.high = ko.observableArray();
