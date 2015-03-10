@@ -119,16 +119,6 @@ function ResultViewModel() {
 
     self.hits = ko.observableArray();
 
-    self.colorFadeIn = function (element, index, data) {
-
-        $(element).filter("tr").children('td').remove();
-
-        if ($(element).is("tr")) {
-            objectToView(data, element)
-        }
-
-    };
-
     self.ajax = function (uri, method, data) {
         var request = {
             type: method,
@@ -367,81 +357,7 @@ function FraudAnalysisModel() {
     }
 }
 
-function objectToView(ob, element) {
-    if (ob.type === "creditcase") {
-        createMultiupplysRow(element, ob);
-    }
-    else if (ob.type === "limitresponse") {
-        createLimitRow(element, ob);
-    }
-    else if (ob.type === "payment") {
-        createEcommerceRow(element, ob);
-    }
-    else if (ob.type === "FraudSummary") {
-        createFraudRow(element, ob);
-    }
-    return ob;
-}
 
-function createMultiupplysRow(element, ob) {
-
-    var ip = getJsonValue(ob, 'object.customerIP.ipParts');
-    var ipString;
-
-
-    for(var i=0; i<ip.length; i++)  {
-        if(ipString)
-            ipString = ipString + "."+ ip[i];
-        else
-        ipString = ip[i];
-    }
-
-    $(element).removeClass().addClass("multiupplys")
-    $(element).append("<td>Multiupplys</td>")
-    $(element).append("<td>" + createClickableObjectForSearch(getJsonValue(ob, 'object.publicReferenceNumber')) + "</td>")
-
-    $(element).append("<td colspan='9'>" +
-
-        "<table width='100%'><tr>" +
-        "<td width=\"20%\">Pers/Org -nr: " + createClickableObjectForSearch(getJsonValue(ob, 'object.application.applicant.governmentId.value')) + "</td>" +
-        "<td width=\"20%\">Skapad: " + new Date(getJsonValue(ob, 'object.created')).customFormat('#YYYY#-#MM#-#DD# #hh#:#mm#:#ss#') + "  </td>" +
-        "<td width=\"20%\">Ombudskod: " + createClickableObjectForSearch(getJsonValue(ob, 'object.creditCaseTags.BANKSYSTEM_REPRESENTATIVE_CODE')) + " </td> " +
-        "<td width=\"20%\">Belopp (beviljat/sökt): " + getJsonValue(ob, 'object.currentState.amount') + "/" + getJsonValue(ob, 'object.application.amount') + " </td> " +
-        "<td width=\"20%\">Status: " + createClickableObjectForSearch(getJsonValue(ob, 'object.currentState.state')) + "</td>  " +
-        "<tr>"+
-        "<td width=\"20%\">Ipnummer: " + ipString+ "</td>  " +
-        "</tr>"+
-        "</tr></table>" +
-        "</td>")
-}
-
-function createFraudRow(element, ob) {
-    $(element).removeClass().addClass("fraud")
-    $(element).append("<td>Bedrägeri</td>")
-    $(element).append("<td>" + createClickableObjectForSearch(getJsonValue(ob, 'object.id')) + "</td>")
-
-    $(element).append("<td colspan='9'>" +
-        "<table width='100%'><tr>" +
-        "<td width=\"20%\">Pers/Org -nr: " + createClickableObjectForSearch(getJsonValue(ob, 'object.controlRequestJson.customer.governmentId')) + "</td>" +
-        "<td width=\"20%\">Skapad: " + new Date(getJsonValue(ob, 'object.timestamp')).customFormat('#YYYY#-#MM#-#DD# #hh#:#mm#:#ss#') + "  </td>" +
-        "<td width=\"20%\">MupReference: " + createClickableObjectForSearch(getJsonValue(ob, 'object.controlRequestJson.ids.MUP_ID')) + " </td> " +
-        "<td width=\"20%\">BedrägerId: " + createClickableObjectForSearch(getJsonValue(ob, 'object.controlRequestJson.ids.LIMITBOX_ID')) + " </td> " +
-        "<td width=\"20%\">Status: " + createClickableObjectForSearch(getJsonValue(ob, 'object.recommendation')) + "</td>  " +
-        "</tr>" +
-        "<tr>"+
-        "<td width=\"20%\">Ipnummer: " + getJsonValue(ob, 'object.controlRequestJson.ipAddress')+ "</td>  " +
-        "<td width=\"20%\">Namn: " + getJsonValue(ob, 'object.controlRequestJson.billingAddress.firstName')+ " " +  getJsonValue(ob, 'object.controlRequestJson.billingAddress.lastName')+ "</td>  " +
-        "<td width=\"20%\">E-Post: " + getJsonValue(ob, 'object.controlRequestJson.emails.email')+"</td>  " +
-        "<td width=\"20%\">Extern reference: " + createClickableObjectForSearch(getJsonValue(ob, 'object.controlRequestJson.ids.ECOMMERCE_EXTERNAL_ID'))+"</td>  " +
-
-        "</tr>"+
-        "</table>" +
-        "</td>")
-    $(element).dblclick(
-        function() {
-            showFraudModal(ob.object);
-        })
-}
 
 function showFraudModal(fraud) {
 
@@ -518,49 +434,7 @@ function getJsonValue(ob, field) {
     return useOb;
 }
 
-function createEcommerceRow(element, ob) {
 
-    $(element).removeClass().addClass("ecommerce")
-    $(element).append("<td>Ehandel <br> " + getJsonValue(ob, 'object.representative.name'))
-    $(element).append("<td>" + createClickableObjectForSearch(getJsonValue(ob, 'object.externalId')) + "<br><br>Pers/org:<br>" +
-    createClickableObjectForSearch(getJsonValue(ob, 'object.customer.governmentId')) + "</td>")
-
-    $(element).append("<td colspan='3'>" +
-        "<table width='100%'><tr>" +
-            "<td width=\"14.2%\">Namn: " + createClickableObjectForSearch(getJsonValue(ob, 'object.billingAddress.fullName')) + "</td>" +
-            "<td width=\"14.2%\">Skapad: " + new Date(getJsonValue(ob, 'object.created')).customFormat('#YYYY#-#MM#-#DD# #hh#:#mm#:#ss#') + "  </td>" +
-            "<td width=\"14.2%\">Debiterad: " + getJsonValue(ob, 'object.debited') + " </td> " +
-        "</tr>" +
-        "<tr>" +
-            "<td width=\"14.2%\">Telefon: " + createClickableObjectForSearch(getJsonValue(ob, 'object.billingAddress.phone1')) + "</td>" +
-            "<td width=\"14.2%\">Status: " + createClickableObjectForSearch(getJsonValue(ob, 'object.lifePhase')) + "</td>  " +
-            "<td width=\"14.2%\">Krediterad: " + getJsonValue(ob, 'object.credited') + " </td> " +
-        "</tr>" +
-        "<tr>" +
-            "<td width=\"14.2%\">Gata: " + createClickableObjectForSearch(getJsonValue(ob, 'object.billingAddress.street')) + "</td>" +
-            "<td width=\"14.2%\">IP: " + createClickableObjectForSearch(getJsonValue(ob, 'object.ip')) + "</td>" +
-            "<td width=\"14.2%\">Anullerad: " + getJsonValue(ob, 'object.annulled') + " </td> " +
-        "</tr>" +
-        "<tr>" +
-            "<td width=\"14.2%\">Stad: " + createClickableObjectForSearch(getJsonValue(ob, 'object.billingAddress.city')) + "</td>" +
-            "<td width=\"14.2%\">Signerad: " + createClickableObjectForSearch(getJsonValue(ob, 'object.signed')) + "</td>" +
-            "<td width=\"14.2%\">Krediterbar: " + getJsonValue(ob, 'object.creditable') + " </td> " +
-        "</tr>" +
-        "<tr>" +
-            "<td width=\"14.2%\">Epost: " + createClickableObjectForSearch(getJsonValue(ob, 'object.billingAddress.email')) + "</td>" +
-            "<td width=\"14.2%\">Betalmetod: " + createClickableObjectForSearch(getJsonValue(ob, 'object.paymentMethod.name')) + "</td>" +
-            "<td width=\"14.2%\">Debiterbar: " + getJsonValue(ob, 'object.debitable') + " </td> " +
-        "</tr>" +
-        "</table>" +
-        "</td>")
-
-    $(element).dblclick(
-        function() {
-            showPaymentModal(ob.object);
-     })
-
-
-}
 
 function showPaymentModal(payment) {
 
@@ -638,32 +512,6 @@ function createUnspecifiedLine(spec) {
         "sum":sum.toFixed(2)};
 }
 
-function createLimitRow(element, ob) {
-    $(element).removeClass().addClass("limit")
-    $(element).append("<td>Limit</td>")
-    $(element).append("<td>" + createClickableObjectForSearch(getJsonValue(ob, 'object.reservationId')) + "</td>")
-
-
-    $(element).append("<td colspan='9'>" +
-
-        "<table width='100%'><tr>" +
-        "<td width=\"20%\">Pers/Org -nr: " + createClickableObjectForSearch(getJsonValue(ob, 'object.application.applicant.governmentId.value')) + "</td>" +
-        "<td width=\"20%\">Skapad: " + new Date(getJsonValue(ob, 'object.timestamp')).customFormat('#YYYY#-#MM#-#DD# #hh#:#mm#:#ss#') + "  </td>" +
-        "<td width=\"20%\">MupReference: " + createClickableObjectForSearch(getJsonValue(ob, 'object.mupRefNumber')) + " </td> " +
-
-        "<td width=\"20%\">Belopp (beviljat/sökt): " + getJsonValue(ob, 'object.approvedAmount') + "/" + getJsonValue(ob, 'object.requestedAmount') + " </td> " +
-        "<td width=\"20%\">Status: " + createClickableObjectForSearch(getJsonValue(ob, 'object.decision')) + "</td>  " +
-        "</tr>" +
-        "<tr>" +
-        "<td width=\"20%\">Namn: " + createClickableObjectForSearch(getJsonValue(ob, 'object.customer.fullName')) + "</td>  " +
-        "<td width=\"20%\">Gata: " + createClickableObjectForSearch(getJsonValue(ob, 'object.customer.address.streetAddress')) + "</td>  " +
-        "<td width=\"20%\">Stad: " + createClickableObjectForSearch(getJsonValue(ob, 'object.customer.address.postalArea')) + "</td>  " +
-        "<td width=\"20%\">Postnummer: " + createClickableObjectForSearch(getJsonValue(ob, 'object.customer.address.postalCode')) + "</td>  " +
-        "<td width=\"20%\">Epost: " + createClickableObjectForSearch(getJsonValue(ob, 'object.customer.email')) + "</td>  " +
-        "</tr>" +
-        "</table>" +
-        "</td>")
-}
 
 function createGenericRow(element, ob) {
     $(element).append("<td>Unknown - " + ob.type + "</td>");
@@ -763,12 +611,6 @@ Date.prototype.customFormat = function (formatString) {
     return formatString.replace("#hhh#", hhh).replace("#hh#", hh).replace("#h#", h).replace("#mm#", mm).replace("#m#", m).replace("#ss#", ss).replace("#s#", s).replace("#ampm#", ampm).replace("#AMPM#", AMPM);
 }
 
-
-function createClickableObjectForSearch(value) {
-    value = checkValue(value);
-    var string = "<span onClick='loadValueToSearch(\"" + value + "\")'><b>" + value + "</b></span>"
-    return string;
-}
 
 function checkValue(value) {
     try {

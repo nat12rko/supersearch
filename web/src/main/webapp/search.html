@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+
     <script src="js/frameworks/jquery.js"></script>
     <script src="js/frameworks/jquery.query-object.js"></script>
 
@@ -19,9 +20,11 @@
     <script src="js/frameworks/bootstrap.min.js"></script>
 
     <script src="js/frameworks/knockout.js"></script>
-    <script src="js/frameworks/knockout-mapping.js"></script>
-    <script src="js/frameworks/knockout-bootstrap.min.js"></script>
 
+
+    <script src="js/frameworks/knockout-mapping.js"></script>
+
+    <script src="js/frameworks/knockout-bootstrap.min.js"></script>
 
     <script type="text/javascript" src="js/frameworks/bootstrap-select.js"></script>
 
@@ -37,12 +40,19 @@
 
     <script src="js/application/facets.js" charset="UTF-8"></script>
 
-
     <link href="css/frameworks/datepicker3.css" rel="stylesheet"/>
 
     <link href="css/application/page.css" rel="stylesheet"/>
 
+    <script src="js/frameworks/require.js"></script>
+
+    <script src="component/components.js" charset="UTF-8"></script>
+
+
     <script>
+
+        require({baseUrl: 'js/frameworks', paths: {'text':'text'}});
+
         $(function(){
             $("#includedPaymentModal").load("modals/paymentModal.html", function() {
                 ko.applyBindings(specLineModel, document.getElementById('paymentModal'));
@@ -54,6 +64,9 @@
             });
         });
     </script>
+
+
+
 
 
 </head>
@@ -208,10 +221,14 @@
                         <th>Id</th>
                         <th colspan="10">Innehåll</th>
                         </thead>
-                        <tbody data-bind="foreach: { data: hits, as: 'hit', afterAdd: colorFadeIn }">
-                        <tr>
-                            <td data-bind="text: type"></td>
-                        </tr>
+                        <tbody>
+                        <!-- ko foreach: hits -->
+                            <!-- ko component: {
+                            name: "product-row",
+                            params: { row: $data }
+                        } -->
+                        <!-- /ko -->
+                        <!-- /ko -->
                         </tbody>
                     </table>
                 </div>

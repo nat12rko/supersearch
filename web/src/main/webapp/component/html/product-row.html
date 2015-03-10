@@ -1,0 +1,29 @@
+<!-- ko if:  isMultiupplys() -->
+<!-- ko component: {
+    name: "product-row-multiupplys",
+    params: { row: row }
+} -->
+<!-- /ko -->
+<!-- /ko -->
+<!-- ko if:  isFraud() -->
+<!-- ko component: {
+    name: "product-row-fraud",
+    params: { row: row }
+} -->
+<!-- /ko -->
+<!-- /ko -->
+<!-- ko if:  isLimit() -->
+<!-- ko component: {
+    name: "product-row-limit",
+    params: { row: row }
+} -->
+<!-- /ko -->
+<!-- /ko -->
+<!-- ko if:  isEcommerce() -->
+<!-- ko component: {
+    name: "product-row-ecommerce",
+    params: { row: row }
+} -->
+<!-- /ko -->
+<!-- /ko -->
+

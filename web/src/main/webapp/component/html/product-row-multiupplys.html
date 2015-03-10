@@ -1,0 +1,22 @@
+<tr class="multiupplys">
+    <td>Multiupplys</td>
+    <td>
+        <span-search params="value: row.object.publicReferenceNumber"/>
+    </td>
+
+    <td colspan='9'>
+        <table width='100%'>
+            <tr>
+                <td width=\"20%\">Pers/Org-nr: <span-search params="value: row.object.application.applicant.governmentId.value"/></td>
+                <td width=\"20%\">Skapad: <span-date params="raw: row.object.created"/></td>
+                <td width=\"20%\">Ombudskod: <span-search params="value: row.object.creditCaseTags.BANKSYSTEM_REPRESENTATIVE_CODE"/></td>
+                <td width=\"20%\">Belopp (beviljat/sökt): <span data-bind="text:row.object.currentState.amount"/>/<span data-bind="text:row.object.application.amount"/></td>
+                <td width=\"20%\">Status: <span-search params="value: row.object.currentState.state"/></td>
+            </tr>
+
+            <tr>
+                <td width=\"20%\">Ipnummer: <span-search params="value: ipAddress()"/></td>
+            </tr>
+        </table>
+    </td>
+</tr>
