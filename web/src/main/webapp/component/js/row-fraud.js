@@ -6,6 +6,10 @@ define(['knockout'], function(ko) {
         self.show = function(){
             showFraudModal(self.row.object);
         }
+
+        self.openInFraud = function() {
+            openFraud(self.row.object.externalReference);
+        }
     }
     return ProductRow;
 });
