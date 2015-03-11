@@ -1,21 +1,42 @@
 <tr class="fraud" data-bind="event: { dblclick: show }" >
-    <td>Bedrägeri</td>
-    <td><span-search params="value:row.object.id"/></td>
-
+    <td>Bedrägeri <br><br>
+        <span-search params="value:row.object.recommendation"/><
+    </td>
+    <td><span-search params="value:row.object.id"></span-search>
+        <br/><br/>Pers/org:<br/>
+        <span-search params="value:row.object.controlRequestJson.customer.governmentId"/>
+    </td>
     <td colspan='9'>
-    <table width='100%'><tr>
-        <td width=\"20%\">Pers/Org-nr: <span-search params="value:row.object.controlRequestJson.customer.governmentId"/></td>
-        <td width=\"20%\">Skapad: <span-date params="raw:row.object.timestamp"/></td>
-        <td width=\"20%\">MupReference: <span-search params="value:row.object.controlRequestJson.ids.MUP_ID"/></td>
-        <td width=\"20%\">BedrägerId: <span-search params="value:row.object.controlRequestJson.ids.LIMITBOX_ID"/> </td>
-        <td width=\"20%\">Status: <span-search params="value:row.object.recommendation"/></td>
+    <table width='100%'>
+        <tr>
+            <td width=\"20%\">Name: <span-search params="value:row.object.controlRequestJson.billingAddress.firstName"></span-search>  <span-search params="value:row.object.controlRequestJson.billingAddress.lastName"/></td>
+            <td width=\"20%\">Created: <span-date params="raw:row.object.timestamp"/></td>
         </tr>
         <tr>
-            <td width=\"20%\">Ipnummer: <span-search params="value:row.object.controlRequestJson.ipAddress"/></td>
-            <td width=\"20%\">Namn: <span-search params="value:row.object.controlRequestJson.billingAddress.firstName"></span-search>  <span-search params="value:row.object.controlRequestJson.billingAddress.lastName"/></td>
-            <td width=\"20%\">E-Post: <span-search params="value:row.object.controlRequestJson.emails.email"/></td>
-            <td width=\"20%\">Extern reference: <span-search params="value:row.object.controlRequestJson.ids.ECOMMERCE_EXTERNAL_ID"/></td>
+            <td width=\"20%\">Email: <span-search params="value:row.object.controlRequestJson.emails.email"/></td>
+            <td width=\"20%\">MupRef: <span-search params="value:row.object.controlRequestJson.ids.MUP_ID"/></td>
+        </tr>
+        <tr>
+            <td width=\"20%\">Phone: <span-search params="value:row.object.controlRequestJson.phoneNumbers.phone1"/></td>
+            <td width=\"20%\">LimitId: <span-search params="value:row.object.controlRequestJson.ids.LIMITBOX_ID"/> </td>
+        </tr>
+        <tr>
+            <td width=\"20%\">Phone2: <span-search params="value:row.object.controlRequestJson.phoneNumbers.phone2"/></td>
+            <td width=\"20%\">Ip: <span-search params="value:row.object.controlRequestJson.ipAddress"/></td>
+            <td width=\"20%\">eCommerce reference: <span-search params="value:row.object.controlRequestJson.ids.ECOMMERCE_EXTERNAL_ID"/></td>
         </tr>
     </table>
     </td>
+    <td>
+        <button type="button" class="btn btn-primary btn-danger btn-xs pull-right"
+                data-bind="event: { click: openInFraud }">
+            Open in Fraud
+        </button>
+    </td>
 </tr>
+
+
+
+
+
+

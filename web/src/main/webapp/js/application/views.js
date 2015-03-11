@@ -114,8 +114,8 @@ function SearchViewModel() {
 
 function ResultViewModel() {
     var self = this;
-    self.tasksURI = "http://supersearch.pte.loc/rest/search";
-    //self.tasksURI = "http://localhost:8080/rest/search";
+    //self.tasksURI = "http://supersearch.pte.loc/rest/search";
+    self.tasksURI = "http://localhost:8080/rest/search";
 
     self.hits = ko.observableArray();
 
