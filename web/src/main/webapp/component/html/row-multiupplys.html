@@ -1,22 +1,30 @@
-<tr class="multiupplys">
-    <td>Multiupplys</td>
-    <td>
-        <span-search params="value: row.object.publicReferenceNumber"/>
-    </td>
+<div class="panel panel-warning">
+    <div class="panel-heading gocenter">
+        <span class="goleft">Multiupplys</span> <span class="gocenter" data-bind="text: row.object.publicReferenceNumber"></span>
+        <span-date class="goright" params='{ raw: row.object.created}'></span-date>
+    </div>
+    <div class="container-fluid bg-warning">
+        <div class="row">
+            <div class="col-lg-2" >
+                <span-search params="value: row.object.currentState.state"></span-search><br/>
+                <br/>
+                <span-search params="value:row.object.application.applicant.governmentId.value"></span-search><br/>
+                <span-search params="value:row.object.application.countryCode"></span-search>
+                <span-search params="value:row.object.application.customerForm"></span-search><br/>
+            </div>
 
-    <td colspan='9'>
-        <table width='100%'>
-            <tr>
-                <td width=\"20%\">Pers/Org-nr: <span-search params="value: row.object.application.applicant.governmentId.value"/></td>
-                <td width=\"20%\">Skapad: <span-date params="raw: row.object.created"/></td>
-                <td width=\"20%\">Ombudskod: <span-search params="value: row.object.creditCaseTags.BANKSYSTEM_REPRESENTATIVE_CODE"/></td>
-                <td width=\"20%\">Belopp (beviljat/sökt): <span data-bind="text:row.object.currentState.amount"/>/<span data-bind="text:row.object.application.amount"/></td>
-                <td width=\"20%\">Status: <span-search params="value: row.object.currentState.state"/></td>
-            </tr>
+            <div class="col-lg-4">
+                Ombudskod: <span-search params="value: row.object.creditCaseTags.BANKSYSTEM_REPRESENTATIVE_CODE"/>
+            </div>
+            <div class="col-lg-3">
+                        Belopp sökt: <span data-bind="text:row.object.application.amount"></span><br/>
+                        Belopp beviljat: <span data-bind="text:row.object.currentState.amount"></span><br/>
+                </div>
+            <div class="col-lg-3">
+            Ip-address: <span-search params="value: ipAddress()"/>
+                </div>
 
-            <tr>
-                <td width=\"20%\">Ipnummer: <span-search params="value: ipAddress()"/></td>
-            </tr>
-        </table>
-    </td>
-</tr>
+        </div>
+        </div>
+    </div>
+</div>

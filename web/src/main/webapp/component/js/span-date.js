@@ -4,7 +4,15 @@ define(['knockout'], function (ko) {
         self.raw = (data && data.raw);
         self.date;
         if (self.raw) {
-            self.date = new Date(self.raw).customFormat('#YYYY#-#MM#-#DD# #hh#:#mm#:#ss#');
+            if (data.mode == "shortDate") {
+                self.date = new Date(self.raw).customFormat('#YY#-#MM#-#DD#');
+            } else if (data.mode == "date") {
+                self.date = new Date(self.raw).customFormat('#YYYY#-#MM#-#DD#');
+            } else if (data.mode == "time") {
+                self.date = new Date(self.raw).customFormat('#hh#:#mm#:#ss#');
+            } else {
+                self.date = new Date(self.raw).customFormat('#YY#-#MM#-#DD# #hh#:#mm#:#ss#');
+            }
         }
     }
     return SpanDate;
