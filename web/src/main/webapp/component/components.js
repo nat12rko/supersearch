@@ -5,7 +5,7 @@ ko.components.register("search-row", {
 });
 ko.components.register("row-multiupplys", {
     viewModel: { require: 'component/js/row-multiupplys.js?timestamp='+new Date().getTime()},
-    template: {require: 'text!../../component/html/product-row-multiupplys.html?timestamp='+new Date().getTime()},
+    template: {require: 'text!../../component/html/row-multiupplys.html?timestamp='+new Date().getTime()},
     synchronous: true
 
 });

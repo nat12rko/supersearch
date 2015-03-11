@@ -1,24 +1,34 @@
-<tr class="limit">
-<td>Limit</td>
-<td><span-search params="value: row.object.reservationId"/></td>
-
-
-<td colspan='9'>
-
-    <table width='100%'><tr>
-        <td width=\"20%\">Pers/Org -nr: <span-search params="value: row.object.application.applicant.governmentId.value"/></td>
-        <td width=\"20%\">Skapad: <span-date params="raw: row.object.timestamp"/></td>
-        <td width=\"20%\">MupReference: <span-search params="value: row.object.mupRefNumber"/> </td>
-        <td width=\"20%\">Belopp (beviljat/sökt): <span data-bind="text:row.object.approvedAmount"/>/<span data-bind="text:row.object.requestedAmount"/></td>
-        <td width=\"20%\">Status: <span-search params="value: row.object.decision"/></td>
-        </tr>
-        <tr>
-            <td width=\"20%\">Namn: <span-search params="value: row.object.customer.fullName"/></td>
-            <td width=\"20%\">Gata: <span-search params="value: row.object.customer.address.streetAddress"/></td>
-            <td width=\"20%\">Stad: <span-search params="value: row.object.customer.address.postalArea"/></td>
-            <td width=\"20%\">Postnummer: <span-search params="value: row.object.customer.address.postalCode"/></td>
-            <td width=\"20%\">Epost: <span-search params="value: row.object.customer.email"/></td>
-            </tr>
-        </table>
-    </td>
-</tr>
+<div class="panel panel-success">
+    <div class="panel-heading gocenter">
+        <span class="goleft">Limit</span> <span class="gocenter" data-bind="text: row.object.reservationId"></span>
+        <span-date class="goright" params='{ raw: row.object.timestamp}'></span-date>
+    </div>
+    <div class="container-fluid bg-success">
+        <div class="row">
+            <div class="col-lg-2" >
+                <span-search params="value: row.object.decision"></span-search><br/>
+                <br/>
+                <span-search params="value:row.object.application.applicant.governmentId.value"></span-search><br/>
+                <span-search params="value:row.object.application.countryCode"></span-search>
+                <span-search params="value:row.object.application.customerForm"></span-search><br/>
+            </div>
+            <div class="col-lg-4" >
+                Namn:  <span-search params="value: row.object.customer.fullName"></span-search><br/>
+                Epost: <span-search params="value: row.object.customer.email"></span-search><br/>
+                Mob tel: <span-search params="value: row.object.customer.mobilePhone"></span-search><br/>
+                Hem tel: <span-search params="value: row.object.customer.homePhone"></span-search><br/>
+            </div>
+            <div class="col-lg-3" >
+                Gata: <span-search params="value: row.object.customer.address.streetAddress"></span-search><br/>
+                Postnummer: <span-search params="value: row.object.customer.address.postalCode"></span-search><br/>
+                Stad: <span-search params="value: row.object.customer.address.postalArea"></span-search><br/>
+            </div>
+            <div class="col-lg-2">
+                Belopp sökt: <span data-bind="text:row.object.requestedAmount"></span><br/>
+                Belopp beviljat: <span data-bind="text:row.object.approvedAmount"></span><br/>
+                Kreditprod: <span-search params="value : row.object.creditProductCode"></span-search>
+                MupReferens: <span-search params="value: row.object.mupRefNumber"></span-search><br/>
+            </div>
+        </div>
+    </div>
+</div>

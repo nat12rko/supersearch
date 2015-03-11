@@ -29,3 +29,16 @@
 .table {
     font-size: 10px;
 }
+
+.goleft {
+    float:left
+}
+
+.goright {
+    float:right
+}
+
+.gocenter {
+    text-align: center;
+    margin: 0 auto;
+}
