@@ -26,8 +26,10 @@ import org.elasticsearch.index.query.BoolFilterBuilder;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.FilterBuilder;
 import org.elasticsearch.index.query.FilterBuilders;
+import org.elasticsearch.index.query.HasParentQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.index.query.RangeFilterBuilder;
+import org.elasticsearch.index.query.TermQueryBuilder;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
 import org.elasticsearch.search.aggregations.Aggregation;
@@ -35,6 +37,7 @@ import org.elasticsearch.search.aggregations.AggregationBuilder;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.elasticsearch.search.sort.FieldSortBuilder;
 import org.elasticsearch.search.sort.SortBuilder;
+import org.elasticsearch.search.sort.SortBuilders;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -93,6 +96,59 @@ public class SearchServiceImpl implements SearchService {
 
         queryParsers.add(governmentIdQueryParser);
         queryParsers.add(phoneNumberQueryParser);
+    }
+
+
+
+    public List<Hit> getMultiupplysById(String id){
+
+        TermQueryBuilder publicReferenceNumber = QueryBuilders.termQuery("publicReferenceNumber", id);
+        HasParentQueryBuilder creditcase = QueryBuilders.hasParentQuery("creditcase", publicReferenceNumber);
+
+        List<Hit> search = search(publicReferenceNumber);
+        search.addAll(search(creditcase));
+
+
+        return search;
+    }
+    public List<Hit> getLimitByMultiupplysId(String id){
+        TermQueryBuilder publicReferenceNumber = QueryBuilders.termQuery("mupRefNumber", id);
+        return search(publicReferenceNumber);
+    }
+    public List<Hit> getEcommerceByMultiupplysId(String id){
+        TermQueryBuilder publicReferenceNumber = QueryBuilders.termQuery("multiupplysId", id);
+        return search(publicReferenceNumber);
+    }
+    public List<Hit> getFraudByMultiupplysId(String id){
+        TermQueryBuilder publicReferenceNumber = QueryBuilders.termQuery("controlRequestJson.ids.MUP_ID", id);
+        return search(publicReferenceNumber);
+    }
+
+    private List<Hit> search(org.elasticsearch.index.query.QueryBuilder queryBuilder) {
+
+        SearchRequestBuilder searchRequestBuilder =
+                elasticSearchService.getClient().prepareSearch("_all")
+                        .setQuery(queryBuilder).
+                        setSearchType(SearchType.QUERY_THEN_FETCH).setTrackScores(false).addSort(SortBuilders.fieldSort("_timestamp"));
+
+
+        SearchResponse searchResponse = searchRequestBuilder.setFrom(0)
+                .setSize(100).setExplain(false)
+                .execute()
+                .actionGet();
+
+        SearchHits searchHits = searchResponse.getHits();
+
+        ArrayList<Hit> hits = new ArrayList<>();
+
+        for (SearchHit searchHit : searchHits.getHits()) {
+            Hit hit = new Hit();
+            hit.setObject(searchHit.getSource());
+            hit.setType(searchHit.getType());
+            hits.add(hit);
+        }
+
+        return hits;
     }
 
 
@@ -170,6 +226,7 @@ public class SearchServiceImpl implements SearchService {
                 rangeFilterBuilder.to(search.getToDate());
 
             }
+            rangeFilterBuilder = rangeFilterBuilder.timeZone("+1:00");
             allFilterBuilder.must(rangeFilterBuilder);
         }
 
@@ -193,8 +250,7 @@ public class SearchServiceImpl implements SearchService {
         SearchRequestBuilder searchRequestBuilder =
                 elasticSearchService.getClient().prepareSearch(indexList.toArray(new String[0]))
                         .setQuery(QueryBuilders.filteredQuery(queryBuilder, allFilterBuilder)).
-                        setSearchType(SearchType.QUERY_THEN_FETCH).setTrackScores(false)
-                ;
+                        setSearchType(SearchType.QUERY_THEN_FETCH).setTrackScores(false);
 
         setSortField(search, searchRequestBuilder);
 
