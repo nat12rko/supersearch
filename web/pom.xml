@@ -41,7 +41,6 @@
 
 
     <build>
-        <finalName>supersearch-web</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
