@@ -34,5 +34,10 @@ ko.components.register("span-search", {
     template: {require: 'text!../../component/html/span-search.html?timestamp='+new Date().getTime()} ,
     synchronous: true
 });
+ko.components.register("searchlist-item-header", {
+    viewModel: { require: 'component/js/searchlist-item-header.js?timestamp='+new Date().getTime()},
+    template: {require: 'text!../../component/html/searchlist-item-header.html?timestamp='+new Date().getTime()} ,
+    synchronous: true
+});
 
 

@@ -1,8 +1,12 @@
-<div class="panel panel-warning">
-    <div class="panel-heading gocenter">
-        <span class="goleft">Multiupplys</span> <span class="gocenter" data-bind="text: row.object.publicReferenceNumber"></span>
-        <span-date class="goright" params='{ raw: row.object.created}'></span-date>
-    </div>
+<div class="panel panel-warning tinymargins">
+    <!-- ko component: {
+        name: "searchlist-item-header",
+        params: {
+            caption: "Multiupplys",
+            id: row.object.publicReferenceNumber,
+            timestamp: row.object.created
+        }
+    } --><!-- /ko -->
     <div class="container-fluid bg-warning">
         <div class="row">
             <div class="col-lg-2" >
@@ -14,17 +18,15 @@
             </div>
 
             <div class="col-lg-4">
-                Ombudskod: <span-search params="value: row.object.creditCaseTags.BANKSYSTEM_REPRESENTATIVE_CODE"/>
+                Representative code: <span-search params="value: row.object.creditCaseTags.BANKSYSTEM_REPRESENTATIVE_CODE"/>
             </div>
             <div class="col-lg-3">
-                        Belopp sökt: <span data-bind="text:row.object.application.amount"></span><br/>
-                        Belopp beviljat: <span data-bind="text:row.object.currentState.amount"></span><br/>
-                </div>
+                Resquested amount: <span data-bind="text:row.object.application.amount"></span><br/>
+                Approved amount: <span data-bind="text:row.object.currentState.amount"></span><br/>
+            </div>
             <div class="col-lg-3">
-            Ip-address: <span-search params="value: ipAddress()"/>
-                </div>
-
-        </div>
+                IP: <span-search params="value: ipAddress()"/>
+            </div>
         </div>
     </div>
 </div>

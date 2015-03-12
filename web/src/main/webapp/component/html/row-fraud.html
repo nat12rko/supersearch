@@ -1,15 +1,20 @@
-<div class="panel panel-danger">
-    <div class="panel-heading gocenter" data-bind="event: { dblclick: show }">
-        <span class="goleft">Bedrägeri&nbsp;</span>
-        <button type="button" class="btn btn-primary btn-danger btn-xs pull-left" data-bind="event: { click: openInFraud }">
-            Open in Fraud
-        </button>
-        <span class="gocenter" data-bind="text: row.object.id"></span>
-        <span-date class="goright" params='{ raw: row.object.timestamp}'></span-date>
-    </div>
+<div class="panel panel-danger tinymargins">
+    <!-- ko component: {
+    name: "searchlist-item-header",
+    params: {
+        caption: "Fraud",
+        id: row.object.id,
+        timestamp: row.object.timestamp,
+        buttonText: "Open in Fraud",
+        buttonUrl: openInFraud,
+        buttonStyle: "danger",
+        clickUrl: show
+        }
+    } --><!-- /ko -->
+
     <div class="container-fluid bg-danger">
         <div class="row">
-            <div class="col-lg-3">
+            <div class="col-lg-2">
                 <span-search params="value:row.object.recommendation"></span-search><br/>
                 <br/>
                 <span-search params="value:row.object.controlRequestJson.customer.governmentId"></span-search><br/>
@@ -17,25 +22,19 @@
                 <span-search params="value:row.object.controlRequestJson.customer.customerType"></span-search><br/>
 
             </div>
-            <div class="col-lg-9">
-                <table width='100%'>
-                    <tr>
-                        <td width=\"20%\">Name: <span-search params="value:row.object.controlRequestJson.billingAddress.firstName"></span-search>  <span-search params="value:row.object.controlRequestJson.billingAddress.lastName"/></td>
-                        <td width=\"20%\">eCommerce reference: <span-search params="value:row.object.controlRequestJson.ids.ECOMMERCE_EXTERNAL_ID"/></td>
-                    </tr>
-                    <tr>
-                        <td width=\"20%\">Email: <span-search params="value:row.object.controlRequestJson.emails.email"/></td>
-                        <td width=\"20%\">MupRef: <span-search params="value:row.object.controlRequestJson.ids.MUP_ID"/></td>
-                    </tr>
-                    <tr>
-                        <td width=\"20%\">Phone: <span-search params="value:row.object.controlRequestJson.phoneNumbers.phone1"/></td>
-                        <td width=\"20%\">LimitId: <span-search params="value:row.object.controlRequestJson.ids.LIMITBOX_ID"/> </td>
-                    </tr>
-                    <tr>
-                        <td width=\"20%\">Phone2: <span-search params="value:row.object.controlRequestJson.phoneNumbers.phone2"/></td>
-                        <td width=\"20%\">Ip: <span-search params="value:row.object.controlRequestJson.ipAddress"/></td>
-                    </tr>
-                </table>
+            <div class="col-lg-4">
+                Name: <span-search params="value:row.object.controlRequestJson.billingAddress.firstName"></span-search>  <span-search params="value:row.object.controlRequestJson.billingAddress.lastName"/></span-search><br/>
+                Email: <span-search params="value:row.object.controlRequestJson.emails.email"/></span-search><br/>
+                Phone 1: <span-search params="value:row.object.controlRequestJson.phoneNumbers.phone1"/></span-search><br/>
+                Phone 2: <span-search params="value:row.object.controlRequestJson.phoneNumbers.phone2"/></span-search><br/>
+            </div>
+            <div class="col-lg-3">
+                IP: <span-search params="value:row.object.controlRequestJson.ipAddress"/></span-search>
+            </div>
+            <div class="col-lg-3">
+                E-commerce ref: <span-search params="value:row.object.controlRequestJson.ids.ECOMMERCE_EXTERNAL_ID"/></span-search><br/>
+                Mup ref: <span-search params="value:row.object.controlRequestJson.ids.MUP_ID"/></span-search><br/>
+                Limit reservation: <span-search params="value:row.object.controlRequestJson.ids.LIMITBOX_ID"></span-search><br/>
             </div>
         </div>
     </div>

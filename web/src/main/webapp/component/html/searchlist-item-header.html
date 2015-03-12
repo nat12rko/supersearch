@@ -1,0 +1,17 @@
+<div class="panel-heading" data-bind='event: { dblclick: clicked() }'>
+    <div class="row">
+        </button>
+        <div class="col-lg-4" >
+            <span class="pull-left" data-bind="text: caption"></span>&nbsp;
+            <button type="button" data-bind='event: { click: buttonUrl }, visible: showButton(), css: getButtonClass()'>
+                <span data-bind="text: buttonText"></span>
+            </button>
+        </div>
+        <div class="col-lg-4" style="text-align: center">
+            <span data-bind="text: id"></span>
+        </div>
+        <div class="col-lg-4" >
+            <span-date class="pull-right" params="raw: timestamp"></span-date>
+        </div>
+    </div>
+</div>
