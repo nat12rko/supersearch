@@ -17,7 +17,9 @@ define(['knockout'], function (ko) {
             return ipString;
         }, this);
 
-
+        self.show = function(){
+            showMupModal(self.row.object);
+        }
     }
 
     return ProductRow;

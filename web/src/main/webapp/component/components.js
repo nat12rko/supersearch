@@ -39,5 +39,10 @@ ko.components.register("searchlist-item-header", {
     template: {require: 'text!../../component/html/searchlist-item-header.html?timestamp='+new Date().getTime()} ,
     synchronous: true
 });
+ko.components.register("multiupplys-info", {
+    viewModel: { require: 'component/js/multiupplys-info.js?timestamp='+new Date().getTime()},
+    template: {require: 'text!../../component/html/multiupplys-info.html?timestamp='+new Date().getTime()} ,
+    synchronous: true
+});
 
 

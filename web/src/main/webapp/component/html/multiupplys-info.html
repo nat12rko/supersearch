@@ -1,0 +1,125 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="panel panel-warning" data-bind="with : creditcase">
+                <div class="panel-heading">Summary</div>
+                <table class="table table-condensed table-warning">
+                    <tbody>
+                    <tr class="warning">
+                        <td>Multiupplysid:</td>
+                        <td data-bind="text: publicReferenceNumber"></td>
+                    </tr>
+                    <tr class="warning">
+                        <td>State:</td>
+                        <td data-bind="text: currentState.state"></td>
+                    </tr>
+                    <tr class="warning">
+                        <td>Requested amount:</td>
+                        <td data-bind="text: application.amount"></td>
+                    </tr>
+                    <tr class="warning">
+                        <td>Approved amount:</td>
+                        <td data-bind="text: currentState.amount"></td>
+                    </tr>
+                    <tr class="warning">
+                        <td>Credit product:</td>
+                        <td data-bind="text: creditProductCode"></td>
+                    </tr>
+                    <tr class="warning">
+                        <td>Bank Product:</td>
+                        <td data-bind="text: creditCaseTags.BANKPRODUCT_CODE"></td>
+                    </tr>
+                    <tr class="warning">
+                        <td>Representative code:</td>
+                        <td data-bind="text: creditCaseTags.BANKSYSTEM_REPRESENTATIVE_CODE"></td>
+                    </tr>
+                    <tr class="warning">
+                        <td>Representative name:</td>
+                        <td data-bind="text: creditCaseTags.REPRESENTATIVE_NAME"></td>
+                    </tr>
+                    <tr class="warning">
+                        <td>Customer Ip:</td>
+                        <td data-bind="text: $component.ipAddress"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="panel panel-warning">
+                <div class="panel-heading">Customer information</div>
+                <table class="table table-condensed table-warning">
+                    <tbody>
+                    <tr class="warning" data-bind="with : customer">
+                        <td>Government id:</td>
+                        <td data-bind="text: governmentId.value"></td>
+                    </tr>
+                    <tr class="warning" data-bind="with : customer">
+                        <td>Government type:</td>
+                        <td data-bind="text: governmentId.type"></td>
+                    </tr>
+                    <tr class="warning" data-bind="with : customer">
+                        <td>Name:</td>
+                        <td data-bind="text: fullName"></td>
+                    </tr>
+                    <tr class="warning" data-bind="with : customer">
+                        <td>Email:</td>
+                        <td data-bind="text: email"></td>
+                    </tr>
+                    <tr class="warning" data-bind="with : customerAddresses">
+                        <td>Street:</td>
+                        <td data-bind="text: addressRow"></td>
+                    </tr>
+                    <tr class="warning" data-bind="with : customerAddresses">
+                        <td>C/O:</td>
+                        <td data-bind="text: addressRow2"></td>
+                    </tr>
+                    <tr class="warning" data-bind="with : customerAddresses">
+                        <td>Postal code:</td>
+                        <td data-bind="text: postalCode"></td>
+                    </tr>
+                    <tr class="warning" data-bind="with : customerAddresses">
+                        <td>Postal area:</td>
+                        <td data-bind="text: postalArea"></td>
+                    </tr>
+                    <tr class="warning" data-bind="with : customerAddresses">
+                        <td>Country code:</td>
+                        <td data-bind="text: countryCode"></td>
+                    </tr>
+                    <tr class="warning" data-bind="with : customerAddresses">
+                        <td>Credability:</td>
+                        <td data-bind="text: addressSource.addressCredibility"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-warning">
+                <div class="panel-heading">Executed filters</div>
+                <table class="table table-condensed table-danger">
+                    <tbody data-bind="foreach: executedFilters">
+                        <tr class="warning" >
+                            <td data-bind="text: collectedData.collectedDataReports[0].sourceName"></td>
+                            <td data-bind="text: creditDesicion.amount"></td>
+                            <td data-bind="text: creditDesicion.creditDecisionType"></td>
+                            <td data-bind="text: collectedData.technicalStatus"></td>
+                            <td data-bind="text: collectedData.technicalStatusMessage"></td>
+                            <td class="warning"  data-bind="text: executionTime"></td>
+                            <td class="warning"  data-bind="click: function(data, event) { $component.openHtmlPage(collectedData.collectedDataReports[0].htmlResponse) }">Visa</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

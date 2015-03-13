@@ -64,6 +64,16 @@
             });
         });
         $(function(){
+            $("#includedhtmlModal").load("modals/htmlModal.html", function() {
+                ko.applyBindings(htmlModel, document.getElementById('htmlModal'));
+            });
+        });
+        $(function(){
+            $("#includedMupModal").load("modals/mupModal.html", function() {
+                ko.applyBindings(multiupplysModel, document.getElementById('mupModal'));
+            });
+        });
+        $(function(){
             $("#includedFraudModal").load("modals/fraudModal.html", function() {
                 ko.applyBindings(fraudAnalysisModel, document.getElementById('fraudModal'));
             });
@@ -82,8 +92,11 @@
 
 <!-- Modals -->
 <div id="includedPaymentModal"></div>
+<div id="includedMupModal"></div>
 <div id="includedFraudModal"></div>
 <div id="includedShortcutModal"></div>
+<div id="includedhtmlModal"></div>
+
 
 <style>
 
