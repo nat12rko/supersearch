@@ -1,3 +1,8 @@
+var baseUrl = "http://localhost:8080/rest/";
+/**var baseUrl = "http://supersearch.pte.loc/rest/";**/
+
+
+
 function SearchViewWidgetsModel() {
     var self = this;
 
@@ -114,30 +119,11 @@ function SearchViewModel() {
 
 function ResultViewModel() {
     var self = this;
-    //self.tasksURI = "http://supersearch.pte.loc/rest/search";
-    self.tasksURI = "http://localhost:8080/rest/search";
 
+    self.tasksURI = baseUrl+"search";
     self.hits = ko.observableArray();
 
-    self.ajax = function (uri, method, data) {
-        var request = {
-            type: method,
-            url: uri,
-            contentType: "application/json",
-            data: data,
-            beforeSend: function () {
-            },
-            complete: function () {
-            },
-            success: function (data) {
-            },
-            error: function (data) {
-                alert("ajax error" + data);
-            },
-            dataType: 'json'
-        };
-        return $.ajax(request);
-    }
+
 
     self.search = function () {
         searchViewModel.searchDate = new Date().customFormat('#YYYY#-#MM#-#DD# #hh#:#mm#:#ss#');
@@ -156,7 +142,7 @@ function ResultViewModel() {
 
         window.history.pushState("q", "Title",url);
 
-        self.ajax(self.tasksURI, 'POST', jsonData).done(function (data) {
+        ajax(self.tasksURI, 'POST', jsonData).done(function (data) {
 
             updateAggregation(data.aggregates[0]);
             updateFacets(data.aggregates);
@@ -285,6 +271,17 @@ openNewWindow = function(verb, url, data, target) {
     form.submit();
 };
 
+function MultiupplysModel() {
+    var self = this;
+    self.selectedMultiUpplysId = ko.observable();
+
+}
+
+function HtmlModel() {
+    var self = this;
+    self.html = ko.observable();
+}
+
 function FraudAnalysisModel() {
     var self = this;
     self.high = ko.observableArray();
@@ -357,8 +354,6 @@ function FraudAnalysisModel() {
     }
 }
 
-
-
 function showFraudModal(fraud) {
 
     fraudAnalysisModel.reset();
@@ -366,6 +361,21 @@ function showFraudModal(fraud) {
     var fraudModal = $('#fraudModal');
     extractFraudAnalysis(fraud)
     fraudModal.modal('show');
+}
+
+function showMupModal(mup) {
+
+    var mupModal = $('#mupModal');
+    multiupplysModel.selectedMultiUpplysId(mup.publicReferenceNumber);
+    mupModal.modal('show');
+}
+
+
+function showHtmlModal(html) {
+
+    var htmlModal = $('#htmlModal');
+    htmlModel.html(html);
+    htmlModal.modal('show');
 }
 
 function extractFraudAnalysis(fraud) {
@@ -622,15 +632,40 @@ function checkValue(value) {
 
 }
 
+function ajax(uri, method, data) {
+    var request = {
+        type: method,
+        url: uri,
+        contentType: "application/json",
+        data: data,
+        beforeSend: function () {
+        },
+        complete: function () {
+        },
+        success: function (data) {
+        },
+        error: function (data) {
+            alert("ajax error" + data);
+        },
+        dataType: 'json'
+    };
+    return $.ajax(request);
+}
+
 function loadValueToSearch(value) {
     searchViewModel.searchWithValue(value);
 }
+
+
 
 var searchViewModel = new SearchViewModel();
 var resultViewModel = new ResultViewModel();
 var searchViewWidgetsModel = new SearchViewWidgetsModel();
 var specLineModel = new SpecLineModel();
 var fraudAnalysisModel = new FraudAnalysisModel();
+var multiupplysModel = new MultiupplysModel();
+var htmlModel = new HtmlModel();
+
 
 ko.applyBindings(resultViewModel, document.getElementById('searchtable'));
 ko.applyBindings(searchViewModel, document.getElementById('searchform'));
