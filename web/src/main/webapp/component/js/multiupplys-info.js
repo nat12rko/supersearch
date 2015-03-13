@@ -45,6 +45,7 @@ define([], function() {
         });
 
         self.openHtmlPage = function(html) {
+            html= html.replace(/<link.*\/css\/report\.css.*>/g, '');
             showHtmlModal(html);
         }
 
