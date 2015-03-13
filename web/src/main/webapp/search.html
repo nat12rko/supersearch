@@ -200,11 +200,20 @@
         <div class="row" id="searchtable">
             <div class="col-lg-3 hidden-md hidden-xs hidden-sm">
 
-                <ul class="list-group list-group-facets" id="facets">
-
-                </ul>
-
-
+                <div id="aggregationsPanel" class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title" data-toggle="collapse" href="#collapseAgg">
+                            Aggregations 'a'
+                            <span class="glyphicon glyphicon-chevron-down pull-right" aria-hidden="true"/>
+                        </h4>
+                    </div>
+                    <div class="panel-collapse collapse" id="collapseAgg">
+                        <div class="panel-body">
+                            <ul class="list-group list-group-facets" id="facets">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="col-lg-9 col-xs-12">
