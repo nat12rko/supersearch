@@ -46,6 +46,11 @@
 
     <script src="js/frameworks/require.js"></script>
 
+    <!--http://www.openjs.com/scripts/events/keyboard_shortcuts/index.php#add_docs-->
+    <script src="js/frameworks/shortcut.js"></script>
+    <script src="js/application/supershortcuts.js"></script>
+
+
     <script src="component/components.js" charset="UTF-8"></script>
 
 
@@ -63,6 +68,9 @@
                 ko.applyBindings(fraudAnalysisModel, document.getElementById('fraudModal'));
             });
         });
+        $(function(){
+            $("#includedShortcutModal").load("modals/shortcutsModal.html");
+        });
     </script>
 
 
@@ -75,6 +83,7 @@
 <!-- Modals -->
 <div id="includedPaymentModal"></div>
 <div id="includedFraudModal"></div>
+<div id="includedShortcutModal"></div>
 
 <style>
 
@@ -129,6 +138,8 @@
 <div class="container">
     <div class="page-header hidden-xs">
         SuperSök
+        <button type="submit" class="btn btn-default btn-xs pull-right btn-success"
+                data-toggle="modal" data-target="#shortcutsModal">F1 - shortcuts</button>
     </div>
 
     <div class="col-md-9 col-sm-12" id="test">
@@ -149,9 +160,9 @@
                     <div class="input-daterange input-group  input-group-sm" id="datepicker">
                         <span class="input-group-addon   glyphicon glyphicon-calendar"></span>
 
-                        <input type="text" class="input-sm form-control" name="start" data-bind="value: fromDate"/>
+                        <input type="text" class="input-sm form-control" id="date-picker-start" name="start" data-bind="value: fromDate"/>
                         <span class="input-group-addon">to</span>
-                        <input type="text" class="input-sm form-control" name="end" data-bind="value: toDate"/>
+                        <input type="text" class="input-sm form-control" id="date-picker-end" name="end" data-bind="value: toDate"/>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-4  col-xs-12">
@@ -203,11 +214,11 @@
                 <div id="aggregationsPanel" class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title" data-toggle="collapse" href="#collapseAgg">
-                            Aggregations 'a'
+                            Aggregations
                             <span class="glyphicon glyphicon-chevron-down pull-right" aria-hidden="true"/>
                         </h4>
                     </div>
-                    <div class="panel-collapse collapse" id="collapseAgg">
+                         <div class="panel-collapse collapse" id="collapseAgg" data-toggle="collapse">
                         <div class="panel-body">
                             <ul class="list-group list-group-facets" id="facets">
                             </ul>
@@ -273,8 +284,7 @@
 
 <script type="text/javascript" src="js/application/views.js"></script>
 <script type='text/javascript' src="js/application/paginator.js"></script>
-<script type="text/javascript" src="js/application/aggregation_visualizer.js">
-</script>
+<script type="text/javascript" src="js/application/aggregation_visualizer.js"></script>
 
 </body>
 </html>

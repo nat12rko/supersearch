@@ -1,3 +1,14 @@
+
+function ShortCutModel() {
+    var self = this;
+
+    self.handleKeypress = function(data, event) {
+        var char = String.fromCharCode(event.which);
+        self.alert(char);
+    }
+}
+
+
 function SearchViewWidgetsModel() {
     var self = this;
 
@@ -67,6 +78,20 @@ function SearchViewModel() {
         self.page(value);
         resultViewModel.search();
     }
+
+    self.nextPage = function () {
+        self.page(self.page()+1);
+        resultViewModel.search();
+    }
+
+    self.previousPage = function () {
+        var previousPage = self.page()-1;
+        if (previousPage >= 0) {
+            self.page(previousPage);
+            resultViewModel.search();
+        }
+    }
+
     self.search = function () {
         resultViewModel.search();
     }
@@ -87,7 +112,7 @@ function SearchViewModel() {
     self.searchWithValue = function (value) {
         searchViewModel.page(0);
         self.searchString("\"" + value + "\"");
-        resultViewModel.search()
+        resultViewModel.search();
     }
 
     /*    self.countryCodes.subscribe(function (newValue) {
@@ -635,6 +660,4 @@ var fraudAnalysisModel = new FraudAnalysisModel();
 ko.applyBindings(resultViewModel, document.getElementById('searchtable'));
 ko.applyBindings(searchViewModel, document.getElementById('searchform'));
 ko.applyBindings(searchViewWidgetsModel, document.getElementById('widgets'));
-
-
 
