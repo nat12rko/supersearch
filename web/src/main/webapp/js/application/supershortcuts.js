@@ -1,5 +1,17 @@
 shortcut.add("a", function () {
-    $('#collapseAgg').collapse('toggle');
+    if($('#middle').hasClass("col-lg-9")){
+        $('#middle').removeClass("col-lg-9");
+        $('#middle').addClass("col-lg-6");
+        $('#aggregate').removeClass("hidden-lg");
+        $('#aggregate').addClass("col-lg-3");
+    } else {
+        $('#middle').removeClass("col-lg-6");
+        $('#middle').addClass("col-lg-9");
+        $('#aggregate').removeClass("col-lg-3");
+        $('#aggregate').addClass("hidden-lg");
+    }
+    $('#aggregate')
+
 }, {'disable_in_input': true});
 
 shortcut.add("enter", function () {
