@@ -157,7 +157,7 @@
                 data-toggle="modal" data-target="#shortcutsModal">F1 - shortcuts</button>
     </div>
     <div class="hidden-lg hidden-md hidden-xs hidden-sm" id="aggregate">
-        <div id="aggregationsPanel" class="panel panel-default bs-sidebar affix right" role="complementary">
+        <div id="aggregationsPanel" class="panel panel-default" data-offset-top="60" data-offset-bottom="200" data-spy="affix" role="complementary">
             <div class="panel-heading">
                 <h4 class="panel-title">
                     Aggregations
@@ -276,7 +276,7 @@
         </div>
     </div>
     <div class="col-md-3 hidden-xs hidden-sm" id="widgets" >
-        <div class="bs-sidebar affix right" role="complementary">
+        <div data-spy="affix" role="complementary" data-offset-top="60" data-offset-bottom="200">
         <div class="panel panel-info col-sm-12">
             Antal träffar: <span data-bind="text: amountHits"></span>
             Antal sidor: <span data-bind="text: amountPages"></span>
