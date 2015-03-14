@@ -26,3 +26,8 @@
 .tinymargins {
     margin: 3px;
 }
+
+
+.affix{
+    top:30px;
+}
