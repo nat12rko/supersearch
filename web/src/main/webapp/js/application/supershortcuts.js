@@ -44,6 +44,14 @@ shortcut.add("Left", function () {
     searchViewModel.previousPage();
 }, {'disable_in_input': true});
 
-shortcut.add("F1", function () {
-    $('#shortcutsModal').modal();
-}, {'disable_in_input': true});
+
+shortcut.add("Home", function () {
+    $('#shortcutsModal').modal('toggle');
+});
+
+// Hi-jack paste and set focus to search input
+$(window).keydown(function(event) {
+    if(event.ctrlKey && event.keyCode == 0x56) {
+        $('#searchinput').focus();
+    }
+});
