@@ -15,9 +15,9 @@
 
     <link rel="stylesheet" href="css/frameworks/bootstrap.min.css">
     <!-- Optional theme -->
-<!--
-    <link rel="stylesheet" href="css/frameworks/bootstrap-theme.min.css">
--->
+    <!--
+        <link rel="stylesheet" href="css/frameworks/bootstrap-theme.min.css">
+    -->
 
     <script src="js/frameworks/bootstrap.min.js"></script>
 
@@ -56,37 +56,36 @@
     <script src="component/components.js" charset="UTF-8"></script>
 
 
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+
     <script>
 
-        require({baseUrl: 'js/frameworks', paths: {'text':'text'}});
+        require({baseUrl: 'js/frameworks', paths: {'text': 'text'}});
 
-        $(function(){
-            $("#includedPaymentModal").load("modals/paymentModal.html", function() {
+        $(function () {
+            $("#includedPaymentModal").load("modals/paymentModal.html", function () {
                 ko.applyBindings(specLineModel, document.getElementById('paymentModal'));
             });
         });
-        $(function(){
-            $("#includedhtmlModal").load("modals/htmlModal.html", function() {
+        $(function () {
+            $("#includedhtmlModal").load("modals/htmlModal.html", function () {
                 ko.applyBindings(htmlModel, document.getElementById('htmlModal'));
             });
         });
-        $(function(){
-            $("#includedMupModal").load("modals/mupModal.html", function() {
+        $(function () {
+            $("#includedMupModal").load("modals/mupModal.html", function () {
                 ko.applyBindings(multiupplysModel, document.getElementById('mupModal'));
             });
         });
-        $(function(){
-            $("#includedFraudModal").load("modals/fraudModal.html", function() {
+        $(function () {
+            $("#includedFraudModal").load("modals/fraudModal.html", function () {
                 ko.applyBindings(fraudAnalysisModel, document.getElementById('fraudModal'));
             });
         });
-        $(function(){
+        $(function () {
             $("#includedShortcutModal").load("modals/shortcutsModal.html");
         });
     </script>
-
-
-
 
 
 </head>
@@ -152,118 +151,113 @@
 
 <div class="container">
     <div class="page-header hidden-xs">
-        <h1><small>SuperSök</small></h1>
         <button type="submit" class="btn btn-default btn-xs pull-right btn-success"
-                data-toggle="modal" data-target="#shortcutsModal">shortcuts</button>
+                data-toggle="modal" data-target="#shortcutsModal">shortcuts
+        </button>
     </div>
-    <div class="hidden-lg hidden-md hidden-xs hidden-sm" id="aggregate">
-        <div id="aggregationsPanel" class="panel panel-default" data-offset-top="30" data-offset-bottom="200" data-spy="affix" role="complementary">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    Aggregations
-                    <span class="glyphicon glyphicon-chevron-down pull-right"/>
-                </h4>
-            </div>
-            <div class="panel">
-                <div class="panel-body">
-                    <ul class="list-group list-group-facets" id="facets">
-                    </ul>
+
+    <div class="row">
+        <div class="col-lg-2" id="aggregate">
+            <!--<h1><small>SuperSök</small></h1>-->
+            <!--empty-->
+        </div>
+        <div class="col-lg-7">
+            <form id="searchform" data-bind="submit:search">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-addon ">Search for:</span>
+                            <input id="searchinput" type="text" class="form-control" placeholder="Sök test"
+                                   data-bind='value:searchString, valueUpdate: "afterkeydown"'/>
+                        </div>
+                    </div>
+                </div>
+                <br/>
+
+                <div class="row hidden-xs">
+
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <div class="input-daterange input-group  input-group-sm" id="datepicker">
+                            <span class="input-group-addon">from</span>
+                            <input type="text" class="input-sm form-control" id="date-picker-start" name="start"
+                                   data-bind="value: fromDate"/>
+                            <span class="input-group-addon">to</span>
+                            <input type="text" class="input-sm form-control" id="date-picker-end" name="end"
+                                   data-bind="value: toDate"/>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4  col-xs-12">
+                        <div class="input-group  input-group-sm">
+
+                            <span class="input-group-addon">Countrys</span>
+                            <select data-width="250px"
+                                    data-bind="selectPicker: countryCodes, optionsText: 'text', optionsValue : 'id', selectPickerOptions: { optionsArray: availableCountries }"
+                                    size="4"
+                                    multiple="true"></select>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <div class="input-group  input-group-sm">
+                            <span class="input-group-addon">Systems</span>
+                            <select class="selectpicker" data-width="290px"
+                                    data-bind="selectPicker: systems, optionsText: 'text', optionsValue
+                                : 'id', selectPickerOptions: { optionsArray: availableSystems }"
+                                    size="4" multiple="true"></select>
+                        </div>
+                    </div>
+                </div>
+                <br/>
+
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" data-bind="foreach: filters">
+                <span class="label label-success" data-bind="click: $parent.removeFilter">
+                    <span data-bind="text: $data.field"></span>:<span data-bind="text: $data.value"></span></span>
+                    </div>
+                </div>
+                <br/>
+                <br/>
+                <br/>
+            </form>
+            <div class="row hidden-xs">
+                <div class="col-xs-0 col-md-8 col-md-offset-3">
+                    <ul id='paginatortop'></ul>
                 </div>
             </div>
         </div>
+        <div class="col-lg-3">
+            <!--empty-->
+        </div>
     </div>
-
-    <div class="col-md-9 col-sm-12" id="middle">
-        <div class="row" id="searchform22">
-        <form id="searchform" data-bind="submit:search">
-              <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="input-group input-group-sm">
-                        <span class="input-group-addon ">Search for:</span>
-                        <input id="searchinput" type="text" class="form-control" placeholder="Sök test"
-                               data-bind='value:searchString, valueUpdate: "afterkeydown"'/>
+    <div class="row">
+        <div class="col-lg-2">
+            <div id="aggregationsPanel" class="panel panel-default">
+                <div class="panel-heading">
+                    <h5 class="panel-title" data-toggle="collapse" href="#collapseAgg">
+                        Aggregations
+                        <span class="glyphicon glyphicon-chevron-down pull-right"/>
+                    </h5>
+                </div>
+                <div class="panel-collapse collapse" id="collapseAgg">
+                    <div class="panel-body">
+                        <ul class="list-group list-group-facets" id="facets">
+                        </ul>
                     </div>
                 </div>
             </div>
-
-            </br>
-
-            <div class="row hidden-xs">
-
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                    <div class="input-daterange input-group  input-group-sm" id="datepicker">
-                        <span class="input-group-addon">from</span>
-                        <input type="text" class="input-sm form-control" id="date-picker-start" name="start" data-bind="value: fromDate"/>
-                        <span class="input-group-addon">to</span>
-                        <input type="text" class="input-sm form-control" id="date-picker-end" name="end" data-bind="value: toDate"/>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-4  col-xs-12">
-                    <div class="input-group  input-group-sm">
-
-                        <span class="input-group-addon">Countrys</span>
-                        <select data-width="250px"
-                                data-bind="selectPicker: countryCodes, optionsText: 'text', optionsValue : 'id', selectPickerOptions: { optionsArray: availableCountries }"
-                                size="4"
-                                multiple="true"></select>
-                    </div>
-
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                    <div class="input-group  input-group-sm">
-                        <span class="input-group-addon">Systems</span>
-                        <select class="selectpicker" data-width="290px"
-                                data-bind="selectPicker: systems, optionsText: 'text', optionsValue
-                                : 'id', selectPickerOptions: { optionsArray: availableSystems }"
-                                size="4" multiple="true"></select>
-                    </div>
-                </div>
-            </div>
-            <br/>
-
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" data-bind="foreach: filters">
-                <span class="label label-success" data-bind="click: $parent.removeFilter">
-                    <span data-bind="text: $data.field"></span>:<span data-bind="text: $data.value"></span></span>
-                </div>
-            </div>
-            <br/>
-
-            <br/>
-
-            <!--<div class="row">-->
-                <!--<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">-->
-                    <!--<button type="submit" class="btn btn-default btn-sm">Search</button>-->
-                <!--</div>-->
-            <!--</div>-->
-        </form>
-
-    </div>
-        <div class="row" id="searchtable">
-
-
-
-            <div class="col-lg-12 col-xs-12"  role="main">
-                <div class="row hidden-xs">
-                    <div class="col-xs-0 col-md-8 col-md-offset-3">
-                        <ul id='paginatortop'></ul>
-                    </div>
-                </div>
+        </div>
+        <div class="col-lg-7">
+            <div class="container" id="searchtable">
                 <div class="row">
                     <table class="table table-hover table-condensed table-responsive">
-                        <thead>
-                        <th>System</th>
-                        <th>Id</th>
-                        <th colspan="10">Innehåll</th>
-                        </thead>
                         <div class="list-group" style="font-size: x-small">
-                        <!-- ko foreach: hits -->
+                            <!-- ko foreach: hits -->
                             <!-- ko component: {
                             name: "search-row",
                             params: { row: $data }
                         } -->
-                        <!-- /ko -->
-                        <!-- /ko -->
+                            <!-- /ko -->
+                            <!-- /ko -->
                         </div>
                     </table>
                 </div>
@@ -274,29 +268,25 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="col-md-3 hidden-xs hidden-sm" id="widgets" >
-        <div data-spy="affix" role="complementary" data-offset-top="30" data-offset-bottom="200">
-        <div class="panel panel-info col-sm-12">
-            Antal träffar: <span data-bind="text: amountHits"></span>
-            Antal sidor: <span data-bind="text: amountPages"></span>
-            Sök tid: <span data-bind="text: searchTime">ms</span>
-        </div>
+        <div class="col-lg-3" id="widgets">
+            <div class="panel panel-info col-sm-12">
+                No of hits: <span data-bind="text: amountHits"></span>,
+                No of pages: <span data-bind="text: amountPages"></span></br>
+                Search time: <span data-bind="text: searchTime">ms</span>ms
+            </div>
+            <div class="col-sm-12" id="aggs"></div>
+            <div class="col-sm-12">
+                <ul class="list-group" data-bind="foreach: searchQueries">
+                    <li class="list-group-item" data-bind="click: $parent.loadThis"/>
+                    <span data-bind="text: $data.searchDate"> </span>
 
-        <div class="col-sm-12" id="aggs"></div>
-        <div class="col-sm-12">
-            <ul class="list-group" data-bind="foreach: searchQueries">
-                <li class="list-group-item" data-bind="click: $parent.loadThis"/>
-                <span data-bind="text: $data.searchDate"> </span>
-
-                <span data-bind="text: $data.searchString"> </span>
-                </li>
-            </ul>
-        </div>
+                    <span data-bind="text: $data.searchString"> </span>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
-
 <script type="text/javascript" src="js/application/views.js"></script>
 <script type='text/javascript' src="js/application/paginator.js"></script>
 <script type="text/javascript" src="js/application/aggregation_visualizer.js"></script>

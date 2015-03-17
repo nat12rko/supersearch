@@ -2,16 +2,6 @@ var baseUrl = "http://localhost:8080/rest/";
 /**var baseUrl = "http://supersearch.pte.loc/rest/";**/
 
 
-function ShortCutModel() {
-    var self = this;
-
-    self.handleKeypress = function(data, event) {
-        var char = String.fromCharCode(event.which);
-        self.alert(char);
-    }
-}
-
-
 function SearchViewWidgetsModel() {
     var self = this;
 
@@ -146,7 +136,9 @@ function ResultViewModel() {
     self.tasksURI = baseUrl+"search";
     self.hits = ko.observableArray();
 
-
+    self.searchResultAvailable = function () {
+        return self.hits().length > 0;
+    }
 
     self.search = function () {
         searchViewModel.searchDate = new Date().customFormat('#YYYY#-#MM#-#DD# #hh#:#mm#:#ss#');
