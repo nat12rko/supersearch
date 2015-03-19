@@ -28,8 +28,8 @@ function SearchViewModel() {
     self.searchDate = ko.observable();
 
     self.availableSystems = ko.observableArray([
-        {text: 'Ehandel', id: 'ECOMMERCE'},
-        {text: 'Bedrägeri', id: 'FRAUD'},
+        {text: 'eCommerce', id: 'ECOMMERCE'},
+        {text: 'Fraud', id: 'FRAUD'},
         {text: 'Limit', id: 'LIMIT'},
         {text: 'Multiupplys', id: 'MULTIUPPLYS'}
     ]);
@@ -60,10 +60,10 @@ function SearchViewModel() {
     self.systems = ko.observableArray(['ECOMMERCE', 'FRAUD', 'LIMIT', 'MULTIUPPLYS']);
 
     self.availableCountries = ko.observableArray([
-        {text: 'Sverige', id: 'SE'},
+        {text: 'Sweden', id: 'SE'},
         {text: 'Finland', id: 'FI'},
-        {text: 'Norge', id: 'NO'},
-        {text: 'Danmark', id: 'DK'}
+        {text: 'Norway', id: 'NO'},
+        {text: 'Denmark', id: 'DK'}
     ]);
     self.countryCodes = ko.observableArray(['SE', 'DK', 'NO', 'FI']);
 
@@ -222,7 +222,6 @@ function ResultViewModel() {
     if (q) {
         searchViewModel.searchString(q);
     }
-    self.search();
 }
 
 function SpecLineModel() {
@@ -672,7 +671,6 @@ function loadValueToSearch(value) {
 }
 
 
-
 var searchViewModel = new SearchViewModel();
 var resultViewModel = new ResultViewModel();
 var searchViewWidgetsModel = new SearchViewWidgetsModel();
@@ -685,4 +683,12 @@ var htmlModel = new HtmlModel();
 ko.applyBindings(resultViewModel, document.getElementById('searchtable'));
 ko.applyBindings(searchViewModel, document.getElementById('searchform'));
 ko.applyBindings(searchViewWidgetsModel, document.getElementById('widgets'));
+ko.applyBindings(searchViewWidgetsModel, document.getElementById('paginatortopMain'));
+ko.applyBindings(searchViewWidgetsModel, document.getElementById('aggregationsPanel'));
 
+function resultsAvailable() {
+    if (!resultViewModel) {
+        return false;
+    }
+    return resultViewModel.searchResultAvailable();
+}

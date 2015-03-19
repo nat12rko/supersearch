@@ -85,6 +85,16 @@
         $(function () {
             $("#includedShortcutModal").load("modals/shortcutsModal.html");
         });
+        $(document).ready(function () {
+            // Only works in IE...
+            if (window.clipboardData) {
+                var clipboardData = window.clipboardData.getData("Text");
+                var fnutt = "\"";
+                var t = fnutt.concat(clipboardData, fnutt);
+                searchViewModel.searchString(t);
+            }
+        });
+
     </script>
 
 
@@ -157,7 +167,7 @@
     </div>
 
     <div class="row">
-        <div class="col-lg-2" id="aggregate">
+        <div class="col-lg-2">
             <!--<h1><small>SuperSök</small></h1>-->
             <!--empty-->
         </div>
@@ -167,8 +177,8 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon ">Search for:</span>
-                            <input id="searchinput" type="text" class="form-control" placeholder="Sök test"
-                                   data-bind='value:searchString, valueUpdate: "afterkeydown"'/>
+                            <input id="searchinput" type="text" class="form-control" placeholder="Search string goes here"
+                                   data-bind='textInput:searchString'/>
                         </div>
                     </div>
                 </div>
@@ -219,19 +229,19 @@
                 <br/>
                 <br/>
             </form>
-            <div class="row hidden-xs">
-                <div class="col-xs-0 col-md-8 col-md-offset-3">
+            <div id='paginatortopMain' class="row hidden-xs" data-bind="visible: resultsAvailable()">
+                <div class="col-xs-0 col-md-8 col-md-offset-3" >
                     <ul id='paginatortop'></ul>
-                </div>
+                </div >
             </div>
         </div>
         <div class="col-lg-3">
             <!--empty-->
         </div>
     </div>
-    <div class="row">
+    <div class="row" id="searchRow">
         <div class="col-lg-2">
-            <div id="aggregationsPanel" class="panel panel-default">
+            <div id="aggregationsPanel" class="panel panel-default" data-bind="visible: resultsAvailable()">
                 <div class="panel-heading">
                     <h5 class="panel-title" data-toggle="collapse" href="#collapseAgg">
                         Aggregations
@@ -262,14 +272,14 @@
                     </table>
                 </div>
                 <div class="row hidden-xs">
-                    <div class="col-md-8 col-md-offset-3">
+                    <div id='paginatorBottomMain' data-bind="visible: resultsAvailable()" class="col-md-8 col-md-offset-3" >
                         <ul id='paginatorbuttom'></ul>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-lg-3" id="widgets">
-            <div class="panel panel-info col-sm-12">
+            <div class="panel panel-info col-sm-12" data-bind="visible: resultsAvailable()">
                 No of hits: <span data-bind="text: amountHits"></span>,
                 No of pages: <span data-bind="text: amountPages"></span></br>
                 Search time: <span data-bind="text: searchTime">ms</span>ms
