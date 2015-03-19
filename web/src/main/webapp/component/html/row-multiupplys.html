@@ -20,7 +20,10 @@
             </div>
 
             <div class="col-lg-4">
-                Representative code: <span-search params="value: row.object.creditCaseTags.BANKSYSTEM_REPRESENTATIVE_CODE"/>
+                Mobile phone number: <span-search params="value: row.object.application.applicant.mobilePhoneNumber"></span-search><br/>
+                <br/>
+                Representative name: <span-search params="value: row.object.creditCaseTags.REPRESENTATIVE_NAME"></span-search><br/>
+                Representative code: <span-search params="value: row.object.creditCaseTags.BANKSYSTEM_REPRESENTATIVE_CODE"></span-search>
             </div>
             <div class="col-lg-3">
                 Resquested amount: <span data-bind="text:row.object.application.amount"></span><br/>

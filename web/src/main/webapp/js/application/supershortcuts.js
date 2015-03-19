@@ -12,8 +12,8 @@ shortcut.add("s", function () {
     $('#searchinput').focus();
 }, {'disable_in_input': true});
 
-shortcut.add("Shift+s", function () {
-    $('#searchinput').val("");
+shortcut.add("Alt+s", function () {
+    searchViewModel.searchString("");
     $('#searchinput').select();
 });
 
