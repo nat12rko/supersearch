@@ -1,7 +1,7 @@
-shortcut.add("a", function () {
+shortcut.add("Alt+G", function () {
     $('#collapseAgg').collapse('toggle');
-
-}, {'disable_in_input': true});
+}, {'disable_in_input': false,
+    'propagate':false});
 
 shortcut.add("enter", function () {
     searchViewModel.page(0);
@@ -17,11 +17,11 @@ shortcut.add("Alt+s", function () {
     $('#searchinput').select();
 });
 
-shortcut.add("Shift+f", function () {
+shortcut.add("Alt+f", function () {
     $('#date-picker-start').select();
 });
 
-shortcut.add("Shift+t", function () {
+shortcut.add("Alt+t", function () {
     $('#date-picker-end').select();
 });
 
@@ -34,9 +34,9 @@ shortcut.add("Left", function () {
 }, {'disable_in_input': true});
 
 
-shortcut.add("Home", function () {
+shortcut.add("F12", function () {
     $('#shortcutsModal').modal('toggle');
-});
+}, {'propagate':false});
 
 // Hi-jack paste and set focus to search input
 $(window).keydown(function(event) {
