@@ -134,7 +134,7 @@ function ResultViewModel() {
     var self = this;
 
     self.tasksURI = baseUrl+"search";
-    self.hits = ko.observableArray();
+    self.hits = ko.observableArray().extend({rateLimit: 25});
 
     self.searchResultAvailable = function () {
         return self.hits().length > 0;
