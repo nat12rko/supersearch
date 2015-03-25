@@ -16,9 +16,9 @@
                 <span-search params="value:row.object.application.countryCode"></span-search>
                 <span-search params="value:row.object.application.customerForm"></span-search><br/>
             </div>
-            <div class="col-lg-4" >
+            <div class="col-lg-3" >
                 Name:  <span-search params="value: row.object.customer.fullName"></span-search><br/>
-                E-mail: <span-search params="value: row.object.customer.email"></span-search><br/>
+                <span-search params="value: row.object.customer.email"></span-search><br/>
                 Mobile phone: <span-search params="value: row.object.customer.mobilePhone"></span-search><br/>
                 Home phone: <span-search params="value: row.object.customer.homePhone"></span-search><br/>
             </div>
@@ -27,7 +27,7 @@
                 Postal code: <span-search params="value: row.object.customer.address.postalCode"></span-search><br/>
                 Postal area: <span-search params="value: row.object.customer.address.postalArea"></span-search><br/>
             </div>
-            <div class="col-lg-2">
+            <div class="col-lg-3">
                 Requested amount: <span data-bind="text:row.object.requestedAmount"></span><br/>
                 Approved amount: <span data-bind="text:row.object.approvedAmount"></span><br/>
                 Credit product: <span-search params="value : row.object.creditProductCode"></span-search><br/>

@@ -35,10 +35,28 @@ function SearchViewModel() {
     ]);
 
 
+    self.clearFilters = function () {
+        self.filters.removeAll();
+    }
+
     self.removeFilter = function () {
         self.filters.remove(this);
         resultViewModel.search();
 
+    }
+
+    self.addFilterNoSearch = function (name, value) {
+        var exists = false;
+        ko.utils.arrayForEach(self.filters(), function (feature) {
+            if (feature.field === name && feature.value === value) {
+                exists = true;
+            }
+        });
+
+        if (!exists) {
+            var filter = {field: name, value: value};
+            searchViewModel.filters.push(filter);
+        }
     }
 
     self.addFilter = function (name, value) {
@@ -108,25 +126,15 @@ function SearchViewModel() {
         resultViewModel.search();
     }
 
-    /*    self.countryCodes.subscribe(function (newValue) {
-     resultViewModel.search();
-     });
+    self.setTimeSpan = function (fromDate, toDate) {
+        self.fromDate(fromDate);
+        self.toDate(toDate);
+    }
 
-     self.systems.subscribe(function (newValue) {
-     resultViewModel.search();
-
-     });
-
-     self.fromDate.subscribe(function (newValue) {
-     resultViewModel.search();
-
-     });
-
-     self.toDate.subscribe(function (newValue) {
-     resultViewModel.search();
-
-     });*/
-
+    self.clearTimeSpan = function () {
+        self.fromDate(null);
+        self.toDate(null);
+    }
 
 }
 

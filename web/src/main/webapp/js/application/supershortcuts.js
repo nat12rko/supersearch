@@ -44,3 +44,14 @@ $(window).keydown(function(event) {
         $('#searchinput').focus();
     }
 });
+
+shortcut.add("alt+q", function () {
+    $('#predefinedQuerys').toggle();
+}, {'disable_in_input': false,
+    'propagate':false});
+
+shortcut.add("esc", function () {
+    searchViewModel.clearFilters();
+    searchViewModel.clearTimeSpan();
+}, {'disable_in_input': true,
+    'propagate':false});

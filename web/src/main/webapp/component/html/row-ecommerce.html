@@ -17,12 +17,13 @@
                 <span-search params="value:row.object.customer.countryCode"></span-search>
                 <span-search params="value:row.object.customer.customerType"></span-search><br/>
             </div>
-            <div class="col-lg-4" >
+            <div class="col-lg-5" >
                 Name: <span-search params="value:row.object.billingAddress.fullName"></span-search><br/>
                 E-mail: <span-search params="value:row.object.email"></span-search><br/>
                 Phone: <span-search params="value:row.object.phone1"></span-search><br/>
-                Street: <span-search params="value:row.object.billingAddress.street"></span-search><br/>
-                Area: <span-search params="value:row.object.billingAddress.city"></span-search><br/>
+                Street: <span-search params="value:row.object.billingAddress.street"></span-search>, <span-search params="value:row.object.billingAddress.city"></span-search><br/>
+                Total amount: <span data-bind="text:row.object.totalValue.withVat"></span>
+
             </div>
             <div class="col-lg-3" >
                 Representative: <span-search params="value:row.object.representative.name"></span-search><br/>
@@ -33,7 +34,7 @@
 
 
             </div>
-            <div class="col-lg-3" >
+            <div class="col-lg-2" >
                 Debited: <span-search params="value:row.object.debited"></span-search><br/>
                 Credited: <span-search params="value:row.object.credited"></span-search><br/>
                 Annulled: <span-search params="value:row.object.annulled"></span-search><br/>
