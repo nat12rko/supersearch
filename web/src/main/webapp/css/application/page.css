@@ -31,3 +31,25 @@
 .affix{
     top:30px;
 }
+
+.panel-fraud {
+    background: #DA4453; color: #FFF;
+}
+
+.panel-ecom {
+    background: #3BAFDA; color: #FFF;
+}
+
+.panel-mup {
+    background: #FFCE54; color: #FFF;
+}
+
+.modal-body {
+    background-color: rgb(241, 242, 246);
+}
+
+.modal-header {
+    background-color: rgb(241, 242, 246);
+}
+
+

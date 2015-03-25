@@ -44,7 +44,7 @@
 
     <link href="css/frameworks/datepicker3.css" rel="stylesheet"/>
 
-    <link href="css/application/page.css" rel="stylesheet"/>
+
 
     <script src="js/frameworks/require.js"></script>
 
@@ -97,6 +97,8 @@
 
     </script>
 
+    <link rel="stylesheet" href="css/bootflat.css">
+    <link href="css/application/page.css" rel="stylesheet"/>
 
 </head>
 <body>
@@ -169,14 +171,13 @@
     <div class="row">
         <div class="col-lg-2">
             <!--<h1><small>SuperSök</small></h1>-->
-            <img src="img/logo.jpg" style="height:130px"/>
+            <img src="img/lets-do-it-1501.png" style="height:130px"/>
         </div>
         <div class="col-lg-7">
             <form id="searchform" data-bind="submit:search">
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="input-group input-group-sm">
-                            <span class="input-group-addon ">Search for:</span>
+                        <div class="form-search">
                             <input id="searchinput" type="text" class="form-control" placeholder="Search string goes here"
                                    data-bind='textInput:searchString'/>
                         </div>
@@ -187,14 +188,14 @@
                 <div class="row hidden-xs">
 
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <div class="input-daterange input-group  input-group-sm" id="datepicker">
-                            <span class="input-group-addon">from</span>
-                            <input type="text" class="input-sm form-control" id="date-picker-start" name="start"
-                                   data-bind="value: fromDate"/>
-                            <span class="input-group-addon">to</span>
-                            <input type="text" class="input-sm form-control" id="date-picker-end" name="end"
-                                   data-bind="value: toDate"/>
-                        </div>
+                            <div class="input-daterange input-group  input-group-sm" id="datepicker2">
+                                <span class="input-group-addon">from</span>
+                                <input type="text" class="input-sm form-control" id="date-picker-start" name="start"
+                                       data-bind="value: fromDate"/>
+                                <span class="input-group-addon">to</span>
+                                <input type="text" class="input-sm form-control" id="date-picker-end" name="end"
+                                       data-bind="value: toDate"/>
+                            </div>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4  col-xs-12">
                         <div class="input-group  input-group-sm">
@@ -210,8 +211,7 @@
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                         <div class="input-group  input-group-sm">
                             <span class="input-group-addon">Systems</span>
-                            <select class="selectpicker" data-width="290px"
-                                    data-bind="selectPicker: systems, optionsText: 'text', optionsValue
+                            <select class="selectpicker" data-width="290px" data-bind="selectPicker: systems, optionsText: 'text', optionsValue
                                 : 'id', selectPickerOptions: { optionsArray: availableSystems }"
                                     size="4" multiple="true"></select>
                         </div>
@@ -236,7 +236,7 @@
             </div>
         </div>
         <div class="col-lg-3">
-            <img src="img/lets-do-it.png" class="center-block"/>
+            <!--empyt-->
         </div>
     </div>
     <div class="row" id="searchRow">
