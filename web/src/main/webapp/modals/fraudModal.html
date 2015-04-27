@@ -26,7 +26,11 @@
                                     </tr>
                                     <tr class="danger">
                                         <td>Fraud product:</td>
-                                        <td data-bind="text: fraudProduct.code"></td>
+                                        <td>
+                                             <span data-bind="with:$data.fraudProduct">
+                                                 <span data-bind="text: code"/>
+                                             </span>
+                                        </td>
                                         <td></td>
                                     </tr>
                                     <tr class="danger">
