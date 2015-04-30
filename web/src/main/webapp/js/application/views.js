@@ -312,6 +312,10 @@ function FraudAnalysisModel() {
     self.none = ko.observableArray();
     self.products = ko.observableArray();
 
+    self.mupId = ko.observable();
+
+    self.tempmupId = ko.observable();
+
     self.fraud = ko.observable();
 
     self.billing = ko.observable();
@@ -328,6 +332,10 @@ function FraudAnalysisModel() {
         self.products.push(line);
     }
 
+    self.updateMupId = function(){
+        self.mupId(self.tempmupId());
+    }
+
     self.setBilling = function(address){
         self.billing(address);
     }
@@ -342,6 +350,11 @@ function FraudAnalysisModel() {
 
     self.setFraud = function(fraud) {
         self.fraud(fraud);
+        if (fraud && fraud.controlRequestJson && fraud.controlRequestJson.ids) {
+            self.tempmupId(fraud.controlRequestJson.ids.MUP_ID);
+        }  else {
+            self.tempmupId(null);
+        }
     }
 
     self.addCustomerInfo = function(info) {

@@ -5,7 +5,9 @@ define(['knockout'], function(ko) {
 
         self.show = function(){
             showFraudModal(self.row.object);
+            $('#fraudtabs a:first').tab('show')
         }
+
 
         self.openInFraud = function() {
             openFraud(self.row.object.externalReference);
