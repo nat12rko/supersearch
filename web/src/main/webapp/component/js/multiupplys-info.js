@@ -68,5 +68,5 @@ define([], function() {
 
         return self;
     }
-    return { createViewModel: MultiUpplysInfo };
+    return MultiUpplysInfo;
 });

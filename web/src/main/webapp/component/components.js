@@ -47,7 +47,7 @@ ko.components.register("multiupplys-info", {
 ko.components.register("ecommerce-info", {
     viewModel: { require: 'component/js/ecommerce-info.js?timestamp='+new Date().getTime()},
     template: {require: 'text!../../component/html/ecommerce-info.html?timestamp='+new Date().getTime()} ,
-    synchronous: true
+    synchronous: false
 });
 
 

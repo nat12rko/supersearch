@@ -1,5 +1,5 @@
-var baseUrl = "http://localhost:8080/rest/";
-/**var baseUrl = "http://supersearch.pte.loc/rest/";**/
+/**var baseUrl = "http://localhost:8080/rest/";**/
+var baseUrl = "http://supersearch.pte.loc/rest/";
 
 
 function SearchViewWidgetsModel() {
@@ -236,34 +236,7 @@ function SpecLineModel() {
     var self = this;
 
     self.paymentObject = ko.observable();
-    self.selectedMupId = ko.observable();
 
-    self.auth = ko.observableArray();
-    self.deb = ko.observableArray();
-    self.cred = ko.observableArray();
-    self.annul = ko.observableArray();
-
-    self.addAnnul = function(line) {
-        self.annul.push(line)
-    }
-
-    self.addCred = function(line) {
-        self.cred.push(line)
-    }
-
-    self.addDeb = function(line) {
-        self.deb.push(line)
-    }
-
-    self.addAuth = function(line){
-        self.auth.push(line)}
-
-    self.reset = function() {
-        self.auth.removeAll();
-        self.deb.removeAll();
-        self.cred.removeAll();
-        self.annul.removeAll();
-    }
 }
 
 function testSearch(data) {
@@ -300,7 +273,6 @@ openNewWindow = function(verb, url, data, target) {
 function MultiupplysModel() {
     var self = this;
     self.selectedMultiUpplysId = ko.observable();
-
 }
 
 function HtmlModel() {
@@ -505,17 +477,7 @@ function showPaymentModal(payment) {
     var paymentModal = $('#paymentModal');
 
     // Create KO-bindings
-    extractSpecLines(payment,specLineModel);
-
-    paymentModal.find('.modal-title').text("Payment Id: " + payment.externalId);
-    paymentModal.find('.payment-total').text(payment.totalValue.withVat);
-    paymentModal.find('.payment-credited').text(payment.totalCreditValue.withVat);
-    paymentModal.find('.payment-finalized').text(payment.totalFinalized.withVat);
-    paymentModal.find('.payment-unfinalized').text(payment.totalUnfinalized.withVat);
-
-
     specLineModel.paymentObject(payment);
-    specLineModel.selectedMupId(payment.multiupplysId);
 
     paymentModal.modal('show');
 }

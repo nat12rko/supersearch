@@ -2,34 +2,34 @@ define([], function() {
     function EcommerceInfo(params, componentInfo) {
         var self = this;
 
-        if(params.mupIdField) {
+        if (params.mupIdField) {
             self.mupId = params.mupIdField;
         } else {
             self.mupId = ko.observable();
         }
-        if(params.idField) {
+        if (params.idField) {
             self.id = params.idField;
         } else {
             self.id = ko.observable();
         }
 
-        if(params.fraudId) {
+        if (params.fraudId) {
             self.fraudId = params.fraudId;
         } else {
             self.fraudId = ko.observable();
         }
 
-        if(params.paymentField) {
+        if (params.paymentField) {
             self.paymentField = params.paymentField;
         } else {
             self.paymentField = ko.observable();
-
         }
         self.payment = ko.observable();
 
         self.paymentField.subscribe(function(newValue) {
             self.payment(newValue);
         });
+
 
         self.mupId.subscribe(function(newValue) {
             var url = baseUrl+"ecommerce?multiupplysId="+newValue;
@@ -54,10 +54,28 @@ define([], function() {
         });
 
         self.payment.subscribe(function(newValue) {
-            self.totalValue(newValue.totalValue.withVat);
-            self.totalCreditValue(newValue.totalCreditValue.withVat);
-            self.totalFinalized(newValue.totalFinalized.withVat);
-            self.totalUnfinalized(newValue.totalUnfinalized.withVat);
+            if (newValue && newValue.totalValue) {
+                self.totalValue(newValue.totalValue.withVat);
+            }
+            else {
+                self.totalValue(0);
+            }
+            if (newValue && newValue.totalCreditValue) {
+                self.totalCreditValue(newValue.totalCreditValue.withVat);
+            } else {
+                self.totalCreditValue(0);
+            }
+            if (newValue && newValue.totalFinalized) {
+                self.totalFinalized(newValue.totalFinalized.withVat);
+            }  else {
+                self.totalFinalized(0);
+            }
+            if (newValue && newValue.totalUnfinalized) {
+                self.totalUnfinalized(newValue.totalUnfinalized.withVat);
+            }   else {
+                self.totalUnfinalized(0);
+            }
+
             extractSpecLines(newValue,self);
         });
 
@@ -93,12 +111,9 @@ define([], function() {
             self.cred.removeAll();
             self.annul.removeAll();
         }
-
-
-
         return self;
     }
-    return { createViewModel: EcommerceInfo };
+    return EcommerceInfo;
 });
 
 
@@ -107,33 +122,35 @@ function extractSpecLines(payment,model) {
 
     model.reset()
 
-    var paymentDiffs = payment['paymentDiffs']
-    for (pos in paymentDiffs) {
-        var paymentSpec = paymentDiffs[pos]['paymentSpecification']
+    if (payment) {
+        var paymentDiffs = payment['paymentDiffs']
+        for (pos in paymentDiffs) {
+            var paymentSpec = paymentDiffs[pos]['paymentSpecification']
 
-        if (paymentSpec.lines.length > 0) {
-            for (var n in paymentSpec.lines) {
-                var line = paymentSpec.lines[n]
-                addLineSum(line);
-                if (paymentDiffs[pos].type === "AUTHORIZE") {
-                    model.addAuth(line);
-                } else if (paymentDiffs[pos].type === "DEBIT") {
-                    model.addDeb(line);
-                } else if (paymentDiffs[pos].type === "ANNUL") {
-                    model.addAnnul(line);
-                } else if (paymentDiffs[pos].type === "CREDIT") {
-                    model.addCred(line);
+            if (paymentSpec.lines.length > 0) {
+                for (var n in paymentSpec.lines) {
+                    var line = paymentSpec.lines[n]
+                    addLineSum(line);
+                    if (paymentDiffs[pos].type === "AUTHORIZE") {
+                        model.addAuth(line);
+                    } else if (paymentDiffs[pos].type === "DEBIT") {
+                        model.addDeb(line);
+                    } else if (paymentDiffs[pos].type === "ANNUL") {
+                        model.addAnnul(line);
+                    } else if (paymentDiffs[pos].type === "CREDIT") {
+                        model.addCred(line);
+                    }
                 }
-            }
-        } else {
-            if (paymentDiffs[pos].type === "AUTHORIZE") {
-                model.addAuth(createUnspecifiedLine(paymentSpec))
-            } else if (paymentDiffs[pos].type === "DEBIT") {
-                model.addDeb(createUnspecifiedLine(paymentSpec))
-            } else if (paymentDiffs[pos].type === "ANNUL") {
-                model.addAnnul(createUnspecifiedLine(paymentSpec))
-            } else if (paymentDiffs[pos].type === "CREDIT") {
-                model.addCred(createUnspecifiedLine(paymentSpec))
+            } else {
+                if (paymentDiffs[pos].type === "AUTHORIZE") {
+                    model.addAuth(createUnspecifiedLine(paymentSpec))
+                } else if (paymentDiffs[pos].type === "DEBIT") {
+                    model.addDeb(createUnspecifiedLine(paymentSpec))
+                } else if (paymentDiffs[pos].type === "ANNUL") {
+                    model.addAnnul(createUnspecifiedLine(paymentSpec))
+                } else if (paymentDiffs[pos].type === "CREDIT") {
+                    model.addCred(createUnspecifiedLine(paymentSpec))
+                }
             }
         }
     }
