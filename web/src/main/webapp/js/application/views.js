@@ -1,5 +1,5 @@
-/**var baseUrl = "http://localhost:8080/rest/";**/
-var baseUrl = "http://supersearch.pte.loc/rest/";
+var baseUrl = "http://localhost:8080/rest/";
+/**var baseUrl = "http://supersearch.pte.loc/rest/";**/
 
 
 function SearchViewWidgetsModel() {
@@ -234,6 +234,10 @@ function ResultViewModel() {
 
 function SpecLineModel() {
     var self = this;
+
+    self.paymentObject = ko.observable();
+    self.selectedMupId = ko.observable();
+
     self.auth = ko.observableArray();
     self.deb = ko.observableArray();
     self.cred = ko.observableArray();
@@ -312,9 +316,12 @@ function FraudAnalysisModel() {
     self.none = ko.observableArray();
     self.products = ko.observableArray();
 
-    self.mupId = ko.observable();
+    self.fraudId = ko.observable();
+    self.tempFraudId = ko.observable();
 
+    self.mupId = ko.observable();
     self.tempmupId = ko.observable();
+
 
     self.fraud = ko.observable();
 
@@ -336,6 +343,10 @@ function FraudAnalysisModel() {
         self.mupId(self.tempmupId());
     }
 
+    self.updateMupFraudId = function(){
+        self.fraudId(self.tempFraudId());
+    }
+
     self.setBilling = function(address){
         self.billing(address);
     }
@@ -354,6 +365,12 @@ function FraudAnalysisModel() {
             self.tempmupId(fraud.controlRequestJson.ids.MUP_ID);
         }  else {
             self.tempmupId(null);
+        }
+
+        if (fraud && fraud.id) {
+            self.tempFraudId(fraud.id);
+        }  else {
+            self.tempFraudId(null);
         }
     }
 
@@ -418,6 +435,8 @@ function extractFraudAnalysis(fraud) {
     fraudAnalysisModel.reset();
 
     fraudAnalysisModel.setFraud(fraud);
+
+
 
     var analysises = fraud['fraudAnalysisResults']
     for (var pos in analysises) {
@@ -486,7 +505,7 @@ function showPaymentModal(payment) {
     var paymentModal = $('#paymentModal');
 
     // Create KO-bindings
-    extractSpecLines(payment);
+    extractSpecLines(payment,specLineModel);
 
     paymentModal.find('.modal-title').text("Payment Id: " + payment.externalId);
     paymentModal.find('.payment-total').text(payment.totalValue.withVat);
@@ -494,68 +513,14 @@ function showPaymentModal(payment) {
     paymentModal.find('.payment-finalized').text(payment.totalFinalized.withVat);
     paymentModal.find('.payment-unfinalized').text(payment.totalUnfinalized.withVat);
 
+
+    specLineModel.paymentObject(payment);
+    specLineModel.selectedMupId(payment.multiupplysId);
+
     paymentModal.modal('show');
 }
 
-function extractSpecLines(payment) {
 
-    specLineModel.reset()
-
-    var paymentDiffs = payment['paymentDiffs']
-    for (pos in paymentDiffs) {
-        var paymentSpec = paymentDiffs[pos]['paymentSpecification']
-
-        if (paymentSpec.lines.length > 0) {
-            for (var n in paymentSpec.lines) {
-                var line = paymentSpec.lines[n]
-                addLineSum(line);
-                if (paymentDiffs[pos].type === "AUTHORIZE") {
-                    specLineModel.addAuth(line);
-                } else if (paymentDiffs[pos].type === "DEBIT") {
-                    specLineModel.addDeb(line);
-                } else if (paymentDiffs[pos].type === "ANNUL") {
-                    specLineModel.addAnnul(line);
-                } else if (paymentDiffs[pos].type === "CREDIT") {
-                    specLineModel.addCred(line);
-                }
-            }
-        } else {
-            if (paymentDiffs[pos].type === "AUTHORIZE") {
-                specLineModel.addAuth(createUnspecifiedLine(paymentSpec))
-            } else if (paymentDiffs[pos].type === "DEBIT") {
-                specLineModel.addDeb(createUnspecifiedLine(paymentSpec))
-            } else if (paymentDiffs[pos].type === "ANNUL") {
-                specLineModel.addAnnul(createUnspecifiedLine(paymentSpec))
-            } else if (paymentDiffs[pos].type === "CREDIT") {
-                specLineModel.addCred(createUnspecifiedLine(paymentSpec))
-            }
-        }
-    }
-}
-
-function addLineSum(spec) {
-    var vat = parseFloat('1.' + parseInt(spec.vatPercentage));
-    var quantity = parseInt(spec.quantity);
-    var priceExclVat = parseFloat(spec.unitAmountWithoutVat);
-
-    var sum = quantity * priceExclVat * vat;
-    spec.sum = sum.toFixed(2);
-}
-
-function createUnspecifiedLine(spec) {
-    var priceExclVat = parseFloat(spec.unitAmountWithoutVat);
-    var vat = parseFloat('1.' + parseInt(spec.vatPercentage));
-
-    var sum = priceExclVat * vat;
-
-    return {"description":"Unspecified",
-        "articleNo":"",
-        "quantity":"",
-        "unitAmountWithoutVat":spec.totalAmountWithoutVat,
-        "unitMeasure":"",
-        "vatPercentage":spec.vatPercentage,
-        "sum":sum.toFixed(2)};
-}
 
 
 function createGenericRow(element, ob) {

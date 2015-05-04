@@ -9,7 +9,7 @@
                 <div class="container">
                     <ul class="nav nav-tabs" id="fraudtabs">
                         <li class="nav active"><a href="#fraud" data-toggle="tab">Fraud</a></li>
-                        <li class="nav"><a href="#ecommerce" data-toggle="tab">Ecommerce</a></li>
+                        <li class="nav"><a onclick="fraudAnalysisModel.updateMupFraudId();" href="#ecommerce" data-toggle="tab">Ecommerce</a></li>
                         <li class="nav"><a onclick="fraudAnalysisModel.updateMupId();" href="#mup" data-toggle="tab">Mup</a></li>
                     </ul>
                     <!-- Tab panes -->
@@ -55,7 +55,7 @@
                                                 </tr>
                                                 <tr class="danger">
                                                     <td>Mup id:</td>
-                                                    <td data-bind="text: controlRequestJson.ids.MUP_ID"></td>
+                                                    <td data-bind="text: $data.controlRequestJson.ids.MUP_ID"></td>
                                                     <td>
                                             <span class="glyphicon glyphicon-search" aria-hidden="true"
                                                   data-bind="click: testSearch.bind($data, $data.controlRequestJson.ids.MUP_ID)">
@@ -258,8 +258,9 @@
                                 </table>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="ecommerce">To be Done.</div>
-                        <div class="tab-pane fade" id="mup"><multiupplys-info params="idField:$data.mupId"></multiupplys-info>                        </div>
+                        <div class="tab-pane fade" id="ecommerce"><ecommerce-info params="fraudId:$data.fraudId"></ecommerce-info></div>
+                        <div class="tab-pane fade" id="mup"><multiupplys-info params="idField:$data.mupId"></multiupplys-info>
+                        </div>
 
                     </div>
                 </div>

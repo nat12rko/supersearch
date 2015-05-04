@@ -17,6 +17,11 @@ public interface SearchService {
 
     List<Hit> getEcommerceByMultiupplysId(String id);
 
+    List<Hit> getEcommerceByFraudId(String id);
+
+    List<Hit> getEcommerceBydId(String id);
+
+
     List<Hit> getFraudByMultiupplysId(String id);
 
     List<Hit> getMultiupplysById(String id);

@@ -56,8 +56,19 @@ public class SearchServiceRest {
     @Path("/ecommerce")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getEcommerceByMultiupplysId(@QueryParam("multiupplysId") String id) {
-        return Response.status(201).entity(searchService.getEcommerceByMultiupplysId(id)).build();
+    public Response getEcommerceByIds(@QueryParam("multiupplysId") String mupId, @QueryParam("fraudId") String fraudId) {
+        if (fraudId != null && fraudId.length() > 0) {
+            return Response.status(201).entity(searchService.getEcommerceByFraudId(fraudId)).build();
+        } else {
+            return Response.status(201).entity(searchService.getEcommerceByMultiupplysId(mupId)).build();
+        }
+    }
+
+    @Path("/ecommerce/{id}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getEcommerceById(@PathParam("id") String id) {
+        return Response.status(201).entity(searchService.getEcommerceByFraudId(id)).build();
     }
 
 

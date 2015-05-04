@@ -119,6 +119,19 @@ public class SearchServiceImpl implements SearchService {
         TermQueryBuilder publicReferenceNumber = QueryBuilders.termQuery("multiupplysId", id);
         return search(publicReferenceNumber);
     }
+
+    public List<Hit> getEcommerceByFraudId(String id){
+        TermQueryBuilder fraudId = QueryBuilders.termQuery("fraudId", id);
+        return search(fraudId);
+    }
+
+    public List<Hit> getEcommerceBydId(String id) {
+        TermQueryBuilder ecommerceId = QueryBuilders.termQuery("id", id);
+        return search(ecommerceId);
+    }
+
+
+
     public List<Hit> getFraudByMultiupplysId(String id){
         TermQueryBuilder publicReferenceNumber = QueryBuilders.termQuery("controlRequestJson.ids.MUP_ID", id);
         return search(publicReferenceNumber);
