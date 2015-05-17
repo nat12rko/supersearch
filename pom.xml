@@ -111,7 +111,7 @@
                 <version>1.9.1</version>
                 <executions>
                     <execution>
-                        <phase>verify</phase>
+                        <phase>generate-sources</phase>
                         <id>regex-property</id>
                         <goals>
                             <goal>regex-properties</goal>
