@@ -50,7 +50,6 @@
                 <version>2.1</version>
                 <configuration>
                     <webResources>
-
                         <resource>
                             <filtering>true</filtering>
                             <directory>src/main/webapp</directory>
@@ -72,6 +71,28 @@
             </plugin>
 
             <plugin>
+                <groupId>pl.project13.maven</groupId>
+                <artifactId>git-commit-id-plugin</artifactId>
+                <version>2.1.13</version>
+                <executions>
+                    <execution>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>revision</goal>
+                        </goals>
+                        <configuration>
+                            <skipPoms>false</skipPoms>
+                            <injectAllReactorProjects>true</injectAllReactorProjects>
+                            <dotGitDirectory>${project.basedir}/.git</dotGitDirectory>
+                            <generateGitPropertiesFile>true</generateGitPropertiesFile>
+                            <generateGitPropertiesFilename>src/main/resources/git.properties</generateGitPropertiesFilename>
+                        </configuration>
+                    </execution>
+
+                </executions>
+            </plugin>
+
+            <plugin>
                 <groupId>com.github.koraktor</groupId>
                 <artifactId>mavanagaiata</artifactId>
                 <executions>
@@ -90,7 +111,7 @@
                 <version>1.9.1</version>
                 <executions>
                     <execution>
-                        <phase>generate-sources</phase>
+                        <phase>verify</phase>
                         <id>regex-property</id>
                         <goals>
                             <goal>regex-properties</goal>
@@ -99,7 +120,7 @@
                             <regexPropertySettings>
                                 <regexPropertySetting>
                                     <name>branchname</name>
-                                    <value>${mvngit.branch}</value>
+                                    <value>${git.branch}</value>
                                     <regex>[^a-z0-9]</regex>
                                     <replacement></replacement>
                                     <failIfNoMatch>false</failIfNoMatch>
