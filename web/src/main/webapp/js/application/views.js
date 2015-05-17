@@ -1,5 +1,9 @@
 /**var baseUrl = "http://localhost:8080/rest/";**/
-var baseUrl = "http://supersearch.pte.loc/rest/";
+/**var baseUrl = "http://supersearch.pte.loc/rest/";**/
+
+var baseUrl = "http://rest.${docker.servicename}.${branchname}.docker.dte.loc/rest/"
+
+
 
 
 function SearchViewWidgetsModel() {
