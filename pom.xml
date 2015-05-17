@@ -72,7 +72,7 @@
 
             <plugin>
                 <groupId>pl.project13.maven</groupId>
-                <artifactId>git-commit-id-plugin</artifactId>
+                    <artifactId>git-commit-id-plugin</artifactId>
                 <version>2.1.13</version>
                 <executions>
                     <execution>
@@ -87,21 +87,6 @@
                             <generateGitPropertiesFile>true</generateGitPropertiesFile>
                             <generateGitPropertiesFilename>src/main/resources/git.properties</generateGitPropertiesFilename>
                         </configuration>
-                    </execution>
-
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>com.github.koraktor</groupId>
-                <artifactId>mavanagaiata</artifactId>
-                <executions>
-                    <execution>
-                        <phase>generate-sources</phase>
-                        <id>load-git-branch</id>
-                        <goals>
-                            <goal>branch</goal>
-                        </goals>
                     </execution>
                 </executions>
             </plugin>
@@ -120,7 +105,7 @@
                             <regexPropertySettings>
                                 <regexPropertySetting>
                                     <name>branchname</name>
-                                    <value>${git.branch}</value>
+                                    <value>${git.commit.id.abbrev}</value>
                                     <regex>[^a-z0-9]</regex>
                                     <replacement></replacement>
                                     <failIfNoMatch>false</failIfNoMatch>

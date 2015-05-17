@@ -2,6 +2,7 @@ FROM tomcat:8.0
 ADD *.war /usr/local/tomcat/webapps/
 ADD config/*.properties /etc/resurs/supersearch/
 ENV VIRTUAL_HOST ${docker.component}.${docker.servicename}.${branchname}
-ENV BRANCH ${mvngit.branch}
+ENV GIT_BRANCH ${git.branch}
+ENV GIT_SHA ${git.commit.id}
 ENV SYSTEM ${docker.servicename}
 ENV COMPONENT ${docker.component}
