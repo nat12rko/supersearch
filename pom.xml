@@ -17,8 +17,8 @@
     </properties>
 
     <scm>
-        <connection>scm:git://git.resurs.loc/projects/XXX</connection>
-        <developerConnection>scm:git://git.resurs.loc/projects/XXX</developerConnection>
+        <connection>scm:git:http://git.resurs.loc/scm/sup/supersearch.git</connection>
+        <developerConnection>scm:git:http://git.resurs.loc/scm/sup/supersearch.git</developerConnection>
     </scm>
 
     <dependencyManagement>
@@ -122,6 +122,7 @@
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
+                            <escapeString>\</escapeString>
                             <outputDirectory>${project.basedir}/target/docker-temp</outputDirectory>
                             <resources>
                                 <resource>
