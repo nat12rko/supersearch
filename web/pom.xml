@@ -74,7 +74,11 @@
                             </execution>
                         </executions>
                         <configuration>
-                            <imageName>${branchname}.${docker.servicename}.${docker.component}</imageName>
+                            <imageName>${docker.servicename}.${docker.component}</imageName>
+                            <forceTags>true</forceTags>
+                            <imageTags>
+                               <imageTag>${branchname}</imageTag>
+                            </imageTags>
                             <dockerDirectory>${project.basedir}/target/docker-temp/web</dockerDirectory>
                             <resources>
                                 <resource>
