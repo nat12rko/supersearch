@@ -112,6 +112,7 @@
                                 <id>createandrun</id>
                                 <goals>
                                     <goal>stop</goal>
+                                    <goal>remove</goal>
                                     <goal>build</goal>
                                     <goal>start</goal>
                                 </goals>
