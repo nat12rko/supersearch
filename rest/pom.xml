@@ -105,14 +105,13 @@
                     <plugin>
                         <groupId>org.jolokia</groupId>
                         <artifactId>docker-maven-plugin</artifactId>
-                        <version>0.11.4</version>
+                        <version>0.11.5-RESURS</version>
                         <executions>
                             <execution>
                                 <phase>pre-integration-test</phase>
                                 <id>createandrun</id>
                                 <goals>
                                     <goal>stop</goal>
-                                    <goal>remove</goal>
                                     <goal>build</goal>
                                     <goal>start</goal>
                                 </goals>
@@ -120,6 +119,7 @@
                                     <images>
                                         <image>
                                             <name>${docker.servicename}.${docker.component}</name>
+                                            <tag>${branchname}</tag>
                                             <alias>${branchname}.${docker.servicename}.rest</alias>
                                             <run>
                                                 <namingStrategy>alias</namingStrategy>

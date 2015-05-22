@@ -94,14 +94,13 @@
                     <plugin>
                         <groupId>org.jolokia</groupId>
                         <artifactId>docker-maven-plugin</artifactId>
-                        <version>0.11.4</version>
+                        <version>0.11.5-RESURS</version>
                         <executions>
                             <execution>
                                 <phase>pre-integration-test</phase>
                                 <id>createandrun</id>
                                 <goals>
                                     <goal>stop</goal>
-                                    <goal>remove</goal>
                                     <goal>build</goal>
                                     <goal>start</goal>
                                 </goals>
@@ -110,9 +109,12 @@
                                         <image>
                                             <name>${docker.servicename}.${docker.component}</name>
                                             <alias>${branchname}.${docker.servicename}.web</alias>
+                                            <tag>${branchname}</tag>
                                             <run>
                                                 <namingStrategy>alias</namingStrategy>
-                                                <envPropertyFile>${project.basedir}/../docker/config/${docker.hostname}/envFile.properties</envPropertyFile>
+                                                <envPropertyFile>
+                                                    ${project.basedir}/../docker/config/${docker.hostname}/envFile.properties
+                                                </envPropertyFile>
                                             </run>
                                             <build>
                                                 <tags>
@@ -129,7 +131,8 @@
                                                         </dependencySet>
                                                     </inline>
                                                     <exportBasedir>true</exportBasedir>
-                                                    <dockerFileDir>${project.basedir}/target/docker-temp/web</dockerFileDir>
+                                                    <dockerFileDir>${project.basedir}/target/docker-temp/web
+                                                    </dockerFileDir>
                                                 </assembly>
                                             </build>
                                         </image>
