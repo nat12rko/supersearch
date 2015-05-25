@@ -250,6 +250,10 @@ function openFraud(extRef) {
     openNewWindow('POST', 'http://172.16.1.97/gui/reports/detailsext', exRef, '_blank');
 }
 
+function viewInvoices(invoiceId) {
+    openNewWindow('GET', 'http://10.254.61.131:8080/invoice-generator/invoicegenerator-web/'+ invoiceId + '/invoicefinder.html', "", '_blank');
+}
+
 // Arguments :
 //  verb : 'GET'|'POST'
 //  target : an optional opening target (a name, or "_blank"), defaults to "_self"
