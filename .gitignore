@@ -5,3 +5,6 @@ web/target/
 *.iml
 rebel.xml
 target/
+rest/src/main/resources/git.properties
+src/main/resources/git.properties
+web/src/main/resources/git.properties
