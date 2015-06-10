@@ -11,7 +11,7 @@ define(['knockout'], function(ko) {
             var paymentDiffs = self.row.object.paymentDiffs
             for (var index in paymentDiffs) {
                 if (paymentDiffs[index].type === 'DEBIT' || paymentDiffs[index].type === 'CREDIT') {
-                    openInvoices(paymentDiffs[index].invoiceId);
+                    viewInvoices(paymentDiffs[index].invoiceId);
                 }
             }
         }
