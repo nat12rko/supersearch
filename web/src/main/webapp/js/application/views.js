@@ -1,7 +1,7 @@
 /**var baseUrl = "http://localhost:8080/rest/";**/
 /**var baseUrl = "http://supersearch.pte.loc/rest/";**/
 
-var baseUrl = "${image.supersearch-rest.url}"
+var baseUrl = "${image.supersearch-rest.url}/"
 
 function SearchViewWidgetsModel() {
     var self = this;
