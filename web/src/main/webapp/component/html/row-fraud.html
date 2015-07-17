@@ -17,16 +17,24 @@
             <div class="col-lg-3">
                 <span-search params="value:row.object.recommendation"></span-search><br/>
                 <br/>
-                <span-search params="value:row.object.controlRequestJson.customer.governmentId"></span-search><br/>
-                <span-search params="value:row.object.controlRequestJson.customer.countryCode"></span-search>
-                <span-search params="value:row.object.controlRequestJson.customer.customerType"></span-search><br/>
+                <span data-bind="with : row.object.controlRequestJson.customer">
+                    <span-search params="value:$data.governmentId"></span-search><br/>
+                    <span-search params="value:$data.countryCode"></span-search>
+                    <span-search params="value:$data.customerType"></span-search><br/>
+                </span>
 
             </div>
             <div class="col-lg-4">
-                Name: <span-search params="value:row.object.controlRequestJson.billingAddress.firstName"></span-search>  <span-search params="value:row.object.controlRequestJson.billingAddress.lastName"/></span-search><br/>
-                Email: <span-search params="value:row.object.controlRequestJson.emails.email"/></span-search><br/>
-                Phone 1: <span-search params="value:row.object.controlRequestJson.phoneNumbers.phone1"/></span-search><br/>
-                Phone 2: <span-search params="value:row.object.controlRequestJson.phoneNumbers.phone2"/></span-search><br/>
+                <span data-bind="with : row.object.controlRequestJson.billingAddress">
+                    Name: <span-search params="value:$data.firstName"></span-search><span-search params="value:row.object.controlRequestJson.billingAddress.lastName"/></span-search><br/>
+                </span>
+                <span data-bind="with : row.object.controlRequestJson.emails">
+                    Email: <span-search params="value:$data.email"/></span-search><br/>
+                </span>
+                <span data-bind="with : row.object.controlRequestJson.phoneNumbers">
+                    Phone 1: <span-search params="value:$data.phone1"/></span-search><br/>
+                    Phone 2: <span-search params="value:$data.phone2"/></span-search><br/>
+                </span>
             </div>
             <div class="col-lg-2">
                 IP: <span-search params="value:row.object.controlRequestJson.ipAddress"/></span-search>
