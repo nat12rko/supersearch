@@ -99,6 +99,11 @@
                                                 <extraDockerFolder>script</extraDockerFolder>
                                             </extraDockerFolders>
                                             <contextPath>rest</contextPath>
+                                            <marathonConfiguration>
+                                                <frontend>false</frontend>
+                                                <healthCheckPath>.</healthCheckPath>
+                                                <memory>768</memory>
+                                            </marathonConfiguration>
                                         </image>
                                     </images>
                                 </configuration>
