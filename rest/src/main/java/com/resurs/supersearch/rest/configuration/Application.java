@@ -16,7 +16,7 @@ import org.springframework.context.annotation.PropertySources;
 @EnableAutoConfiguration
 @ComponentScan("com.resurs.supersearch.rest")
 @PropertySources({
-        @PropertySource(value = "file:/etc/resurs/supersearch/web.cfg.properties"),
+        @PropertySource(value = "file:/etc/resurs/supersearch/rest.cfg.properties"),
 })
 public class Application extends SpringBootServletInitializer {
 

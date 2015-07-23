@@ -1,5 +1,5 @@
 /**var baseUrl = "http://localhost:8080/rest/";**/
-var baseUrl = "http://supersearch.pte.loc/rest/";
+var baseUrl = getRestUrl();
 
 /*var baseUrl = "${image.supersearch-rest.url}/"     **/
 
@@ -15,6 +15,14 @@ function SearchViewWidgetsModel() {
     self.loadThis = function () {
         searchViewModel.updateObject(this.searchString(), this.fromDate(), this.toDate(), this.page(), this.pageSize(), this.systems(), this.countryCodes(), this.filters());
     }
+}
+
+function getRestUrl()
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", 'url/get', false );
+    xmlHttp.send( null );
+    return xmlHttp.responseText;
 }
 
 

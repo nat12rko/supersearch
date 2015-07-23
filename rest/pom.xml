@@ -102,7 +102,7 @@
                                             <marathonConfiguration>
                                                 <frontend>false</frontend>
                                                 <healthCheckPath>.</healthCheckPath>
-                                                <memory>768</memory>
+                                                <memory>1024</memory>
                                             </marathonConfiguration>
                                         </image>
                                     </images>
