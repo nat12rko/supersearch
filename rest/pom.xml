@@ -92,8 +92,8 @@
                                             <hostNames>
                                                 <PTE>supersearch-rest</PTE>
                                                 <PTE_MOCK>supersearch-mock-rest</PTE_MOCK>
-                                                <CTE>supersearch-rest</CTE>
-                                                <CTE_MOCK>supersearch-mock-rest</CTE_MOCK>
+                                                <CTE>rest.supersearch.cte.loc.</CTE>
+                                                <CTE_MOCK>mock-rest.supersearch.cte.loc.</CTE_MOCK>
                                             </hostNames>
                                             <extraDockerFolders>
                                                 <extraDockerFolder>script</extraDockerFolder>

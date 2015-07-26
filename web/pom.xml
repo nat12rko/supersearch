@@ -83,8 +83,8 @@
                                             <hostNames>
                                                 <PTE>supersearch</PTE>
                                                 <PTE_MOCK>supersearch-mock</PTE_MOCK>
-                                                <CTE>supersearch</CTE>
-                                                <CTE_MOCK>supersearch-mock</CTE_MOCK>
+                                                <CTE>supersearch.cte.loc.</CTE>
+                                                <CTE_MOCK>mock-supersearch.cte.loc.</CTE_MOCK>
                                             </hostNames>
                                             <extraDockerFolders>
                                                 <extraDockerFolder>script</extraDockerFolder>
