@@ -9,6 +9,11 @@ ko.components.register("row-multiupplys", {
     synchronous: true
 
 });
+ko.components.register("row-invoice", {
+    viewModel: { require: 'component/js/row-invoice.js?timestamp='+new Date().getTime()},
+    template: {require: 'text!../../component/html/row-invoice.html?timestamp='+new Date().getTime()},
+    synchronous: true
+});
 ko.components.register("row-fraud", {
     viewModel: { require: 'component/js/row-fraud.js?timestamp='+new Date().getTime()},
     template: {require: 'text!../../component/html/row-fraud.html?timestamp='+new Date().getTime()} ,

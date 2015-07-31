@@ -18,9 +18,9 @@ var updateFacets = function (aggregations) {
 
 var updateFacetsChildren = function (children,amt,field) {
     if (children.hits) {
-        $("<li onclick=\"addFilter('"+field+"','"+children.name+"')\" class=\"list-group-item list-group-item-facets\">" + createSpaces(amt) + children.name + "<span class=\"badge badge-facets\">" + children.hits + "</span></li>").appendTo('#facets');
+        $("<li onclick=\"addFilter('"+field+"','"+children.name+"')\" class=\"list-group-item list-group-item-facets\">" + createSpaces(amt) + children.display + "<span class=\"badge badge-facets\">" + children.hits + "</span></li>").appendTo('#facets');
     } else if (children.name) {
-        $("<li  class=\"list-group-item list-group-item-facets\">" + createSpaces(amt) + children.name + "</li>").appendTo('#facets');
+        $("<li  class=\"list-group-item list-group-item-facets\">" + createSpaces(amt) + children.display + "</li>").appendTo('#facets');
     }
     if (children.children) {
         amt++;

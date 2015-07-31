@@ -9,6 +9,7 @@ import java.util.List;
 public class Aggregate {
 
     String name;
+    String display;
     List<AggregateResult> aggregateResults = new ArrayList<>();
 
     public String getName() {
@@ -17,6 +18,14 @@ public class Aggregate {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDisplay() {
+        return display;
+    }
+
+    public void setDisplay(String display) {
+        this.display = display;
     }
 
     public List<AggregateResult> getChildren() {

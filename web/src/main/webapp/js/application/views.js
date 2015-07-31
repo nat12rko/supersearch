@@ -40,7 +40,8 @@ function SearchViewModel() {
         {text: 'eCommerce', id: 'ECOMMERCE'},
         {text: 'Fraud', id: 'FRAUD'},
         {text: 'Limit', id: 'LIMIT'},
-        {text: 'Multiupplys', id: 'MULTIUPPLYS'}
+        {text: 'Multiupplys', id: 'MULTIUPPLYS'},
+        {text: 'Invoice', id: 'INVOICE'}
     ]);
 
 

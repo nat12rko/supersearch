@@ -9,6 +9,7 @@ import java.util.List;
 public class AggregateResult {
     List<Aggregate> aggregates = new ArrayList<>();
     String name;
+    String display;
     long hits;
 
     public List<Aggregate> getChildren() {
@@ -25,6 +26,18 @@ public class AggregateResult {
 
     public String getName() {
         return name;
+    }
+
+    public void setDisplay(String display) {
+        this.display = display;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDisplay() {
+        return display;
     }
 
     public void setValue(String value) {

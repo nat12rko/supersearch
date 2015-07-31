@@ -124,9 +124,9 @@ var updateAggregation = function (aggregations) {
 
         function generateText(d) {
             if (d.hits === undefined) {
-                return d.name;
+                return d.display;
             }
-            return d.name + " (" + d.hits + ")";
+            return d.display + " (" + d.hits + ")";
         }
 
         function zoom(d, i) {

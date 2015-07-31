@@ -7,6 +7,7 @@ import com.resurs.supersearch.rest.elasticsearch.QueryParser;
 import com.resurs.supersearch.rest.elasticsearch.SearchService;
 import com.resurs.supersearch.rest.elasticsearch.impl.querybuilders.EcommerceQueryBuilder;
 import com.resurs.supersearch.rest.elasticsearch.impl.querybuilders.FraudQueryBuilder;
+import com.resurs.supersearch.rest.elasticsearch.impl.querybuilders.InvoiceQueryBuilder;
 import com.resurs.supersearch.rest.elasticsearch.impl.querybuilders.LimitQueryBuilder;
 import com.resurs.supersearch.rest.elasticsearch.impl.querybuilders.MultiupplysQueryBuilder;
 import com.resurs.supersearch.rest.elasticsearch.impl.queryparsers.GovernmentIdQueryParser;
@@ -43,7 +44,9 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Trind on 2014-02-22.
@@ -54,6 +57,43 @@ public class SearchServiceImpl implements SearchService {
     List<QueryBuilder> queryBuilders = new ArrayList<>();
 
     List<QueryParser> queryParsers = new ArrayList<>();
+
+    private static final Map<String, String> displayValues;
+
+    static {
+        displayValues = new HashMap<>();
+        displayValues.put("payment.representative.name", "Representative");
+        displayValues.put("annulled", "Annulled");
+        displayValues.put("payment.lifePhase", "LifePhase");
+        displayValues.put("FraudSummary.recommendation", "Recommendation");
+        displayValues.put("invoice.type", "Invoice Type");
+        displayValues.put("invoice.chainId", "ChainId");
+        displayValues.put("payment.lifePhase", "Life Phase");
+        displayValues.put("limitresponse.decision", "Decision");
+        displayValues.put("creditcase.currentState.state", "State");
+        displayValues.put("creditcase.creditCaseTags.REPRESENTATIVE_NAME", "Representative");
+        displayValues.put("creditcase.creditProductCode", "Credit Product");
+        displayValues.put("_type", "System");
+        displayValues.put("T", "Yes");
+        displayValues.put("F", "No");
+        displayValues.put("INVOICE_WITH_OPTION_LINES", "Invoice with Paymentoption");
+        displayValues.put("INVOICE", "Invoice");
+        displayValues.put("INVOICE_CREDITNOTE", "Credit Note");
+
+        displayValues.put("limitresponse", "Limit");
+        displayValues.put("FraudSummary", "Fraud");
+        displayValues.put("creditcase", "Multiupplys");
+        displayValues.put("payment", "Ecommerce");
+        displayValues.put("invoice", "Invoice");
+
+
+
+
+
+
+
+
+    }
 
 
     @Autowired
@@ -71,6 +111,8 @@ public class SearchServiceImpl implements SearchService {
     @Autowired
     ElasticSearchService elasticSearchService;
 
+    @Autowired
+    InvoiceQueryBuilder invoiceQueryBuilder;
 
     @Autowired
     GovernmentIdQueryParser governmentIdQueryParser;
@@ -90,6 +132,7 @@ public class SearchServiceImpl implements SearchService {
         queryBuilders.add(multiupplysQueryBuilder);
         queryBuilders.add(limitQueryBuilder);
         queryBuilders.add(fraudQueryBuilder);
+        queryBuilders.add(invoiceQueryBuilder);
 
         /** Add QueryParsers.*/
         queryParsers = new ArrayList<>();
@@ -99,8 +142,7 @@ public class SearchServiceImpl implements SearchService {
     }
 
 
-
-    public List<Hit> getMultiupplysById(String id){
+    public List<Hit> getMultiupplysById(String id) {
 
         TermQueryBuilder publicReferenceNumber = QueryBuilders.termQuery("publicReferenceNumber", id);
         HasParentQueryBuilder creditcase = QueryBuilders.hasParentQuery("creditcase", publicReferenceNumber);
@@ -111,16 +153,18 @@ public class SearchServiceImpl implements SearchService {
 
         return search;
     }
-    public List<Hit> getLimitByMultiupplysId(String id){
+
+    public List<Hit> getLimitByMultiupplysId(String id) {
         TermQueryBuilder publicReferenceNumber = QueryBuilders.termQuery("mupRefNumber", id);
         return search(publicReferenceNumber);
     }
-    public List<Hit> getEcommerceByMultiupplysId(String id){
+
+    public List<Hit> getEcommerceByMultiupplysId(String id) {
         TermQueryBuilder publicReferenceNumber = QueryBuilders.termQuery("multiupplysId", id);
         return search(publicReferenceNumber);
     }
 
-    public List<Hit> getEcommerceByFraudId(String id){
+    public List<Hit> getEcommerceByFraudId(String id) {
         TermQueryBuilder fraudId = QueryBuilders.termQuery("fraudId", id);
         return search(fraudId);
     }
@@ -131,8 +175,7 @@ public class SearchServiceImpl implements SearchService {
     }
 
 
-
-    public List<Hit> getFraudByMultiupplysId(String id){
+    public List<Hit> getFraudByMultiupplysId(String id) {
         TermQueryBuilder publicReferenceNumber = QueryBuilders.termQuery("controlRequestJson.ids.MUP_ID", id);
         return search(publicReferenceNumber);
     }
@@ -310,10 +353,13 @@ public class SearchServiceImpl implements SearchService {
                 Aggregate aggregate = new Aggregate();
                 aggregates.add(aggregate);
                 aggregate.setName(aggregation.getName());
+                aggregate.setDisplay(getDisplayName(aggregate.getName()));
+
                 for (org.elasticsearch.search.aggregations.bucket.terms.Terms.Bucket bucket : ((org.elasticsearch.search.aggregations.bucket.terms.Terms) aggregation).getBuckets()) {
 
                     AggregateResult aggregateResult = new AggregateResult();
                     aggregateResult.setValue(bucket.getKey());
+                    aggregateResult.setDisplay(getDisplayName(bucket.getKey()));
                     aggregateResult.setHits(bucket.getDocCount());
 
                     aggregate.getChildren().add(aggregateResult);
@@ -346,7 +392,11 @@ public class SearchServiceImpl implements SearchService {
         if (sortBuilder != null) {
             searchRequestBuilder.addSort(sortBuilder);
         }
-
-
     }
+
+    public String getDisplayName(String name) {
+        String returnValue = displayValues.get(name);
+        return StringUtils.isNoneBlank(returnValue) ? returnValue : name;
+    }
+
 }

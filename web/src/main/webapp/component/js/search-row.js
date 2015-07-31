@@ -16,6 +16,9 @@ define(['knockout'], function(ko) {
         self.isEcommerce = function () {
             return (self.row.type == 'payment');
         }
+        self.isInvoice = function () {
+            return (self.row.type == 'invoice');
+        }
     }
     return ProductRow;
 });

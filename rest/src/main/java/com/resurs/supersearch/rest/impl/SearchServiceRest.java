@@ -80,4 +80,12 @@ public class SearchServiceRest {
     }
 
 
+    @Path("/ping")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response ping() {
+        return Response.status(200).entity("pong").build();
+    }
+
+
 }
