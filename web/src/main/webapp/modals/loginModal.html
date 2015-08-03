@@ -1,0 +1,25 @@
+<div class="modal fade bs-example-modal-md" id="loginModal" tabindex="-1" role="dialog"
+     aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="loginModalLabel">Login to Super Search</h4>
+            </div>
+            <div class="modal-body">
+                <form method="post" action='' name="login_form">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="username" class="form-control" id="username" placeholder="Username" data-bind='textInput:userName'  autocomplete="on">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" placeholder="Password" data-bind='textInput:password'  autocomplete="off">
+                    </div>
+                    <button  class="btn btn-primary" data-bind="click: login">Login in</button>
+                </form>
+                <br/>
+                <br/>
+            </div>
+        </div>
+    </div>
+</div>

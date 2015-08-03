@@ -17,12 +17,30 @@ function SearchViewWidgetsModel() {
     }
 }
 
-function getRestUrl()
-{
+function getRestUrl() {
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", 'url/get', false );
-    xmlHttp.send( null );
+    xmlHttp.open("GET", 'url/get', false);
+    xmlHttp.send(null);
     return xmlHttp.responseText;
+}
+
+function LoginViewModel() {
+    var self = this;
+    self.userName = ko.observable();
+    self.password = ko.observable();
+
+    self.login = function () {
+        searchViewModel.search();
+    }
+
+    self.showLogin = function () {
+        var loginModal = $('#loginModal');
+        loginModal.modal('show');
+    }
+    self.hideLogin = function () {
+        var loginModal = $('#loginModal');
+        loginModal.modal('hide');
+    }
 }
 
 
@@ -101,12 +119,12 @@ function SearchViewModel() {
     }
 
     self.nextPage = function () {
-        self.page(self.page()+1);
+        self.page(self.page() + 1);
         resultViewModel.search();
     }
 
     self.previousPage = function () {
-        var previousPage = self.page()-1;
+        var previousPage = self.page() - 1;
         if (previousPage >= 0) {
             self.page(previousPage);
             resultViewModel.search();
@@ -151,7 +169,7 @@ function SearchViewModel() {
 function ResultViewModel() {
     var self = this;
 
-    self.tasksURI = baseUrl+"search";
+    self.tasksURI = baseUrl + "search";
     self.hits = ko.observableArray().extend({rateLimit: 25});
 
     self.searchResultAvailable = function () {
@@ -171,9 +189,9 @@ function ResultViewModel() {
             + "//"
             + window.location.host
             + window.location.pathname
-            + '?jsonData='+encodeURIComponent(jsonData);
+            + '?jsonData=' + encodeURIComponent(jsonData);
 
-        window.history.pushState("q", "Title",url);
+        window.history.pushState("q", "Title", url);
 
         ajax(self.tasksURI, 'POST', jsonData).done(function (data) {
 
@@ -218,7 +236,7 @@ function ResultViewModel() {
 
     var jsonData = $.query.get('jsonData');
 
-    if(jsonData) {
+    if (jsonData) {
 
         var parsed = JSON.parse(jsonData);
 
@@ -250,23 +268,23 @@ function SpecLineModel() {
 }
 
 function testSearch(data) {
-    var target = "http://supersearch.pte.loc/web/search.html?q=\""+data+"\"";
+    var target = "http://supersearch.pte.loc/web/search.html?q=\"" + data + "\"";
     window.open(target);
 }
 
 function openFraud(extRef) {
-    var exRef = {"externalrefno" : extRef};
+    var exRef = {"externalrefno": extRef};
     openNewWindow('POST', 'http://172.16.1.97/gui/reports/detailsext', exRef, '_blank');
 }
 
 function viewInvoices(invoiceId) {
-    openNewWindow('GET', 'http://10.254.61.131:8080/invoice-generator/invoicegenerator-web/'+ invoiceId + '/invoicefinder.html', "", '_blank');
+    openNewWindow('GET', 'http://10.254.61.131:8080/invoice-generator/invoicegenerator-web/' + invoiceId + '/invoicefinder.html', "", '_blank');
 }
 
 // Arguments :
 //  verb : 'GET'|'POST'
 //  target : an optional opening target (a name, or "_blank"), defaults to "_self"
-openNewWindow = function(verb, url, data, target) {
+openNewWindow = function (verb, url, data, target) {
     var form = document.createElement("form");
     form.action = url;
     form.method = verb;
@@ -317,66 +335,70 @@ function FraudAnalysisModel() {
 
     self.customer = ko.observable();
 
-    self.searchGid = function(customer) {
+    self.searchGid = function (customer) {
         alert(customer.gid);
     }
 
-    self.addProduct = function(line){
+    self.addProduct = function (line) {
         self.products.push(line);
     }
 
-    self.updateMupId = function(){
+    self.updateMupId = function () {
         self.mupId(self.tempmupId());
     }
 
-    self.updateMupFraudId = function(){
+    self.updateMupFraudId = function () {
         self.fraudId(self.tempFraudId());
     }
 
-    self.setBilling = function(address){
+    self.setBilling = function (address) {
         self.billing(address);
     }
 
-    self.setDelivery = function(address){
+    self.setDelivery = function (address) {
         self.delivery(address);
     }
 
-    self.setGiven = function(address){
+    self.setGiven = function (address) {
         self.given(address);
     }
 
-    self.setFraud = function(fraud) {
+    self.setFraud = function (fraud) {
         self.fraud(fraud);
         if (fraud && fraud.controlRequestJson && fraud.controlRequestJson.ids) {
             self.tempmupId(fraud.controlRequestJson.ids.MUP_ID);
-        }  else {
+        } else {
             self.tempmupId(null);
         }
 
         if (fraud && fraud.id) {
             self.tempFraudId(fraud.id);
-        }  else {
+        } else {
             self.tempFraudId(null);
         }
     }
 
-    self.addCustomerInfo = function(info) {
+    self.addCustomerInfo = function (info) {
         self.customer(info);
     }
 
-    self.addHigh = function(analysis){
-        self.high.push(analysis)}
+    self.addHigh = function (analysis) {
+        self.high.push(analysis)
+    }
 
-    self.addMedium = function(analysis){
-        self.medium.push(analysis)}
+    self.addMedium = function (analysis) {
+        self.medium.push(analysis)
+    }
 
-    self.addLow = function(analysis){
-        self.low.push(analysis)}
+    self.addLow = function (analysis) {
+        self.low.push(analysis)
+    }
 
-    self.addNone = function(analysis){
-        self.none.push(analysis)}
+    self.addNone = function (analysis) {
+        self.none.push(analysis)
+    }
 
-    self.reset = function() {
+    self.reset = function () {
         self.high.removeAll();
         self.medium.removeAll();
         self.low.removeAll();
@@ -423,7 +445,6 @@ function extractFraudAnalysis(fraud) {
     fraudAnalysisModel.setFraud(fraud);
 
 
-
     var analysises = fraud['fraudAnalysisResults']
     for (var pos in analysises) {
         var analysis = analysises[pos];
@@ -455,7 +476,7 @@ function extractFraudAnalysis(fraud) {
     // Customer data
     customer.gid = fraud.governmentId;
     customer.email = fraudInData['emails']['email'];
-    customer.ip    = fraudInData['ipAddress'];
+    customer.ip = fraudInData['ipAddress'];
     if (fraudInData['phoneNumbers']['phone1']) {
         customer.phone = fraudInData['phoneNumbers']['phone1'];
     }
@@ -485,7 +506,6 @@ function getJsonValue(ob, field) {
 }
 
 
-
 function showPaymentModal(payment) {
 
     var paymentModal = $('#paymentModal');
@@ -495,8 +515,6 @@ function showPaymentModal(payment) {
 
     paymentModal.modal('show');
 }
-
-
 
 
 function createGenericRow(element, ob) {
@@ -608,20 +626,32 @@ function checkValue(value) {
 
 }
 
+
 function ajax(uri, method, data) {
+
     var request = {
         type: method,
         url: uri,
         contentType: "application/json",
         data: data,
+        headers: {
+            "Authorization": "Basic " + btoa(loginViewModel.userName() + ":" + loginViewModel.password())
+        },
         beforeSend: function () {
         },
         complete: function () {
         },
         success: function (data) {
+            loginViewModel.hideLogin();
         },
         error: function (data) {
-            alert("ajax error" + data);
+            if (data.status == "401") {
+                loginViewModel.showLogin();
+            } else if (data.status == "404") {
+                loginViewModel.showLogin();
+            } else {
+                alert("ajax error" + data);
+            }
         },
         dataType: 'json'
     };
@@ -634,6 +664,7 @@ function loadValueToSearch(value) {
 
 
 var searchViewModel = new SearchViewModel();
+var loginViewModel = new LoginViewModel();
 var resultViewModel = new ResultViewModel();
 var searchViewWidgetsModel = new SearchViewWidgetsModel();
 var specLineModel = new SpecLineModel();

@@ -82,6 +82,11 @@
             });
         });
         $(function () {
+            $("#includedLoginModal").load("modals/loginModal.html", function () {
+                ko.applyBindings(loginViewModel, document.getElementById('loginModal'));
+            });
+        });
+        $(function () {
             $("#includedShortcutModal").load("modals/shortcutsModal.html");
         });
 
@@ -113,6 +118,9 @@
 <div id="includedFraudModal"></div>
 <div id="includedShortcutModal"></div>
 <div id="includedhtmlModal"></div>
+<div id="includedLoginModal"></div>
+
+
 
 
 <style>
@@ -305,6 +313,10 @@
         </div>
     </div>
 </div>
+
+
+
+
 <script type="text/javascript" src="js/application/views.js"></script>
 <script type='text/javascript' src="js/application/paginator.js"></script>
 <script type="text/javascript" src="js/application/aggregation_visualizer.js"></script>
