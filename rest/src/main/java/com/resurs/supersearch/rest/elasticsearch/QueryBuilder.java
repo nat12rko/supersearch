@@ -13,18 +13,19 @@ import java.util.List;
  */
 public interface QueryBuilder {
 
-    public List<String> getIndexes();
+    List<String> getIndexes();
 
-    public List<String> getTypes();
+    List<String> getTypes();
 
-    public org.elasticsearch.index.query.QueryBuilder createQuery(Search search);
+    org.elasticsearch.index.query.QueryBuilder createQuery(Search search);
 
-    public String getQueryName();
+    String getQueryName();
 
-    public List<AggregationBuilder> createAggregations(Search search);
+    List<AggregationBuilder> createAggregations(Search search);
 
-    public FilterBuilder createCountryCodeFilter(List<CountryCode> countryCodes);
+    FilterBuilder createCountryCodeFilter(List<CountryCode> countryCodes);
 
-    public SystemQueryEnum getSystemQueryEnum();
+    SystemQueryEnum getSystemQueryEnum();
+
 
 }

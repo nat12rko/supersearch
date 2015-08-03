@@ -28,6 +28,7 @@ public class GovernmentIdQueryParser implements QueryParser {
         for (CountryCode countryCode : countryCodes) {
             try {
                 returnQuery.append(" \"" + GovernmentIdFactory.guessAndConstructGovernmentId(countryCode, workQuery).getAsLongString() + "\"");
+                returnQuery.append(" \"" + GovernmentIdFactory.guessAndConstructGovernmentId(countryCode, workQuery).getAsOrthodoxString() + "\"");
                 if (countryCode.equals(CountryCode.NO)) {
                     //Nasty fix for norweigen
                     returnQuery.append(" \"" +

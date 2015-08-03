@@ -8,6 +8,7 @@ import org.elasticsearch.index.query.FilterBuilder;
 import org.elasticsearch.index.query.FilterBuilders;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.index.query.QueryStringQueryBuilder;
 import org.elasticsearch.search.aggregations.AggregationBuilder;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.springframework.beans.factory.annotation.Value;
@@ -27,6 +28,11 @@ public class InvoiceQueryBuilder implements com.resurs.supersearch.rest.elastics
     @Value("${supersearch.invoice.index}")
     String indexs;
 
+    private static String[] fields = {
+            "governmentIdString",
+            "oCRNumber",
+            "chainId"
+    };
 
 
     public List<String> getIndexes() {
@@ -38,11 +44,19 @@ public class InvoiceQueryBuilder implements com.resurs.supersearch.rest.elastics
     }
 
     public QueryBuilder createQuery(Search search) {
+
+        QueryStringQueryBuilder queryStringQueryBuilder =
+                QueryBuilders.queryString(search.getSearchString()).lenient(true);
+
+        for (String field : fields) {
+            queryStringQueryBuilder.field(field);
+        }
         QueryBuilder queryBuilder = QueryBuilders
                 .boolQuery()
-                .must(QueryBuilders.queryString(search.getSearchString()));
+                .must(queryStringQueryBuilder);
         return QueryBuilders.indicesQuery(queryBuilder, getIndexes().toArray(new String[0])).queryName("invoice");
     }
+
 
     @Override
     public String getQueryName() {

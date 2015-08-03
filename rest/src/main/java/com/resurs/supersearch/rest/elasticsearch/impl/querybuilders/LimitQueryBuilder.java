@@ -8,6 +8,7 @@ import org.elasticsearch.index.query.FilterBuilder;
 import org.elasticsearch.index.query.FilterBuilders;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.index.query.QueryStringQueryBuilder;
 import org.elasticsearch.search.aggregations.AggregationBuilder;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.springframework.beans.factory.annotation.Value;
@@ -28,6 +29,23 @@ public class LimitQueryBuilder implements com.resurs.supersearch.rest.elasticsea
     String indexs;
 
 
+    private static String[] fields = {
+            "reservationId",
+            "mupRefNumber",
+            "customer.email",
+            "customer.firstName",
+            "customer.fullName",
+            "customer.governmentId",
+            "customer.lastName",
+            "customer.*Phone",
+            "customer.address.*",
+            "creditProductCode",
+            "application.applicant.*PhoneNumber",
+            "application.applicant.governmentId.value",
+            "application.applicant.emailAddress"
+    };
+
+
     public List<String> getIndexes() {
         return Arrays.asList(indexs.split(";"));
     }
@@ -37,9 +55,17 @@ public class LimitQueryBuilder implements com.resurs.supersearch.rest.elasticsea
     }
 
     public QueryBuilder createQuery(Search search) {
+
+        QueryStringQueryBuilder queryStringQueryBuilder =
+                QueryBuilders.queryString(search.getSearchString()).lenient(true);
+
+        for (String field : fields) {
+            queryStringQueryBuilder.field(field);
+        }
+
         QueryBuilder queryBuilder = QueryBuilders
                 .boolQuery()
-                .must(QueryBuilders.queryString(search.getSearchString()));
+                .must(queryStringQueryBuilder);
         return QueryBuilders
                 .boolQuery().must(QueryBuilders.indicesQuery(queryBuilder, getIndexes().toArray(new String[0]))).queryName(getQueryName());
     }
@@ -59,6 +85,7 @@ public class LimitQueryBuilder implements com.resurs.supersearch.rest.elasticsea
         return aggregationBuilders;
     }
 
+
     @Override
     public FilterBuilder createCountryCodeFilter(List<CountryCode> countryCodes) {
         BoolFilterBuilder boolFilterBuilder = FilterBuilders.boolFilter().filterName(getQueryName());
@@ -66,7 +93,7 @@ public class LimitQueryBuilder implements com.resurs.supersearch.rest.elasticsea
         for (CountryCode countryCode : countryCodes) {
             boolFilterBuilder.should(FilterBuilders.queryFilter(
                     QueryBuilders.matchQuery(
-                    "limitresponse.customer.countryCode", countryCode.name())));
+                            "limitresponse.customer.countryCode", countryCode.name())));
         }
         return FilterBuilders.boolFilter().must(boolFilterBuilder);
 
