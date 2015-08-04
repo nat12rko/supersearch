@@ -44,13 +44,11 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by Trind on 2014-02-22.
- */
 @Service
 public class SearchServiceImpl implements SearchService {
 
@@ -85,14 +83,6 @@ public class SearchServiceImpl implements SearchService {
         displayValues.put("creditcase", "Multiupplys");
         displayValues.put("payment", "Ecommerce");
         displayValues.put("invoice", "Invoice");
-
-
-
-
-
-
-
-
     }
 
 
@@ -145,48 +135,42 @@ public class SearchServiceImpl implements SearchService {
     public List<Hit> getMultiupplysById(String id) {
 
         TermQueryBuilder publicReferenceNumber = QueryBuilders.termQuery("publicReferenceNumber", id);
+
         HasParentQueryBuilder creditcase = QueryBuilders.hasParentQuery("creditcase", publicReferenceNumber);
 
-        List<Hit> search = search(publicReferenceNumber);
-        search.addAll(search(creditcase));
-
+        List<Hit> search = search(publicReferenceNumber, multiupplysQueryBuilder.getTypes(), multiupplysQueryBuilder.getIndexes());
+        search.addAll(search(creditcase, Arrays.asList("excecutedfilter","creditcase","customer"), multiupplysQueryBuilder.getIndexes()));
 
         return search;
     }
 
     public List<Hit> getLimitByMultiupplysId(String id) {
-        TermQueryBuilder publicReferenceNumber = QueryBuilders.termQuery("mupRefNumber", id);
-        return search(publicReferenceNumber);
+        return search(QueryBuilders.termQuery("mupRefNumber", id), limitQueryBuilder.getTypes(), limitQueryBuilder.getIndexes());
     }
 
     public List<Hit> getEcommerceByMultiupplysId(String id) {
-        TermQueryBuilder publicReferenceNumber = QueryBuilders.termQuery("multiupplysId", id);
-        return search(publicReferenceNumber);
+        return search(QueryBuilders.termQuery("multiupplysId", id), ecommerceQueryBuilder.getTypes(), ecommerceQueryBuilder.getIndexes());
     }
 
     public List<Hit> getEcommerceByFraudId(String id) {
-        TermQueryBuilder fraudId = QueryBuilders.termQuery("fraudId", id);
-        return search(fraudId);
+        return search(QueryBuilders.termQuery("fraudId", id), ecommerceQueryBuilder.getTypes(), ecommerceQueryBuilder.getIndexes());
     }
 
     public List<Hit> getEcommerceBydId(String id) {
-        TermQueryBuilder ecommerceId = QueryBuilders.termQuery("id", id);
-        return search(ecommerceId);
+        return search(QueryBuilders.termQuery("id", id), ecommerceQueryBuilder.getTypes(), ecommerceQueryBuilder.getIndexes());
     }
-
 
     public List<Hit> getFraudByMultiupplysId(String id) {
-        TermQueryBuilder publicReferenceNumber = QueryBuilders.termQuery("controlRequestJson.ids.MUP_ID", id);
-        return search(publicReferenceNumber);
+        return search(QueryBuilders.termQuery("controlRequestJson.ids.MUP_ID", id), fraudQueryBuilder.getTypes(), fraudQueryBuilder.getIndexes());
     }
 
-    private List<Hit> search(org.elasticsearch.index.query.QueryBuilder queryBuilder) {
+    private List<Hit> search(org.elasticsearch.index.query.QueryBuilder queryBuilder, List<String> types, List<String> indecies) {
 
         SearchRequestBuilder searchRequestBuilder =
-                elasticSearchService.getClient().prepareSearch("_all")
+                elasticSearchService.getClient().prepareSearch(indecies.toArray(new String[0]))
+                        .setTypes(types.toArray(new String[0]))
                         .setQuery(queryBuilder).
                         setSearchType(SearchType.QUERY_THEN_FETCH).setTrackScores(false).addSort(SortBuilders.fieldSort("_timestamp"));
-
 
         SearchResponse searchResponse = searchRequestBuilder.setFrom(0)
                 .setSize(100).setExplain(false)

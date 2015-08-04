@@ -8,6 +8,7 @@ import org.elasticsearch.index.query.FilterBuilder;
 import org.elasticsearch.index.query.FilterBuilders;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.index.query.QueryStringQueryBuilder;
 import org.elasticsearch.search.aggregations.AggregationBuilder;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.springframework.beans.factory.annotation.Value;
@@ -27,6 +28,27 @@ public class MultiupplysQueryBuilder implements com.resurs.supersearch.rest.elas
     @Value("${supersearch.multiupplys.index}")
     String indexs;
 
+    private static String[] fieldsCustomer = {
+            "customerAddresses.*",
+            "governmentId.value",
+            "email",
+            "lastName",
+            "firstName",
+            "middleName",
+            "fullName"
+    };
+    private static String[] fieldsCreditProduct = {
+            "creditProductCode",
+            "referenceNumber.internalReferenceNumber",
+            "publicReferenceNumber",
+            "creditCaseTags.*",
+            "application.externalReference",
+            "application.applicant.emailAddress",
+            "application.applicant.*PhoneNumber",
+            "application.coapplicant.emailAddress",
+            "application.coApplicant.*PhoneNumber",
+   };
+
 
     public List<String> getIndexes() {
         return Arrays.asList(indexs.split(";"));
@@ -37,13 +59,26 @@ public class MultiupplysQueryBuilder implements com.resurs.supersearch.rest.elas
     }
 
     public QueryBuilder createQuery(Search search) {
+        QueryStringQueryBuilder queryStringQueryBuilderChild =
+                QueryBuilders.queryString(search.getSearchString()).lenient(true);
+
+        for (String field : fieldsCustomer) {
+            queryStringQueryBuilderChild.field(field);
+        }
+
+        QueryStringQueryBuilder queryStringQueryBuilder =
+                QueryBuilders.queryString(search.getSearchString()).lenient(true);
+
+        for (String field : fieldsCreditProduct) {
+            queryStringQueryBuilder.field(field);
+        }
+
+
         QueryBuilder queryBuilder = QueryBuilders
                 .boolQuery()
- /*              .should(QueryBuilders.hasChildQuery("application",
-                        QueryBuilders.queryString(search.getSearchString())))*/
                 .should(QueryBuilders.hasChildQuery("customer",
-                        QueryBuilders.queryString(search.getSearchString())))
-                .should(QueryBuilders.queryString(search.getSearchString()));
+                        queryStringQueryBuilderChild))
+                .should(queryStringQueryBuilder);
 
 
         queryBuilder = QueryBuilders.boolQuery().must(queryBuilder).must(QueryBuilders.termsQuery("_type", getTypes()));

@@ -8,6 +8,7 @@ import org.elasticsearch.index.query.FilterBuilder;
 import org.elasticsearch.index.query.FilterBuilders;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.index.query.QueryStringQueryBuilder;
 import org.elasticsearch.search.aggregations.AggregationBuilder;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,6 +27,55 @@ public class EcommerceQueryBuilder implements com.resurs.supersearch.rest.elasti
     @Value("${supersearch.ecommerce.index}")
     String indexs;
 
+    private static String[] fields = {
+
+            "paymentDiffs.externalTransactionId",
+            "paymentDiffs.invoiceId",
+            "paymentDiffs.externalOrderId",
+
+            "paymentDiffs.paymentSpecification.lines.articleNo",
+            "paymentDiffs.paymentSpecification.lines.description",
+            "paymentDiffs.paymentSpecification.lines.externalId",
+
+            "customerGivenAddress.lastName",
+            "customerGivenAddress.zipCode",
+            "customerGivenAddress.street",
+            "customerGivenAddress.fullName",
+            "customerGivenAddress.firstName",
+            "customerGivenAddress.city",
+
+            "billingAddress.lastName",
+            "billingAddress.zipCode",
+            "billingAddress.street",
+            "billingAddress.fullName",
+            "billingAddress.firstName",
+            "billingAddress.city",
+
+            "deliveryAddress.lastName",
+            "deliveryAddress.zipCode",
+            "deliveryAddress.street",
+            "deliveryAddress.fullName",
+            "deliveryAddress.firstName",
+            "deliveryAddress.city",
+
+            "phone1",
+            "phone2",
+
+            "email",
+
+            "externalId",
+            "accountNumber",
+
+            "customer.governmentId",
+            "customer.governmentIdStringLong",
+            "customer.governmentIdStringShort",
+
+            "metaData.*",
+            "fraudId",
+            "reservationId",
+            "multiupplysId"
+    };
+
 
     public List<String> getIndexes() {
         return Arrays.asList(indexs.split(";"));
@@ -36,9 +86,17 @@ public class EcommerceQueryBuilder implements com.resurs.supersearch.rest.elasti
     }
 
     public QueryBuilder createQuery(Search search) {
+
+        QueryStringQueryBuilder queryStringQueryBuilder =
+                QueryBuilders.queryString(search.getSearchString()).lenient(true);
+
+        for (String field : fields) {
+            queryStringQueryBuilder.field(field);
+        }
+
         QueryBuilder queryBuilder = QueryBuilders
                 .boolQuery()
-                .must(QueryBuilders.queryString(search.getSearchString()));
+                .must(queryStringQueryBuilder);
         return QueryBuilders.indicesQuery(queryBuilder, getIndexes().toArray(new String[0])).queryName(getQueryName());
     }
 
