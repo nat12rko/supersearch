@@ -69,11 +69,14 @@ public class EcommerceQueryBuilder implements com.resurs.supersearch.rest.elasti
             "customer.governmentId",
             "customer.governmentIdStringLong",
             "customer.governmentIdStringShort",
-
+            "ip",
+            "representative.bankSystemStoreId",
+            "representative.name",
             "metaData.*",
             "fraudId",
             "reservationId",
-            "multiupplysId"
+            "multiupplysId",
+            "lifePhase"
     };
 
 

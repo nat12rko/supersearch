@@ -40,7 +40,9 @@ public class FraudQueryBuilder implements com.resurs.supersearch.rest.elasticsea
             "controlRequestJson.phoneNumbers.phone2",
             "controlRequestJson.customerGivenAddress.*",
             "controlRequestJson.billingAddress.*",
-            "controlRequestJson.deliveryAddress.*"
+            "controlRequestJson.deliveryAddress.*",
+            "fraudCaseData.ipAddress",
+            "recommendation"
     };
 
 
