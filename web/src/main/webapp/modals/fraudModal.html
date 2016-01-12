@@ -209,6 +209,18 @@
                             </div>
 
                             <hr>
+                            <div class="panel" data-bind="visible:analysis().length">
+                                <div class="panel-heading">Controls</div>
+                                <table class="table table-condensed">
+                                    <tbody data-bind="foreach: analysis">
+                                    <tr data-bind="css: {danger: fraudRiskScore > 0 }">
+                                        <td data-bind="text: analysisName"></td>
+                                        <td data-bind="html: resultDescription"></td>
+                                        <td data-bind="html: fraudRiskScore"></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                             <div class="panel panel-danger" data-bind="visible:high().length">
                                 <div class="panel-heading">High risk</div>
                                 <table class="table table-condensed table-danger">
