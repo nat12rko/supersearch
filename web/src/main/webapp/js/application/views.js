@@ -302,6 +302,9 @@ function FraudAnalysisModel() {
     self.none = ko.observableArray();
     self.products = ko.observableArray();
 
+    self.analysis = ko.observableArray();
+
+
     self.fraudId = ko.observable();
     self.tempFraudId = ko.observable();
 
@@ -364,6 +367,9 @@ function FraudAnalysisModel() {
         self.customer(info);
     }
 
+    self.addAnalysis = function(analysis){
+        self.analysis.push(analysis)}
+
     self.addHigh = function(analysis){
         self.high.push(analysis)}
 
@@ -381,6 +387,8 @@ function FraudAnalysisModel() {
         self.medium.removeAll();
         self.low.removeAll();
         self.none.removeAll();
+        self.analysis.removeAll();
+
         self.products.removeAll();
         self.customer();
 
@@ -435,6 +443,8 @@ function extractFraudAnalysis(fraud) {
             fraudAnalysisModel.addLow(analysis);
         } else if (analysis.fraudRiskEstmation == "NONE") {
             fraudAnalysisModel.addNone(analysis);
+        } else {
+            fraudAnalysisModel.addAnalysis(analysis);
         }
     }
 
