@@ -1,7 +1,5 @@
-FROM tomcat:8-jre8
-ADD *.sh /usr/local/script/
+FROM registry.resurs.loc:5000/base-t8-j8:latest
 ADD config/*.properties /etc/resurs/supersearch/
 ADD *.war /usr/local/tomcat/webapps/
-CMD bash /usr/local/script/replaceContent.sh && /usr/local/tomcat/bin/catalina.sh run
 
 
