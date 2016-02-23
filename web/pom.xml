@@ -12,7 +12,7 @@
         <relativePath>../pom.xml</relativePath>
         <groupId>com.resurs.supersearch</groupId>
         <artifactId>supersearch</artifactId>
-        <version>0.1-SNAPSHOT</version>
+        <version>1.0</version>
     </parent>
 
     <properties>
@@ -89,7 +89,7 @@
                                             </extraDockerFolders>
                                             <contextPath>web</contextPath>
                                             <marathonConfiguration>
-                                               <healthCheckPath>.</healthCheckPath>
+                                               <healthCheckPath>web/</healthCheckPath>
                                             </marathonConfiguration>
                                         </image>
                                     </images>
