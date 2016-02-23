@@ -1,6 +1,10 @@
 package com.resurs.supersearch.rest.elasticsearch;
 
+import com.resurs.commons.l10n.CountryCode;
 import com.resurs.supersearch.rest.resources.Search;
+import com.resurs.supersearch.rest.resources.SystemQueryEnum;
+import org.elasticsearch.index.query.FilterBuilder;
+import org.elasticsearch.search.aggregations.AggregationBuilder;
 
 import java.util.List;
 
@@ -9,10 +13,19 @@ import java.util.List;
  */
 public interface QueryBuilder {
 
-    public List<String> getIndexes();
+    List<String> getIndexes();
 
-    public List<String> getTypes();
+    List<String> getTypes();
 
-    public org.elasticsearch.index.query.QueryBuilder createQuery(Search search);
+    org.elasticsearch.index.query.QueryBuilder createQuery(Search search);
+
+    String getQueryName();
+
+    List<AggregationBuilder> createAggregations(Search search);
+
+    FilterBuilder createCountryCodeFilter(List<CountryCode> countryCodes);
+
+    SystemQueryEnum getSystemQueryEnum();
+
 
 }

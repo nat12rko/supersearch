@@ -1,0 +1,125 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="panel panel-warning" data-bind="with : $data.creditcase">
+                <div class="panel-heading">Summary</div>
+                <table class="table table-condensed table-warning">
+                    <tbody>
+                    <tr class="warning">
+                        <td>Multiupplysid:</td>
+                        <td data-bind="text: $data.publicReferenceNumber"></td>
+                    </tr>
+                    <tr class="warning">
+                        <td>State:</td>
+                        <td data-bind="text: $data.currentState.state"></td>
+                    </tr>
+                    <tr class="warning">
+                        <td>Requested amount:</td>
+                        <td data-bind="text: $data.application.amount"></td>
+                    </tr>
+                    <tr class="warning">
+                        <td>Approved amount:</td>
+                        <td data-bind="text: $data.currentState.amount"></td>
+                    </tr>
+                    <tr class="warning">
+                        <td>Credit product:</td>
+                        <td data-bind="text: $data.creditProductCode"></td>
+                    </tr>
+                    <tr class="warning">
+                        <td>Bank Product:</td>
+                        <td data-bind="text: $data.creditCaseTags.BANKPRODUCT_CODE"></td>
+                    </tr>
+                    <tr class="warning">
+                        <td>Representative code:</td>
+                        <td data-bind="text: $data.creditCaseTags.BANKSYSTEM_REPRESENTATIVE_CODE"></td>
+                    </tr>
+                    <tr class="warning">
+                        <td>Representative name:</td>
+                        <td data-bind="text: $data.creditCaseTags.REPRESENTATIVE_NAME"></td>
+                    </tr>
+                    <tr class="warning">
+                        <td>Customer Ip:</td>
+                        <td data-bind="text: $component.ipAddress"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="panel panel-warning">
+                <div class="panel-heading">Customer information</div>
+                <table class="table table-condensed table-warning">
+                    <tbody>
+                    <tr class="warning" data-bind="with : $data.customer">
+                        <td>Government id:</td>
+                        <td data-bind="text: $data.governmentId.value"></td>
+                    </tr>
+                    <tr class="warning" data-bind="with : $data.customer">
+                        <td>Government type:</td>
+                        <td data-bind="text: $data.governmentId.type"></td>
+                    </tr>
+                    <tr class="warning" data-bind="with : $data.customer">
+                        <td>Name:</td>
+                        <td data-bind="text: $data.fullName"></td>
+                    </tr>
+                    <tr class="warning" data-bind="with : $data.customer">
+                        <td>Email:</td>
+                        <td data-bind="text: $data.email"></td>
+                    </tr>
+                    <tr class="warning" data-bind="with : $data.customerAddresses">
+                        <td>Street:</td>
+                        <td data-bind="text: $data.addressRow"></td>
+                    </tr>
+                    <tr class="warning" data-bind="with : $data.customerAddresses">
+                        <td>C/O:</td>
+                        <td data-bind="text: $data.addressRow2"></td>
+                    </tr>
+                    <tr class="warning" data-bind="with : $data.customerAddresses">
+                        <td>Postal code:</td>
+                        <td data-bind="text: $data.postalCode"></td>
+                    </tr>
+                    <tr class="warning" data-bind="with : $data.customerAddresses">
+                        <td>Postal area:</td>
+                        <td data-bind="text: $data.postalArea"></td>
+                    </tr>
+                    <tr class="warning" data-bind="with : $data.customerAddresses">
+                        <td>Country code:</td>
+                        <td data-bind="text: $data.countryCode"></td>
+                    </tr>
+                    <tr class="warning" data-bind="with : $data.customerAddresses">
+                        <td>Credability:</td>
+                        <td data-bind="text: $data.addressSource.addressCredibility"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-warning">
+                <div class="panel-heading">Executed filters</div>
+                <table class="table table-condensed table-danger">
+                    <tbody data-bind="foreach: $data.executedFilters">
+                        <tr class="warning" >
+                            <td data-bind="text: $data.collectedData.collectedDataReports[0].sourceName"></td>
+                            <td data-bind="text: $data.creditDesicion.amount"></td>
+                            <td data-bind="text: $data.creditDesicion.creditDecisionType"></td>
+                            <td data-bind="text: $data.collectedData.technicalStatus"></td>
+                            <td data-bind="text: $data.collectedData.technicalStatusMessage"></td>
+                            <td class="warning"  data-bind="text: $data.executionTime"></td>
+                            <td class="warning"  data-bind="click: function(data, event) { $component.openHtmlPage(collectedData.collectedDataReports[0].htmlResponse) }">Visa</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

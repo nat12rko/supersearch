@@ -1,0 +1,29 @@
+<div class="panel panel-muted tinymargins">
+    <!-- ko component: {
+    name: "searchlist-item-header",
+    params: {
+        caption: "Invoice",
+        id: row.object.id,
+        timestamp: row.object.created,
+        }
+    } --><!-- /ko -->
+    <div class="panel-body bg-muted">
+        <div class="row text-muted">
+            <div class="col-lg-3" >
+                <span-search params="value:row.object.type"></span-search><br/>
+                <br/>
+                <span-search params="value:row.object.governmentIdString"></span-search><br/>
+                <span-search params="value:row.object.countryCode"></span-search>
+            </div>
+           <div class="col-lg-4" >
+                OCRNumber:  <span-search params="value: row.object.oCRNumber"></span-search><br/>
+                Created: <b><span-date params='raw: row.object.created, mode: "fancy"'></span-date></b><br/>
+                Expiration: <b><span-date params='raw: row.object.expirationDate, mode: "fancy"'></span-date></b><br/>
+            </div>
+            <div class="col-lg-3" >
+                Chain:  <span-search params="value: row.object.chainId"></span-search><br/>
+                TotalAmount:  <span-search params="value: row.object.totalAmount"></span-search><br/>
+            </div>
+        </div>
+    </div>
+</div>

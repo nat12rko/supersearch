@@ -1,0 +1,37 @@
+<div class="panel panel-mup tinymargins">
+    <!-- ko component: {
+        name: "searchlist-item-header",
+        params: {
+            caption: "Multiupplys",
+            id: row.object.publicReferenceNumber,
+            timestamp: row.object.created,
+            clickUrl: show
+
+            }
+    } --><!-- /ko -->
+    <div class="panel-body bg-warning">
+        <div class="row text-warning">
+            <div class="col-lg-2" >
+                <span-search params="value: row.object.currentState.state"></span-search><br/>
+                <br/>
+                <span-search params="value:row.object.application.applicant.governmentId.value"></span-search><br/>
+                <span-search params="value:row.object.application.countryCode"></span-search>
+                <span-search params="value:row.object.application.customerForm"></span-search><br/>
+            </div>
+
+            <div class="col-lg-4">
+                Mobile phone number: <span-search params="value: row.object.application.applicant.mobilePhoneNumber"></span-search><br/>
+                <br/>
+                Representative name: <span-search params="value: row.object.creditCaseTags.REPRESENTATIVE_NAME"></span-search><br/>
+                Representative code: <span-search params="value: row.object.creditCaseTags.BANKSYSTEM_REPRESENTATIVE_CODE"></span-search>
+            </div>
+            <div class="col-lg-3">
+                Resquested amount: <span data-bind="text:row.object.application.amount"></span><br/>
+                Approved amount: <span data-bind="text:row.object.currentState.amount"></span><br/>
+            </div>
+            <div class="col-lg-3">
+                IP: <span-search params="value: ipAddress()"/>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,5 +1,7 @@
 package com.resurs.supersearch.rest.resources;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.resurs.commons.l10n.CountryCode;
 import org.apache.commons.lang3.StringUtils;
 import org.elasticsearch.search.sort.SortOrder;
 
@@ -15,19 +17,37 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 @XmlRootElement()
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Search {
 
+
+    List<CountryCode> countryCodes = new ArrayList<>();
     Integer page = 0;
     Integer pageSize = 25;
 
     String sortField;
     SortOrder sortOrder;
-    String searchString = "*";
+    String searchString = "";
+
+    /**
+     * http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/mapping-date-format.html
+     */
+    String fromDate;
+    String toDate;
 
     List<Filter> filters = new ArrayList<>();
+    List<SystemQueryEnum> systems = new ArrayList<>();
 
     public Search() {
 
+    }
+
+    public List<CountryCode> getCountryCodes() {
+        return countryCodes;
+    }
+
+    public void setCountryCodes(List<CountryCode> countryCodes) {
+        this.countryCodes = countryCodes;
     }
 
     public String getSearchString() {
@@ -76,5 +96,30 @@ public class Search {
 
     public void setSortOrder(SortOrder sortOrder) {
         this.sortOrder = sortOrder;
+    }
+
+    public List<SystemQueryEnum> getSystems() {
+        return systems;
+    }
+
+    public void setSystems(List<SystemQueryEnum> systems) {
+        this.systems = systems;
+    }
+
+
+    public String getFromDate() {
+        return fromDate;
+    }
+
+    public void setFromDate(String fromDate) {
+        this.fromDate = fromDate;
+    }
+
+    public String getToDate() {
+        return toDate;
+    }
+
+    public void setToDate(String toDate) {
+        this.toDate = toDate;
     }
 }

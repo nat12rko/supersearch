@@ -1,0 +1,55 @@
+.pagination {
+    margin: 0px 0;
+}
+
+.container {
+    width: 95%;
+}
+
+.table {
+    font-size: 10px;
+}
+
+.goleft {
+    float:left
+}
+
+.goright {
+    float:right
+}
+
+.gocenter {
+    text-align: center;
+    margin: 0 auto;
+}
+
+.tinymargins {
+    margin-bottom: 10px;
+}
+
+
+.affix{
+    top:30px;
+}
+
+.panel-fraud {
+    background: #DA4453; color: #FFF;
+}
+
+.panel-ecom {
+    background: #3BAFDA; color: #FFF;
+}
+
+.panel-mup {
+    background: #FFCE54; color: #FFF;
+}
+
+.modal-body {
+    background-color: rgb(241, 242, 246);
+}
+
+.modal-header {
+    background-color: rgb(241, 242, 246);
+}
+
+

@@ -1,89 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>web</artifactId>
     <packaging>war</packaging>
-    <name>Admin</name>
+    <name>web</name>
     <description>Super Search Web</description>
 
     <parent>
         <relativePath>../pom.xml</relativePath>
         <groupId>com.resurs.supersearch</groupId>
         <artifactId>supersearch</artifactId>
-        <version>0.1-SNAPSHOT</version>
-
+        <version>1.0</version>
     </parent>
+
+    <properties>
+        <docker.component>web</docker.component>
+    </properties>
 
     <dependencies>
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-web</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-webmvc</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-core</artifactId>
-        </dependency>
-
-
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>jstl</artifactId>
-            <version>1.2</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-            <version>2.5</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet.jsp</groupId>
-            <artifactId>jsp-api</artifactId>
-            <version>2.1</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.graylog2</groupId>
-            <artifactId>gelfj</artifactId>
-        </dependency>
-
-
-        <!-- FOR UUID automatcily in header -->
-
-
-        <dependency>
-            <groupId>com.resurs.webgui</groupId>
-            <artifactId>taglibs</artifactId>
-            <version>1.2</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.resurs.webgui</groupId>
-            <artifactId>admin-security</artifactId>
-            <version>1.2</version>
         </dependency>
 
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>knockout</artifactId>
-            <version>3.0.0</version>
+            <version>3.3.0</version>
         </dependency>
 
         <dependency>
@@ -91,15 +41,69 @@
             <artifactId>jquery</artifactId>
             <version>2.1.0-2</version>
         </dependency>
-
-
-
-
     </dependencies>
 
+    <profiles>
+        <profile>
+            <id>docker</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-maven-plugin</artifactId>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-war-plugin</artifactId>
+                        <configuration>
+                            <failOnMissingWebXml>false</failOnMissingWebXml>
+                        </configuration>
+                    </plugin>
+
+                    <!--Specify what files should be included -->
+                    <plugin>
+                        <groupId>com.resurs.dockerplugin</groupId>
+                        <artifactId>resurs-deploy-maven-plugin</artifactId>
+                        <version>1.1-SNAPSHOT</version>
+
+                        <executions>
+                            <execution>
+                                <id>dockerstuff</id>
+                                <goals>
+                                    <goal>resources</goal>
+                                    <goal>all</goal>
+                                </goals>
+                                <configuration>
+                                    <images>
+                                        <image>
+                                            <name>supersearch</name>
+                                            <dockerFileDir>web</dockerFileDir>
+                                            <envPropertyFile>true</envPropertyFile>
+                                            <hostNames>
+                                                <PTE>supersearch</PTE>
+                                                <PTE_MOCK>supersearch-mock</PTE_MOCK>
+                                                <CTE>supersearch.cte.loc.</CTE>
+                                                <CTE_MOCK>mock-supersearch.cte.loc.</CTE_MOCK>
+                                            </hostNames>
+                                            <extraDockerFolders>
+                                                <extraDockerFolder>script</extraDockerFolder>
+                                            </extraDockerFolders>
+                                            <contextPath>web</contextPath>
+                                            <marathonConfiguration>
+                                               <healthCheckPath>web/</healthCheckPath>
+                                            </marathonConfiguration>
+                                        </image>
+                                    </images>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
     <build>
-        <finalName>supersearch-web</finalName>
+        <finalName>web</finalName>
     </build>
 
 </project>

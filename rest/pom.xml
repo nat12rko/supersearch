@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>rest</artifactId>
     <packaging>war</packaging>
-    <version>0.1-SNAPSHOT</version>
+    <version>1.0</version>
     <name>supersearch-rest</name>
 
     <!-- Parent POM reference -->
@@ -11,16 +11,28 @@
         <relativePath>../pom.xml</relativePath>
         <groupId>com.resurs.supersearch</groupId>
         <artifactId>supersearch</artifactId>
-        <version>0.1-SNAPSHOT</version>
-
+        <version>1.0</version>
     </parent>
+
+    <properties>
+        <docker.component>rest</docker.component>
+    </properties>
+
 
     <dependencies>
 
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>3.0.1</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jersey</artifactId>
         </dependency>
 
         <dependency>
@@ -29,96 +41,92 @@
             <version>${elastichsearch.version}</version>
         </dependency>
 
-
-        <dependency>
-            <groupId>com.sun.jersey.contribs</groupId>
-            <artifactId>jersey-spring</artifactId>
-            <version>1.18</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring-core</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring-web</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring-beans</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring-context</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-
-        <dependency>
-            <groupId>com.sun.jersey</groupId>
-            <artifactId>jersey-bundle</artifactId>
-            <version>1.18</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.sun.jersey</groupId>
-            <artifactId>jersey-json</artifactId>
-            <version>1.18</version>
-        </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.2.1</version>
         </dependency>
-
-        <!--
-                <dependency>
-                    <groupId>com.sun.jersey</groupId>
-                    <artifactId>jersey-server</artifactId>
-                    <version>1.18</version>
-                </dependency>
-
-
-        &lt;!&ndash;
-                <dependency>
-                    <groupId>com.sun.jersey</groupId>
-                    <artifactId>jersey-bundle</artifactId>
-                    <version>1.18</version>
-                </dependency>&ndash;&gt;
-
-
-                <dependency>
-                    <groupId>com.sun.jersey</groupId>
-                    <artifactId>jersey-client</artifactId>
-                    <version>1.18</version>
-                </dependency>-->
-
-
-
-
-    <!-- Spring 3 dependencies -->
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-core</artifactId>
+            <groupId>com.resurs.commons</groupId>
+            <artifactId>model</artifactId>
+            <version>1.12</version>
         </dependency>
-
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-web</artifactId>
-        </dependency>
-
-
     </dependencies>
 
+    <profiles>
+        <profile>
+            <id>docker</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-maven-plugin</artifactId>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-war-plugin</artifactId>
+                        <configuration>
+                            <failOnMissingWebXml>false</failOnMissingWebXml>
+                        </configuration>
+                    </plugin>
+
+                    <!--Specify what files should be included -->
+                    <plugin>
+                        <groupId>com.resurs.dockerplugin</groupId>
+                        <artifactId>resurs-deploy-maven-plugin</artifactId>
+                        <version>1.1-SNAPSHOT</version>
+
+                        <executions>
+                            <execution>
+                                <id>dockerstuff</id>
+                                <goals>
+                                    <goal>all</goal>
+                                </goals>
+                                <configuration>
+                                    <images>
+                                        <image>
+                                            <name>supersearch-rest</name>
+                                            <dockerFileDir>rest</dockerFileDir>
+                                            <envPropertyFile>true</envPropertyFile>
+                                            <hostNames>
+                                                <PTE>supersearch-rest</PTE>
+                                                <PTE_MOCK>supersearch-mock-rest</PTE_MOCK>
+                                                <CTE>rest.supersearch.cte.loc.</CTE>
+                                                <CTE_MOCK>mock-rest.supersearch.cte.loc.</CTE_MOCK>
+                                            </hostNames>
+                                            <extraDockerFolders>
+                                                <extraDockerFolder>script</extraDockerFolder>
+                                            </extraDockerFolders>
+                                            <contextPath>rest</contextPath>
+                                            <marathonConfiguration>
+                                                <frontend>false</frontend>
+                                                <healthCheckPath>rest/ping</healthCheckPath>
+                                                <memory>1024</memory>
+                                            </marathonConfiguration>
+                                        </image>
+                                    </images>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

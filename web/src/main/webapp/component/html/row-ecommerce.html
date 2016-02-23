@@ -1,0 +1,49 @@
+<div class="panel panel-sm panel-ecom tinymargins">
+    <!-- ko component: {
+        name: "searchlist-item-header",
+        params: {
+            caption: "E-commerce",
+            id: row.object.externalId,
+            timestamp: row.object.created,
+            buttonText: "Open invoices",
+            buttonUrl: viewInvoices,
+            clickUrl: show
+        }
+} --><!-- /ko -->
+    <div class="panel-body panel-body-sm bg-info">
+        <div class="row text-info">
+            <div class="col-lg-2" >
+                <span-search params="value:row.object.lifePhase"></span-search><br/>
+                <br/>
+                <span-search params="value:row.object.customer.governmentId"></span-search><br/>
+                <span-search params="value:row.object.customer.countryCode"></span-search>
+                <span-search params="value:row.object.customer.customerType"></span-search><br/>
+            </div>
+            <div class="col-lg-5" >
+                Name: <span-search params="value:row.object.billingAddress.fullName"></span-search><br/>
+                E-mail: <span-search params="value:row.object.email"></span-search><br/>
+                Phone: <span-search params="value:row.object.phone1"></span-search><br/>
+                Phone: <span-search params="value:row.object.phone2"></span-search><br/>
+                Street: <span-search params="value:row.object.billingAddress.street"></span-search>, <span-search params="value:row.object.billingAddress.city"></span-search><br/>
+                Total amount: <span data-bind="text:row.object.totalValue.withVat"></span>
+
+            </div>
+            <div class="col-lg-3" >
+                Representative: <span-search params="value:row.object.representative.name"></span-search><br/>
+                Payment method: <span-search params="value:row.object.paymentMethod.name"></span-search><br/>
+                Account nbr: <span-search params="value: row.object.accountNumber"></span-search><br/>
+                IP: <span-search params="value:row.object.ip"></span-search><br/>
+                Signed: <span-search params="value:row.object.signed"></span-search>
+
+
+            </div>
+            <div class="col-lg-2" >
+                Debited: <span-search params="value:row.object.debited"></span-search><br/>
+                Credited: <span-search params="value:row.object.credited"></span-search><br/>
+                Annulled: <span-search params="value:row.object.annulled"></span-search><br/>
+                Creditable: <span-search params="value:row.object.creditable"></span-search><br/>
+                Debitable: <span-search params="value:row.object.debitable"></span-search><br/>
+            </div>
+        </div>
+    </div>
+</div>

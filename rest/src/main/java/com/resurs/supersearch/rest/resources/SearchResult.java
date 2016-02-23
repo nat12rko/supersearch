@@ -12,6 +12,7 @@ import java.util.List;
  */
 public class SearchResult {
     List<Hit> hits = new ArrayList<>();
+    List<Aggregate> aggregates = new ArrayList<>();
     Long totalSize;
     Long searchTime;
 
@@ -37,5 +38,13 @@ public class SearchResult {
 
     public void setSearchTime(Long searchTime) {
         this.searchTime = searchTime;
+    }
+
+    public List<Aggregate> getAggregates() {
+        return aggregates;
+    }
+
+    public void setAggregates(List<Aggregate> aggregates) {
+        this.aggregates = aggregates;
     }
 }

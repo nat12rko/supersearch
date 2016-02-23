@@ -1,0 +1,3276 @@
+{
+    "hits": [
+        {
+            "type": "creditcase",
+            "object": {
+                "contractTerms": 0,
+                "customerIP": {
+                    "ipParts": [
+                        "1",
+                        "2",
+                        "3",
+                        "4"
+                    ]
+                },
+                "publicReferenceNumber": 60176542,
+                "created": 1394711723497,
+                "creditCaseTags": {
+                    "EXTERNAL_REFERENCE": "422321",
+                    "BANKSYSTEM_REPRESENTATIVE_CODE": "999999",
+                    "BANKSYSTEM_REPRESENTATIVE_GROUP_CODE": "999999"
+                },
+                "creditProductCode": "PL031S",
+                "customerIPTimestamp": 1394711723715,
+                "timeout": null,
+                "latestCreditDecision": null,
+                "businessArea": "NOT_SET",
+                "application": {
+                    "isInsured": false,
+                    "decisionPermissionGranted": false,
+                    "insured": false,
+                    "payoutClearingNo": null,
+                    "householdNoOfChildren": 1,
+                    "agreementSignType": null,
+                    "referenceNumber": {
+                        "internalReferenceNumber": 6017654
+                    },
+                    "countryCode": "SE",
+                    "householdLivingExpenses": 0,
+                    "financeOtherLoansAmount": 0,
+                    "increaseExistingCredit": false,
+                    "payoutAccountNo": null,
+                    "paymentTerms": 72,
+                    "employerContactPermitted": null,
+                    "householdIncome": 29295,
+                    "coApplicant": {
+                        "profession": null,
+                        "lastName": null,
+                        "mobilePhoneNumber": null,
+                        "habitationType": null,
+                        "homePhoneNumber": null,
+                        "address": {
+                            "addressSource": {
+                                "addressCredibility": "CUSTOMER_GIVEN"
+                            },
+                            "countryCode": "SE",
+                            "postalArea": "",
+                            "postalCode": "",
+                            "addressRow": "",
+                            "addressRow2": ""
+                        },
+                        "employmentType": null,
+                        "employerName": null,
+                        "employedTo": null,
+                        "yearlyIncome": null,
+                        "firstName": null,
+                        "emailAddress": null,
+                        "referenceNumber": null,
+                        "workPhoneNumber": null,
+                        "employmentDescription": null,
+                        "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPExtendedApplicant",
+                        "employedSince": null,
+                        "habitationDate": null,
+                        "maritalStatus": null,
+                        "governmentId": null
+                    },
+                    "termsAgreedTo": false,
+                    "timestamp": 1394711723613,
+                    "customerForm": "PRIVATE",
+                    "amount": 90000,
+                    "householdTotalAssets": 0,
+                    "householdLoanExpenses": 0,
+                    "message": null,
+                    "applicant": {
+                        "profession": "xx",
+                        "lastName": null,
+                        "mobilePhoneNumber": "+46709787205",
+                        "habitationType": "DETACHED_HOUSE",
+                        "homePhoneNumber": "+46709787205",
+                        "address": {
+                            "addressSource": {
+                                "addressCredibility": "CUSTOMER_GIVEN"
+                            },
+                            "countryCode": "SE",
+                            "postalArea": "",
+                            "postalCode": "",
+                            "addressRow": "",
+                            "addressRow2": ""
+                        },
+                        "employmentType": "FAST_ANSTALLD",
+                        "employerName": "PEAB ANLÄGGNING AB",
+                        "employedTo": null,
+                        "yearlyIncome": 351540,
+                        "firstName": null,
+                        "emailAddress": "smockem79@hotmail.com",
+                        "referenceNumber": {
+                            "internalReferenceNumber": 6017654
+                        },
+                        "workPhoneNumber": "+4643189000",
+                        "employmentDescription": null,
+                        "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPExtendedApplicant",
+                        "employedSince": 1143888923636,
+                        "habitationDate": 946727723629,
+                        "maritalStatus": "SINGLE",
+                        "governmentId": {
+                            "countryCode": "SE",
+                            "_class": "com.resurs.commons.model.governmentid.se.SENaturalGovernmentId",
+                            "type": "NATURAL",
+                            "value": "197911193014"
+                        }
+                    },
+                    "externalReference": null,
+                    "insurableObjectPurchase": false,
+                    "isFinancingOtherLoan": false,
+                    "isInsurableObjectPurchase": false,
+                    "minDesiredLoanAmount": 90000,
+                    "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPExtendedApplication",
+                    "financingOtherLoan": false,
+                    "insuranceDocumentation": null
+                },
+                "referenceNumber": {
+                    "internalReferenceNumber": 6017654
+                },
+                "userIdentifier": null,
+                "countryCode": "UNKNOWN",
+                "_class": "com.resurs.multiupplys.data.CreditCase",
+                "currentState": {
+                    "amount": 90000,
+                    "subState": null,
+                    "referenceNumber": {
+                        "internalReferenceNumber": 6017654
+                    },
+                    "deposit": 0,
+                    "_class": "com.resurs.multiupplys.data.CreditCaseState",
+                    "state": "APPROVED",
+                    "timestamp": 1394711726339
+                },
+                "creditAmount": null,
+                "locked": false,
+                "updated": 1394711723497,
+                "possibleInconsistencies": null,
+                "customer": null,
+                "validTo": null
+            }
+        },
+        {
+            "type": "limitresponse",
+            "object": {
+                "reason": "courtesy of MUPFilter",
+                "rawApplication": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><resurs-response><amount>2249</amount><applicant-government-id>8606176223</applicant-government-id><applicant-telephone-number>0738160200</applicant-telephone-number><applicant-mobile-number>0738160200</applicant-mobile-number><applicant-email-address>lindamalm86@hotmail.com</applicant-email-address></resurs-response>",
+                "coCustomer": null,
+                "decision": "APPROVED",
+                "creditProductCode": "PE012S",
+                "tags": {
+                    "tagEntry": []
+                },
+                "mupRefNumber": 60176492,
+                "application": {
+                    "externalReference": null,
+                    "customerForm": "PRIVATE",
+                    "amount": 2249,
+                    "referenceNumber": null,
+                    "countryCode": "SE",
+                    "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPApplication",
+                    "increaseExistingCredit": false,
+                    "message": null,
+                    "coApplicant": {
+                        "lastName": null,
+                        "mobilePhoneNumber": null,
+                        "homePhoneNumber": null,
+                        "address": {
+                            "addressSource": {
+                                "addressCredibility": "CUSTOMER_GIVEN"
+                            },
+                            "countryCode": "SE",
+                            "postalArea": "",
+                            "postalCode": "",
+                            "addressRow": "",
+                            "addressRow2": ""
+                        },
+                        "employmentType": null,
+                        "employerName": null,
+                        "yearlyIncome": null,
+                        "firstName": null,
+                        "emailAddress": null,
+                        "referenceNumber": null,
+                        "workPhoneNumber": null,
+                        "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPApplicant",
+                        "employedSince": null,
+                        "governmentId": null
+                    },
+                    "timestamp": 1394711704825,
+                    "applicant": {
+                        "lastName": null,
+                        "mobilePhoneNumber": "+46738160200",
+                        "homePhoneNumber": "+46738160200",
+                        "address": {
+                            "addressSource": {
+                                "addressCredibility": "CUSTOMER_GIVEN"
+                            },
+                            "countryCode": "SE",
+                            "postalArea": "",
+                            "postalCode": "",
+                            "addressRow": "",
+                            "addressRow2": ""
+                        },
+                        "employmentType": null,
+                        "employerName": null,
+                        "yearlyIncome": null,
+                        "firstName": null,
+                        "emailAddress": "lindamalm86@hotmail.com",
+                        "referenceNumber": null,
+                        "workPhoneNumber": null,
+                        "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPApplicant",
+                        "employedSince": null,
+                        "governmentId": {
+                            "countryCode": "SE",
+                            "_class": "com.resurs.commons.model.governmentid.se.SENaturalGovernmentId",
+                            "type": "NATURAL",
+                            "value": "198606176223"
+                        }
+                    },
+                    "termsAgreedTo": false
+                },
+                "reservationId": 18464,
+                "requestedAmount": 2249,
+                "approvedAmount": 2249,
+                "timestamp": 1394711704660,
+                "customer": {
+                    "profession": "",
+                    "lastName": "Knutsen",
+                    "address": {
+                        "streetAddress": "Färnebogatan 4 B",
+                        "postalArea": "Filipstad",
+                        "countryCode": "SE",
+                        "postalCode": "68232",
+                        "streetAddress2": "",
+                        "credibility": null
+                    },
+                    "homePhone": "+46738160200",
+                    "fullName": "Linda Knutsen",
+                    "employerName": "",
+                    "permanentlyEmployed": false,
+                    "statedYearlyIncome": 0,
+                    "firstName": "Linda",
+                    "mobilePhone": "+46738160200",
+                    "countryCode": "SE",
+                    "workPhone": "",
+                    "employedSince": null,
+                    "email": "lindamalm86@hotmail.com",
+                    "governmentId": "860617-6223"
+                }
+            }
+        },
+        {
+            "type": "creditcase",
+            "object": {
+                "contractTerms": 0,
+                "customerIP": {
+                    "ipParts": [
+                        "176",
+                        "70",
+                        "123",
+                        "85"
+                    ]
+                },
+                "publicReferenceNumber": 60176492,
+                "created": 1394711700373,
+                "creditCaseTags": {
+                    "BANKSYSTEM_REPRESENTATIVE_COUNTRY_CODE": "SE",
+                    "BANKPRODUCT_CODE": "NP683069",
+                    "BANKSYSTEM_REPRESENTATIVE_CODE": "105310",
+                    "EXTERNAL_REFERENCE": "34886207",
+                    "REPRESENTATIVE_NAME": "netonnet"
+                },
+                "creditProductCode": "PE012S",
+                "customerIPTimestamp": 1394711700519,
+                "timeout": null,
+                "latestCreditDecision": null,
+                "businessArea": "NOT_SET",
+                "application": {
+                    "externalReference": null,
+                    "customerForm": "PRIVATE",
+                    "amount": 2249,
+                    "referenceNumber": {
+                        "internalReferenceNumber": 6017649
+                    },
+                    "countryCode": "SE",
+                    "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPApplication",
+                    "increaseExistingCredit": false,
+                    "message": null,
+                    "coApplicant": {
+                        "lastName": null,
+                        "mobilePhoneNumber": null,
+                        "homePhoneNumber": null,
+                        "address": {
+                            "addressSource": {
+                                "addressCredibility": "CUSTOMER_GIVEN"
+                            },
+                            "countryCode": "SE",
+                            "postalArea": "",
+                            "postalCode": "",
+                            "addressRow": "",
+                            "addressRow2": ""
+                        },
+                        "employmentType": null,
+                        "employerName": null,
+                        "yearlyIncome": null,
+                        "firstName": null,
+                        "emailAddress": null,
+                        "referenceNumber": null,
+                        "workPhoneNumber": null,
+                        "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPApplicant",
+                        "employedSince": null,
+                        "governmentId": null
+                    },
+                    "applicant": {
+                        "lastName": null,
+                        "mobilePhoneNumber": "+46738160200",
+                        "homePhoneNumber": "+46738160200",
+                        "address": {
+                            "addressSource": {
+                                "addressCredibility": "CUSTOMER_GIVEN"
+                            },
+                            "countryCode": "SE",
+                            "postalArea": "",
+                            "postalCode": "",
+                            "addressRow": "",
+                            "addressRow2": ""
+                        },
+                        "employmentType": null,
+                        "employerName": null,
+                        "yearlyIncome": null,
+                        "firstName": null,
+                        "emailAddress": "lindamalm86@hotmail.com",
+                        "referenceNumber": {
+                            "internalReferenceNumber": 6017649
+                        },
+                        "workPhoneNumber": null,
+                        "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPApplicant",
+                        "employedSince": null,
+                        "governmentId": {
+                            "countryCode": "SE",
+                            "_class": "com.resurs.commons.model.governmentid.se.SENaturalGovernmentId",
+                            "type": "NATURAL",
+                            "value": "198606176223"
+                        }
+                    },
+                    "termsAgreedTo": false,
+                    "timestamp": 1394711700447
+                },
+                "referenceNumber": {
+                    "internalReferenceNumber": 6017649
+                },
+                "userIdentifier": null,
+                "countryCode": "SE",
+                "_class": "com.resurs.multiupplys.data.CreditCase",
+                "currentState": {
+                    "amount": 2249,
+                    "subState": null,
+                    "referenceNumber": {
+                        "internalReferenceNumber": 6017649
+                    },
+                    "deposit": 0,
+                    "_class": "com.resurs.multiupplys.data.CreditCaseState",
+                    "state": "APPROVED",
+                    "timestamp": 1394711704210
+                },
+                "creditAmount": null,
+                "locked": false,
+                "updated": 1394711700373,
+                "possibleInconsistencies": null,
+                "customer": null,
+                "validTo": null
+            }
+        },
+        {
+            "type": "limitresponse",
+            "object": {
+                "reason": "courtesy of MUPFilter",
+                "rawApplication": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><resurs-response>\n\t<amount>5550</amount>\n\t<applicant-government-id>9505096447</applicant-government-id>\n\t<applicant-mobile-number>072-233 62 77</applicant-mobile-number>\n\t<applicant-email-address>emelie.f.h@hotmail.se</applicant-email-address>\n</resurs-response>",
+                "coCustomer": null,
+                "decision": "REJECTED",
+                "creditProductCode": "PE016S",
+                "tags": {
+                    "tagEntry": []
+                },
+                "mupRefNumber": 60176443,
+                "application": {
+                    "externalReference": null,
+                    "customerForm": "PRIVATE",
+                    "amount": 5550,
+                    "referenceNumber": null,
+                    "countryCode": "SE",
+                    "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPApplication",
+                    "increaseExistingCredit": false,
+                    "message": null,
+                    "coApplicant": {
+                        "lastName": null,
+                        "mobilePhoneNumber": null,
+                        "homePhoneNumber": null,
+                        "address": {
+                            "addressSource": {
+                                "addressCredibility": "CUSTOMER_GIVEN"
+                            },
+                            "countryCode": "SE",
+                            "postalArea": "",
+                            "postalCode": "",
+                            "addressRow": "",
+                            "addressRow2": ""
+                        },
+                        "employmentType": null,
+                        "employerName": null,
+                        "yearlyIncome": null,
+                        "firstName": null,
+                        "emailAddress": null,
+                        "referenceNumber": null,
+                        "workPhoneNumber": null,
+                        "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPApplicant",
+                        "employedSince": null,
+                        "governmentId": null
+                    },
+                    "timestamp": 1394711670604,
+                    "applicant": {
+                        "lastName": null,
+                        "mobilePhoneNumber": "+46722336277",
+                        "homePhoneNumber": null,
+                        "address": {
+                            "addressSource": {
+                                "addressCredibility": "CUSTOMER_GIVEN"
+                            },
+                            "countryCode": "SE",
+                            "postalArea": "",
+                            "postalCode": "",
+                            "addressRow": "",
+                            "addressRow2": ""
+                        },
+                        "employmentType": null,
+                        "employerName": null,
+                        "yearlyIncome": null,
+                        "firstName": null,
+                        "emailAddress": "emelie.f.h@hotmail.se",
+                        "referenceNumber": null,
+                        "workPhoneNumber": null,
+                        "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPApplicant",
+                        "employedSince": null,
+                        "governmentId": {
+                            "countryCode": "SE",
+                            "_class": "com.resurs.commons.model.governmentid.se.SENaturalGovernmentId",
+                            "type": "NATURAL",
+                            "value": "199505096447"
+                        }
+                    },
+                    "termsAgreedTo": false
+                },
+                "reservationId": 18463,
+                "requestedAmount": 5550,
+                "approvedAmount": 0,
+                "timestamp": 1394711670513,
+                "customer": {
+                    "profession": "",
+                    "lastName": "Fröjd Horney",
+                    "address": {
+                        "streetAddress": "Lindebäcksvägen 22 Lgh 1303",
+                        "postalArea": "Mariestad",
+                        "countryCode": "SE",
+                        "postalCode": "54233",
+                        "streetAddress2": "",
+                        "credibility": null
+                    },
+                    "homePhone": "",
+                    "fullName": "Emelie Fröjd Horney",
+                    "employerName": "",
+                    "permanentlyEmployed": false,
+                    "statedYearlyIncome": 0,
+                    "firstName": "Emelie",
+                    "mobilePhone": "+46722336277",
+                    "countryCode": "SE",
+                    "workPhone": "",
+                    "employedSince": null,
+                    "email": "emelie.f.h@hotmail.se",
+                    "governmentId": "950509-6447"
+                }
+            }
+        },
+        {
+            "type": "creditcase",
+            "object": {
+                "contractTerms": 0,
+                "customerIP": {
+                    "ipParts": [
+                        "80",
+                        "254",
+                        "244",
+                        "215"
+                    ]
+                },
+                "publicReferenceNumber": 60176443,
+                "created": 1394711668191,
+                "creditCaseTags": {
+                    "BANKSYSTEM_REPRESENTATIVE_COUNTRY_CODE": "SE",
+                    "BANKPRODUCT_CODE": "TE659069",
+                    "BANKSYSTEM_REPRESENTATIVE_CODE": "7560",
+                    "EXTERNAL_REFERENCE": "10014543",
+                    "REPRESENTATIVE_NAME": "ticket"
+                },
+                "creditProductCode": "PE016S",
+                "customerIPTimestamp": 1394711668336,
+                "timeout": null,
+                "latestCreditDecision": null,
+                "businessArea": "NOT_SET",
+                "application": {
+                    "externalReference": null,
+                    "customerForm": "PRIVATE",
+                    "amount": 5550,
+                    "referenceNumber": {
+                        "internalReferenceNumber": 6017644
+                    },
+                    "countryCode": "SE",
+                    "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPApplication",
+                    "increaseExistingCredit": false,
+                    "message": null,
+                    "coApplicant": {
+                        "lastName": null,
+                        "mobilePhoneNumber": null,
+                        "homePhoneNumber": null,
+                        "address": {
+                            "addressSource": {
+                                "addressCredibility": "CUSTOMER_GIVEN"
+                            },
+                            "countryCode": "SE",
+                            "postalArea": "",
+                            "postalCode": "",
+                            "addressRow": "",
+                            "addressRow2": ""
+                        },
+                        "employmentType": null,
+                        "employerName": null,
+                        "yearlyIncome": null,
+                        "firstName": null,
+                        "emailAddress": null,
+                        "referenceNumber": null,
+                        "workPhoneNumber": null,
+                        "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPApplicant",
+                        "employedSince": null,
+                        "governmentId": null
+                    },
+                    "applicant": {
+                        "lastName": null,
+                        "mobilePhoneNumber": "+46722336277",
+                        "homePhoneNumber": null,
+                        "address": {
+                            "addressSource": {
+                                "addressCredibility": "CUSTOMER_GIVEN"
+                            },
+                            "countryCode": "SE",
+                            "postalArea": "",
+                            "postalCode": "",
+                            "addressRow": "",
+                            "addressRow2": ""
+                        },
+                        "employmentType": null,
+                        "employerName": null,
+                        "yearlyIncome": null,
+                        "firstName": null,
+                        "emailAddress": "emelie.f.h@hotmail.se",
+                        "referenceNumber": {
+                            "internalReferenceNumber": 6017644
+                        },
+                        "workPhoneNumber": null,
+                        "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPApplicant",
+                        "employedSince": null,
+                        "governmentId": {
+                            "countryCode": "SE",
+                            "_class": "com.resurs.commons.model.governmentid.se.SENaturalGovernmentId",
+                            "type": "NATURAL",
+                            "value": "199505096447"
+                        }
+                    },
+                    "termsAgreedTo": false,
+                    "timestamp": 1394711668270
+                },
+                "referenceNumber": {
+                    "internalReferenceNumber": 6017644
+                },
+                "userIdentifier": null,
+                "countryCode": "UNKNOWN",
+                "_class": "com.resurs.multiupplys.data.CreditCase",
+                "currentState": {
+                    "amount": 0,
+                    "subState": null,
+                    "referenceNumber": {
+                        "internalReferenceNumber": 6017644
+                    },
+                    "deposit": 0,
+                    "_class": "com.resurs.multiupplys.data.CreditCaseState",
+                    "state": "DENIED",
+                    "timestamp": 1394711670283
+                },
+                "creditAmount": null,
+                "locked": false,
+                "updated": 1394711668191,
+                "possibleInconsistencies": null,
+                "customer": null,
+                "validTo": null
+            }
+        },
+        {
+            "type": "creditcase",
+            "object": {
+                "contractTerms": 0,
+                "customerIP": {
+                    "ipParts": [
+                        "93",
+                        "165",
+                        "134",
+                        "211"
+                    ]
+                },
+                "publicReferenceNumber": 60176385,
+                "created": 1394711620357,
+                "creditCaseTags": {
+                    "BANKSYSTEM_REPRESENTATIVE_COUNTRY_CODE": "FI",
+                    "BANKPRODUCT_CODE": "JY132069",
+                    "BANKSYSTEM_REPRESENTATIVE_CODE": "10913",
+                    "REPRESENTATIVE_NAME": "JYSK PORI",
+                    "BANKSYSTEM_REPRESENTATIVE_GROUP_CODE": "10900"
+                },
+                "creditProductCode": "PB205S",
+                "customerIPTimestamp": 1394711620499,
+                "timeout": null,
+                "latestCreditDecision": null,
+                "businessArea": "NOT_SET",
+                "application": {
+                    "externalReference": null,
+                    "customerForm": "PRIVATE",
+                    "amount": 300,
+                    "referenceNumber": {
+                        "internalReferenceNumber": 6017638
+                    },
+                    "countryCode": "FI",
+                    "_class": "com.resurs.multiupplys.data.locale.fi.pp.FIPPApplication",
+                    "increaseExistingCredit": false,
+                    "message": null,
+                    "coApplicant": {
+                        "lastName": null,
+                        "mobilePhoneNumber": null,
+                        "homePhoneNumber": null,
+                        "address": {
+                            "addressSource": {
+                                "addressCredibility": "CUSTOMER_GIVEN"
+                            },
+                            "countryCode": "FI",
+                            "postalArea": "",
+                            "postalCode": "",
+                            "addressRow": "",
+                            "addressRow2": ""
+                        },
+                        "employmentType": null,
+                        "employerName": null,
+                        "yearlyIncome": null,
+                        "firstName": null,
+                        "emailAddress": null,
+                        "referenceNumber": null,
+                        "workPhoneNumber": null,
+                        "_class": "com.resurs.multiupplys.data.locale.fi.pp.FIPPApplicant",
+                        "employedSince": null,
+                        "governmentId": null
+                    },
+                    "applicant": {
+                        "lastName": null,
+                        "mobilePhoneNumber": null,
+                        "homePhoneNumber": "+358442060412",
+                        "address": {
+                            "addressSource": {
+                                "addressCredibility": "CUSTOMER_GIVEN"
+                            },
+                            "countryCode": "FI",
+                            "postalArea": "",
+                            "postalCode": "",
+                            "addressRow": "",
+                            "addressRow2": ""
+                        },
+                        "employmentType": "PENSIONAR",
+                        "employerName": "keva",
+                        "yearlyIncome": 16000,
+                        "firstName": null,
+                        "emailAddress": null,
+                        "referenceNumber": {
+                            "internalReferenceNumber": 6017638
+                        },
+                        "workPhoneNumber": null,
+                        "_class": "com.resurs.multiupplys.data.locale.fi.pp.FIPPApplicant",
+                        "employedSince": 1378032820446,
+                        "governmentId": {
+                            "countryCode": "FI",
+                            "_class": "com.resurs.commons.model.governmentid.fi.FINaturalGovernmentId",
+                            "type": "NATURAL",
+                            "value": "091049-216F"
+                        }
+                    },
+                    "termsAgreedTo": false,
+                    "timestamp": 1394711620430
+                },
+                "referenceNumber": {
+                    "internalReferenceNumber": 6017638
+                },
+                "userIdentifier": "",
+                "countryCode": "UNKNOWN",
+                "_class": "com.resurs.multiupplys.data.CreditCase",
+                "currentState": {
+                    "amount": 300,
+                    "subState": null,
+                    "referenceNumber": {
+                        "internalReferenceNumber": 6017638
+                    },
+                    "deposit": 0,
+                    "_class": "com.resurs.multiupplys.data.CreditCaseState",
+                    "state": "APPROVED",
+                    "timestamp": 1394711626742
+                },
+                "creditAmount": null,
+                "locked": false,
+                "updated": 1394711620357,
+                "possibleInconsistencies": null,
+                "customer": null,
+                "validTo": null
+            }
+        },
+        {
+            "type": "limitresponse",
+            "object": {
+                "reason": "courtesy of MUPFilter",
+                "rawApplication": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><resurs-response><amount>2098</amount><applicant-government-id>19770925-4879</applicant-government-id><applicant-telephone-number>0739317447</applicant-telephone-number><applicant-mobile-number>0739317447</applicant-mobile-number><applicant-email-address>joelhallqvist@privat.utfors.se</applicant-email-address></resurs-response>",
+                "coCustomer": null,
+                "decision": "APPROVED",
+                "creditProductCode": "PE012S",
+                "tags": {
+                    "tagEntry": []
+                },
+                "mupRefNumber": 60176369,
+                "application": {
+                    "externalReference": null,
+                    "customerForm": "PRIVATE",
+                    "amount": 2098,
+                    "referenceNumber": null,
+                    "countryCode": "SE",
+                    "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPApplication",
+                    "increaseExistingCredit": false,
+                    "message": null,
+                    "coApplicant": {
+                        "lastName": null,
+                        "mobilePhoneNumber": null,
+                        "homePhoneNumber": null,
+                        "address": {
+                            "addressSource": {
+                                "addressCredibility": "CUSTOMER_GIVEN"
+                            },
+                            "countryCode": "SE",
+                            "postalArea": "",
+                            "postalCode": "",
+                            "addressRow": "",
+                            "addressRow2": ""
+                        },
+                        "employmentType": null,
+                        "employerName": null,
+                        "yearlyIncome": null,
+                        "firstName": null,
+                        "emailAddress": null,
+                        "referenceNumber": null,
+                        "workPhoneNumber": null,
+                        "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPApplicant",
+                        "employedSince": null,
+                        "governmentId": null
+                    },
+                    "timestamp": 1394711613232,
+                    "applicant": {
+                        "lastName": null,
+                        "mobilePhoneNumber": "+46739317447",
+                        "homePhoneNumber": "+46739317447",
+                        "address": {
+                            "addressSource": {
+                                "addressCredibility": "CUSTOMER_GIVEN"
+                            },
+                            "countryCode": "SE",
+                            "postalArea": "",
+                            "postalCode": "",
+                            "addressRow": "",
+                            "addressRow2": ""
+                        },
+                        "employmentType": null,
+                        "employerName": null,
+                        "yearlyIncome": null,
+                        "firstName": null,
+                        "emailAddress": "joelhallqvist@privat.utfors.se",
+                        "referenceNumber": null,
+                        "workPhoneNumber": null,
+                        "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPApplicant",
+                        "employedSince": null,
+                        "governmentId": {
+                            "countryCode": "SE",
+                            "_class": "com.resurs.commons.model.governmentid.se.SENaturalGovernmentId",
+                            "type": "NATURAL",
+                            "value": "197709254879"
+                        }
+                    },
+                    "termsAgreedTo": false
+                },
+                "reservationId": 18462,
+                "requestedAmount": 2098,
+                "approvedAmount": 2098,
+                "timestamp": 1394711613119,
+                "customer": {
+                    "profession": "",
+                    "lastName": "Hallqvist",
+                    "address": {
+                        "streetAddress": "Kungsängsgatan 49 E 1tr",
+                        "postalArea": "Uppsala",
+                        "countryCode": "SE",
+                        "postalCode": "75318",
+                        "streetAddress2": "",
+                        "credibility": null
+                    },
+                    "homePhone": "+46739317447",
+                    "fullName": "Joel Hallqvist",
+                    "employerName": "",
+                    "permanentlyEmployed": false,
+                    "statedYearlyIncome": 0,
+                    "firstName": "Joel",
+                    "mobilePhone": "+46739317447",
+                    "countryCode": "SE",
+                    "workPhone": "",
+                    "employedSince": null,
+                    "email": "joelhallqvist@privat.utfors.se",
+                    "governmentId": "770925-4879"
+                }
+            }
+        },
+        {
+            "type": "creditcase",
+            "object": {
+                "contractTerms": 0,
+                "customerIP": {
+                    "ipParts": [
+                        "213",
+                        "65",
+                        "230",
+                        "75"
+                    ]
+                },
+                "publicReferenceNumber": 60176369,
+                "created": 1394711611034,
+                "creditCaseTags": {
+                    "BANKSYSTEM_REPRESENTATIVE_COUNTRY_CODE": "SE",
+                    "BANKPRODUCT_CODE": "NP683069",
+                    "BANKSYSTEM_REPRESENTATIVE_CODE": "105310",
+                    "EXTERNAL_REFERENCE": "1744476",
+                    "REPRESENTATIVE_NAME": "netonnet"
+                },
+                "creditProductCode": "PE012S",
+                "customerIPTimestamp": 1394711611167,
+                "timeout": null,
+                "latestCreditDecision": null,
+                "businessArea": "NOT_SET",
+                "application": {
+                    "externalReference": null,
+                    "customerForm": "PRIVATE",
+                    "amount": 2098,
+                    "referenceNumber": {
+                        "internalReferenceNumber": 6017636
+                    },
+                    "countryCode": "SE",
+                    "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPApplication",
+                    "increaseExistingCredit": false,
+                    "message": null,
+                    "coApplicant": {
+                        "lastName": null,
+                        "mobilePhoneNumber": null,
+                        "homePhoneNumber": null,
+                        "address": {
+                            "addressSource": {
+                                "addressCredibility": "CUSTOMER_GIVEN"
+                            },
+                            "countryCode": "SE",
+                            "postalArea": "",
+                            "postalCode": "",
+                            "addressRow": "",
+                            "addressRow2": ""
+                        },
+                        "employmentType": null,
+                        "employerName": null,
+                        "yearlyIncome": null,
+                        "firstName": null,
+                        "emailAddress": null,
+                        "referenceNumber": null,
+                        "workPhoneNumber": null,
+                        "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPApplicant",
+                        "employedSince": null,
+                        "governmentId": null
+                    },
+                    "applicant": {
+                        "lastName": null,
+                        "mobilePhoneNumber": "+46739317447",
+                        "homePhoneNumber": "+46739317447",
+                        "address": {
+                            "addressSource": {
+                                "addressCredibility": "CUSTOMER_GIVEN"
+                            },
+                            "countryCode": "SE",
+                            "postalArea": "",
+                            "postalCode": "",
+                            "addressRow": "",
+                            "addressRow2": ""
+                        },
+                        "employmentType": null,
+                        "employerName": null,
+                        "yearlyIncome": null,
+                        "firstName": null,
+                        "emailAddress": "joelhallqvist@privat.utfors.se",
+                        "referenceNumber": {
+                            "internalReferenceNumber": 6017636
+                        },
+                        "workPhoneNumber": null,
+                        "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPApplicant",
+                        "employedSince": null,
+                        "governmentId": {
+                            "countryCode": "SE",
+                            "_class": "com.resurs.commons.model.governmentid.se.SENaturalGovernmentId",
+                            "type": "NATURAL",
+                            "value": "197709254879"
+                        }
+                    },
+                    "termsAgreedTo": false,
+                    "timestamp": 1394711611106
+                },
+                "referenceNumber": {
+                    "internalReferenceNumber": 6017636
+                },
+                "userIdentifier": null,
+                "countryCode": "SE",
+                "_class": "com.resurs.multiupplys.data.CreditCase",
+                "currentState": {
+                    "amount": 2098,
+                    "subState": null,
+                    "referenceNumber": {
+                        "internalReferenceNumber": 6017636
+                    },
+                    "deposit": 0,
+                    "_class": "com.resurs.multiupplys.data.CreditCaseState",
+                    "state": "APPROVED",
+                    "timestamp": 1394711612801
+                },
+                "creditAmount": null,
+                "locked": false,
+                "updated": 1394711611034,
+                "possibleInconsistencies": null,
+                "customer": null,
+                "validTo": null
+            }
+        },
+        {
+            "type": "limitresponse",
+            "object": {
+                "reason": "courtesy of MUPFilter",
+                "rawApplication": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><resurs-response><amount>2599</amount><applicant-government-id>9105232624</applicant-government-id><applicant-telephone-number>0762925951</applicant-telephone-number><applicant-mobile-number>0762925951</applicant-mobile-number><applicant-email-address>roua_321@hotmail.com</applicant-email-address></resurs-response>",
+                "coCustomer": null,
+                "decision": "APPROVED",
+                "creditProductCode": "PE012S",
+                "tags": {
+                    "tagEntry": []
+                },
+                "mupRefNumber": 60176351,
+                "application": {
+                    "externalReference": null,
+                    "customerForm": "PRIVATE",
+                    "amount": 2599,
+                    "referenceNumber": null,
+                    "countryCode": "SE",
+                    "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPApplication",
+                    "increaseExistingCredit": false,
+                    "message": null,
+                    "coApplicant": {
+                        "lastName": null,
+                        "mobilePhoneNumber": null,
+                        "homePhoneNumber": null,
+                        "address": {
+                            "addressSource": {
+                                "addressCredibility": "CUSTOMER_GIVEN"
+                            },
+                            "countryCode": "SE",
+                            "postalArea": "",
+                            "postalCode": "",
+                            "addressRow": "",
+                            "addressRow2": ""
+                        },
+                        "employmentType": null,
+                        "employerName": null,
+                        "yearlyIncome": null,
+                        "firstName": null,
+                        "emailAddress": null,
+                        "referenceNumber": null,
+                        "workPhoneNumber": null,
+                        "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPApplicant",
+                        "employedSince": null,
+                        "governmentId": null
+                    },
+                    "timestamp": 1394711607708,
+                    "applicant": {
+                        "lastName": null,
+                        "mobilePhoneNumber": "+46762925951",
+                        "homePhoneNumber": "+46762925951",
+                        "address": {
+                            "addressSource": {
+                                "addressCredibility": "CUSTOMER_GIVEN"
+                            },
+                            "countryCode": "SE",
+                            "postalArea": "",
+                            "postalCode": "",
+                            "addressRow": "",
+                            "addressRow2": ""
+                        },
+                        "employmentType": null,
+                        "employerName": null,
+                        "yearlyIncome": null,
+                        "firstName": null,
+                        "emailAddress": "roua_321@hotmail.com",
+                        "referenceNumber": null,
+                        "workPhoneNumber": null,
+                        "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPApplicant",
+                        "employedSince": null,
+                        "governmentId": {
+                            "countryCode": "SE",
+                            "_class": "com.resurs.commons.model.governmentid.se.SENaturalGovernmentId",
+                            "type": "NATURAL",
+                            "value": "199105232624"
+                        }
+                    },
+                    "termsAgreedTo": false
+                },
+                "reservationId": 18461,
+                "requestedAmount": 2599,
+                "approvedAmount": 2599,
+                "timestamp": 1394711607572,
+                "customer": {
+                    "profession": "",
+                    "lastName": "Mohammed",
+                    "address": {
+                        "streetAddress": "Marklandsgatan 73 Lgh 1203",
+                        "postalArea": "Borås",
+                        "countryCode": "SE",
+                        "postalCode": "50745",
+                        "streetAddress2": "",
+                        "credibility": null
+                    },
+                    "homePhone": "+46762925951",
+                    "fullName": "Roua Mohammed",
+                    "employerName": "",
+                    "permanentlyEmployed": false,
+                    "statedYearlyIncome": 0,
+                    "firstName": "Roua",
+                    "mobilePhone": "+46762925951",
+                    "countryCode": "SE",
+                    "workPhone": "",
+                    "employedSince": null,
+                    "email": "roua_321@hotmail.com",
+                    "governmentId": "910523-2624"
+                }
+            }
+        },
+        {
+            "type": "creditcase",
+            "object": {
+                "contractTerms": 0,
+                "customerIP": {
+                    "ipParts": [
+                        "31",
+                        "208",
+                        "8",
+                        "168"
+                    ]
+                },
+                "publicReferenceNumber": 60176351,
+                "created": 1394711604351,
+                "creditCaseTags": {
+                    "BANKSYSTEM_REPRESENTATIVE_COUNTRY_CODE": "SE",
+                    "BANKPRODUCT_CODE": "NP683069",
+                    "BANKSYSTEM_REPRESENTATIVE_CODE": "105310",
+                    "EXTERNAL_REFERENCE": "1744477",
+                    "REPRESENTATIVE_NAME": "netonnet"
+                },
+                "creditProductCode": "PE012S",
+                "customerIPTimestamp": 1394711604482,
+                "timeout": null,
+                "latestCreditDecision": null,
+                "businessArea": "NOT_SET",
+                "application": {
+                    "externalReference": null,
+                    "customerForm": "PRIVATE",
+                    "amount": 2599,
+                    "referenceNumber": {
+                        "internalReferenceNumber": 6017635
+                    },
+                    "countryCode": "SE",
+                    "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPApplication",
+                    "increaseExistingCredit": false,
+                    "message": null,
+                    "coApplicant": {
+                        "lastName": null,
+                        "mobilePhoneNumber": null,
+                        "homePhoneNumber": null,
+                        "address": {
+                            "addressSource": {
+                                "addressCredibility": "CUSTOMER_GIVEN"
+                            },
+                            "countryCode": "SE",
+                            "postalArea": "",
+                            "postalCode": "",
+                            "addressRow": "",
+                            "addressRow2": ""
+                        },
+                        "employmentType": null,
+                        "employerName": null,
+                        "yearlyIncome": null,
+                        "firstName": null,
+                        "emailAddress": null,
+                        "referenceNumber": null,
+                        "workPhoneNumber": null,
+                        "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPApplicant",
+                        "employedSince": null,
+                        "governmentId": null
+                    },
+                    "applicant": {
+                        "lastName": null,
+                        "mobilePhoneNumber": "+46762925951",
+                        "homePhoneNumber": "+46762925951",
+                        "address": {
+                            "addressSource": {
+                                "addressCredibility": "CUSTOMER_GIVEN"
+                            },
+                            "countryCode": "SE",
+                            "postalArea": "",
+                            "postalCode": "",
+                            "addressRow": "",
+                            "addressRow2": ""
+                        },
+                        "employmentType": null,
+                        "employerName": null,
+                        "yearlyIncome": null,
+                        "firstName": null,
+                        "emailAddress": "roua_321@hotmail.com",
+                        "referenceNumber": {
+                            "internalReferenceNumber": 6017635
+                        },
+                        "workPhoneNumber": null,
+                        "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPApplicant",
+                        "employedSince": null,
+                        "governmentId": {
+                            "countryCode": "SE",
+                            "_class": "com.resurs.commons.model.governmentid.se.SENaturalGovernmentId",
+                            "type": "NATURAL",
+                            "value": "199105232624"
+                        }
+                    },
+                    "termsAgreedTo": false,
+                    "timestamp": 1394711604419
+                },
+                "referenceNumber": {
+                    "internalReferenceNumber": 6017635
+                },
+                "userIdentifier": null,
+                "countryCode": "SE",
+                "_class": "com.resurs.multiupplys.data.CreditCase",
+                "currentState": {
+                    "amount": 2599,
+                    "subState": null,
+                    "referenceNumber": {
+                        "internalReferenceNumber": 6017635
+                    },
+                    "deposit": 0,
+                    "_class": "com.resurs.multiupplys.data.CreditCaseState",
+                    "state": "APPROVED",
+                    "timestamp": 1394711607197
+                },
+                "creditAmount": null,
+                "locked": false,
+                "updated": 1394711604351,
+                "possibleInconsistencies": null,
+                "customer": null,
+                "validTo": null
+            }
+        },
+        {
+            "type": "creditcase",
+            "object": {
+                "contractTerms": 0,
+                "customerIP": {
+                    "ipParts": [
+                        "83",
+                        "184",
+                        "151",
+                        "148"
+                    ]
+                },
+                "publicReferenceNumber": 60176344,
+                "created": 1394711604268,
+                "creditCaseTags": {
+                    "BANKSYSTEM_REPRESENTATIVE_COUNTRY_CODE": "SE",
+                    "BANKPRODUCT_CODE": "VI123069",
+                    "APPLICATION_TYPE": "NEW_ACCOUNT",
+                    "BANKSYSTEM_REPRESENTATIVE_CODE": "556",
+                    "BANKSYSTEM_CARD_TYPE": "VSESCG2",
+                    "BANKSYSTEM_REPRESENTATIVE_GROUP_CODE": "55"
+                },
+                "creditProductCode": "PA011S",
+                "customerIPTimestamp": 1394711605459,
+                "timeout": null,
+                "latestCreditDecision": null,
+                "businessArea": "NOT_SET",
+                "application": {
+                    "externalReference": null,
+                    "customerForm": "PRIVATE",
+                    "amount": 10000,
+                    "referenceNumber": {
+                        "internalReferenceNumber": 6017634
+                    },
+                    "countryCode": "SE",
+                    "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPApplication",
+                    "increaseExistingCredit": false,
+                    "message": null,
+                    "coApplicant": {
+                        "lastName": null,
+                        "mobilePhoneNumber": null,
+                        "homePhoneNumber": null,
+                        "address": {
+                            "addressSource": {
+                                "addressCredibility": "CUSTOMER_GIVEN"
+                            },
+                            "countryCode": "SE",
+                            "postalArea": "",
+                            "postalCode": "",
+                            "addressRow": "",
+                            "addressRow2": ""
+                        },
+                        "employmentType": null,
+                        "employerName": null,
+                        "yearlyIncome": null,
+                        "firstName": null,
+                        "emailAddress": null,
+                        "referenceNumber": null,
+                        "workPhoneNumber": null,
+                        "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPApplicant",
+                        "employedSince": null,
+                        "governmentId": null
+                    },
+                    "applicant": {
+                        "lastName": null,
+                        "mobilePhoneNumber": "+46734003297",
+                        "homePhoneNumber": "+46734003297",
+                        "address": {
+                            "addressSource": {
+                                "addressCredibility": "CUSTOMER_GIVEN"
+                            },
+                            "countryCode": "SE",
+                            "postalArea": "",
+                            "postalCode": "",
+                            "addressRow": "",
+                            "addressRow2": ""
+                        },
+                        "employmentType": "FAST_ANSTALLD",
+                        "employerName": null,
+                        "yearlyIncome": null,
+                        "firstName": null,
+                        "emailAddress": "siamzam@gmail.com",
+                        "referenceNumber": {
+                            "internalReferenceNumber": 6017634
+                        },
+                        "workPhoneNumber": null,
+                        "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPApplicant",
+                        "employedSince": 1375354405392,
+                        "governmentId": {
+                            "countryCode": "SE",
+                            "_class": "com.resurs.commons.model.governmentid.se.SENaturalGovernmentId",
+                            "type": "NATURAL",
+                            "value": "198904080838"
+                        }
+                    },
+                    "termsAgreedTo": true,
+                    "timestamp": 1394711605376
+                },
+                "referenceNumber": {
+                    "internalReferenceNumber": 6017634
+                },
+                "userIdentifier": "",
+                "countryCode": "UNKNOWN",
+                "_class": "com.resurs.multiupplys.data.CreditCase",
+                "currentState": {
+                    "amount": 5000,
+                    "subState": null,
+                    "referenceNumber": {
+                        "internalReferenceNumber": 6017634
+                    },
+                    "deposit": 0,
+                    "_class": "com.resurs.multiupplys.data.CreditCaseState",
+                    "state": "APPROVED",
+                    "timestamp": 1394711608431
+                },
+                "creditAmount": null,
+                "locked": false,
+                "updated": 1394711604268,
+                "possibleInconsistencies": null,
+                "customer": null,
+                "validTo": null
+            }
+        },
+        {
+            "type": "creditcase",
+            "object": {
+                "contractTerms": 0,
+                "customerIP": {
+                    "ipParts": [
+                        "46",
+                        "59",
+                        "11",
+                        "101"
+                    ]
+                },
+                "publicReferenceNumber": 60176328,
+                "created": 1394711595897,
+                "creditCaseTags": {
+                    "BANKSYSTEM_REPRESENTATIVE_COUNTRY_CODE": "SE",
+                    "BANKPRODUCT_CODE": "R9076069",
+                    "APPLICATION_TYPE": "NEW_ACCOUNT",
+                    "BANKSYSTEM_REPRESENTATIVE_CODE": "70040",
+                    "BANKSYSTEM_CARD_TYPE": "BIGT001",
+                    "BANKSYSTEM_REPRESENTATIVE_GROUP_CODE": "70000"
+                },
+                "creditProductCode": "PA001S",
+                "customerIPTimestamp": 1394711596204,
+                "timeout": null,
+                "latestCreditDecision": null,
+                "businessArea": "NOT_SET",
+                "application": {
+                    "externalReference": null,
+                    "customerForm": "PRIVATE",
+                    "amount": 7000,
+                    "referenceNumber": {
+                        "internalReferenceNumber": 6017632
+                    },
+                    "countryCode": "SE",
+                    "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPApplication",
+                    "increaseExistingCredit": false,
+                    "message": null,
+                    "coApplicant": {
+                        "lastName": null,
+                        "mobilePhoneNumber": null,
+                        "homePhoneNumber": null,
+                        "address": {
+                            "addressSource": {
+                                "addressCredibility": "CUSTOMER_GIVEN"
+                            },
+                            "countryCode": "SE",
+                            "postalArea": "",
+                            "postalCode": "",
+                            "addressRow": "",
+                            "addressRow2": ""
+                        },
+                        "employmentType": null,
+                        "employerName": null,
+                        "yearlyIncome": null,
+                        "firstName": null,
+                        "emailAddress": null,
+                        "referenceNumber": null,
+                        "workPhoneNumber": null,
+                        "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPApplicant",
+                        "employedSince": null,
+                        "governmentId": null
+                    },
+                    "applicant": {
+                        "lastName": null,
+                        "mobilePhoneNumber": "+46723243633",
+                        "homePhoneNumber": "+46723243633",
+                        "address": {
+                            "addressSource": {
+                                "addressCredibility": "CUSTOMER_GIVEN"
+                            },
+                            "countryCode": "SE",
+                            "postalArea": "",
+                            "postalCode": "",
+                            "addressRow": "",
+                            "addressRow2": ""
+                        },
+                        "employmentType": "FAST_ANSTALLD",
+                        "employerName": "Restaurang Kryp in",
+                        "yearlyIncome": null,
+                        "firstName": null,
+                        "emailAddress": "andersmattiasloof@gmail.com",
+                        "referenceNumber": {
+                            "internalReferenceNumber": 6017632
+                        },
+                        "workPhoneNumber": null,
+                        "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPApplicant",
+                        "employedSince": 1272711196147,
+                        "governmentId": {
+                            "countryCode": "SE",
+                            "_class": "com.resurs.commons.model.governmentid.se.SENaturalGovernmentId",
+                            "type": "NATURAL",
+                            "value": "198512287536"
+                        }
+                    },
+                    "termsAgreedTo": true,
+                    "timestamp": 1394711596133
+                },
+                "referenceNumber": {
+                    "internalReferenceNumber": 6017632
+                },
+                "userIdentifier": "",
+                "countryCode": "SE",
+                "_class": "com.resurs.multiupplys.data.CreditCase",
+                "currentState": {
+                    "amount": 7000,
+                    "subState": null,
+                    "referenceNumber": {
+                        "internalReferenceNumber": 6017632
+                    },
+                    "deposit": 0,
+                    "_class": "com.resurs.multiupplys.data.CreditCaseState",
+                    "state": "APPROVED",
+                    "timestamp": 1394711598008
+                },
+                "creditAmount": null,
+                "locked": false,
+                "updated": 1394711595897,
+                "possibleInconsistencies": null,
+                "customer": null,
+                "validTo": null
+            }
+        },
+        {
+            "type": "limitresponse",
+            "object": {
+                "reason": "courtesy of MUPFilter",
+                "rawApplication": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><resurs-response><amount>4490</amount><applicant-government-id>5501071673</applicant-government-id><applicant-telephone-number>0151-60402</applicant-telephone-number><applicant-mobile-number>0702346584</applicant-mobile-number><applicant-email-address>fastorp@spray.se</applicant-email-address></resurs-response>",
+                "coCustomer": null,
+                "decision": "APPROVED",
+                "creditProductCode": "PE012S",
+                "tags": {
+                    "tagEntry": []
+                },
+                "mupRefNumber": 60176245,
+                "application": {
+                    "externalReference": null,
+                    "customerForm": "PRIVATE",
+                    "amount": 4490,
+                    "referenceNumber": null,
+                    "countryCode": "SE",
+                    "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPApplication",
+                    "increaseExistingCredit": false,
+                    "message": null,
+                    "coApplicant": {
+                        "lastName": null,
+                        "mobilePhoneNumber": null,
+                        "homePhoneNumber": null,
+                        "address": {
+                            "addressSource": {
+                                "addressCredibility": "CUSTOMER_GIVEN"
+                            },
+                            "countryCode": "SE",
+                            "postalArea": "",
+                            "postalCode": "",
+                            "addressRow": "",
+                            "addressRow2": ""
+                        },
+                        "employmentType": null,
+                        "employerName": null,
+                        "yearlyIncome": null,
+                        "firstName": null,
+                        "emailAddress": null,
+                        "referenceNumber": null,
+                        "workPhoneNumber": null,
+                        "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPApplicant",
+                        "employedSince": null,
+                        "governmentId": null
+                    },
+                    "timestamp": 1394711564003,
+                    "applicant": {
+                        "lastName": null,
+                        "mobilePhoneNumber": "+46702346584",
+                        "homePhoneNumber": "+4615160402",
+                        "address": {
+                            "addressSource": {
+                                "addressCredibility": "CUSTOMER_GIVEN"
+                            },
+                            "countryCode": "SE",
+                            "postalArea": "",
+                            "postalCode": "",
+                            "addressRow": "",
+                            "addressRow2": ""
+                        },
+                        "employmentType": null,
+                        "employerName": null,
+                        "yearlyIncome": null,
+                        "firstName": null,
+                        "emailAddress": "fastorp@spray.se",
+                        "referenceNumber": null,
+                        "workPhoneNumber": null,
+                        "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPApplicant",
+                        "employedSince": null,
+                        "governmentId": {
+                            "countryCode": "SE",
+                            "_class": "com.resurs.commons.model.governmentid.se.SENaturalGovernmentId",
+                            "type": "NATURAL",
+                            "value": "195501071673"
+                        }
+                    },
+                    "termsAgreedTo": false
+                },
+                "reservationId": 18460,
+                "requestedAmount": 4490,
+                "approvedAmount": 4490,
+                "timestamp": 1394711563882,
+                "customer": {
+                    "profession": "",
+                    "lastName": "Tang Persson",
+                    "address": {
+                        "streetAddress": "Daldocksvägen 15",
+                        "postalArea": "Vingåker",
+                        "countryCode": "SE",
+                        "postalCode": "64395",
+                        "streetAddress2": "",
+                        "credibility": null
+                    },
+                    "homePhone": "+4615160402",
+                    "fullName": "Torbjörn Tang Persson",
+                    "employerName": "",
+                    "permanentlyEmployed": false,
+                    "statedYearlyIncome": 0,
+                    "firstName": "Torbjörn",
+                    "mobilePhone": "+46702346584",
+                    "countryCode": "SE",
+                    "workPhone": "",
+                    "employedSince": null,
+                    "email": "fastorp@spray.se",
+                    "governmentId": "550107-1673"
+                }
+            }
+        },
+        {
+            "type": "creditcase",
+            "object": {
+                "contractTerms": 0,
+                "customerIP": {
+                    "ipParts": [
+                        "213",
+                        "113",
+                        "208",
+                        "87"
+                    ]
+                },
+                "publicReferenceNumber": 60176245,
+                "created": 1394711560322,
+                "creditCaseTags": {
+                    "BANKSYSTEM_REPRESENTATIVE_COUNTRY_CODE": "SE",
+                    "BANKPRODUCT_CODE": "NP683069",
+                    "BANKSYSTEM_REPRESENTATIVE_CODE": "105310",
+                    "EXTERNAL_REFERENCE": "1744475",
+                    "REPRESENTATIVE_NAME": "netonnet"
+                },
+                "creditProductCode": "PE012S",
+                "customerIPTimestamp": 1394711560449,
+                "timeout": null,
+                "latestCreditDecision": null,
+                "businessArea": "NOT_SET",
+                "application": {
+                    "externalReference": null,
+                    "customerForm": "PRIVATE",
+                    "amount": 4490,
+                    "referenceNumber": {
+                        "internalReferenceNumber": 6017624
+                    },
+                    "countryCode": "SE",
+                    "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPApplication",
+                    "increaseExistingCredit": false,
+                    "message": null,
+                    "coApplicant": {
+                        "lastName": null,
+                        "mobilePhoneNumber": null,
+                        "homePhoneNumber": null,
+                        "address": {
+                            "addressSource": {
+                                "addressCredibility": "CUSTOMER_GIVEN"
+                            },
+                            "countryCode": "SE",
+                            "postalArea": "",
+                            "postalCode": "",
+                            "addressRow": "",
+                            "addressRow2": ""
+                        },
+                        "employmentType": null,
+                        "employerName": null,
+                        "yearlyIncome": null,
+                        "firstName": null,
+                        "emailAddress": null,
+                        "referenceNumber": null,
+                        "workPhoneNumber": null,
+                        "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPApplicant",
+                        "employedSince": null,
+                        "governmentId": null
+                    },
+                    "applicant": {
+                        "lastName": null,
+                        "mobilePhoneNumber": "+46702346584",
+                        "homePhoneNumber": "+4615160402",
+                        "address": {
+                            "addressSource": {
+                                "addressCredibility": "CUSTOMER_GIVEN"
+                            },
+                            "countryCode": "SE",
+                            "postalArea": "",
+                            "postalCode": "",
+                            "addressRow": "",
+                            "addressRow2": ""
+                        },
+                        "employmentType": null,
+                        "employerName": null,
+                        "yearlyIncome": null,
+                        "firstName": null,
+                        "emailAddress": "fastorp@spray.se",
+                        "referenceNumber": {
+                            "internalReferenceNumber": 6017624
+                        },
+                        "workPhoneNumber": null,
+                        "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPApplicant",
+                        "employedSince": null,
+                        "governmentId": {
+                            "countryCode": "SE",
+                            "_class": "com.resurs.commons.model.governmentid.se.SENaturalGovernmentId",
+                            "type": "NATURAL",
+                            "value": "195501071673"
+                        }
+                    },
+                    "termsAgreedTo": false,
+                    "timestamp": 1394711560390
+                },
+                "referenceNumber": {
+                    "internalReferenceNumber": 6017624
+                },
+                "userIdentifier": null,
+                "countryCode": "SE",
+                "_class": "com.resurs.multiupplys.data.CreditCase",
+                "currentState": {
+                    "amount": 4490,
+                    "subState": null,
+                    "referenceNumber": {
+                        "internalReferenceNumber": 6017624
+                    },
+                    "deposit": 0,
+                    "_class": "com.resurs.multiupplys.data.CreditCaseState",
+                    "state": "APPROVED",
+                    "timestamp": 1394711563516
+                },
+                "creditAmount": null,
+                "locked": false,
+                "updated": 1394711560322,
+                "possibleInconsistencies": null,
+                "customer": null,
+                "validTo": null
+            }
+        },
+        {
+            "type": "limitresponse",
+            "object": {
+                "reason": "courtesy of MUPFilter",
+                "rawApplication": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><resurs-response><amount>2278</amount><applicant-government-id>5408304615</applicant-government-id><applicant-telephone-number>0730443676</applicant-telephone-number><applicant-mobile-number>0730443676</applicant-mobile-number><applicant-email-address>tomas.stensson@yahoo.se</applicant-email-address></resurs-response>",
+                "coCustomer": null,
+                "decision": "APPROVED",
+                "creditProductCode": "PE012S",
+                "tags": {
+                    "tagEntry": []
+                },
+                "mupRefNumber": 60176153,
+                "application": {
+                    "externalReference": null,
+                    "customerForm": "PRIVATE",
+                    "amount": 2278,
+                    "referenceNumber": null,
+                    "countryCode": "SE",
+                    "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPApplication",
+                    "increaseExistingCredit": false,
+                    "message": null,
+                    "coApplicant": {
+                        "lastName": null,
+                        "mobilePhoneNumber": null,
+                        "homePhoneNumber": null,
+                        "address": {
+                            "addressSource": {
+                                "addressCredibility": "CUSTOMER_GIVEN"
+                            },
+                            "countryCode": "SE",
+                            "postalArea": "",
+                            "postalCode": "",
+                            "addressRow": "",
+                            "addressRow2": ""
+                        },
+                        "employmentType": null,
+                        "employerName": null,
+                        "yearlyIncome": null,
+                        "firstName": null,
+                        "emailAddress": null,
+                        "referenceNumber": null,
+                        "workPhoneNumber": null,
+                        "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPApplicant",
+                        "employedSince": null,
+                        "governmentId": null
+                    },
+                    "timestamp": 1394711469972,
+                    "applicant": {
+                        "lastName": null,
+                        "mobilePhoneNumber": "+46730443676",
+                        "homePhoneNumber": "+46730443676",
+                        "address": {
+                            "addressSource": {
+                                "addressCredibility": "CUSTOMER_GIVEN"
+                            },
+                            "countryCode": "SE",
+                            "postalArea": "",
+                            "postalCode": "",
+                            "addressRow": "",
+                            "addressRow2": ""
+                        },
+                        "employmentType": null,
+                        "employerName": null,
+                        "yearlyIncome": null,
+                        "firstName": null,
+                        "emailAddress": "tomas.stensson@yahoo.se",
+                        "referenceNumber": null,
+                        "workPhoneNumber": null,
+                        "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPApplicant",
+                        "employedSince": null,
+                        "governmentId": {
+                            "countryCode": "SE",
+                            "_class": "com.resurs.commons.model.governmentid.se.SENaturalGovernmentId",
+                            "type": "NATURAL",
+                            "value": "195408304615"
+                        }
+                    },
+                    "termsAgreedTo": false
+                },
+                "reservationId": 18459,
+                "requestedAmount": 2278,
+                "approvedAmount": 2278,
+                "timestamp": 1394711469849,
+                "customer": {
+                    "profession": "",
+                    "lastName": "Stensson",
+                    "address": {
+                        "streetAddress": "Ängsstigen 5 D Lgh 1103",
+                        "postalArea": "Falkenberg",
+                        "countryCode": "SE",
+                        "postalCode": "31141",
+                        "streetAddress2": "",
+                        "credibility": null
+                    },
+                    "homePhone": "+46730443676",
+                    "fullName": "Tomas Stensson",
+                    "employerName": "",
+                    "permanentlyEmployed": false,
+                    "statedYearlyIncome": 0,
+                    "firstName": "Tomas",
+                    "mobilePhone": "+46730443676",
+                    "countryCode": "SE",
+                    "workPhone": "",
+                    "employedSince": null,
+                    "email": "tomas.stensson@yahoo.se",
+                    "governmentId": "540830-4615"
+                }
+            }
+        },
+        {
+            "type": "creditcase",
+            "object": {
+                "contractTerms": 0,
+                "customerIP": {
+                    "ipParts": [
+                        "95",
+                        "199",
+                        "134",
+                        "185"
+                    ]
+                },
+                "publicReferenceNumber": 60176153,
+                "created": 1394711466996,
+                "creditCaseTags": {
+                    "BANKSYSTEM_REPRESENTATIVE_COUNTRY_CODE": "SE",
+                    "BANKPRODUCT_CODE": "NP683069",
+                    "BANKSYSTEM_REPRESENTATIVE_CODE": "105310",
+                    "EXTERNAL_REFERENCE": "34886202",
+                    "REPRESENTATIVE_NAME": "netonnet"
+                },
+                "creditProductCode": "PE012S",
+                "customerIPTimestamp": 1394711467103,
+                "timeout": null,
+                "latestCreditDecision": null,
+                "businessArea": "NOT_SET",
+                "application": {
+                    "externalReference": null,
+                    "customerForm": "PRIVATE",
+                    "amount": 2278,
+                    "referenceNumber": {
+                        "internalReferenceNumber": 6017615
+                    },
+                    "countryCode": "SE",
+                    "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPApplication",
+                    "increaseExistingCredit": false,
+                    "message": null,
+                    "coApplicant": {
+                        "lastName": null,
+                        "mobilePhoneNumber": null,
+                        "homePhoneNumber": null,
+                        "address": {
+                            "addressSource": {
+                                "addressCredibility": "CUSTOMER_GIVEN"
+                            },
+                            "countryCode": "SE",
+                            "postalArea": "",
+                            "postalCode": "",
+                            "addressRow": "",
+                            "addressRow2": ""
+                        },
+                        "employmentType": null,
+                        "employerName": null,
+                        "yearlyIncome": null,
+                        "firstName": null,
+                        "emailAddress": null,
+                        "referenceNumber": null,
+                        "workPhoneNumber": null,
+                        "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPApplicant",
+                        "employedSince": null,
+                        "governmentId": null
+                    },
+                    "applicant": {
+                        "lastName": null,
+                        "mobilePhoneNumber": "+46730443676",
+                        "homePhoneNumber": "+46730443676",
+                        "address": {
+                            "addressSource": {
+                                "addressCredibility": "CUSTOMER_GIVEN"
+                            },
+                            "countryCode": "SE",
+                            "postalArea": "",
+                            "postalCode": "",
+                            "addressRow": "",
+                            "addressRow2": ""
+                        },
+                        "employmentType": null,
+                        "employerName": null,
+                        "yearlyIncome": null,
+                        "firstName": null,
+                        "emailAddress": "tomas.stensson@yahoo.se",
+                        "referenceNumber": {
+                            "internalReferenceNumber": 6017615
+                        },
+                        "workPhoneNumber": null,
+                        "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPApplicant",
+                        "employedSince": null,
+                        "governmentId": {
+                            "countryCode": "SE",
+                            "_class": "com.resurs.commons.model.governmentid.se.SENaturalGovernmentId",
+                            "type": "NATURAL",
+                            "value": "195408304615"
+                        }
+                    },
+                    "termsAgreedTo": false,
+                    "timestamp": 1394711467053
+                },
+                "referenceNumber": {
+                    "internalReferenceNumber": 6017615
+                },
+                "userIdentifier": null,
+                "countryCode": "SE",
+                "_class": "com.resurs.multiupplys.data.CreditCase",
+                "currentState": {
+                    "amount": 2278,
+                    "subState": null,
+                    "referenceNumber": {
+                        "internalReferenceNumber": 6017615
+                    },
+                    "deposit": 0,
+                    "_class": "com.resurs.multiupplys.data.CreditCaseState",
+                    "state": "APPROVED",
+                    "timestamp": 1394711469425
+                },
+                "creditAmount": null,
+                "locked": false,
+                "updated": 1394711466996,
+                "possibleInconsistencies": null,
+                "customer": null,
+                "validTo": null
+            }
+        },
+        {
+            "type": "creditcase",
+            "object": {
+                "contractTerms": 0,
+                "customerIP": {
+                    "ipParts": [
+                        "1",
+                        "2",
+                        "3",
+                        "4"
+                    ]
+                },
+                "publicReferenceNumber": 60176070,
+                "created": 1394711417361,
+                "creditCaseTags": {
+                    "BANKSYSTEM_REPRESENTATIVE_CODE": "999999",
+                    "EXTERNAL_REFERENCE": "422320",
+                    "BANKSYSTEM_REPRESENTATIVE_GROUP_CODE": "999999"
+                },
+                "creditProductCode": "PL031S",
+                "customerIPTimestamp": 1394711417607,
+                "timeout": null,
+                "latestCreditDecision": null,
+                "businessArea": "NOT_SET",
+                "application": {
+                    "isInsured": false,
+                    "decisionPermissionGranted": false,
+                    "insured": false,
+                    "payoutClearingNo": null,
+                    "householdNoOfChildren": 0,
+                    "agreementSignType": null,
+                    "referenceNumber": {
+                        "internalReferenceNumber": 6017607
+                    },
+                    "countryCode": "SE",
+                    "householdLivingExpenses": 3750,
+                    "financeOtherLoansAmount": 0,
+                    "increaseExistingCredit": false,
+                    "payoutAccountNo": null,
+                    "paymentTerms": 144,
+                    "employerContactPermitted": null,
+                    "householdIncome": 48500,
+                    "coApplicant": {
+                        "profession": "xx",
+                        "lastName": null,
+                        "mobilePhoneNumber": "+46708656566",
+                        "habitationType": "APARTMENT",
+                        "homePhoneNumber": "+46708656566",
+                        "address": {
+                            "addressSource": {
+                                "addressCredibility": "CUSTOMER_GIVEN"
+                            },
+                            "countryCode": "SE",
+                            "postalArea": "",
+                            "postalCode": "",
+                            "addressRow": "",
+                            "addressRow2": ""
+                        },
+                        "employmentType": "PENSIONAR",
+                        "employerName": null,
+                        "employedTo": null,
+                        "yearlyIncome": 222000,
+                        "firstName": null,
+                        "emailAddress": null,
+                        "referenceNumber": null,
+                        "workPhoneNumber": "+46708656566",
+                        "employmentDescription": null,
+                        "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPExtendedApplicant",
+                        "employedSince": 1114944617524,
+                        "habitationDate": null,
+                        "maritalStatus": "SINGLE",
+                        "governmentId": {
+                            "countryCode": "SE",
+                            "_class": "com.resurs.commons.model.governmentid.se.SENaturalGovernmentId",
+                            "type": "NATURAL",
+                            "value": "195502259442"
+                        }
+                    },
+                    "termsAgreedTo": false,
+                    "timestamp": 1394711417452,
+                    "customerForm": "PRIVATE",
+                    "amount": 250000,
+                    "householdTotalAssets": 0,
+                    "householdLoanExpenses": 0,
+                    "message": null,
+                    "applicant": {
+                        "profession": "xx",
+                        "lastName": null,
+                        "mobilePhoneNumber": "+46723299442",
+                        "habitationType": "APARTMENT",
+                        "homePhoneNumber": "+46723299442",
+                        "address": {
+                            "addressSource": {
+                                "addressCredibility": "CUSTOMER_GIVEN"
+                            },
+                            "countryCode": "SE",
+                            "postalArea": "",
+                            "postalCode": "",
+                            "addressRow": "",
+                            "addressRow2": ""
+                        },
+                        "employmentType": "FAST_ANSTALLD",
+                        "employerName": "GÖTEBORGS SPÅRVÄGAR AB",
+                        "employedTo": null,
+                        "yearlyIncome": 360000,
+                        "firstName": null,
+                        "emailAddress": null,
+                        "referenceNumber": {
+                            "internalReferenceNumber": 6017607
+                        },
+                        "workPhoneNumber": "+46317321000",
+                        "employmentDescription": null,
+                        "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPExtendedApplicant",
+                        "employedSince": 165585017496,
+                        "habitationDate": 946727417482,
+                        "maritalStatus": "SINGLE",
+                        "governmentId": {
+                            "countryCode": "SE",
+                            "_class": "com.resurs.commons.model.governmentid.se.SENaturalGovernmentId",
+                            "type": "NATURAL",
+                            "value": "194809153234"
+                        }
+                    },
+                    "externalReference": null,
+                    "insurableObjectPurchase": false,
+                    "isFinancingOtherLoan": false,
+                    "isInsurableObjectPurchase": false,
+                    "minDesiredLoanAmount": 250000,
+                    "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPExtendedApplication",
+                    "financingOtherLoan": false,
+                    "insuranceDocumentation": null
+                },
+                "referenceNumber": {
+                    "internalReferenceNumber": 6017607
+                },
+                "userIdentifier": null,
+                "countryCode": "UNKNOWN",
+                "_class": "com.resurs.multiupplys.data.CreditCase",
+                "currentState": {
+                    "amount": 221000,
+                    "subState": null,
+                    "referenceNumber": {
+                        "internalReferenceNumber": 6017607
+                    },
+                    "deposit": 0,
+                    "_class": "com.resurs.multiupplys.data.CreditCaseState",
+                    "state": "APPROVED",
+                    "timestamp": 1394711422280
+                },
+                "creditAmount": null,
+                "locked": false,
+                "updated": 1394711417361,
+                "possibleInconsistencies": null,
+                "customer": null,
+                "validTo": null
+            }
+        },
+        {
+            "type": "limitresponse",
+            "object": {
+                "reason": "courtesy of MUPFilter",
+                "rawApplication": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><resurs-response><amount>2468</amount><applicant-government-id>7905140070</applicant-government-id><applicant-telephone-number>0735101405</applicant-telephone-number><applicant-mobile-number>0735101405</applicant-mobile-number><applicant-email-address>fseljemo@gmail.com</applicant-email-address></resurs-response>",
+                "coCustomer": null,
+                "decision": "APPROVED",
+                "creditProductCode": "PE012S",
+                "tags": {
+                    "tagEntry": []
+                },
+                "mupRefNumber": 60176021,
+                "application": {
+                    "externalReference": null,
+                    "customerForm": "PRIVATE",
+                    "amount": 2468,
+                    "referenceNumber": null,
+                    "countryCode": "SE",
+                    "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPApplication",
+                    "increaseExistingCredit": false,
+                    "message": null,
+                    "coApplicant": {
+                        "lastName": null,
+                        "mobilePhoneNumber": null,
+                        "homePhoneNumber": null,
+                        "address": {
+                            "addressSource": {
+                                "addressCredibility": "CUSTOMER_GIVEN"
+                            },
+                            "countryCode": "SE",
+                            "postalArea": "",
+                            "postalCode": "",
+                            "addressRow": "",
+                            "addressRow2": ""
+                        },
+                        "employmentType": null,
+                        "employerName": null,
+                        "yearlyIncome": null,
+                        "firstName": null,
+                        "emailAddress": null,
+                        "referenceNumber": null,
+                        "workPhoneNumber": null,
+                        "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPApplicant",
+                        "employedSince": null,
+                        "governmentId": null
+                    },
+                    "timestamp": 1394711417322,
+                    "applicant": {
+                        "lastName": null,
+                        "mobilePhoneNumber": "+46735101405",
+                        "homePhoneNumber": "+46735101405",
+                        "address": {
+                            "addressSource": {
+                                "addressCredibility": "CUSTOMER_GIVEN"
+                            },
+                            "countryCode": "SE",
+                            "postalArea": "",
+                            "postalCode": "",
+                            "addressRow": "",
+                            "addressRow2": ""
+                        },
+                        "employmentType": null,
+                        "employerName": null,
+                        "yearlyIncome": null,
+                        "firstName": null,
+                        "emailAddress": "fseljemo@gmail.com",
+                        "referenceNumber": null,
+                        "workPhoneNumber": null,
+                        "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPApplicant",
+                        "employedSince": null,
+                        "governmentId": {
+                            "countryCode": "SE",
+                            "_class": "com.resurs.commons.model.governmentid.se.SENaturalGovernmentId",
+                            "type": "NATURAL",
+                            "value": "197905140070"
+                        }
+                    },
+                    "termsAgreedTo": false
+                },
+                "reservationId": 18458,
+                "requestedAmount": 2468,
+                "approvedAmount": 2468,
+                "timestamp": 1394711417223,
+                "customer": {
+                    "profession": "",
+                    "lastName": "Seljemo",
+                    "address": {
+                        "streetAddress": "Taltrastvägen 23",
+                        "postalArea": "Vallentuna",
+                        "countryCode": "SE",
+                        "postalCode": "18647",
+                        "streetAddress2": "",
+                        "credibility": null
+                    },
+                    "homePhone": "+46735101405",
+                    "fullName": "Fredrik Seljemo",
+                    "employerName": "",
+                    "permanentlyEmployed": false,
+                    "statedYearlyIncome": 0,
+                    "firstName": "Fredrik",
+                    "mobilePhone": "+46735101405",
+                    "countryCode": "SE",
+                    "workPhone": "",
+                    "employedSince": null,
+                    "email": "fseljemo@gmail.com",
+                    "governmentId": "790514-0070"
+                }
+            }
+        },
+        {
+            "type": "creditcase",
+            "object": {
+                "contractTerms": 0,
+                "customerIP": {
+                    "ipParts": [
+                        "1",
+                        "2",
+                        "3",
+                        "4"
+                    ]
+                },
+                "publicReferenceNumber": 60176047,
+                "created": 1394711413148,
+                "creditCaseTags": {
+                    "BANKSYSTEM_REPRESENTATIVE_CODE": "999999",
+                    "EXTERNAL_REFERENCE": "422317",
+                    "BANKSYSTEM_REPRESENTATIVE_GROUP_CODE": "999999"
+                },
+                "creditProductCode": "PL031S",
+                "customerIPTimestamp": 1394711413351,
+                "timeout": null,
+                "latestCreditDecision": null,
+                "businessArea": "NOT_SET",
+                "application": {
+                    "isInsured": false,
+                    "decisionPermissionGranted": false,
+                    "insured": false,
+                    "payoutClearingNo": null,
+                    "householdNoOfChildren": 0,
+                    "agreementSignType": null,
+                    "referenceNumber": {
+                        "internalReferenceNumber": 6017604
+                    },
+                    "countryCode": "SE",
+                    "householdLivingExpenses": 5900,
+                    "financeOtherLoansAmount": 0,
+                    "increaseExistingCredit": false,
+                    "payoutAccountNo": null,
+                    "paymentTerms": 72,
+                    "employerContactPermitted": null,
+                    "householdIncome": 45000,
+                    "coApplicant": {
+                        "profession": null,
+                        "lastName": null,
+                        "mobilePhoneNumber": null,
+                        "habitationType": null,
+                        "homePhoneNumber": null,
+                        "address": {
+                            "addressSource": {
+                                "addressCredibility": "CUSTOMER_GIVEN"
+                            },
+                            "countryCode": "SE",
+                            "postalArea": "",
+                            "postalCode": "",
+                            "addressRow": "",
+                            "addressRow2": ""
+                        },
+                        "employmentType": null,
+                        "employerName": null,
+                        "employedTo": null,
+                        "yearlyIncome": null,
+                        "firstName": null,
+                        "emailAddress": null,
+                        "referenceNumber": null,
+                        "workPhoneNumber": null,
+                        "employmentDescription": null,
+                        "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPExtendedApplicant",
+                        "employedSince": null,
+                        "habitationDate": null,
+                        "maritalStatus": null,
+                        "governmentId": null
+                    },
+                    "termsAgreedTo": false,
+                    "timestamp": 1394711413244,
+                    "customerForm": "PRIVATE",
+                    "amount": 250000,
+                    "householdTotalAssets": 0,
+                    "householdLoanExpenses": 0,
+                    "message": null,
+                    "applicant": {
+                        "profession": "xx",
+                        "lastName": null,
+                        "mobilePhoneNumber": "+46730348357",
+                        "habitationType": "APARTMENT",
+                        "homePhoneNumber": "+46730348357",
+                        "address": {
+                            "addressSource": {
+                                "addressCredibility": "CUSTOMER_GIVEN"
+                            },
+                            "countryCode": "SE",
+                            "postalArea": "",
+                            "postalCode": "",
+                            "addressRow": "",
+                            "addressRow2": ""
+                        },
+                        "employmentType": "FAST_ANSTALLD",
+                        "employerName": "SÖDRA CELL AB",
+                        "employedTo": null,
+                        "yearlyIncome": 540000,
+                        "firstName": null,
+                        "emailAddress": "martin.karlsson@sodra.com",
+                        "referenceNumber": {
+                            "internalReferenceNumber": 6017604
+                        },
+                        "workPhoneNumber": "+4647089000",
+                        "employmentDescription": null,
+                        "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPExtendedApplicant",
+                        "employedSince": 1167652213267,
+                        "habitationDate": 946727413260,
+                        "maritalStatus": "SINGLE",
+                        "governmentId": {
+                            "countryCode": "SE",
+                            "_class": "com.resurs.commons.model.governmentid.se.SENaturalGovernmentId",
+                            "type": "NATURAL",
+                            "value": "198804202979"
+                        }
+                    },
+                    "externalReference": null,
+                    "insurableObjectPurchase": false,
+                    "isFinancingOtherLoan": false,
+                    "isInsurableObjectPurchase": false,
+                    "minDesiredLoanAmount": 250000,
+                    "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPExtendedApplication",
+                    "financingOtherLoan": false,
+                    "insuranceDocumentation": null
+                },
+                "referenceNumber": {
+                    "internalReferenceNumber": 6017604
+                },
+                "userIdentifier": null,
+                "countryCode": "UNKNOWN",
+                "_class": "com.resurs.multiupplys.data.CreditCase",
+                "currentState": {
+                    "amount": 0,
+                    "subState": null,
+                    "referenceNumber": {
+                        "internalReferenceNumber": 6017604
+                    },
+                    "deposit": 0,
+                    "_class": "com.resurs.multiupplys.data.CreditCaseState",
+                    "state": "MANUAL_INSPECTION",
+                    "timestamp": 1394711416740
+                },
+                "creditAmount": null,
+                "locked": false,
+                "updated": 1394711413148,
+                "possibleInconsistencies": null,
+                "customer": null,
+                "validTo": null
+            }
+        },
+        {
+            "type": "creditcase",
+            "object": {
+                "contractTerms": 0,
+                "customerIP": {
+                    "ipParts": [
+                        "213",
+                        "66",
+                        "163",
+                        "233"
+                    ]
+                },
+                "publicReferenceNumber": 60176021,
+                "created": 1394711412519,
+                "creditCaseTags": {
+                    "BANKSYSTEM_REPRESENTATIVE_COUNTRY_CODE": "SE",
+                    "BANKPRODUCT_CODE": "NP683069",
+                    "BANKSYSTEM_REPRESENTATIVE_CODE": "105310",
+                    "EXTERNAL_REFERENCE": "1744474",
+                    "REPRESENTATIVE_NAME": "netonnet"
+                },
+                "creditProductCode": "PE012S",
+                "customerIPTimestamp": 1394711412622,
+                "timeout": null,
+                "latestCreditDecision": null,
+                "businessArea": "NOT_SET",
+                "application": {
+                    "externalReference": null,
+                    "customerForm": "PRIVATE",
+                    "amount": 2468,
+                    "referenceNumber": {
+                        "internalReferenceNumber": 6017602
+                    },
+                    "countryCode": "SE",
+                    "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPApplication",
+                    "increaseExistingCredit": false,
+                    "message": null,
+                    "coApplicant": {
+                        "lastName": null,
+                        "mobilePhoneNumber": null,
+                        "homePhoneNumber": null,
+                        "address": {
+                            "addressSource": {
+                                "addressCredibility": "CUSTOMER_GIVEN"
+                            },
+                            "countryCode": "SE",
+                            "postalArea": "",
+                            "postalCode": "",
+                            "addressRow": "",
+                            "addressRow2": ""
+                        },
+                        "employmentType": null,
+                        "employerName": null,
+                        "yearlyIncome": null,
+                        "firstName": null,
+                        "emailAddress": null,
+                        "referenceNumber": null,
+                        "workPhoneNumber": null,
+                        "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPApplicant",
+                        "employedSince": null,
+                        "governmentId": null
+                    },
+                    "applicant": {
+                        "lastName": null,
+                        "mobilePhoneNumber": "+46735101405",
+                        "homePhoneNumber": "+46735101405",
+                        "address": {
+                            "addressSource": {
+                                "addressCredibility": "CUSTOMER_GIVEN"
+                            },
+                            "countryCode": "SE",
+                            "postalArea": "",
+                            "postalCode": "",
+                            "addressRow": "",
+                            "addressRow2": ""
+                        },
+                        "employmentType": null,
+                        "employerName": null,
+                        "yearlyIncome": null,
+                        "firstName": null,
+                        "emailAddress": "fseljemo@gmail.com",
+                        "referenceNumber": {
+                            "internalReferenceNumber": 6017602
+                        },
+                        "workPhoneNumber": null,
+                        "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPApplicant",
+                        "employedSince": null,
+                        "governmentId": {
+                            "countryCode": "SE",
+                            "_class": "com.resurs.commons.model.governmentid.se.SENaturalGovernmentId",
+                            "type": "NATURAL",
+                            "value": "197905140070"
+                        }
+                    },
+                    "termsAgreedTo": false,
+                    "timestamp": 1394711412574
+                },
+                "referenceNumber": {
+                    "internalReferenceNumber": 6017602
+                },
+                "userIdentifier": null,
+                "countryCode": "SE",
+                "_class": "com.resurs.multiupplys.data.CreditCase",
+                "currentState": {
+                    "amount": 2468,
+                    "subState": null,
+                    "referenceNumber": {
+                        "internalReferenceNumber": 6017602
+                    },
+                    "deposit": 0,
+                    "_class": "com.resurs.multiupplys.data.CreditCaseState",
+                    "state": "APPROVED",
+                    "timestamp": 1394711416887
+                },
+                "creditAmount": null,
+                "locked": false,
+                "updated": 1394711412519,
+                "possibleInconsistencies": null,
+                "customer": null,
+                "validTo": null
+            }
+        },
+        {
+            "type": "creditcase",
+            "object": {
+                "contractTerms": 0,
+                "customerIP": {
+                    "ipParts": [
+                        "2",
+                        "65",
+                        "110",
+                        "135"
+                    ]
+                },
+                "publicReferenceNumber": 60175965,
+                "created": 1394711321588,
+                "creditCaseTags": {
+                    "BANKSYSTEM_REPRESENTATIVE_COUNTRY_CODE": "SE",
+                    "BANKPRODUCT_CODE": "75138069",
+                    "APPLICATION_TYPE": "NEW_ACCOUNT",
+                    "BANKSYSTEM_REPRESENTATIVE_CODE": "142051",
+                    "BANKSYSTEM_CARD_TYPE": "RUST002",
+                    "BANKSYSTEM_REPRESENTATIVE_GROUP_CODE": "142000"
+                },
+                "creditProductCode": "PA001S",
+                "customerIPTimestamp": 1394711322744,
+                "timeout": null,
+                "latestCreditDecision": null,
+                "businessArea": "NOT_SET",
+                "application": {
+                    "externalReference": null,
+                    "customerForm": "PRIVATE",
+                    "amount": 5000,
+                    "referenceNumber": {
+                        "internalReferenceNumber": 6017596
+                    },
+                    "countryCode": "SE",
+                    "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPApplication",
+                    "increaseExistingCredit": false,
+                    "message": null,
+                    "coApplicant": {
+                        "lastName": null,
+                        "mobilePhoneNumber": null,
+                        "homePhoneNumber": null,
+                        "address": {
+                            "addressSource": {
+                                "addressCredibility": "CUSTOMER_GIVEN"
+                            },
+                            "countryCode": "SE",
+                            "postalArea": "",
+                            "postalCode": "",
+                            "addressRow": "",
+                            "addressRow2": ""
+                        },
+                        "employmentType": null,
+                        "employerName": null,
+                        "yearlyIncome": null,
+                        "firstName": null,
+                        "emailAddress": null,
+                        "referenceNumber": null,
+                        "workPhoneNumber": null,
+                        "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPApplicant",
+                        "employedSince": null,
+                        "governmentId": null
+                    },
+                    "applicant": {
+                        "lastName": null,
+                        "mobilePhoneNumber": "+46702339130",
+                        "homePhoneNumber": "+46702339140",
+                        "address": {
+                            "addressSource": {
+                                "addressCredibility": "CUSTOMER_GIVEN"
+                            },
+                            "countryCode": "SE",
+                            "postalArea": "",
+                            "postalCode": "",
+                            "addressRow": "",
+                            "addressRow2": ""
+                        },
+                        "employmentType": "FAST_ANSTALLD",
+                        "employerName": "Katrineholmskommun",
+                        "yearlyIncome": null,
+                        "firstName": null,
+                        "emailAddress": "Maria.bjurenlov@hotmail.com",
+                        "referenceNumber": {
+                            "internalReferenceNumber": 6017596
+                        },
+                        "workPhoneNumber": null,
+                        "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPApplicant",
+                        "employedSince": 886333722686,
+                        "governmentId": {
+                            "countryCode": "SE",
+                            "_class": "com.resurs.commons.model.governmentid.se.SENaturalGovernmentId",
+                            "type": "NATURAL",
+                            "value": "197310171660"
+                        }
+                    },
+                    "termsAgreedTo": true,
+                    "timestamp": 1394711322672
+                },
+                "referenceNumber": {
+                    "internalReferenceNumber": 6017596
+                },
+                "userIdentifier": "",
+                "countryCode": "SE",
+                "_class": "com.resurs.multiupplys.data.CreditCase",
+                "currentState": {
+                    "amount": 5000,
+                    "subState": null,
+                    "referenceNumber": {
+                        "internalReferenceNumber": 6017596
+                    },
+                    "deposit": 0,
+                    "_class": "com.resurs.multiupplys.data.CreditCaseState",
+                    "state": "APPROVED",
+                    "timestamp": 1394711324611
+                },
+                "creditAmount": null,
+                "locked": false,
+                "updated": 1394711321588,
+                "possibleInconsistencies": null,
+                "customer": null,
+                "validTo": null
+            }
+        },
+        {
+            "type": "limitresponse",
+            "object": {
+                "reason": "courtesy of MUPFilter",
+                "rawApplication": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><resurs-response>\n\t<amount>14389</amount>\n\t<applicant-government-id>7410133529</applicant-government-id>\n\t<applicant-mobile-number>070-412 68 82</applicant-mobile-number>\n\t<applicant-email-address>ljungandersson@yahoo.se</applicant-email-address>\n</resurs-response>",
+                "coCustomer": null,
+                "decision": "APPROVED",
+                "creditProductCode": "PE015S",
+                "tags": {
+                    "tagEntry": []
+                },
+                "mupRefNumber": 60175957,
+                "application": {
+                    "externalReference": null,
+                    "customerForm": "PRIVATE",
+                    "amount": 14389,
+                    "referenceNumber": null,
+                    "countryCode": "SE",
+                    "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPApplication",
+                    "increaseExistingCredit": false,
+                    "message": null,
+                    "coApplicant": {
+                        "lastName": null,
+                        "mobilePhoneNumber": null,
+                        "homePhoneNumber": null,
+                        "address": {
+                            "addressSource": {
+                                "addressCredibility": "CUSTOMER_GIVEN"
+                            },
+                            "countryCode": "SE",
+                            "postalArea": "",
+                            "postalCode": "",
+                            "addressRow": "",
+                            "addressRow2": ""
+                        },
+                        "employmentType": null,
+                        "employerName": null,
+                        "yearlyIncome": null,
+                        "firstName": null,
+                        "emailAddress": null,
+                        "referenceNumber": null,
+                        "workPhoneNumber": null,
+                        "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPApplicant",
+                        "employedSince": null,
+                        "governmentId": null
+                    },
+                    "timestamp": 1394711309683,
+                    "applicant": {
+                        "lastName": null,
+                        "mobilePhoneNumber": "+46704126882",
+                        "homePhoneNumber": null,
+                        "address": {
+                            "addressSource": {
+                                "addressCredibility": "CUSTOMER_GIVEN"
+                            },
+                            "countryCode": "SE",
+                            "postalArea": "",
+                            "postalCode": "",
+                            "addressRow": "",
+                            "addressRow2": ""
+                        },
+                        "employmentType": null,
+                        "employerName": null,
+                        "yearlyIncome": null,
+                        "firstName": null,
+                        "emailAddress": "ljungandersson@yahoo.se",
+                        "referenceNumber": null,
+                        "workPhoneNumber": null,
+                        "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPApplicant",
+                        "employedSince": null,
+                        "governmentId": {
+                            "countryCode": "SE",
+                            "_class": "com.resurs.commons.model.governmentid.se.SENaturalGovernmentId",
+                            "type": "NATURAL",
+                            "value": "197410133529"
+                        }
+                    },
+                    "termsAgreedTo": false
+                },
+                "reservationId": 18457,
+                "requestedAmount": 14389,
+                "approvedAmount": 14389,
+                "timestamp": 1394711309556,
+                "customer": {
+                    "profession": "",
+                    "lastName": "Ljung Andersson",
+                    "address": {
+                        "streetAddress": "Strågatan 26",
+                        "postalArea": "Ängelholm",
+                        "countryCode": "SE",
+                        "postalCode": "26254",
+                        "streetAddress2": "",
+                        "credibility": null
+                    },
+                    "homePhone": "",
+                    "fullName": "Petra Ljung Andersson",
+                    "employerName": "",
+                    "permanentlyEmployed": false,
+                    "statedYearlyIncome": 0,
+                    "firstName": "Petra",
+                    "mobilePhone": "+46704126882",
+                    "countryCode": "SE",
+                    "workPhone": "",
+                    "employedSince": null,
+                    "email": "ljungandersson@yahoo.se",
+                    "governmentId": "741013-3529"
+                }
+            }
+        },
+        {
+            "type": "creditcase",
+            "object": {
+                "contractTerms": 0,
+                "customerIP": {
+                    "ipParts": [
+                        "80",
+                        "70",
+                        "156",
+                        "213"
+                    ]
+                },
+                "publicReferenceNumber": 60175957,
+                "created": 1394711306064,
+                "creditCaseTags": {
+                    "BANKSYSTEM_REPRESENTATIVE_COUNTRY_CODE": "SE",
+                    "BANKPRODUCT_CODE": "T9185069",
+                    "BANKSYSTEM_REPRESENTATIVE_CODE": "7560",
+                    "EXTERNAL_REFERENCE": "10014542",
+                    "REPRESENTATIVE_NAME": "ticket",
+                    "BANKSYSTEM_CARD_TYPE": "TICK003"
+                },
+                "creditProductCode": "PE015S",
+                "customerIPTimestamp": 1394711306205,
+                "timeout": null,
+                "latestCreditDecision": null,
+                "businessArea": "NOT_SET",
+                "application": {
+                    "externalReference": null,
+                    "customerForm": "PRIVATE",
+                    "amount": 14389,
+                    "referenceNumber": {
+                        "internalReferenceNumber": 6017595
+                    },
+                    "countryCode": "SE",
+                    "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPApplication",
+                    "increaseExistingCredit": false,
+                    "message": null,
+                    "coApplicant": {
+                        "lastName": null,
+                        "mobilePhoneNumber": null,
+                        "homePhoneNumber": null,
+                        "address": {
+                            "addressSource": {
+                                "addressCredibility": "CUSTOMER_GIVEN"
+                            },
+                            "countryCode": "SE",
+                            "postalArea": "",
+                            "postalCode": "",
+                            "addressRow": "",
+                            "addressRow2": ""
+                        },
+                        "employmentType": null,
+                        "employerName": null,
+                        "yearlyIncome": null,
+                        "firstName": null,
+                        "emailAddress": null,
+                        "referenceNumber": null,
+                        "workPhoneNumber": null,
+                        "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPApplicant",
+                        "employedSince": null,
+                        "governmentId": null
+                    },
+                    "applicant": {
+                        "lastName": null,
+                        "mobilePhoneNumber": "+46704126882",
+                        "homePhoneNumber": null,
+                        "address": {
+                            "addressSource": {
+                                "addressCredibility": "CUSTOMER_GIVEN"
+                            },
+                            "countryCode": "SE",
+                            "postalArea": "",
+                            "postalCode": "",
+                            "addressRow": "",
+                            "addressRow2": ""
+                        },
+                        "employmentType": null,
+                        "employerName": null,
+                        "yearlyIncome": null,
+                        "firstName": null,
+                        "emailAddress": "ljungandersson@yahoo.se",
+                        "referenceNumber": {
+                            "internalReferenceNumber": 6017595
+                        },
+                        "workPhoneNumber": null,
+                        "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPApplicant",
+                        "employedSince": null,
+                        "governmentId": {
+                            "countryCode": "SE",
+                            "_class": "com.resurs.commons.model.governmentid.se.SENaturalGovernmentId",
+                            "type": "NATURAL",
+                            "value": "197410133529"
+                        }
+                    },
+                    "termsAgreedTo": false,
+                    "timestamp": 1394711306137
+                },
+                "referenceNumber": {
+                    "internalReferenceNumber": 6017595
+                },
+                "userIdentifier": null,
+                "countryCode": "UNKNOWN",
+                "_class": "com.resurs.multiupplys.data.CreditCase",
+                "currentState": {
+                    "amount": 14389,
+                    "subState": null,
+                    "referenceNumber": {
+                        "internalReferenceNumber": 6017595
+                    },
+                    "deposit": 0,
+                    "_class": "com.resurs.multiupplys.data.CreditCaseState",
+                    "state": "APPROVED",
+                    "timestamp": 1394711309233
+                },
+                "creditAmount": null,
+                "locked": false,
+                "updated": 1394711306064,
+                "possibleInconsistencies": null,
+                "customer": null,
+                "validTo": null
+            }
+        },
+        {
+            "type": "creditcase",
+            "object": {
+                "contractTerms": 0,
+                "customerIP": {
+                    "ipParts": [
+                        "86",
+                        "114",
+                        "64",
+                        "58"
+                    ]
+                },
+                "publicReferenceNumber": 60175932,
+                "created": 1394711293048,
+                "creditCaseTags": {
+                    "BANKSYSTEM_REPRESENTATIVE_COUNTRY_CODE": "FI",
+                    "BANKPRODUCT_CODE": "SB144069",
+                    "BANKSYSTEM_REPRESENTATIVE_CODE": "35331",
+                    "REPRESENTATIVE_NAME": "SILMÄASEMA HYVINKÄÄ",
+                    "BANKSYSTEM_REPRESENTATIVE_GROUP_CODE": "3500"
+                },
+                "creditProductCode": "PB202S",
+                "customerIPTimestamp": 1394711293230,
+                "timeout": null,
+                "latestCreditDecision": null,
+                "businessArea": "NOT_SET",
+                "application": {
+                    "externalReference": null,
+                    "customerForm": "PRIVATE",
+                    "amount": 500,
+                    "referenceNumber": {
+                        "internalReferenceNumber": 6017593
+                    },
+                    "countryCode": "FI",
+                    "_class": "com.resurs.multiupplys.data.locale.fi.pp.FIPPApplication",
+                    "increaseExistingCredit": false,
+                    "message": null,
+                    "coApplicant": {
+                        "lastName": null,
+                        "mobilePhoneNumber": null,
+                        "homePhoneNumber": null,
+                        "address": {
+                            "addressSource": {
+                                "addressCredibility": "CUSTOMER_GIVEN"
+                            },
+                            "countryCode": "FI",
+                            "postalArea": "",
+                            "postalCode": "",
+                            "addressRow": "",
+                            "addressRow2": ""
+                        },
+                        "employmentType": null,
+                        "employerName": null,
+                        "yearlyIncome": null,
+                        "firstName": null,
+                        "emailAddress": null,
+                        "referenceNumber": null,
+                        "workPhoneNumber": null,
+                        "_class": "com.resurs.multiupplys.data.locale.fi.pp.FIPPApplicant",
+                        "employedSince": null,
+                        "governmentId": null
+                    },
+                    "applicant": {
+                        "lastName": null,
+                        "mobilePhoneNumber": null,
+                        "homePhoneNumber": "+358408476504",
+                        "address": {
+                            "addressSource": {
+                                "addressCredibility": "CUSTOMER_GIVEN"
+                            },
+                            "countryCode": "FI",
+                            "postalArea": "",
+                            "postalCode": "",
+                            "addressRow": "",
+                            "addressRow2": ""
+                        },
+                        "employmentType": null,
+                        "employerName": null,
+                        "yearlyIncome": null,
+                        "firstName": null,
+                        "emailAddress": null,
+                        "referenceNumber": {
+                            "internalReferenceNumber": 6017593
+                        },
+                        "workPhoneNumber": null,
+                        "_class": "com.resurs.multiupplys.data.locale.fi.pp.FIPPApplicant",
+                        "employedSince": null,
+                        "governmentId": {
+                            "countryCode": "FI",
+                            "_class": "com.resurs.commons.model.governmentid.fi.FINaturalGovernmentId",
+                            "type": "NATURAL",
+                            "value": "220481-0298"
+                        }
+                    },
+                    "termsAgreedTo": false,
+                    "timestamp": 1394711293127
+                },
+                "referenceNumber": {
+                    "internalReferenceNumber": 6017593
+                },
+                "userIdentifier": "",
+                "countryCode": "SE",
+                "_class": "com.resurs.multiupplys.data.CreditCase",
+                "currentState": {
+                    "amount": 500,
+                    "subState": null,
+                    "referenceNumber": {
+                        "internalReferenceNumber": 6017593
+                    },
+                    "deposit": 0,
+                    "_class": "com.resurs.multiupplys.data.CreditCaseState",
+                    "state": "APPROVED",
+                    "timestamp": 1394711298118
+                },
+                "creditAmount": null,
+                "locked": false,
+                "updated": 1394711293048,
+                "possibleInconsistencies": null,
+                "customer": null,
+                "validTo": null
+            }
+        },
+        {
+            "type": "limitresponse",
+            "object": {
+                "reason": "courtesy of MUPFilter",
+                "rawApplication": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><resurs-response>\n\t<amount>1480</amount>\n\t<applicant-government-id>6312174334</applicant-government-id>\n\t<applicant-mobile-number>076-899 29 63</applicant-mobile-number>\n\t<applicant-email-address>mimmiefors@hotmail.com</applicant-email-address>\n</resurs-response>",
+                "coCustomer": null,
+                "decision": "APPROVED",
+                "creditProductCode": "PE016S",
+                "tags": {
+                    "tagEntry": []
+                },
+                "mupRefNumber": 60175858,
+                "application": {
+                    "externalReference": null,
+                    "customerForm": "PRIVATE",
+                    "amount": 1480,
+                    "referenceNumber": null,
+                    "countryCode": "SE",
+                    "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPApplication",
+                    "increaseExistingCredit": false,
+                    "message": null,
+                    "coApplicant": {
+                        "lastName": null,
+                        "mobilePhoneNumber": null,
+                        "homePhoneNumber": null,
+                        "address": {
+                            "addressSource": {
+                                "addressCredibility": "CUSTOMER_GIVEN"
+                            },
+                            "countryCode": "SE",
+                            "postalArea": "",
+                            "postalCode": "",
+                            "addressRow": "",
+                            "addressRow2": ""
+                        },
+                        "employmentType": null,
+                        "employerName": null,
+                        "yearlyIncome": null,
+                        "firstName": null,
+                        "emailAddress": null,
+                        "referenceNumber": null,
+                        "workPhoneNumber": null,
+                        "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPApplicant",
+                        "employedSince": null,
+                        "governmentId": null
+                    },
+                    "timestamp": 1394711249302,
+                    "applicant": {
+                        "lastName": null,
+                        "mobilePhoneNumber": "+46768992963",
+                        "homePhoneNumber": null,
+                        "address": {
+                            "addressSource": {
+                                "addressCredibility": "CUSTOMER_GIVEN"
+                            },
+                            "countryCode": "SE",
+                            "postalArea": "",
+                            "postalCode": "",
+                            "addressRow": "",
+                            "addressRow2": ""
+                        },
+                        "employmentType": null,
+                        "employerName": null,
+                        "yearlyIncome": null,
+                        "firstName": null,
+                        "emailAddress": "mimmiefors@hotmail.com",
+                        "referenceNumber": null,
+                        "workPhoneNumber": null,
+                        "_class": "com.resurs.multiupplys.data.locale.se.pp.SEPPApplicant",
+                        "employedSince": null,
+                        "governmentId": {
+                            "countryCode": "SE",
+                            "_class": "com.resurs.commons.model.governmentid.se.SENaturalGovernmentId",
+                            "type": "NATURAL",
+                            "value": "196312174334"
+                        }
+                    },
+                    "termsAgreedTo": false
+                },
+                "reservationId": 18456,
+                "requestedAmount": 1480,
+                "approvedAmount": 1480,
+                "timestamp": 1394711249177,
+                "customer": {
+                    "profession": "",
+                    "lastName": "Fors",
+                    "address": {
+                        "streetAddress": "Rallarevägen 13",
+                        "postalArea": "Trelleborg",
+                        "countryCode": "SE",
+                        "postalCode": "23136",
+                        "streetAddress2": "",
+                        "credibility": null
+                    },
+                    "homePhone": "",
+                    "fullName": "Ingmar Fors",
+                    "employerName": "",
+                    "permanentlyEmployed": false,
+                    "statedYearlyIncome": 0,
+                    "firstName": "Ingmar",
+                    "mobilePhone": "+46768992963",
+                    "countryCode": "SE",
+                    "workPhone": "",
+                    "employedSince": null,
+                    "email": "mimmiefors@hotmail.com",
+                    "governmentId": "631217-4334"
+                }
+            }
+        }
+    ],
+    "aggregates": [
+        {
+            "name": "type",
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "recommendation",
+                            "children": [
+                                {
+                                    "children": [],
+                                    "name": "suspected_not_fraud",
+                                    "hits": 243594,
+                                    "value": "suspected_not_fraud"
+                                },
+                                {
+                                    "children": [],
+                                    "name": "confirmed_not_fraud",
+                                    "hits": 137882,
+                                    "value": "confirmed_not_fraud"
+                                },
+                                {
+                                    "children": [],
+                                    "name": "suspected_fraud",
+                                    "hits": 14660,
+                                    "value": "suspected_fraud"
+                                },
+                                {
+                                    "children": [],
+                                    "name": "confirmed_fraud",
+                                    "hits": 543,
+                                    "value": "confirmed_fraud"
+                                }
+                            ]
+                        }
+                    ],
+                    "name": "FraudSummary",
+                    "hits": 396679,
+                    "value": "FraudSummary"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "State",
+                            "children": [
+                                {
+                                    "children": [],
+                                    "name": "approved",
+                                    "hits": 19460,
+                                    "value": "approved"
+                                },
+                                {
+                                    "children": [],
+                                    "name": "denied",
+                                    "hits": 7280,
+                                    "value": "denied"
+                                },
+                                {
+                                    "children": [],
+                                    "name": "manual_inspection",
+                                    "hits": 408,
+                                    "value": "manual_inspection"
+                                },
+                                {
+                                    "children": [],
+                                    "name": "komplettering",
+                                    "hits": 241,
+                                    "value": "komplettering"
+                                },
+                                {
+                                    "children": [],
+                                    "name": "under_manual_inspection",
+                                    "hits": 26,
+                                    "value": "under_manual_inspection"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "REPRESENTATIVE_NAME",
+                            "children": [
+                                {
+                                    "children": [],
+                                    "name": "netonnet",
+                                    "hits": 12255,
+                                    "value": "netonnet"
+                                },
+                                {
+                                    "children": [],
+                                    "name": "netonnetno",
+                                    "hits": 2072,
+                                    "value": "netonnetno"
+                                },
+                                {
+                                    "children": [],
+                                    "name": "ticket",
+                                    "hits": 854,
+                                    "value": "ticket"
+                                },
+                                {
+                                    "children": [],
+                                    "name": "bauhaus",
+                                    "hits": 492,
+                                    "value": "bauhaus"
+                                },
+                                {
+                                    "children": [],
+                                    "name": "MYMONEY, MALMÖ",
+                                    "hits": 197,
+                                    "value": "MYMONEY, MALMÖ"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "creditProductCode",
+                            "children": [
+                                {
+                                    "children": [],
+                                    "name": "pe012s",
+                                    "hits": 11422,
+                                    "value": "pe012s"
+                                },
+                                {
+                                    "children": [],
+                                    "name": "pl031s",
+                                    "hits": 2094,
+                                    "value": "pl031s"
+                                },
+                                {
+                                    "children": [],
+                                    "name": "pe112s",
+                                    "hits": 2089,
+                                    "value": "pe112s"
+                                },
+                                {
+                                    "children": [],
+                                    "name": "pb006s",
+                                    "hits": 1402,
+                                    "value": "pb006s"
+                                },
+                                {
+                                    "children": [],
+                                    "name": "pb202s",
+                                    "hits": 1224,
+                                    "value": "pb202s"
+                                }
+                            ]
+                        }
+                    ],
+                    "name": "creditcase",
+                    "hits": 27468,
+                    "value": "creditcase"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "decision",
+                            "children": [
+                                {
+                                    "children": [],
+                                    "name": "approved",
+                                    "hits": 13892,
+                                    "value": "approved"
+                                },
+                                {
+                                    "children": [],
+                                    "name": "rejected",
+                                    "hits": 4570,
+                                    "value": "rejected"
+                                }
+                            ]
+                        }
+                    ],
+                    "name": "limitresponse",
+                    "hits": 18462,
+                    "value": "limitresponse"
+                },
+                {
+                    "children": [
+                        {
+                            "name": "lifePhase",
+                            "children": [
+                                {
+                                    "children": [],
+                                    "name": "booked_thawed",
+                                    "hits": 11924,
+                                    "value": "booked_thawed"
+                                },
+                                {
+                                    "children": [],
+                                    "name": "booked_frozen",
+                                    "hits": 472,
+                                    "value": "booked_frozen"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "representative",
+                            "children": [
+                                {
+                                    "children": [],
+                                    "name": "ticket",
+                                    "hits": 6627,
+                                    "value": "ticket"
+                                },
+                                {
+                                    "children": [],
+                                    "name": "bauhaus",
+                                    "hits": 2545,
+                                    "value": "bauhaus"
+                                },
+                                {
+                                    "children": [],
+                                    "name": "motorsweden",
+                                    "hits": 2316,
+                                    "value": "motorsweden"
+                                },
+                                {
+                                    "children": [],
+                                    "name": "klockmaster",
+                                    "hits": 559,
+                                    "value": "klockmaster"
+                                },
+                                {
+                                    "children": [],
+                                    "name": "flygcity",
+                                    "hits": 166,
+                                    "value": "flygcity"
+                                }
+                            ]
+                        }
+                    ],
+                    "name": "payment",
+                    "hits": 12396,
+                    "value": "payment"
+                }
+            ]
+        }
+    ],
+    "totalSize": 455005,
+    "searchTime": 634
+}
