@@ -15,21 +15,21 @@
             <div class="col-lg-2" >
                 <span-search params="value:row.object.lifePhase"></span-search><br/>
                 <br/>
-                <span data-bind="with : $row.object.customer">
+                <span data-bind="with : row.object.customer">
                     <span-search params="value:$data.governmentId"></span-search><br/>
                     <span-search params="value:$data.countryCode"></span-search>
                     <span-search params="value:$data.customerType"></span-search><br/>
                 </span>
             </div>
             <div class="col-lg-5" >
-                <span data-bind="with : $row.object.billingAddress">
+                <span data-bind="with : row.object.billingAddress">
                     Name: <span-search params="value:$data.fullName"></span-search>
                 </span>
                 <br/>
                 E-mail: <span-search params="value:row.object.email"></span-search><br/>
                 Phone: <span-search params="value:row.object.phone1"></span-search><br/>
                 Phone: <span-search params="value:row.object.phone2"></span-search><br/>
-                <span data-bind="with : $row.object.billingAddress">
+                <span data-bind="with : row.object.billingAddress">
                     Street: <span-search params="value:$data.street"></span-search>, <span-search params="value:$data.city"></span-search>
                 </span><br/>
                 Total amount: <span data-bind="text:row.object.totalValue.withVat"></span>
