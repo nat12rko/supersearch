@@ -84,9 +84,6 @@
                                                 <CTE>supersearch.cte.loc.</CTE>
                                                 <CTE_MOCK>mock-supersearch.cte.loc.</CTE_MOCK>
                                             </hostNames>
-                                            <extraDockerFolders>
-                                                <extraDockerFolder>script</extraDockerFolder>
-                                            </extraDockerFolders>
                                             <contextPath>web</contextPath>
                                             <marathonConfiguration>
                                                <healthCheckPath>web/</healthCheckPath>
