@@ -16,6 +16,10 @@
         <elastichsearch.version>1.4.4</elastichsearch.version>
         <docker.hostname>docker.dte.loc</docker.hostname>
         <docker.host>http://${docker.hostname}:2375</docker.host>
+        <spring-boot-dependencies.version>1.4.4.RELEASE</spring-boot-dependencies.version>
+        <spring-ldap-core.version>2.3.1.RELEASE</spring-ldap-core.version>
+        <commons-lang3.version>3.2.1</commons-lang3.version>
+        <model.version>1.12</model.version>
     </properties>
 
     <scm>
@@ -29,9 +33,29 @@
                 <!-- Import dependency management from Spring Boot -->
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
-                <version>1.2.2.RELEASE</version>
+                <version>${spring-boot-dependencies.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.ldap</groupId>
+                <artifactId>spring-ldap-core</artifactId>
+                <version>${spring-ldap-core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.resurs.commons</groupId>
+                <artifactId>model</artifactId>
+                <version>${model.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.elasticsearch</groupId>
+                <artifactId>elasticsearch</artifactId>
+                <version>${elastichsearch.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

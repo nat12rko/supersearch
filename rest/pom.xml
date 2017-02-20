@@ -21,6 +21,7 @@
 
     <dependencies>
 
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -30,26 +31,41 @@
             <artifactId>spring-boot-starter-tomcat</artifactId>
             <scope>provided</scope>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jersey</artifactId>
+            <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
 
         <dependency>
             <groupId>org.elasticsearch</groupId>
             <artifactId>elasticsearch</artifactId>
-            <version>${elastichsearch.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <version>3.2.1</version>
         </dependency>
         <dependency>
             <groupId>com.resurs.commons</groupId>
             <artifactId>model</artifactId>
-            <version>1.12</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.ldap</groupId>
+            <artifactId>spring-ldap-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-ldap</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.session</groupId>
+            <artifactId>spring-session</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
         </dependency>
     </dependencies>
 
@@ -93,9 +109,6 @@
                                                 <CTE>rest.supersearch.cte.loc.</CTE>
                                                 <CTE_MOCK>mock-rest.supersearch.cte.loc.</CTE_MOCK>
                                             </hostNames>
-                                            <extraDockerFolders>
-                                                <extraDockerFolder>script</extraDockerFolder>
-                                            </extraDockerFolders>
                                             <contextPath>rest</contextPath>
                                             <marathonConfiguration>
                                                 <frontend>false</frontend>

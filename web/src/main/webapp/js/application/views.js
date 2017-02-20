@@ -17,11 +17,84 @@ function SearchViewWidgetsModel() {
     }
 }
 
-function getRestUrl()
-{
+function LoginModel() {
+    var self = this;
+
+    self.username = ko.observable();
+    self.password = ko.observable();
+    self.error = ko.observable('');
+    self.token = '';
+    self.loggedInAs = ko.observable('');
+
+    self.shouldShowMessage = function () {
+        return self.error().length > 0;
+    }
+
+    self.showLoginModal = function () {
+        $('#loginModal').modal('show');
+        self.error('');
+    }
+
+    self.isLoggedIn= function(){
+        return self.loggedInAs().length > 0;
+    }
+
+
+    self.tryLogin = function () {
+        self.error('');
+        var url = baseUrl + "login";
+        ajax(url, 'GET', null).done(function (data) {
+        });
+    }
+
+    self.logout = function () {
+        self.loggedInAs('');
+
+        var url = baseUrl + "logout";
+        ajax(url, 'GET').done(function (data) {
+            self.tryLogin();
+        })
+    }
+
+    self.login = function () {
+        self.error('');
+        self.loggedInAs('');
+
+        var url = baseUrl + "login";
+        ajax(url, 'GET', null, self.username(), self.password()).done(function (data) {
+            $('#loginModal').modal('hide');
+            self.loggedInAs(data.userName);
+            self.password('')
+        }).error(function (data) {
+            if (data.status == 401) {
+                self.error("Wrong username or password!")
+            }
+        });
+    }
+
+
+    $('#loginModal').on('shown.bs.modal', function () {
+        $('#username-input').focus().select();
+    })
+
+    $(document).ready(function () {
+        $('#password-input').keydown(function (event) {
+            // enter has keyCode = 13, change it if you want to use another button
+            if (event.keyCode == 13) {
+                $('#login-form').submit();
+                $('#searchinput').focus().select();
+                return false;
+            }
+        });
+
+    });
+}
+
+
+function getRestUrl() {
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", 'url/get', false );
-    xmlHttp.send( null );
+    xmlHttp.open("GET", 'url/get', false);
+    xmlHttp.send(null);
     return xmlHttp.responseText;
 }
 
@@ -101,12 +174,12 @@ function SearchViewModel() {
     }
 
     self.nextPage = function () {
-        self.page(self.page()+1);
+        self.page(self.page() + 1);
         resultViewModel.search();
     }
 
     self.previousPage = function () {
-        var previousPage = self.page()-1;
+        var previousPage = self.page() - 1;
         if (previousPage >= 0) {
             self.page(previousPage);
             resultViewModel.search();
@@ -151,7 +224,7 @@ function SearchViewModel() {
 function ResultViewModel() {
     var self = this;
 
-    self.tasksURI = baseUrl+"search";
+    self.tasksURI = baseUrl + "search";
     self.hits = ko.observableArray().extend({rateLimit: 25});
 
     self.searchResultAvailable = function () {
@@ -171,9 +244,9 @@ function ResultViewModel() {
             + "//"
             + window.location.host
             + window.location.pathname
-            + '?jsonData='+encodeURIComponent(jsonData);
+            + '?jsonData=' + encodeURIComponent(jsonData);
 
-        window.history.pushState("q", "Title",url);
+        window.history.pushState("q", "Title", url);
 
         ajax(self.tasksURI, 'POST', jsonData).done(function (data) {
 
@@ -218,7 +291,7 @@ function ResultViewModel() {
 
     var jsonData = $.query.get('jsonData');
 
-    if(jsonData) {
+    if (jsonData) {
 
         var parsed = JSON.parse(jsonData);
 
@@ -250,23 +323,23 @@ function SpecLineModel() {
 }
 
 function testSearch(data) {
-    var target = "http://supersearch.pte.loc/web/search.html?q=\""+data+"\"";
+    var target = "http://supersearch.pte.loc/web/search.html?q=\"" + data + "\"";
     window.open(target);
 }
 
 function openFraud(extRef) {
-    var exRef = {"externalrefno" : extRef};
+    var exRef = {"externalrefno": extRef};
     openNewWindow('POST', 'http://172.16.1.97/gui/reports/detailsext', exRef, '_blank');
 }
 
 function viewInvoices(invoiceId) {
-    openNewWindow('GET', 'http://10.254.61.131:8080/invoice-generator/invoicegenerator-web/'+ invoiceId + '/invoicefinder.html', "", '_blank');
+    openNewWindow('GET', 'http://10.254.61.131:8080/invoice-generator/invoicegenerator-web/' + invoiceId + '/invoicefinder.html', "", '_blank');
 }
 
 // Arguments :
 //  verb : 'GET'|'POST'
 //  target : an optional opening target (a name, or "_blank"), defaults to "_self"
-openNewWindow = function(verb, url, data, target) {
+openNewWindow = function (verb, url, data, target) {
     var form = document.createElement("form");
     form.action = url;
     form.method = verb;
@@ -320,69 +393,74 @@ function FraudAnalysisModel() {
 
     self.customer = ko.observable();
 
-    self.searchGid = function(customer) {
+    self.searchGid = function (customer) {
         alert(customer.gid);
     }
 
-    self.addProduct = function(line){
+    self.addProduct = function (line) {
         self.products.push(line);
     }
 
-    self.updateMupId = function(){
+    self.updateMupId = function () {
         self.mupId(self.tempmupId());
     }
 
-    self.updateMupFraudId = function(){
+    self.updateMupFraudId = function () {
         self.fraudId(self.tempFraudId());
     }
 
-    self.setBilling = function(address){
+    self.setBilling = function (address) {
         self.billing(address);
     }
 
-    self.setDelivery = function(address){
+    self.setDelivery = function (address) {
         self.delivery(address);
     }
 
-    self.setGiven = function(address){
+    self.setGiven = function (address) {
         self.given(address);
     }
 
-    self.setFraud = function(fraud) {
+    self.setFraud = function (fraud) {
         self.fraud(fraud);
         if (fraud && fraud.controlRequestJson && fraud.controlRequestJson.ids) {
             self.tempmupId(fraud.controlRequestJson.ids.MUP_ID);
-        }  else {
+        } else {
             self.tempmupId(null);
         }
 
         if (fraud && fraud.id) {
             self.tempFraudId(fraud.id);
-        }  else {
+        } else {
             self.tempFraudId(null);
         }
     }
 
-    self.addCustomerInfo = function(info) {
+    self.addCustomerInfo = function (info) {
         self.customer(info);
     }
 
-    self.addAnalysis = function(analysis){
-        self.analysis.push(analysis)}
+    self.addAnalysis = function (analysis) {
+        self.analysis.push(analysis)
+    }
 
-    self.addHigh = function(analysis){
-        self.high.push(analysis)}
+    self.addHigh = function (analysis) {
+        self.high.push(analysis)
+    }
 
-    self.addMedium = function(analysis){
-        self.medium.push(analysis)}
+    self.addMedium = function (analysis) {
+        self.medium.push(analysis)
+    }
 
-    self.addLow = function(analysis){
-        self.low.push(analysis)}
+    self.addLow = function (analysis) {
+        self.low.push(analysis)
+    }
 
-    self.addNone = function(analysis){
-        self.none.push(analysis)}
+    self.addNone = function (analysis) {
+        self.none.push(analysis)
+    }
 
-    self.reset = function() {
+    self.reset = function () {
         self.high.removeAll();
         self.medium.removeAll();
         self.low.removeAll();
@@ -431,7 +509,6 @@ function extractFraudAnalysis(fraud) {
     fraudAnalysisModel.setFraud(fraud);
 
 
-
     var analysises = fraud['fraudAnalysisResults']
     for (var pos in analysises) {
         var analysis = analysises[pos];
@@ -465,7 +542,7 @@ function extractFraudAnalysis(fraud) {
     // Customer data
     customer.gid = fraud.governmentId;
     customer.email = fraudInData['emails']['email'];
-    customer.ip    = fraudInData['ipAddress'];
+    customer.ip = fraudInData['ipAddress'];
     if (fraudInData['phoneNumbers']['phone1']) {
         customer.phone = fraudInData['phoneNumbers']['phone1'];
     }
@@ -495,7 +572,6 @@ function getJsonValue(ob, field) {
 }
 
 
-
 function showPaymentModal(payment) {
 
     var paymentModal = $('#paymentModal');
@@ -505,8 +581,6 @@ function showPaymentModal(payment) {
 
     paymentModal.modal('show');
 }
-
-
 
 
 function createGenericRow(element, ob) {
@@ -618,20 +692,42 @@ function checkValue(value) {
 
 }
 
-function ajax(uri, method, data) {
+$.ajaxSetup({
+    xhrFields: {
+        withCredentials: true
+    }
+});
+
+function ajax(uri, method, data, username, password) {
+
+
     var request = {
         type: method,
         url: uri,
         contentType: "application/json",
         data: data,
-        beforeSend: function () {
+        crossDomain: true,
+        beforeSend: function (xhr) {
+            var isPassword = typeof username !== typeof undefined ? true : false;
+            var isUsername = typeof password !== typeof undefined ? true : false;
+            if (isPassword && isUsername) {
+                xhr.setRequestHeader("Authorization", "Basic " + btoa(username + ":" + password));
+            }
         },
         complete: function () {
         },
         success: function (data) {
         },
         error: function (data) {
-            alert("ajax error" + data);
+            if (data.status == 401) {
+                loginModel.showLoginModal();
+            } else if (data.status = 403) {
+                loginModel.showLoginModal();
+                loginModel.error("You are not authorized!")
+            }
+            else {
+                alert("ajax error" + data);
+            }
         },
         dataType: 'json'
     };
@@ -646,6 +742,7 @@ function loadValueToSearch(value) {
 var searchViewModel = new SearchViewModel();
 var resultViewModel = new ResultViewModel();
 var searchViewWidgetsModel = new SearchViewWidgetsModel();
+var loginModel = new LoginModel();
 var specLineModel = new SpecLineModel();
 var fraudAnalysisModel = new FraudAnalysisModel();
 var multiupplysModel = new MultiupplysModel();
@@ -657,6 +754,10 @@ ko.applyBindings(searchViewModel, document.getElementById('searchform'));
 ko.applyBindings(searchViewWidgetsModel, document.getElementById('widgets'));
 ko.applyBindings(searchViewWidgetsModel, document.getElementById('paginatortopMain'));
 ko.applyBindings(searchViewWidgetsModel, document.getElementById('aggregationsPanel'));
+ko.applyBindings(loginModel, document.getElementById('loginModal'));
+ko.applyBindings(loginModel, document.getElementById('loginInformation'));
+
+loginModel.tryLogin();
 
 function resultsAvailable() {
     if (!resultViewModel) {
