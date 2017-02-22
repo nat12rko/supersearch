@@ -1,90 +1,89 @@
 package com.resurs.supersearch.rest.impl;
 
 import com.resurs.supersearch.rest.elasticsearch.SearchService;
+import com.resurs.supersearch.rest.model.User;
+import com.resurs.supersearch.rest.resources.Hit;
 import com.resurs.supersearch.rest.resources.Search;
+import com.resurs.supersearch.rest.resources.SearchResult;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.List;
 
-/**
- * Created with IntelliJ IDEA.
- * User: joachim_a
- * Date: 2014-02-21
- * Time: 13:43
- * To change this template use File | Settings | File Templates.
- */
-@Component
-@Path("/")
+@RestController
+@RequestMapping
+@CrossOrigin
+@PreAuthorize("hasAuthority('ROLE_SEC-SUPERSEARCH-ADMIN')")
 public class SearchServiceRest {
 
     @Autowired
-    SearchService searchService;
+    private SearchService searchService;
 
-    //private static final Logger logger = LoggerFactory.getLogger(SearchServiceImpl.class);
-
-    @POST
-    @Path("/search")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response search(Search search) {
-        return Response.status(201).entity(searchService.search(search)).build();
+    @RequestMapping(value = "/search", method = RequestMethod.POST)
+    public SearchResult search(@RequestBody Search search) {
+        return searchService.search(search);
     }
 
-    @Path("/multiupplys/{id}")
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response getMultiupplysById(@PathParam("id") String id) {
-        return Response.status(201).entity(searchService.getMultiupplysById(id)).build();
+    @RequestMapping(method = RequestMethod.GET, value = "/multiupplys/{id}")
+    public List<Hit> getMultiupplysById(@PathVariable("id") String id) {
+        return searchService.getMultiupplysById(id);
     }
 
-    @Path("/limit")
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response getLimitByMultiupplysId(@QueryParam("multiupplysId") String id) {
-        return Response.status(201).entity(searchService.getLimitByMultiupplysId(id)).build();
+    @RequestMapping(method = RequestMethod.GET, value = "/limit")
+    public List<Hit> getLimitByMultiupplysId(@RequestParam("multiupplysId") String id) {
+        return searchService.getLimitByMultiupplysId(id);
     }
 
-    @Path("/ecommerce")
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response getEcommerceByIds(@QueryParam("multiupplysId") String mupId, @QueryParam("fraudId") String fraudId) {
+    @RequestMapping(method = RequestMethod.GET, value = "/ecommerce")
+    public List<Hit> getEcommerceByIds(@RequestParam("multiupplysId") String mupId, @RequestParam("fraudId") String fraudId) {
         if (fraudId != null && fraudId.length() > 0) {
-            return Response.status(201).entity(searchService.getEcommerceByFraudId(fraudId)).build();
+            return searchService.getEcommerceByFraudId(fraudId);
         } else {
-            return Response.status(201).entity(searchService.getEcommerceByMultiupplysId(mupId)).build();
+            return searchService.getEcommerceByMultiupplysId(mupId);
         }
     }
 
-    @Path("/ecommerce/{id}")
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response getEcommerceById(@PathParam("id") String id) {
-        return Response.status(201).entity(searchService.getEcommerceByFraudId(id)).build();
+    @RequestMapping(method = RequestMethod.GET, value = "/ecommerce/{id}")
+    public List<Hit> getEcommerceById(@PathVariable("id") String id) {
+        return searchService.getEcommerceByFraudId(id);
     }
 
 
-    @Path("/fraud")
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response getFraudByMultiupplysId(@QueryParam("multiupplysId") String id) {
-        return Response.status(201).entity(searchService.getFraudByMultiupplysId(id)).build();
+    @RequestMapping(method = RequestMethod.GET, value = "/fraud")
+    public List<Hit> getFraudByMultiupplysId(@RequestParam("multiupplysId") String id) {
+        return searchService.getFraudByMultiupplysId(id);
     }
 
 
-    @Path("/ping")
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response ping() {
-        return Response.status(200).entity("pong").build();
+    @RequestMapping(method = RequestMethod.GET, value = "/ping")
+    @PreAuthorize("isAnonymous()")
+    public String ping() {
+        return "pong";
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/login")
+    @ResponseBody
+    public User loggedIn(Authentication authentication) {
+        return new User(authentication.getName());
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/logout")
+    public void logout(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate();
+        }
     }
 
 

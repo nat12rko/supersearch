@@ -12,7 +12,7 @@
         <relativePath>../pom.xml</relativePath>
         <groupId>com.resurs.supersearch</groupId>
         <artifactId>supersearch</artifactId>
-        <version>1.0</version>
+        <version>1.2</version>
     </parent>
 
     <properties>
@@ -63,7 +63,7 @@
                     <plugin>
                         <groupId>com.resurs.dockerplugin</groupId>
                         <artifactId>resurs-deploy-maven-plugin</artifactId>
-                        <version>1.1-SNAPSHOT</version>
+                        <version>1.1</version>
 
                         <executions>
                             <execution>
@@ -84,9 +84,6 @@
                                                 <CTE>supersearch.cte.loc.</CTE>
                                                 <CTE_MOCK>mock-supersearch.cte.loc.</CTE_MOCK>
                                             </hostNames>
-                                            <extraDockerFolders>
-                                                <extraDockerFolder>script</extraDockerFolder>
-                                            </extraDockerFolders>
                                             <contextPath>web</contextPath>
                                             <marathonConfiguration>
                                                <healthCheckPath>web/</healthCheckPath>

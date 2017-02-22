@@ -15,16 +15,23 @@
             <div class="col-lg-2" >
                 <span-search params="value:row.object.lifePhase"></span-search><br/>
                 <br/>
-                <span-search params="value:row.object.customer.governmentId"></span-search><br/>
-                <span-search params="value:row.object.customer.countryCode"></span-search>
-                <span-search params="value:row.object.customer.customerType"></span-search><br/>
+                <span data-bind="with : row.object.customer">
+                    <span-search params="value:$data.governmentId"></span-search><br/>
+                    <span-search params="value:$data.countryCode"></span-search>
+                    <span-search params="value:$data.customerType"></span-search><br/>
+                </span>
             </div>
             <div class="col-lg-5" >
-                Name: <span-search params="value:row.object.billingAddress.fullName"></span-search><br/>
+                <span data-bind="with : row.object.billingAddress">
+                    Name: <span-search params="value:$data.fullName"></span-search>
+                </span>
+                <br/>
                 E-mail: <span-search params="value:row.object.email"></span-search><br/>
                 Phone: <span-search params="value:row.object.phone1"></span-search><br/>
                 Phone: <span-search params="value:row.object.phone2"></span-search><br/>
-                Street: <span-search params="value:row.object.billingAddress.street"></span-search>, <span-search params="value:row.object.billingAddress.city"></span-search><br/>
+                <span data-bind="with : row.object.billingAddress">
+                    Street: <span-search params="value:$data.street"></span-search>, <span-search params="value:$data.city"></span-search>
+                </span><br/>
                 Total amount: <span data-bind="text:row.object.totalValue.withVat"></span>
 
             </div>
@@ -33,9 +40,9 @@
                 Payment method: <span-search params="value:row.object.paymentMethod.name"></span-search><br/>
                 Account nbr: <span-search params="value: row.object.accountNumber"></span-search><br/>
                 IP: <span-search params="value:row.object.ip"></span-search><br/>
+                Signed Or Identified: <span-search params="value:row.object.signedOrIdentified"></span-search>
                 Signed: <span-search params="value:row.object.signed"></span-search>
-
-
+                Identified: <span-search params="value:row.object.identified"></span-search>
             </div>
             <div class="col-lg-2" >
                 Debited: <span-search params="value:row.object.debited"></span-search><br/>
