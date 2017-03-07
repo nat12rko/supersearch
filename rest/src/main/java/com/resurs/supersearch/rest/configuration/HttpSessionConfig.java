@@ -6,8 +6,10 @@ import org.springframework.session.data.mongo.config.annotation.web.http.EnableM
 import org.springframework.session.web.http.CookieSerializer;
 import org.springframework.session.web.http.DefaultCookieSerializer;
 
-@EnableMongoHttpSession
+@EnableMongoHttpSession(maxInactiveIntervalInSeconds = HttpSessionConfig.TEN_HOURS_IN_SECONDS)
 public class HttpSessionConfig {
+
+    protected static final int TEN_HOURS_IN_SECONDS = 36000;
 
     @Bean
     public JdkMongoSessionConverter jdkMongoSessionConverter() {
