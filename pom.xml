@@ -6,12 +6,12 @@
 
     <groupId>com.resurs.supersearch</groupId>
     <artifactId>supersearch</artifactId>
-    <version>1.2</version>
+    <version>1.3</version>
     <packaging>pom</packaging>
 
     <properties>
         <docker.servicename>supersearch</docker.servicename>
-        <java.version>1.7</java.version>
+        <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <elastichsearch.version>1.4.4</elastichsearch.version>
         <docker.hostname>docker.dte.loc</docker.hostname>

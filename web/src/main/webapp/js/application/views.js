@@ -323,7 +323,7 @@ function SpecLineModel() {
 }
 
 function testSearch(data) {
-    var target = "http://supersearch.pte.loc/web/search.html?q=\"" + data + "\"";
+    var target = "search.html?q=\"" + data + "\"";
     window.open(target);
 }
 
@@ -765,3 +765,9 @@ function resultsAvailable() {
     }
     return resultViewModel.searchResultAvailable();
 }
+$( document ).ready(function() {
+    if(searchViewModel.searchString() && searchViewModel.searchString().length > 0){
+        resultViewModel.search();
+    }
+});
+
