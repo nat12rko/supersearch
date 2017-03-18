@@ -1,5 +1,14 @@
 <!-- ko if: payment -->
 <div class="container-fluid">
+    Documents:
+    <table class="table table-condensed">
+        <tbody data-bind="foreach: documents">
+        <tr>
+            <td><a href="#" target="_blank" data-bind="text: $data,attr: { href: $parent.getDocumentURL($data)}"></a></td>
+            <td><a href="#" target="_blank" data-bind="click: $parent.resendDocument">Send Invoice</a></td>
+        </tr>
+        </tbody>
+    </table>
     <table class="table table-condensed">
         <tbody>
         <tr>
@@ -129,6 +138,12 @@
             </tbody>
         </table>
     </div>
+
+
+    <button type="button" class="btn btn-xs btn-info pull-right" data-bind='visible:canAnnulFullOrder(), click:annulPayment'>
+        <span>Annul Payment</span>
+    </button>
+
 </div>
 
 <!-- /ko -->
