@@ -1,11 +1,14 @@
 package com.resurs.supersearch.rest.impl;
 
+import com.resurs.commons.l10n.CountryCode;
 import com.resurs.supersearch.rest.elasticsearch.SearchService;
 import com.resurs.supersearch.rest.model.User;
 import com.resurs.supersearch.rest.resources.Hit;
 import com.resurs.supersearch.rest.resources.Search;
 import com.resurs.supersearch.rest.resources.SearchResult;
+import com.resurs.supersearch.rest.service.EcommerceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -19,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 @RestController
@@ -29,6 +33,9 @@ public class SearchServiceRest {
 
     @Autowired
     private SearchService searchService;
+
+    @Autowired
+    private EcommerceService ecommerceService;
 
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     public SearchResult search(@RequestBody Search search) {
@@ -57,6 +64,39 @@ public class SearchServiceRest {
     @RequestMapping(method = RequestMethod.GET, value = "/ecommerce/{id}")
     public List<Hit> getEcommerceById(@PathVariable("id") String id) {
         return searchService.getEcommerceByFraudId(id);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/ecommerce/{countryCode}/{representative}/{id}/invoiceNames")
+    public List<String> getInvoiceNames(@PathVariable("countryCode") CountryCode countryCode,
+                                        @PathVariable("representative") String representative,
+                                        @PathVariable("id") String id) {
+        return ecommerceService.getInvoiceNames(countryCode, representative, id);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_PDF_VALUE,
+            value = "/ecommerce/{countryCode}/{representative}/{id}/pdf/{documentName}")
+    public byte[] getInvoice(@PathVariable("countryCode") CountryCode countryCode,
+                             @PathVariable("representative") String representative,
+                             @PathVariable("id") String id,
+                             @PathVariable("documentName") String documentName) {
+        return ecommerceService.getInvoice(countryCode, representative, id, documentName);
+    }
+
+    @RequestMapping(method = RequestMethod.PUT,
+            value = "/ecommerce/{countryCode}/{representative}/{id}/send/{documentName}/{email}")
+    public @ResponseBody void sendInvoice(@PathVariable("countryCode") CountryCode countryCode,
+                                @PathVariable("representative") String representative,
+                                @PathVariable("id") String id,
+                                @PathVariable("documentName") String documentName,
+                                @PathVariable("email") String email) {
+        ecommerceService.sendInvoice(countryCode, representative, id, documentName, email);
+    }
+
+    @RequestMapping(method = RequestMethod.PUT, value = "/ecommerce/{countryCode}/{representative}/{id}/annul")
+    public @ResponseBody void annulPayment(@PathVariable("countryCode") CountryCode countryCode,
+                             @PathVariable("representative") String representative,
+                             @PathVariable("id") String id) {
+        ecommerceService.annulPayment(countryCode, representative, id);
     }
 
 
