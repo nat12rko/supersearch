@@ -6,20 +6,21 @@
 
     <groupId>com.resurs.supersearch</groupId>
     <artifactId>supersearch</artifactId>
-    <version>1.4</version>
+    <version>1.5-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <properties>
         <docker.servicename>supersearch</docker.servicename>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <elastichsearch.version>1.4.4</elastichsearch.version>
+        <elastichsearch.version>5.2.2</elastichsearch.version>
         <docker.hostname>docker.dte.loc</docker.hostname>
         <docker.host>http://${docker.hostname}:2375</docker.host>
         <spring-boot-dependencies.version>1.4.4.RELEASE</spring-boot-dependencies.version>
         <spring-ldap-core.version>2.3.1.RELEASE</spring-ldap-core.version>
         <commons-lang3.version>3.2.1</commons-lang3.version>
         <model.version>1.12</model.version>
+        <elasticsearch.version>2.54</elasticsearch.version>
     </properties>
 
     <scm>
@@ -56,6 +57,16 @@
                 <groupId>org.elasticsearch</groupId>
                 <artifactId>elasticsearch</artifactId>
                 <version>${elastichsearch.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.resurs.utils</groupId>
+                <version>${elasticsearch.version}</version>
+                <artifactId>elasticsearch</artifactId>
+            </dependency>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>21.0</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

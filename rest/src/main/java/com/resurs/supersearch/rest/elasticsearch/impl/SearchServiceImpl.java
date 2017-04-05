@@ -1,7 +1,6 @@
 package com.resurs.supersearch.rest.elasticsearch.impl;
 
 import com.resurs.commons.l10n.CountryCode;
-import com.resurs.supersearch.rest.elasticsearch.ElasticSearchService;
 import com.resurs.supersearch.rest.elasticsearch.QueryBuilder;
 import com.resurs.supersearch.rest.elasticsearch.QueryParser;
 import com.resurs.supersearch.rest.elasticsearch.SearchService;
@@ -19,17 +18,15 @@ import com.resurs.supersearch.rest.resources.Hit;
 import com.resurs.supersearch.rest.resources.Search;
 import com.resurs.supersearch.rest.resources.SearchResult;
 import com.resurs.supersearch.rest.resources.SystemQueryEnum;
+import com.resurs.utils.elasticsearch.ElasticsearchService;
 import org.apache.commons.lang3.StringUtils;
 import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.action.search.SearchType;
-import org.elasticsearch.index.query.BoolFilterBuilder;
 import org.elasticsearch.index.query.BoolQueryBuilder;
-import org.elasticsearch.index.query.FilterBuilder;
-import org.elasticsearch.index.query.FilterBuilders;
 import org.elasticsearch.index.query.HasParentQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
-import org.elasticsearch.index.query.RangeFilterBuilder;
+import org.elasticsearch.index.query.RangeQueryBuilder;
 import org.elasticsearch.index.query.TermQueryBuilder;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
@@ -52,6 +49,9 @@ import java.util.Map;
 @Service
 public class SearchServiceImpl implements SearchService {
 
+    @Autowired
+    private ElasticsearchService elasticsearchService;
+
     List<QueryBuilder> queryBuilders = new ArrayList<>();
 
     List<QueryParser> queryParsers = new ArrayList<>();
@@ -60,20 +60,24 @@ public class SearchServiceImpl implements SearchService {
 
     static {
         displayValues = new HashMap<>();
-        displayValues.put("payment.representative.name", "Representative");
+        displayValues.put("representative.name.keyword", "Representative");
         displayValues.put("annulled", "Annulled");
-        displayValues.put("payment.lifePhase", "LifePhase");
-        displayValues.put("FraudSummary.recommendation", "Recommendation");
+        displayValues.put("lifePhase.keyword", "LifePhase");
+        displayValues.put("recommendation.keyword", "Recommendation");
         displayValues.put("invoice.type", "Invoice Type");
         displayValues.put("invoice.chainId", "ChainId");
-        displayValues.put("payment.lifePhase", "Life Phase");
+        displayValues.put("lifePhase.keyword", "Life Phase");
         displayValues.put("limitresponse.decision", "Decision");
-        displayValues.put("creditcase.currentState.state", "State");
-        displayValues.put("creditcase.creditCaseTags.REPRESENTATIVE_NAME", "Representative");
-        displayValues.put("creditcase.creditProductCode", "Credit Product");
+        displayValues.put("currentState.state.keyword", "State");
+        displayValues.put("creditCaseTags.REPRESENTATIVE_NAME", "Representative");
+        displayValues.put("creditProductCode.keyword", "Credit Product");
         displayValues.put("_type", "System");
         displayValues.put("T", "Yes");
         displayValues.put("F", "No");
+        displayValues.put("1", "Yes");
+        displayValues.put("0", "No");
+
+
         displayValues.put("INVOICE_WITH_OPTION_LINES", "Invoice with Paymentoption");
         displayValues.put("INVOICE", "Invoice");
         displayValues.put("INVOICE_CREDITNOTE", "Credit Note");
@@ -99,7 +103,7 @@ public class SearchServiceImpl implements SearchService {
     MultiupplysQueryBuilder multiupplysQueryBuilder;
 
     @Autowired
-    ElasticSearchService elasticSearchService;
+    ElasticsearchService elasticSearchService;
 
     @Autowired
     InvoiceQueryBuilder invoiceQueryBuilder;
@@ -136,10 +140,10 @@ public class SearchServiceImpl implements SearchService {
 
         TermQueryBuilder publicReferenceNumber = QueryBuilders.termQuery("publicReferenceNumber", id);
 
-        HasParentQueryBuilder creditcase = QueryBuilders.hasParentQuery("creditcase", publicReferenceNumber);
+        HasParentQueryBuilder creditcase = QueryBuilders.hasParentQuery("creditcase", publicReferenceNumber, false);
 
         List<Hit> search = search(publicReferenceNumber, multiupplysQueryBuilder.getTypes(), multiupplysQueryBuilder.getIndexes());
-        search.addAll(search(creditcase, Arrays.asList("excecutedfilter","creditcase","customer"), multiupplysQueryBuilder.getIndexes()));
+        search.addAll(search(creditcase, Arrays.asList("excecutedfilter", "creditcase", "customer"), multiupplysQueryBuilder.getIndexes()));
 
         return search;
     }
@@ -170,7 +174,7 @@ public class SearchServiceImpl implements SearchService {
                 elasticSearchService.getClient().prepareSearch(indecies.toArray(new String[0]))
                         .setTypes(types.toArray(new String[0]))
                         .setQuery(queryBuilder).
-                        setSearchType(SearchType.QUERY_THEN_FETCH).setTrackScores(false).addSort(SortBuilders.fieldSort("_timestamp"));
+                        setSearchType(SearchType.QUERY_THEN_FETCH).setTrackScores(false).addSort(SortBuilders.fieldSort("timestamp"));
 
         SearchResponse searchResponse = searchRequestBuilder.setFrom(0)
                 .setSize(100).setExplain(false)
@@ -210,19 +214,22 @@ public class SearchServiceImpl implements SearchService {
         AggregationBuilder aggregationBuilder = AggregationBuilders.terms("_type").field("_type").size(5);
         aggregationBuilders.add(aggregationBuilder);
 
-        BoolFilterBuilder allFilterBuilder = FilterBuilders.boolFilter();
-        allFilterBuilder.must(FilterBuilders.matchAllFilter());
+        BoolQueryBuilder allFilterBuilder = QueryBuilders.boolQuery();
+        allFilterBuilder.must(QueryBuilders.matchAllQuery());
 
 
-        BoolFilterBuilder countryFilter = null;
+        BoolQueryBuilder countryFilter = null;
         for (QueryBuilder qb : getSelectedQueryBuilders(search.getSystems())) {
             indexList.addAll(qb.getIndexes());
             typesList.addAll(qb.getTypes());
 
-            queryBuilder = queryBuilder.should(
-                    QueryBuilders.filteredQuery(qb.createQuery(search),
-                            FilterBuilders.queryFilter(QueryBuilders.termsQuery("_type", qb.getTypes())))
-            );
+
+            BoolQueryBuilder typeQuery = QueryBuilders.boolQuery();
+            for (String s : qb.getTypes()) {
+                typeQuery.should(QueryBuilders.typeQuery(s));
+            }
+
+            queryBuilder = queryBuilder.should(QueryBuilders.boolQuery().must(qb.createQuery(search)).must(typeQuery));
 
 
             List<AggregationBuilder> aggregations = qb.createAggregations(search);
@@ -234,10 +241,10 @@ public class SearchServiceImpl implements SearchService {
             if (search.getCountryCodes() != null &&
                     search.getCountryCodes().size() != 0 &&
                     search.getCountryCodes().size() != (CountryCode.values().length - 1)) {
-                FilterBuilder filterBuilder = qb.createCountryCodeFilter(search.getCountryCodes());
+                org.elasticsearch.index.query.QueryBuilder filterBuilder = qb.createCountryCodeFilter(search.getCountryCodes());
                 if (filterBuilder != null) {
                     if (countryFilter == null) {
-                        countryFilter = FilterBuilders.boolFilter();
+                        countryFilter = QueryBuilders.boolQuery();
                     }
                     countryFilter.should(filterBuilder);
                 }
@@ -249,16 +256,22 @@ public class SearchServiceImpl implements SearchService {
 
         }
         addFiltersToSearch(search, allFilterBuilder);
-        SearchResponse response = executeQuery(search, queryBuilder, indexList, typesList, aggregationBuilders, allFilterBuilder);
         SearchResult searchResult = new SearchResult();
-        createSearchResult(response, searchResult);
+
+        try {
+            SearchResponse response = executeQuery(search, queryBuilder, indexList, typesList, aggregationBuilders, allFilterBuilder);
+            createSearchResult(response, searchResult);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+
         return searchResult;
 
     }
 
-    private void addFiltersToSearch(Search search, BoolFilterBuilder allFilterBuilder) {
+    private void addFiltersToSearch(Search search, BoolQueryBuilder allFilterBuilder) {
         if (StringUtils.isNotEmpty(search.getFromDate()) || StringUtils.isNotEmpty(search.getToDate())) {
-            RangeFilterBuilder rangeFilterBuilder = FilterBuilders.rangeFilter("_timestamp");
+            RangeQueryBuilder rangeFilterBuilder = QueryBuilders.rangeQuery("timestamp");
             if (StringUtils.isNotEmpty(search.getFromDate())) {
                 rangeFilterBuilder.from(search.getFromDate());
             }
@@ -271,7 +284,7 @@ public class SearchServiceImpl implements SearchService {
         }
 
         for (Filter filter : search.getFilters()) {
-            allFilterBuilder.must(FilterBuilders.termFilter(filter.getField(), filter.getValue()));
+            allFilterBuilder.must(QueryBuilders.termQuery(filter.getField(), filter.getValue()));
         }
     }
 
@@ -286,10 +299,10 @@ public class SearchServiceImpl implements SearchService {
         return filteredQueryBuilders;
     }
 
-    private SearchResponse executeQuery(Search search, BoolQueryBuilder queryBuilder, List<String> indexList, List<String> typesList, List<AggregationBuilder> aggregationBuilders, BoolFilterBuilder allFilterBuilder) {
+    private SearchResponse executeQuery(Search search, BoolQueryBuilder queryBuilder, List<String> indexList, List<String> typesList, List<AggregationBuilder> aggregationBuilders, BoolQueryBuilder allFilterBuilder) {
         SearchRequestBuilder searchRequestBuilder =
                 elasticSearchService.getClient().prepareSearch(indexList.toArray(new String[0]))
-                        .setQuery(QueryBuilders.filteredQuery(queryBuilder, allFilterBuilder)).
+                        .setQuery(QueryBuilders.boolQuery().must(queryBuilder).must(allFilterBuilder)).
                         setSearchType(SearchType.QUERY_THEN_FETCH).setTrackScores(false);
 
         setSortField(search, searchRequestBuilder);
@@ -342,8 +355,8 @@ public class SearchServiceImpl implements SearchService {
                 for (org.elasticsearch.search.aggregations.bucket.terms.Terms.Bucket bucket : ((org.elasticsearch.search.aggregations.bucket.terms.Terms) aggregation).getBuckets()) {
 
                     AggregateResult aggregateResult = new AggregateResult();
-                    aggregateResult.setValue(bucket.getKey());
-                    aggregateResult.setDisplay(getDisplayName(bucket.getKey()));
+                    aggregateResult.setValue(String.valueOf(bucket.getKey()));
+                    aggregateResult.setDisplay(getDisplayName(String.valueOf(bucket.getKey())));
                     aggregateResult.setHits(bucket.getDocCount());
 
                     aggregate.getChildren().add(aggregateResult);
@@ -351,21 +364,19 @@ public class SearchServiceImpl implements SearchService {
                     if (bucket.getAggregations().asList().size() > 0) {
                         createAggregateResult(bucket.getAggregations().asList(), aggregateResult.getChildren());
                     }
-
-
                 }
             }
         }
     }
 
     private void setSortField(Search search, SearchRequestBuilder searchRequestBuilder) {
-        search.setSortField("_timestamp");
+        search.setSortField("timestamp");
         SortBuilder sortBuilder = null;
 
 
         if (StringUtils.isNotEmpty(search.getSortField())) {
             sortBuilder = new FieldSortBuilder(search.getSortField());
-            ((FieldSortBuilder) sortBuilder).ignoreUnmapped(true);
+            ((FieldSortBuilder) sortBuilder).missing("_last");
             if (search.getSortOrder() != null) {
                 sortBuilder.order(search.getSortOrder());
             } else {

@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.ws.rs.core.Response;
 import java.util.List;
 
 @RestController
@@ -53,7 +52,7 @@ public class SearchServiceRest {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/ecommerce")
-    public List<Hit> getEcommerceByIds(@RequestParam("multiupplysId") String mupId, @RequestParam("fraudId") String fraudId) {
+    public List<Hit> getEcommerceByIds(@RequestParam(value = "multiupplysId", required = false) String mupId, @RequestParam(value = "fraudId", required = false) String fraudId) {
         if (fraudId != null && fraudId.length() > 0) {
             return searchService.getEcommerceByFraudId(fraudId);
         } else {
@@ -84,18 +83,20 @@ public class SearchServiceRest {
 
     @RequestMapping(method = RequestMethod.PUT,
             value = "/ecommerce/{countryCode}/{representative}/{id}/send/{documentName}/{email}")
-    public @ResponseBody void sendInvoice(@PathVariable("countryCode") CountryCode countryCode,
-                                @PathVariable("representative") String representative,
-                                @PathVariable("id") String id,
-                                @PathVariable("documentName") String documentName,
-                                @PathVariable("email") String email) {
+    public @ResponseBody
+    void sendInvoice(@PathVariable("countryCode") CountryCode countryCode,
+                     @PathVariable("representative") String representative,
+                     @PathVariable("id") String id,
+                     @PathVariable("documentName") String documentName,
+                     @PathVariable("email") String email) {
         ecommerceService.sendInvoice(countryCode, representative, id, documentName, email);
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/ecommerce/{countryCode}/{representative}/{id}/annul")
-    public @ResponseBody void annulPayment(@PathVariable("countryCode") CountryCode countryCode,
-                             @PathVariable("representative") String representative,
-                             @PathVariable("id") String id) {
+    public @ResponseBody
+    void annulPayment(@PathVariable("countryCode") CountryCode countryCode,
+                      @PathVariable("representative") String representative,
+                      @PathVariable("id") String id) {
         ecommerceService.annulPayment(countryCode, representative, id);
     }
 
