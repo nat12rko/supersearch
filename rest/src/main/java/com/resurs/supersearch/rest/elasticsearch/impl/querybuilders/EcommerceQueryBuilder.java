@@ -3,9 +3,7 @@ package com.resurs.supersearch.rest.elasticsearch.impl.querybuilders;
 import com.resurs.commons.l10n.CountryCode;
 import com.resurs.supersearch.rest.resources.Search;
 import com.resurs.supersearch.rest.resources.SystemQueryEnum;
-import org.elasticsearch.index.query.BoolFilterBuilder;
-import org.elasticsearch.index.query.FilterBuilder;
-import org.elasticsearch.index.query.FilterBuilders;
+import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.index.query.QueryStringQueryBuilder;
@@ -91,7 +89,7 @@ public class EcommerceQueryBuilder implements com.resurs.supersearch.rest.elasti
     public QueryBuilder createQuery(Search search) {
 
         QueryStringQueryBuilder queryStringQueryBuilder =
-                QueryBuilders.queryString(search.getSearchString()).lenient(true);
+                QueryBuilders.queryStringQuery(search.getSearchString()).lenient(true);
 
         for (String field : fields) {
             queryStringQueryBuilder.field(field);
@@ -113,23 +111,22 @@ public class EcommerceQueryBuilder implements com.resurs.supersearch.rest.elasti
 
         List<AggregationBuilder> aggregationBuilders = new ArrayList<>();
 
-        aggregationBuilders.add(AggregationBuilders.terms("payment.lifePhase").size(5).field("payment.lifePhase")
+        aggregationBuilders.add(AggregationBuilders.terms("lifePhase.keyword").size(5).field("lifePhase.keyword")
                 .subAggregation(AggregationBuilders.terms("annulled").size(5).field("annulled")));
-
-        aggregationBuilders.add(AggregationBuilders.terms("payment.representative.name").size(5).field("payment.representative.name"));
+        aggregationBuilders.add(AggregationBuilders.terms("representative.name.keyword").size(5).field("representative.name.keyword"));
         return aggregationBuilders;
     }
 
     @Override
-    public FilterBuilder createCountryCodeFilter(List<CountryCode> countryCodes) {
-        BoolFilterBuilder boolFilterBuilder = FilterBuilders.boolFilter().filterName(getQueryName());
+    public QueryBuilder createCountryCodeFilter(List<CountryCode> countryCodes) {
+        BoolQueryBuilder boolFilterBuilder = QueryBuilders.boolQuery().queryName(getQueryName());
 
         for (CountryCode countryCode : countryCodes) {
-            boolFilterBuilder.should(FilterBuilders.queryFilter(
+            boolFilterBuilder.should(
                     QueryBuilders.matchQuery(
-                            "representative.countryCode", countryCode.name())));
+                            "representative.countryCode", countryCode.name()));
         }
-        return FilterBuilders.boolFilter().must(boolFilterBuilder);
+        return QueryBuilders.boolQuery().must(boolFilterBuilder);
 
     }
 
