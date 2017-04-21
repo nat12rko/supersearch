@@ -4,7 +4,7 @@ function searchFrozenPayments() {
     searchViewModel.clearFilters();
     searchViewModel.clearTimeSpan();
     searchViewModel.addFilterNoSearch("annulled", "F");
-    searchViewModel.addFilterNoSearch("payment.lifePhase", "BOOKED_FROZEN");
+    searchViewModel.addFilterNoSearch("lifePhase.keyword", "BOOKED_FROZEN");
     searchViewModel.search();
 }
 

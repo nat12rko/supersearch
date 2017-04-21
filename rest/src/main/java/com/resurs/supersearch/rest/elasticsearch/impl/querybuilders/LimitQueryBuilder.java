@@ -3,9 +3,7 @@ package com.resurs.supersearch.rest.elasticsearch.impl.querybuilders;
 import com.resurs.commons.l10n.CountryCode;
 import com.resurs.supersearch.rest.resources.Search;
 import com.resurs.supersearch.rest.resources.SystemQueryEnum;
-import org.elasticsearch.index.query.BoolFilterBuilder;
-import org.elasticsearch.index.query.FilterBuilder;
-import org.elasticsearch.index.query.FilterBuilders;
+import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.index.query.QueryStringQueryBuilder;
@@ -18,9 +16,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * Created by Trind on 2014-02-22.
- */
 @Component
 public class LimitQueryBuilder implements com.resurs.supersearch.rest.elasticsearch.QueryBuilder {
 
@@ -57,7 +52,7 @@ public class LimitQueryBuilder implements com.resurs.supersearch.rest.elasticsea
     public QueryBuilder createQuery(Search search) {
 
         QueryStringQueryBuilder queryStringQueryBuilder =
-                QueryBuilders.queryString(search.getSearchString()).lenient(true);
+                QueryBuilders.queryStringQuery(search.getSearchString()).lenient(true);
 
         for (String field : fields) {
             queryStringQueryBuilder.field(field);
@@ -81,21 +76,21 @@ public class LimitQueryBuilder implements com.resurs.supersearch.rest.elasticsea
 
         List<AggregationBuilder> aggregationBuilders = new ArrayList<>();
 
-        aggregationBuilders.add(AggregationBuilders.terms("limitresponse.decision").size(5).field("limitresponse.decision"));
+        aggregationBuilders.add(AggregationBuilders.terms("limitresponse.decision").size(5).field("decision.keyword"));
         return aggregationBuilders;
     }
 
 
     @Override
-    public FilterBuilder createCountryCodeFilter(List<CountryCode> countryCodes) {
-        BoolFilterBuilder boolFilterBuilder = FilterBuilders.boolFilter().filterName(getQueryName());
+    public QueryBuilder createCountryCodeFilter(List<CountryCode> countryCodes) {
+        BoolQueryBuilder boolFilterBuilder = QueryBuilders.boolQuery().queryName(getQueryName());
 
         for (CountryCode countryCode : countryCodes) {
-            boolFilterBuilder.should(FilterBuilders.queryFilter(
+            boolFilterBuilder.should(
                     QueryBuilders.matchQuery(
-                            "limitresponse.customer.countryCode", countryCode.name())));
+                            "limitresponse.customer.countryCode", countryCode.name()));
         }
-        return FilterBuilders.boolFilter().must(boolFilterBuilder);
+        return QueryBuilders.boolQuery().must(boolFilterBuilder);
 
     }
 

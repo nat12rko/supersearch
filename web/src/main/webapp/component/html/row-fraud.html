@@ -15,7 +15,9 @@
     <div class="panel-body bg-danger ">
         <div class="row text-danger" data-bind="with : row">
             <div class="col-lg-3">
-                <span-search params="value:$data.object.recommendation"></span-search><br/>
+                <span data-bind="with : $data.object.recommendation">
+                    <span-search params="value:$data"></span-search><br/>
+                </span>
                 <br/>
                 <span data-bind="with : $data.object.controlRequestJson.customer">
                     <span-search params="value:$data.governmentId"></span-search><br/>
