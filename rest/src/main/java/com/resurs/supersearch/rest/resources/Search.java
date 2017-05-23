@@ -122,4 +122,18 @@ public class Search {
     public void setToDate(String toDate) {
         this.toDate = toDate;
     }
+
+    @Override
+    public String toString() {
+        return "Search{" +
+                "countryCodes=" + countryCodes +
+                ", sortField='" + sortField + '\'' +
+                ", sortOrder=" + sortOrder +
+                ", searchString='" + searchString + '\'' +
+                ", fromDate='" + fromDate + '\'' +
+                ", toDate='" + toDate + '\'' +
+                ", filters=" + filters +
+                ", systems=" + systems +
+                '}';
+    }
 }
