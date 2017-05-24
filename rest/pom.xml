@@ -11,7 +11,7 @@
         <relativePath>../pom.xml</relativePath>
         <groupId>com.resurs.supersearch</groupId>
         <artifactId>supersearch</artifactId>
-        <version>1.6</version>
+        <version>1.7</version>
     </parent>
 
     <properties>
