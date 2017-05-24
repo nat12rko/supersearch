@@ -7,10 +7,13 @@ import com.resurs.supersearch.rest.resources.Hit;
 import com.resurs.supersearch.rest.resources.Search;
 import com.resurs.supersearch.rest.resources.SearchResult;
 import com.resurs.supersearch.rest.service.EcommerceService;
+import com.resurs.utils.logging.AuditLoggerFactory;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,6 +33,8 @@ import java.util.List;
 @PreAuthorize("hasAuthority('ROLE_SEC-SUPERSEARCH-ADMIN')")
 public class SearchServiceRest {
 
+    private static final Logger auditLogger = AuditLoggerFactory.getLogger(SearchServiceRest.class);
+
     @Autowired
     private SearchService searchService;
 
@@ -38,6 +43,8 @@ public class SearchServiceRest {
 
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     public SearchResult search(@RequestBody Search search) {
+        auditLogger.info(String.format("Following search was made: '%s' by user : '%s'" , search.toString(), SecurityContextHolder.getContext().getAuthentication().getName()));
+
         return searchService.search(search);
     }
 
@@ -83,7 +90,8 @@ public class SearchServiceRest {
 
     @RequestMapping(method = RequestMethod.PUT,
             value = "/ecommerce/{countryCode}/{representative}/{id}/send/{documentName}/{email}")
-    public @ResponseBody
+    public
+    @ResponseBody
     void sendInvoice(@PathVariable("countryCode") CountryCode countryCode,
                      @PathVariable("representative") String representative,
                      @PathVariable("id") String id,
@@ -93,7 +101,8 @@ public class SearchServiceRest {
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/ecommerce/{countryCode}/{representative}/{id}/annul")
-    public @ResponseBody
+    public
+    @ResponseBody
     void annulPayment(@PathVariable("countryCode") CountryCode countryCode,
                       @PathVariable("representative") String representative,
                       @PathVariable("id") String id) {
