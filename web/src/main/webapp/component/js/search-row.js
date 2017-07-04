@@ -7,6 +7,9 @@ define(['knockout'], function(ko) {
         self.isMultiupplys = function () {
             return (self.row.type == 'creditcase');
         }
+        self.isCreditRequest = function () {
+            return (self.row.type == 'CreditRequest');
+        }
         self.isLimit = function () {
             return (self.row.type == 'limitresponse');
         }

@@ -1,0 +1,39 @@
+<div class="panel panel-creditrequest tinymargins">
+    <!-- ko component: {
+        name: "searchlist-item-header",
+        params: {
+            caption: "CreditRequest",
+            id: row.object.id,
+            timestamp: row.object.timestamp,
+            clickUrl: show
+
+            }
+    } --><!-- /ko -->
+    <div class="panel-body bg-warning">
+        <div class="row text-warning">
+            <div class="col-lg-2" >
+                <span-search params="value: row.object.decision"></span-search><br/>
+                <br/>
+                <span-search params="value:row.object.governmentId"></span-search><br/>
+                <span-search params="value:row.object.countryCode"></span-search>
+                <span-search params="value:row.object.customerType"></span-search><br/>
+            </div>
+
+            <div class="col-lg-4">
+                CreditProduct: <span-search params="value: row.object.creditProductName"></span-search><br/>
+                Mup CreditProduct: <span-search params="value: row.object.multiUpplysCreditProduct"></span-search><br/>
+                User: <span-search params="value: row.object.user"></span-search>
+            </div>
+            <div class="col-lg-3">
+                Resquested amount: <span data-bind="text:row.object.amount"></span><br/>
+                Approved amount: <span data-bind="text:row.object.approvedAmount"></span><br/>
+                DecisionType: <span data-bind="text:row.object.decisionReason"></span><br/>
+                Reason: <span data-bind="text:row.object.responseCodes"></span><br/>
+            </div>
+            <div class="col-lg-3">
+                Multiupplys Id: <span-search params="value:row.object.multiUpplysReferenceId"></span-search><br/>
+                Limit Id: <span-search params="value:row.object.limitReservationId"></span-search><br/>
+            </div>
+        </div>
+    </div>
+</div>
