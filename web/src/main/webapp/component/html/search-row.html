@@ -5,6 +5,13 @@
 } -->
 <!-- /ko -->
 <!-- /ko -->
+<!-- ko if:  isCreditRequest() -->
+<!-- ko component: {
+    name: "row-creditrequest",
+    params: { row: row }
+} -->
+<!-- /ko -->
+<!-- /ko -->
 <!-- ko if:  isFraud() -->
 <!-- ko component: {
     name: "row-fraud",

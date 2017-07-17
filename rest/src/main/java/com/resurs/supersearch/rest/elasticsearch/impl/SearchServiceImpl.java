@@ -4,6 +4,7 @@ import com.resurs.commons.l10n.CountryCode;
 import com.resurs.supersearch.rest.elasticsearch.QueryBuilder;
 import com.resurs.supersearch.rest.elasticsearch.QueryParser;
 import com.resurs.supersearch.rest.elasticsearch.SearchService;
+import com.resurs.supersearch.rest.elasticsearch.impl.querybuilders.CreditRequestQueryBuilder;
 import com.resurs.supersearch.rest.elasticsearch.impl.querybuilders.EcommerceQueryBuilder;
 import com.resurs.supersearch.rest.elasticsearch.impl.querybuilders.FraudQueryBuilder;
 import com.resurs.supersearch.rest.elasticsearch.impl.querybuilders.InvoiceQueryBuilder;
@@ -93,6 +94,9 @@ public class SearchServiceImpl implements SearchService {
     @Autowired
     EcommerceQueryBuilder ecommerceQueryBuilder;
 
+     @Autowired
+    CreditRequestQueryBuilder creditRequestQueryBuilder;
+
     @Autowired
     FraudQueryBuilder fraudQueryBuilder;
 
@@ -123,6 +127,7 @@ public class SearchServiceImpl implements SearchService {
         /** Add QueryBuilders. */
         queryBuilders = new ArrayList<>();
         queryBuilders.add(ecommerceQueryBuilder);
+        queryBuilders.add(creditRequestQueryBuilder);
         queryBuilders.add(multiupplysQueryBuilder);
         queryBuilders.add(limitQueryBuilder);
         queryBuilders.add(fraudQueryBuilder);
