@@ -1,7 +1,4 @@
-/**var baseUrl = "http://localhost:8080/rest/";**/
 var baseUrl = getRestUrl();
-
-/*var baseUrl = "${image.supersearch-rest.url}/"     **/
 
 function SearchViewWidgetsModel() {
     var self = this;
@@ -114,6 +111,7 @@ function SearchViewModel() {
         {text: 'Fraud', id: 'FRAUD'},
         {text: 'Limit', id: 'LIMIT'},
         {text: 'Multiupplys', id: 'MULTIUPPLYS'},
+        {text: 'CreditRequest', id: 'CREDITREQUEST'},
         {text: 'Invoice', id: 'INVOICE'}
     ]);
 
@@ -158,7 +156,7 @@ function SearchViewModel() {
     }
 
 
-    self.systems = ko.observableArray(['ECOMMERCE', 'FRAUD', 'LIMIT', 'MULTIUPPLYS']);
+    self.systems = ko.observableArray(['ECOMMERCE', 'FRAUD', 'LIMIT', 'MULTIUPPLYS', 'CREDITREQUEST']);
 
     self.availableCountries = ko.observableArray([
         {text: 'Sweden', id: 'SE'},

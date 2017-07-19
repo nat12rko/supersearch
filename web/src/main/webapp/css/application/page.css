@@ -43,7 +43,9 @@
 .panel-mup {
     background: #FFCE54; color: #FFF;
 }
-
+.panel-creditrequest {
+    background: #4299c8; color: #FFF;
+}
 .modal-body {
     background-color: rgb(241, 242, 246);
 }

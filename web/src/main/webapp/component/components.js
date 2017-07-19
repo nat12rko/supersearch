@@ -29,6 +29,11 @@ ko.components.register("row-ecommerce", {
     template: {require: 'text!../../component/html/row-ecommerce.html?timestamp=' + new Date().getTime()},
     synchronous: true
 });
+ko.components.register("row-creditrequest", {
+    viewModel: {require: 'component/js/row-creditrequest.js?timestamp=' + new Date().getTime()},
+    template: {require: 'text!../../component/html/row-creditrequest.html?timestamp=' + new Date().getTime()},
+    synchronous: true
+});
 ko.components.register("span-date", {
     viewModel: { require: 'component/js/span-date.js?timestamp='+new Date().getTime()},
     template: {require: 'text!../../component/html/span-date.html?timestamp='+new Date().getTime()} ,
