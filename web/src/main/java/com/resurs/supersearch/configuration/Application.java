@@ -18,7 +18,6 @@ import org.springframework.context.annotation.PropertySources;
  */
 @SpringBootApplication
 @EnableAutoConfiguration
-@ComponentScan("com.resurs.supersearch.rest")
 @PropertySources({
         @PropertySource(value = "file:/etc/resurs/supersearch/web.cfg.properties"),
 })
