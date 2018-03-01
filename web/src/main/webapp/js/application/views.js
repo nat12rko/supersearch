@@ -222,6 +222,7 @@ function SearchViewModel() {
 function ResultViewModel() {
     var self = this;
 
+    self.searching = false;
     self.tasksURI = baseUrl + "search";
     self.hits = ko.observableArray().extend({rateLimit: 25});
 
@@ -230,6 +231,13 @@ function ResultViewModel() {
     }
 
     self.search = function () {
+
+        if(self.searching) {
+            alert("Already performing a search");
+        }
+        self.hits.removeAll();
+
+
         searchViewModel.searchDate = new Date().customFormat('#YYYY#-#MM#-#DD# #hh#:#mm#:#ss#');
 
 
@@ -246,43 +254,50 @@ function ResultViewModel() {
 
         window.history.pushState("q", "Title", url);
 
-        ajax(self.tasksURI, 'POST', jsonData).done(function (data) {
+        self.searching = true;
+        try {
 
-            updateAggregation(data.aggregates[0]);
-            updateFacets(data.aggregates);
+            ajax(self.tasksURI, 'POST', jsonData).always(function () {
+                self.searching  = false;
+            }).done(function (data) {
 
-            self.hits.removeAll();
-            for (var i = 0; i < data.hits.length; i++) {
-                self.hits.push(data.hits[i]);
-            }
+                updateAggregation(data.aggregates[0]);
+                updateFacets(data.aggregates);
 
-
-            var pages = Math.ceil(data.totalSize / searchViewModel.pageSize());
-            if (searchViewModel.page() > (pages - 1)) {
-                searchViewModel.page(0);
-            }
-            searchViewWidgetsModel.searchQueries.unshift(ko.mapping.fromJS(ko.mapping.toJS(searchViewModel)));
-            if (searchViewWidgetsModel.searchQueries().length > 10) {
-                searchViewWidgetsModel.searchQueries(searchViewWidgetsModel.searchQueries.splice(0, 10));
-            }
+                for (var i = 0; i < data.hits.length; i++) {
+                    self.hits.push(data.hits[i]);
+                }
 
 
-            searchViewWidgetsModel.amountHits(data.totalSize);
-            searchViewWidgetsModel.searchTime(data.searchTime);
-            searchViewWidgetsModel.amountPages(pages);
+                var pages = Math.ceil(data.totalSize / searchViewModel.pageSize());
+                if (searchViewModel.page() > (pages - 1)) {
+                    searchViewModel.page(0);
+                }
+                searchViewWidgetsModel.searchQueries.unshift(ko.mapping.fromJS(ko.mapping.toJS(searchViewModel)));
+                if (searchViewWidgetsModel.searchQueries().length > 10) {
+                    searchViewWidgetsModel.searchQueries(searchViewWidgetsModel.searchQueries.splice(0, 10));
+                }
 
 
-            options = {
-                numberOfPages: pages > 10 ? 10 : pages,
-                bootstrapMajorVersion: 3,
-                currentPage: searchViewModel.page() + 1,
-                totalPages: pages
-            }
-            $('#paginatorbuttom').bootstrapPaginator(options);
-            $('#paginatortop').bootstrapPaginator(options);
+                searchViewWidgetsModel.amountHits(data.totalSize);
+                searchViewWidgetsModel.searchTime(data.searchTime);
+                searchViewWidgetsModel.amountPages(pages);
 
 
-        });
+                options = {
+                    numberOfPages: pages > 10 ? 10 : pages,
+                    bootstrapMajorVersion: 3,
+                    currentPage: searchViewModel.page() + 1,
+                    totalPages: pages
+                }
+                $('#paginatorbuttom').bootstrapPaginator(options);
+                $('#paginatortop').bootstrapPaginator(options);
+
+
+            });
+        } catch (err) {
+            alert("Unable to search, try again");
+        }
 
     }
 
@@ -717,7 +732,8 @@ function ajax(uri, method, data, username, password) {
         success: function (data) {
         },
         error: function (data) {
-            if (data.status == 401) {
+            if(data.status == 0) {
+            } else if (data.status == 401) {
                 loginModel.showLoginModal();
             } else if (data.status = 403) {
                 loginModel.showLoginModal();
