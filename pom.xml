@@ -6,7 +6,7 @@
 
     <groupId>com.resurs.supersearch</groupId>
     <artifactId>supersearch</artifactId>
-    <version>1.9</version>
+    <version>1.10-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <properties>
