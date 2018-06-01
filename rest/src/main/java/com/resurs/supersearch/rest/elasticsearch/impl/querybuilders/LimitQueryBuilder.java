@@ -34,10 +34,7 @@ public class LimitQueryBuilder implements com.resurs.supersearch.rest.elasticsea
             "customer.lastName",
             "customer.*Phone",
             "customer.address.*",
-            "creditProductCode",
-            "application.applicant.*PhoneNumber",
-            "application.applicant.governmentId.value",
-            "application.applicant.emailAddress"
+            "creditProductCode"
     };
 
 
