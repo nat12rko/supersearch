@@ -12,11 +12,8 @@
             <div class="col-lg-2" >
                 <span-search params="value: row.object.decision"></span-search><br/>
                 <br/>
-                <span data-bind="with : row.object.application">
-                    <span-search params="value:$data.applicant.governmentId.value"></span-search><br/>
-                    <span-search params="value:$data.countryCode"></span-search>
-                    <span-search params="value:$data.customerForm"></span-search><br/>
-                </span>
+                <span-search params="value: row.object.customer.governmentId"></span-search><br/>
+                <span-search params="value: row.object.customer.countryCode"></span-search>
             </div>
             <div class="col-lg-3" >
                 Name:  <span-search params="value: row.object.customer.fullName"></span-search><br/>
