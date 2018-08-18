@@ -89,16 +89,18 @@ public class EcommerceQueryBuilder implements com.resurs.supersearch.rest.elasti
     public QueryBuilder createQuery(Search search) {
 
         QueryStringQueryBuilder queryStringQueryBuilder =
-                QueryBuilders.queryStringQuery(search.getSearchString()).lenient(true);
+                QueryBuilders.queryStringQuery(search.getSearchString()+"*").lenient(true);     //Parse
 
         for (String field : fields) {
             queryStringQueryBuilder.field(field);
         }
 
         QueryBuilder queryBuilder = QueryBuilders
-                .boolQuery()
+                .boolQuery()//.filter(QueryBuilders.termQuery("_index", "paymentupdates"))                                //Filter(QueryBuilder term)
                 .must(queryStringQueryBuilder);
-        return QueryBuilders.indicesQuery(queryBuilder, getIndexes().toArray(new String[0])).queryName(getQueryName());
+
+        //return queryBuilder;
+      return QueryBuilders.indicesQuery(queryBuilder, getIndexes().toArray(new String[0])).queryName(getQueryName());     //Ändra index här?
     }
 
     @Override
@@ -136,3 +138,16 @@ public class EcommerceQueryBuilder implements com.resurs.supersearch.rest.elasti
     }
 
 }
+
+
+/*boolean contains(String s){
+    for(int i=0; i<s.length();i++){
+
+        if(s.charAt(i)){
+
+        }
+    }
+    /*if(s.contains("-")){
+
+
+    }*/

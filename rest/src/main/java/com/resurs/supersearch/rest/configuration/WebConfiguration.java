@@ -49,6 +49,15 @@ public class WebConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth.inMemoryAuthentication().withUser("test").password("test").roles("SEC-SUPERSEARCH-ADMIN");
+        auth.inMemoryAuthentication().withUser("admin").password("123456").roles("ADMIN");
+        auth.inMemoryAuthentication().withUser("dba").password("123456").roles("DBA");
+    }
+
+    /**
+
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.ldapAuthentication()
                 .groupSearchBase("OU=Permission Groups,OU=Groups,OU=Banken,OU=Resurs Holding")
                 .groupRoleAttribute("cn")
@@ -59,7 +68,7 @@ public class WebConfiguration extends WebSecurityConfigurerAdapter {
                 .managerPassword(password)
                 .url(ldapUrl + baseDN);
 
-    }
+    }*/
 
     @Bean
     CorsConfigurationSource corsConfigurationSource() {

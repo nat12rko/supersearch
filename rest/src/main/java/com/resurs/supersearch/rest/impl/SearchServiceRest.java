@@ -30,7 +30,7 @@ import java.util.List;
 @RestController
 @RequestMapping
 @CrossOrigin
-@PreAuthorize("hasAuthority('ROLE_SEC-SUPERSEARCH-ADMIN')")
+//@PreAuthorize("hasAuthority('ROLE_SEC-SUPERSEARCH-ADMIN')")
 public class SearchServiceRest {
 
     private static final Logger auditLogger = AuditLoggerFactory.getLogger(SearchServiceRest.class);
