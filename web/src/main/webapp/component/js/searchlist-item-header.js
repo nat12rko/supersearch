@@ -1,6 +1,7 @@
 define(['knockout'], function(ko) {
     function ProductRow(data) {
         var self = this;
+
         self.caption = data.caption;
         self.id = data.id;
         self.timestamp = data.timestamp;
@@ -8,6 +9,7 @@ define(['knockout'], function(ko) {
         self.buttonText = (data && data.buttonText);
         self.buttonUrl = (data && data.buttonUrl);
         self.buttonStyle = (data && data.buttonStyle);
+
 
         self.clicked = function() {
             return data.clickUrl;

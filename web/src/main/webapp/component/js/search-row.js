@@ -5,7 +5,7 @@ define(['knockout'], function(ko) {
         self.row = (data && data.row) || "none";
 
         self.isMultiupplys = function () {
-            return (self.row.type == 'creditcase');
+            return (self.row.type == 'creditcase');     //Checking what type of object the query returns
         }
         self.isCreditRequest = function () {
             return (self.row.type == 'CreditRequest');
@@ -21,6 +21,11 @@ define(['knockout'], function(ko) {
         }
         self.isInvoice = function () {
             return (self.row.type == 'invoice');
+        }
+
+        self.isPaymentUpdate = function () {
+            return (self.row.type == 'paymentupdate');
+
         }
     }
     return ProductRow;

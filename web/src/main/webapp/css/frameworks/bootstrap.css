@@ -1341,6 +1341,9 @@ a.text-success:hover {
 .text-info {
   color: #31708f;
 }
+.text-paymentupdate {
+  color: #31708f;
+}
 a.text-info:hover {
   color: #245269;
 }
@@ -1384,6 +1387,11 @@ a.bg-warning:hover {
 .bg-danger {
   background-color: #f2dede;
 }
+
+.bg-danger2 {
+  background-color: #ffff;
+}
+
 a.bg-danger:hover {
   background-color: #e4b9b9;
 }

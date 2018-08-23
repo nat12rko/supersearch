@@ -4,12 +4,7 @@ import com.resurs.commons.l10n.CountryCode;
 import com.resurs.supersearch.rest.elasticsearch.QueryBuilder;
 import com.resurs.supersearch.rest.elasticsearch.QueryParser;
 import com.resurs.supersearch.rest.elasticsearch.SearchService;
-import com.resurs.supersearch.rest.elasticsearch.impl.querybuilders.CreditRequestQueryBuilder;
-import com.resurs.supersearch.rest.elasticsearch.impl.querybuilders.EcommerceQueryBuilder;
-import com.resurs.supersearch.rest.elasticsearch.impl.querybuilders.FraudQueryBuilder;
-import com.resurs.supersearch.rest.elasticsearch.impl.querybuilders.InvoiceQueryBuilder;
-import com.resurs.supersearch.rest.elasticsearch.impl.querybuilders.LimitQueryBuilder;
-import com.resurs.supersearch.rest.elasticsearch.impl.querybuilders.MultiupplysQueryBuilder;
+import com.resurs.supersearch.rest.elasticsearch.impl.querybuilders.*;
 import com.resurs.supersearch.rest.elasticsearch.impl.queryparsers.GovernmentIdQueryParser;
 import com.resurs.supersearch.rest.elasticsearch.impl.queryparsers.PhoneNumberQueryParser;
 import com.resurs.supersearch.rest.resources.Aggregate;
@@ -88,6 +83,9 @@ public class SearchServiceImpl implements SearchService {
         displayValues.put("creditcase", "Multiupplys");
         displayValues.put("payment", "Ecommerce");
         displayValues.put("invoice", "Invoice");
+        displayValues.put("paymentupdate", "Paymentupdate");
+       // displayValues.put("representativeName", "StoreName");
+        displayValues.put("accountNbr","AccountNbr");
     }
 
 
@@ -102,6 +100,9 @@ public class SearchServiceImpl implements SearchService {
 
     @Autowired
     LimitQueryBuilder limitQueryBuilder;
+
+    @Autowired
+    PaymentUpdateQueryBuilder paymentupdatequerybuilder;
 
     @Autowired
     MultiupplysQueryBuilder multiupplysQueryBuilder;
@@ -132,7 +133,8 @@ public class SearchServiceImpl implements SearchService {
         queryBuilders.add(limitQueryBuilder);
         queryBuilders.add(fraudQueryBuilder);
         queryBuilders.add(invoiceQueryBuilder);
-
+        queryBuilders.add(invoiceQueryBuilder);
+        queryBuilders.add(paymentupdatequerybuilder);
         /** Add QueryParsers.*/
         queryParsers = new ArrayList<>();
 

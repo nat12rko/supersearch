@@ -1,4 +1,6 @@
-var baseUrl = getRestUrl();
+//var baseUrl = getRestUrl();
+var baseUrl = 'http://localhost:8090/rest/'
+
 
 function SearchViewWidgetsModel() {
     var self = this;
@@ -112,7 +114,8 @@ function SearchViewModel() {
         {text: 'Limit', id: 'LIMIT'},
         {text: 'Multiupplys', id: 'MULTIUPPLYS'},
         {text: 'CreditRequest', id: 'CREDITREQUEST'},
-        {text: 'Invoice', id: 'INVOICE'}
+        {text: 'Invoice', id: 'INVOICE'},
+        {text: 'Paymentupdate', id: 'PAYMENTUPDATE'}
     ]);
 
 
@@ -156,7 +159,7 @@ function SearchViewModel() {
     }
 
 
-    self.systems = ko.observableArray(['ECOMMERCE', 'FRAUD', 'LIMIT', 'MULTIUPPLYS', 'CREDITREQUEST']);
+    self.systems = ko.observableArray(['ECOMMERCE', 'FRAUD', 'LIMIT', 'MULTIUPPLYS', 'CREDITREQUEST','PAYMENTUPDATE']);
 
     self.availableCountries = ko.observableArray([
         {text: 'Sweden', id: 'SE'},
@@ -238,7 +241,7 @@ function ResultViewModel() {
         self.hits.removeAll();
 
 
-        searchViewModel.searchDate = new Date().customFormat('#YYYY#-#MM#-#DD# #hh#:#mm#:#ss#');
+       searchViewModel.searchDate = new Date().customFormat('#YYYY#-#MM#-#DD# #hh#:#mm#:#ss#');
 
 
         var jsonData = ko.toJSON(searchViewModel);
@@ -257,11 +260,11 @@ function ResultViewModel() {
         self.searching = true;
         try {
 
-            ajax(self.tasksURI, 'POST', jsonData).always(function () {
+            ajax(self.tasksURI, 'POST', jsonData).always(function () {          //S
                 self.searching  = false;
             }).done(function (data) {
 
-                updateAggregation(data.aggregates[0]);
+                updateAggregation(data.aggregates[0]);  //Check SearchResult class
                 updateFacets(data.aggregates);
 
                 for (var i = 0; i < data.hits.length; i++) {
@@ -311,7 +314,7 @@ function ResultViewModel() {
         searchViewModel.page(parsed.page);
         searchViewModel.fromDate(parsed.fromDate);
         searchViewModel.toDate(parsed.toDate);
-        searchViewModel.searchDate(parsed.searchDate);
+        searchViewModel.searchDate(12344);
         searchViewModel.pageSize(parsed.pageSize)
         searchViewModel.searchString(parsed.searchString);
 
@@ -379,7 +382,10 @@ function HtmlModel() {
     var self = this;
     self.html = ko.observable();
 }
-
+function PaymentupdateModel(){
+    var self =this;
+    self.fradue=ko.observable();
+}
 function FraudAnalysisModel() {
     var self = this;
     self.high = ko.observableArray();
@@ -494,9 +500,8 @@ function FraudAnalysisModel() {
 function showFraudModal(fraud) {
 
     fraudAnalysisModel.reset();
-
     var fraudModal = $('#fraudModal');
-    extractFraudAnalysis(fraud)
+   extractFraudAnalysis(fraud)
     fraudModal.modal('show');
 }
 
@@ -507,12 +512,21 @@ function showMupModal(mup) {
     mupModal.modal('show');
 }
 
+function showpayupdate(fraude) {
+
+    var paymentpopup = $('#PaymentPopup');
+    PayupdateModel.fradue(fraude);
+    paymentpopup.modal('show');
+}
+
+
 
 function showHtmlModal(html) {
 
     var htmlModal = $('#htmlModal');
     htmlModel.html(html);
     htmlModal.modal('show');
+
 }
 
 function extractFraudAnalysis(fraud) {
@@ -761,6 +775,7 @@ var specLineModel = new SpecLineModel();
 var fraudAnalysisModel = new FraudAnalysisModel();
 var multiupplysModel = new MultiupplysModel();
 var htmlModel = new HtmlModel();
+var PayupdateModel = new PaymentupdateModel();
 
 
 ko.applyBindings(resultViewModel, document.getElementById('searchtable'));

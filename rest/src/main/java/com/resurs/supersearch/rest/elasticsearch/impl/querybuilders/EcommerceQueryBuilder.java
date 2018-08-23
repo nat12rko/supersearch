@@ -3,10 +3,7 @@ package com.resurs.supersearch.rest.elasticsearch.impl.querybuilders;
 import com.resurs.commons.l10n.CountryCode;
 import com.resurs.supersearch.rest.resources.Search;
 import com.resurs.supersearch.rest.resources.SystemQueryEnum;
-import org.elasticsearch.index.query.BoolQueryBuilder;
-import org.elasticsearch.index.query.QueryBuilder;
-import org.elasticsearch.index.query.QueryBuilders;
-import org.elasticsearch.index.query.QueryStringQueryBuilder;
+import org.elasticsearch.index.query.*;
 import org.elasticsearch.search.aggregations.AggregationBuilder;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.springframework.beans.factory.annotation.Value;
@@ -89,18 +86,18 @@ public class EcommerceQueryBuilder implements com.resurs.supersearch.rest.elasti
     public QueryBuilder createQuery(Search search) {
 
         QueryStringQueryBuilder queryStringQueryBuilder =
-                QueryBuilders.queryStringQuery(search.getSearchString()+"*").lenient(true);     //Parse
+                QueryBuilders.queryStringQuery(search.getSearchString()).lenient(true);     //Parse
 
         for (String field : fields) {
             queryStringQueryBuilder.field(field);
         }
 
         QueryBuilder queryBuilder = QueryBuilders
-                .boolQuery()//.filter(QueryBuilders.termQuery("_index", "paymentupdates"))                                //Filter(QueryBuilder term)
+                .boolQuery()
                 .must(queryStringQueryBuilder);
 
         //return queryBuilder;
-      return QueryBuilders.indicesQuery(queryBuilder, getIndexes().toArray(new String[0])).queryName(getQueryName());     //Ändra index här?
+      return QueryBuilders.indicesQuery(queryBuilder, getIndexes().toArray(new String[0])).queryName(getQueryName());
     }
 
     @Override
@@ -140,14 +137,4 @@ public class EcommerceQueryBuilder implements com.resurs.supersearch.rest.elasti
 }
 
 
-/*boolean contains(String s){
-    for(int i=0; i<s.length();i++){
 
-        if(s.charAt(i)){
-
-        }
-    }
-    /*if(s.contains("-")){
-
-
-    }*/

@@ -1,0 +1,271 @@
+<div class="modal fade bs-example-modal-lg" id="PaymentPopup" tabindex="-1" role="dialog"
+     aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Fraud summary</h4>
+        </div>
+            <div class="modal-body">
+                <div class="container">
+
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="panel panel-danger">
+                                            <div class="panel-heading" data-bind="with : fradue">Summary
+                                                <button type="button"
+                                                        class="btn btn-primary btn-danger btn-xs pull-right"
+                                                        data-bind="click: openFraud.bind($data, $data.externalReference)">
+                                                    Open in Fraud
+                                                </button>
+                                            </div>
+                                            <!--<div class="panel-body">-->
+                                            <table class="table table-condensed table-danger" data-bind="with : fradue">
+                                                <tbody>
+                                                <tr class="danger">
+                                                    <td>Recommendation:</td>
+                                                    <td data-bind="text: externalId"></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr class="danger">
+                                                    <td>Fraud product:</td>
+                                                    <td>
+                                             <span data-bind="with:$data.fraudProduct">
+                                                 <span data-bind="text: code"/>
+                                             </span>
+                                                    </td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr class="danger">
+                                                    <td>ExternalReference:</td>
+                                                    <td data-bind="text: externalReference"></td>
+                                                    <td>
+                                            <span class="glyphicon glyphicon-search" aria-hidden="true"
+                                                  data-bind="click: testSearch.bind($data, $data.externalReference)">
+                                            </span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="danger">
+                                                    <td>Mup id:</td>
+                                                    <td data-bind="text: $data.controlRequestJson.ids.MUP_ID"></td>
+                                                    <td>
+                                            <span class="glyphicon glyphicon-search" aria-hidden="true"
+                                                  data-bind="click: testSearch.bind($data, $data.controlRequestJson.ids.MUP_ID)">
+                                            </span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="danger">
+                                                    <td>Limit id:</td>
+                                                    <td data-bind="text: controlRequestJson.ids.LIMITBOX_ID"></td>
+                                                    <td>
+                                            <span class="glyphicon glyphicon-search" aria-hidden="true"
+                                                  data-bind="click: testSearch.bind($data, $data.controlRequestJson.ids.LIMITBOX_ID)">
+                                            </span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="danger">
+                                                    <td>Total execution time:</td>
+                                                    <td data-bind="text: totalTime"></td>
+                                                    <td></td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="panel panel-info">
+                                            <div class="panel-heading">Customer information
+                                                <span class="glyphicon glyphicon-search pull-right"
+                                                      aria-hidden="true"></span>
+                                            </div>
+                                            <table class="table table-condensed table-danger"
+                                                   data-bind="with : $data.customer">
+                                                <tbody>
+                                                <tr class="info">
+                                                    <td>Name:</td>
+                                                    <td data-bind="text: $data.fullName"></td>
+                                                    <td>
+                                                        <span class="glyphicon glyphicon-search"
+                                                              aria-hidden="true"></span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="info">
+                                                    <td>Government id:</td>
+                                                    <td data-bind="text: gid"></td>
+                                                    <td>
+                                            <span class="glyphicon glyphicon-search" aria-hidden="true"
+                                                  data-bind="click: testSearch.bind($data, $data.gid)">
+                                            </span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="info">
+                                                    <td>Phone number:</td>
+                                                    <td data-bind="text: $data.phone"></td>
+                                                    <td>
+                                            <span class="glyphicon glyphicon-search" aria-hidden="true"
+                                                  data-bind="click: testSearch.bind($data, $data.phone)">
+                                            </span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="info">
+                                                    <td>Email:</td>
+                                                    <td data-bind="text: $data.email"></td>
+                                                    <td>
+                                            <span class="glyphicon glyphicon-search" aria-hidden="true"
+                                                  data-bind="click: testSearch.bind($data, $data.email)"
+                                                  data-toggle="tooltip" data-placement="top" title="Test test">
+                                            </span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="info">
+                                                    <td>IP:</td>
+                                                    <td data-bind="text: ip"></td>
+                                                    <td>
+                                            <span class="glyphicon glyphicon-search" aria-hidden="true"
+                                                  data-bind="click: testSearch.bind($data, $data.ip)">
+                                            </span>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-info">
+                                    <div class="panel-heading">Products</div>
+                                    <table class="table table-condensed table-danger table-hover">
+                                        <thead>
+                                        <tr class="info">
+                                            <th>Art. no.</th>
+                                            <th>Product</th>
+                                            <th>Description</th>
+                                            <th>Price with VAT</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody data-bind="foreach : products">
+                                        <tr class="info">
+                                            <td data-bind="text: articleNo"></td>
+                                            <td data-bind="text: productName"></td>
+                                            <td data-bind="text: description"></td>
+                                            <td data-bind="text: unitAmountWithVat"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="panel panel-primary">
+                                            <div class="panel-heading">Billing address</div>
+                                            <div class="panel-body">
+                                                <div data-bind="with: billing">
+                                                    <div data-bind="text: fullName"></div>
+                                                    <div data-bind="text: addressRow1"></div>
+                                                    <div data-bind="text: addressRow2"></div>
+                                                    <div data-bind="text: postalArea"></div>
+                                                    <div data-bind="text: postalCode"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="panel panel-primary">
+                                            <div class="panel-heading">Delivery address</div>
+                                            <div class="panel-body">
+                                                <div data-bind="with: delivery">
+                                                    <div data-bind="text: fullName"></div>
+                                                    <div data-bind="text: addressRow1"></div>
+                                                    <div data-bind="text: addressRow2"></div>
+                                                    <div data-bind="text: postalArea"></div>
+                                                    <div data-bind="text: postalCode"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="panel panel-primary">
+                                            <div class="panel-heading">Customer given address</div>
+                                            <div class="panel-body">
+                                                <div data-bind="with: given">
+                                                    <div data-bind="text: fullName"></div>
+                                                    <div data-bind="text: addressRow1"></div>
+                                                    <div data-bind="text: addressRow2"></div>
+                                                    <div data-bind="text: postalArea"></div>
+                                                    <div data-bind="text: postalCode"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr>
+                            <div class="panel" data-bind="visible:analysis().length">
+                                <div class="panel-heading">Controls</div>
+                                <table class="table table-condensed">
+                                    <tbody data-bind="foreach: analysis">
+                                    <tr data-bind="css: {danger: fraudRiskScore > 0 }">
+                                        <td data-bind="text: analysisName"></td>
+                                        <td data-bind="html: resultDescription"></td>
+                                        <td data-bind="html: fraudRiskScore"></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="panel panel-danger" data-bind="visible:high().length">
+                                <div class="panel-heading">High risk</div>
+                                <table class="table table-condensed table-danger">
+                                    <tbody data-bind="foreach: high">
+                                    <tr class="danger">
+                                        <td data-bind="text: analysisName"></td>
+                                        <td data-bind="html: resultDescription"></td>
+                                        <td data-bind="text: totalTime"></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="panel panel-warning" data-bind="visible:medium().length">
+                                <div class="panel-heading">Medium risk</div>
+                                <table class="table table-condensed">
+                                    <tbody data-bind="foreach: medium">
+                                    <tr class="warning">
+                                        <td data-bind="text: analysisName"></td>
+                                        <td data-bind="html: resultDescription"></td>
+                                        <td data-bind="text: totalTime"></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="panel panel-success" data-bind="visible:low().length">
+                                <div class="panel-heading">Low risk</div>
+                                <table class="table table-condensed">
+                                    <tbody data-bind="foreach: low">
+                                    <tr class="success">
+                                        <td data-bind="text: analysisName"></td>
+                                        <td data-bind="html: resultDescription"></td>
+                                        <td data-bind="text: totalTime"></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="panel panel-default" data-bind="visible:none().length">
+                                <div class="panel-heading">None/unknown risk</div>
+                                <table class="table table-condensed">
+                                    <tbody data-bind="foreach: none">
+                                    <tr class="default">
+                                        <td data-bind="text: analysisName"></td>
+                                        <td data-bind="html: resultDescription"></td>
+                                        <td data-bind="text: totalTime"></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+

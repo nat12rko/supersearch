@@ -52,7 +52,7 @@ public class Search {
 
     public String getSearchString() {
         return StringUtils.isEmpty(searchString) ? "*" : searchString;
-    }
+    }   //if... else
 
     public void setSearchString(String searchString) {
         this.searchString = searchString;

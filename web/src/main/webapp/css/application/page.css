@@ -37,11 +37,15 @@
 }
 
 .panel-ecom {
-    background: #3BAFDA; color: #FFF;
+    background: #3BAFDC; color: #FFF;
 }
 
 .panel-mup {
     background: #FFCE54; color: #FFF;
+}
+
+.panel-payupdate {
+    background: #8ddc3a; color: #FFF;
 }
 .panel-creditrequest {
     background: #4299c8; color: #FFF;

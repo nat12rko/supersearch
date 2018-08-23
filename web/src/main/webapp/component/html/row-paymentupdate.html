@@ -1,0 +1,44 @@
+<div class="panel panel-sm panel-payupdate tinymargins">
+    <!-- ko component: {
+           name: "searchlist-item-header",
+           params: {
+               caption: "PaymentUpdate",
+               id: row.object.id,
+            timestamp: row.object.timestamp,
+            clickUrl: show
+
+           }
+   } --><!-- /ko -->
+
+    <div class="panel-body bg-danger2">
+
+        <div class= "row text-info3">
+
+                <div class="col-lg-2" >
+
+                    <span data-bind="with : row.object.customer">
+                    <span-search params="value:$data.fullName"></span-search><br/>
+                    <span-search params="value:$data.countryCode"></span-search>
+
+                </span>
+
+                </div>
+
+                <div class="col-lg-5" >
+
+                    StoreName: <span-search params="value:row.object.store.representativeName"></span-search>
+                    IP: <span-search params="value:row.object.ip"></span-search>
+
+                    ExternalId: <span-search params="value:row.object.externalId"></span-search>
+
+                <span data-bind="with : row.object.customer.billingAddress">
+                    Name: <span-search params="value:$data.street"></span-search>
+
+                </span>
+                <br/>
+            </div>
+        </div>
+    </div>
+
+</div>
+

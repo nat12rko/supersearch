@@ -67,6 +67,12 @@
                 ko.applyBindings(specLineModel, document.getElementById('paymentModal'));
             });
         });
+
+        $(function () {
+            $("#includedPaymentUpdateModal").load("modals/PaymentPopup.html", function () {
+                ko.applyBindings(PayupdateModel, document.getElementById('PaymentPopup'));
+            });
+        });
         $(function () {
             $("#includedhtmlModal").load("modals/htmlModal.html", function () {
                 ko.applyBindings(htmlModel, document.getElementById('htmlModal'));
@@ -114,7 +120,7 @@
 <div id="includedFraudModal"></div>
 <div id="includedShortcutModal"></div>
 <div id="includedhtmlModal"></div>
-
+<div id="includedPaymentUpdateModal"></div>
 
 <style>
 

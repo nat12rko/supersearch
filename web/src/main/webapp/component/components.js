@@ -60,4 +60,12 @@ ko.components.register("ecommerce-info", {
     synchronous: false
 });
 
+ko.components.register("row-paymentupdate", {
+    viewModel: { require: 'component/js/row-paymentupdate.js?timestamp='+new Date().getTime()},
+    template: {require: 'text!../../component/html/row-paymentupdate.html?timestamp='+new Date().getTime()} ,
+    synchronous: true
+});
+
+
+
 
