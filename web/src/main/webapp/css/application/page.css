@@ -23,6 +23,10 @@
     margin: 0 auto;
 }
 
+.bigger-letters{
+   text-align: right;
+}
+
 .tinymargins {
     margin-bottom: 10px;
 }

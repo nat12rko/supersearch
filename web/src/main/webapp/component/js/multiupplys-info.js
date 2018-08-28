@@ -9,7 +9,7 @@ define([], function() {
         self.executedFilters = ko.observableArray();
         self.ipAddress = ko.observable();
 
-        self.id.subscribe(function(newValue) {
+        self.id.subscribe(function(newValue) {              //iD i back-end
             self.creditcase();
             self.customer();
             self.customerAddresses();
@@ -19,10 +19,10 @@ define([], function() {
             var url = baseUrl+"multiupplys/"+newValue;
             ajax(url, 'GET').done(function (data) {
                 for (var i = 0; i < data.length; i++) {
-                    if(data[i].type == 'customer') {
+                    if(data[i].type == 'customer') {            //hits
                         self.customer(data[i].object);
 
-                        data[i].object.customerAddresses.forEach(function(entry) {
+                        self.customer().customerAddresses.forEach(function(entry) {
                            var addressCredibility;
                             if(self.customerAddresses() && self.customerAddresses().addressSource) {
                                 addressCredibility = self.customerAddresses().addressSource.addressCredibility;
@@ -44,7 +44,7 @@ define([], function() {
             });
         });
 
-        self.openHtmlPage = function(html) {
+       self.openHtmlPage = function(html) {
             html= html.replace(/<link.*\/css\/report\.css.*>/g, '');
             showHtmlModal(html);
         }

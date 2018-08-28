@@ -53,6 +53,11 @@ public class SearchServiceRest {
         return searchService.getMultiupplysById(id);
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/paymentandorapplicationupdate/{id}")
+    public List<Hit> getPaymentUpdateById(@PathVariable("id") String id) {
+        return searchService.getPaymentUpdateById(id);
+    }
+
     @RequestMapping(method = RequestMethod.GET, value = "/limit")
     public List<Hit> getLimitByMultiupplysId(@RequestParam("multiupplysId") String id) {
         return searchService.getLimitByMultiupplysId(id);

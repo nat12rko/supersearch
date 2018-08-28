@@ -17,7 +17,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Component
-public class PaymentUpdateQueryBuilder implements com.resurs.supersearch.rest.elasticsearch.QueryBuilder {
+public class PaymentAndOrApplicationUpdatesQueryBuilder implements com.resurs.supersearch.rest.elasticsearch.QueryBuilder {
 
    /* @Value("${supersearch.paymentupdate.index}")
     String indexes;
@@ -34,6 +34,7 @@ public class PaymentUpdateQueryBuilder implements com.resurs.supersearch.rest.el
             "customer.fullName.keyword",
             "customer.governmentId",
             "customer.email",
+            "customer.countryCode",
 
             "customer.billingAddress.street",
 
@@ -48,17 +49,19 @@ public class PaymentUpdateQueryBuilder implements com.resurs.supersearch.rest.el
 
             "ip",
             "externalId",
+            "paymentMethod.type",
+            "paymentStatus"
 
 
 
     };
     public List<String> getIndexes() {
-        return Arrays.asList(new String[]{"paymentupdates"});
+        return Arrays.asList(new String[]{"paymentandorapplicationupdates"});                           //Hard-Coded
     }
 
     @Override
     public List<String> getTypes() {
-        return Arrays.asList(new String[]{"paymentupdate"});
+        return Arrays.asList(new String[]{"paymentandorapplicationupdate"});
     }
 
 
@@ -80,6 +83,7 @@ public class PaymentUpdateQueryBuilder implements com.resurs.supersearch.rest.el
         return QueryBuilders.indicesQuery(queryBuilder, getIndexes().toArray(new String[0])).queryName(getQueryName());
     }
 
+
     @Override
     public String getQueryName() {
         return getSystemQueryEnum().name();
@@ -89,10 +93,17 @@ public class PaymentUpdateQueryBuilder implements com.resurs.supersearch.rest.el
     public List<AggregationBuilder> createAggregations(Search search) {
         List<AggregationBuilder> aggregationBuilders = new ArrayList<>();
 
-        aggregationBuilders.add(AggregationBuilders.terms("timestamp").size(5).field("timestamp"));
-        aggregationBuilders.add(AggregationBuilders.terms("accountNbr").size(5).field("accountNbr"));
-//        aggregationBuilders.add(AggregationBuilders.terms("representativeName").size(5).field("paymentMethod.bankProductId.keyword"));
+       // aggregationBuilders.add(AggregationBuilders.terms("timestamp").size(5).field("timestamp"));
+        ;
+
+        aggregationBuilders.add(AggregationBuilders.terms("paymentMethod.type").size(5).field("paymentMethod.type").subAggregation(AggregationBuilders.terms("paymentStatus.keyword").size(5).field("paymentStatus.keyword")));
+
         aggregationBuilders.add(AggregationBuilders.terms("store.representativeName").size(5).field("store.representativeName"));
+        ;
+
+        //aggregationBuilders.add(AggregationBuilders.terms("payment.authorizedPaymentDiffs.keyword").size(5).field("payment.authorizedPaymentDiffs.keyword"));
+// aggregationBuilders.add(AggregationBuilders.terms("representativeName").size(5).field("paymentMethod.bankProductId.keyword"));
+
         return aggregationBuilders;
     }
 

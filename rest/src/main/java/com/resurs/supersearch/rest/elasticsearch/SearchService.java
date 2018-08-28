@@ -26,4 +26,6 @@ public interface SearchService {
 
     List<Hit> getMultiupplysById(String id);
 
+    List<Hit>getPaymentUpdateById(String id);
+
 }

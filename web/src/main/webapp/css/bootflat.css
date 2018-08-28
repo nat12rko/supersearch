@@ -2185,6 +2185,19 @@ a.list-group-item-danger.active, a.list-group-item-danger:hover, a.list-group-it
   background-color: #f6bb42;
   border-color: #f6bb42;
 }
+
+.panel-custom {
+
+
+  border-color: #8ddc3a;
+}
+.panel-custom > .panel-heading {
+
+
+  color: white;
+  background-color: #8ddc3a;
+  border-color: #8ddc3a;
+}
 .panel-danger {
   border-color: #da4453;
 }

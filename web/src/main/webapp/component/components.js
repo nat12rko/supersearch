@@ -60,12 +60,16 @@ ko.components.register("ecommerce-info", {
     synchronous: false
 });
 
-ko.components.register("row-paymentupdate", {
-    viewModel: { require: 'component/js/row-paymentupdate.js?timestamp='+new Date().getTime()},
-    template: {require: 'text!../../component/html/row-paymentupdate.html?timestamp='+new Date().getTime()} ,
+ko.components.register("row-paymentandorapplicationupdate", {
+    viewModel: { require: 'component/js/row-paymentandorapplicationupdate.js?timestamp='+new Date().getTime()},
+    template: {require: 'text!../../component/html/row-paymentandorapplicationupdate.html?timestamp='+new Date().getTime()} ,
     synchronous: true
 });
 
 
-
+ko.components.register("paymentandorapplicationupdate-info", {
+    viewModel: { require: 'component/js/paymentandorapplicationupdate-info.js?timestamp='+new Date().getTime()},
+    template: {require: 'text!../../component/html/paymentandorapplicationupdate-info.html?timestamp='+new Date().getTime()} ,
+    synchronous: true
+});
 

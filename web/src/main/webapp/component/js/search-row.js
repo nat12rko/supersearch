@@ -24,7 +24,7 @@ define(['knockout'], function(ko) {
         }
 
         self.isPaymentUpdate = function () {
-            return (self.row.type == 'paymentupdate');
+            return (self.row.type == 'paymentandorapplicationupdate');
 
         }
     }

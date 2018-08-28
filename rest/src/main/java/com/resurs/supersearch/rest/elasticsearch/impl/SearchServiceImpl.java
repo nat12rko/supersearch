@@ -84,8 +84,10 @@ public class SearchServiceImpl implements SearchService {
         displayValues.put("payment", "Ecommerce");
         displayValues.put("invoice", "Invoice");
         displayValues.put("paymentupdate", "Paymentupdate");
-       // displayValues.put("representativeName", "StoreName");
-        displayValues.put("accountNbr","AccountNbr");
+        displayValues.put("paymentMethod.type", "PaymentMethod");
+        displayValues.put("paymentStatus.keyword","PaymentStatus");
+        displayValues.put("store.representativeName", "Store");
+        displayValues.put("paymentandorapplicationupdate", "PaymentAndOrApplicationUpdate");
     }
 
 
@@ -102,7 +104,7 @@ public class SearchServiceImpl implements SearchService {
     LimitQueryBuilder limitQueryBuilder;
 
     @Autowired
-    PaymentUpdateQueryBuilder paymentupdatequerybuilder;
+    PaymentAndOrApplicationUpdatesQueryBuilder paymentupdatequerybuilder;
 
     @Autowired
     MultiupplysQueryBuilder multiupplysQueryBuilder;
@@ -173,6 +175,10 @@ public class SearchServiceImpl implements SearchService {
 
     public List<Hit> getFraudByMultiupplysId(String id) {
         return search(QueryBuilders.termQuery("controlRequestJson.ids.MUP_ID", id), fraudQueryBuilder.getTypes(), fraudQueryBuilder.getIndexes());
+    }
+
+    public List<Hit> getPaymentUpdateById(String id) {
+        return search(QueryBuilders.termQuery("id", id), paymentupdatequerybuilder.getTypes(), paymentupdatequerybuilder.getIndexes());
     }
 
     private List<Hit> search(org.elasticsearch.index.query.QueryBuilder queryBuilder, List<String> types, List<String> indecies) {

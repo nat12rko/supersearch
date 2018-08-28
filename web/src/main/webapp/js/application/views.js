@@ -159,7 +159,7 @@ function SearchViewModel() {
     }
 
 
-    self.systems = ko.observableArray(['ECOMMERCE', 'FRAUD', 'LIMIT', 'MULTIUPPLYS', 'CREDITREQUEST','PAYMENTUPDATE']);
+    self.systems = ko.observableArray(['PAYMENTUPDATE']);
 
     self.availableCountries = ko.observableArray([
         {text: 'Sweden', id: 'SE'},
@@ -264,7 +264,7 @@ function ResultViewModel() {
                 self.searching  = false;
             }).done(function (data) {
 
-                updateAggregation(data.aggregates[0]);  //Check SearchResult class
+                updateAggregation(data.aggregates[0]);  //Check SearchResult class? This class modifies the circle on website
                 updateFacets(data.aggregates);
 
                 for (var i = 0; i < data.hits.length; i++) {
@@ -384,7 +384,7 @@ function HtmlModel() {
 }
 function PaymentupdateModel(){
     var self =this;
-    self.fradue=ko.observable();
+    self.paypop=ko.observable();
 }
 function FraudAnalysisModel() {
     var self = this;
@@ -512,10 +512,10 @@ function showMupModal(mup) {
     mupModal.modal('show');
 }
 
-function showpayupdate(fraude) {
+function showpayupdate(payupdate) {
 
-    var paymentpopup = $('#PaymentPopup');
-    PayupdateModel.fradue(fraude);
+    var paymentpopup = $('#paymentandorapplicationupdatemodal');
+    PayupdateModel.paypop(payupdate.id);
     paymentpopup.modal('show');
 }
 

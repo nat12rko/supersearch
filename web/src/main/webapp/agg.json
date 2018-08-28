@@ -2470,7 +2470,11 @@
                     "hits": 396679,
                     "value": "FraudSummary"
                 },
+
+
                 {
+
+
                     "children": [
                         {
                             "name": "State",
