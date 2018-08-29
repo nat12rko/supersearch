@@ -8,10 +8,11 @@ define([], function() {
         self.created=ko.observable();
         self.modified=ko.observable();
         self.authorizedPaymentdiffs= ko.observableArray();
-        self.authorizedPaymentdiffs2= ko.observableArray();
-        self.authorizedPaymentdiffs3=ko.observableArray();
-        self.authorizedPaymentdiffs4=ko.observableArray();
-        self.authorized=ko.observable();
+        self.debitedPaymentDiffs= ko.observableArray();
+        self.annulledPaymentDiffs=ko.observableArray();
+        self.paymentActions=ko.observableArray();
+        self.creditedPaymentDiffs=ko.observableArray();
+        self.authorization=ko.observable();
         //self.description= ko.observable();
         var row;
         var date;
@@ -33,6 +34,8 @@ define([], function() {
 
 
                     self.paymentupdate(data[i].object);
+
+
                     date = new Date(data[i].object.timestamp);
 
 
@@ -97,7 +100,12 @@ define([], function() {
 
 
                     if (data[k].object.payment != null) {
-                        if (data[i].object.payment.authorizedPaymentDiffs != null) {
+
+                        if(data[k].object.payment.authorization!=null) {
+
+                            self.authorization(data[k].object.payment.authorization);
+                        }
+                        if (data[k].object.payment.authorizedPaymentDiffs != null) {
                             self.authorizedPaymentdiffs.removeAll();
                             for (var i = 0; i < data[k].object.payment.authorizedPaymentDiffs.length; i++) {
                                 if (data[k].object.payment.authorizedPaymentDiffs[i] != null) {
@@ -115,10 +123,10 @@ define([], function() {
                         }
 
                         if (data[k].object.payment.debitedPaymentDiffs != null) {
-                            self.authorizedPaymentdiffs2.removeAll();
+                            self.debitedPaymentDiffs.removeAll();
                             for (var i = 0; i < data[k].object.payment.debitedPaymentDiffs.length; i++) {
                                 if (data[k].object.payment.debitedPaymentDiffs[i] != null) {
-                                    self.authorizedPaymentdiffs2.push(data[k].object.payment.debitedPaymentDiffs[i]);
+                                    self.debitedPaymentDiffs.push(data[k].object.payment.debitedPaymentDiffs[i]);
 
 
                                 }
@@ -128,14 +136,14 @@ define([], function() {
 
                         else {
 
-                            self.authorizedPaymentdiffs2.removeAll();
+                            self.debitedPaymentDiffs.removeAll();
                         }
 
                         if (data[k].object.payment.annulledPaymentDiffs != null) {
-                            self.authorizedPaymentdiffs3.removeAll();
+                            self.annulledPaymentDiffs.removeAll();
                             for (var i = 0; i < data[k].object.payment.annulledPaymentDiffs.length; i++) {
                                 if (data[k].object.payment.annulledPaymentDiffs[i] != null) {
-                                    self.authorizedPaymentdiffs3.push(data[k].object.payment.annulledPaymentDiffs[i]);
+                                    self.annulledPaymentDiffs.push(data[k].object.payment.annulledPaymentDiffs[i]);
 
 
                                 }
@@ -145,14 +153,30 @@ define([], function() {
 
                         else {
 
-                            self.authorizedPaymentdiffs3.removeAll();
+                            self.annulledPaymentDiffs.removeAll();
+                        }
+                        if (data[k].object.payment.creditedPaymentDiffs != null) {
+                            self.creditedPaymentDiffs.removeAll();
+                            for (var i = 0; i < data[k].object.payment.creditedPaymentDiffs.length; i++) {
+                                if (data[k].object.payment.creditedPaymentDiffs[i] != null) {                 //Otherwise description field is undefined
+                                    self.creditedPaymentDiffs.push(data[k].object.payment.creditedPaymentDiffs[i]);
+
+
+                                }
+                            }
+
+                        }
+
+                        else {
+
+                            self.creditedPaymentDiffs.removeAll();
                         }
 
                         if (data[k].object.payment.paymentActions != null) {
-                            self.authorizedPaymentdiffs4.removeAll();
+                            self.paymentActions.removeAll();
                             for (var i = 0; i < data[k].object.payment.paymentActions.length; i++) {
-                                if (data[k].object.payment.paymentActions[i] != null) {
-                                    self.authorizedPaymentdiffs4.push(data[k].object.payment.paymentActions[i]);
+                                if (data[k].object.payment.paymentActions[i] != null) {                 //Otherwise description field is undefined
+                                    self.paymentActions.push(data[k].object.payment.paymentActions[i]);
 
 
                                 }
@@ -162,8 +186,10 @@ define([], function() {
 
                         else {
 
-                            self.authorizedPaymentdiffs4.removeAll();
+                            self.paymentActions.removeAll();
                         }
+
+
 
 
                     }
@@ -171,9 +197,10 @@ define([], function() {
                     else {
 
                         self.authorizedPaymentdiffs.removeAll();
-                        self.authorizedPaymentdiffs2.removeAll();
-                        self.authorizedPaymentdiffs3.removeAll();
-                        self.authorizedPaymentdiffs4.removeAll();
+                        self.debitedPaymentDiffs.removeAll();
+                        self.annulledPaymentDiffs.removeAll();
+                        self.paymentActions.removeAll();
+                        self.creditedPaymentDiffs.removeAll();
                     }
 
 

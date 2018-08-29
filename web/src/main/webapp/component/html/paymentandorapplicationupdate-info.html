@@ -74,27 +74,29 @@
                     <tbody data-bind="with: $data.paymentupdate">
                     <tr >
 
-                        <td>PaymentMethod:</td>
-                        <td data-bind="text: $data.paymentMethod.type"></td>
+                        <td>FullName:</td>
+                        <td data-bind="if: $data.customer.fullName">
+                            <span data-bind="text: $data.customer.fullName"></span>
+                        </td>
 
                     </tr>
                     <tr>
 
-                        <td >PaymentStatus:</td>
-                        <td data-bind="text: $data.paymentStatus"></td>
+                        <td >DeliveryAddress:</td>
+                        <td data-bind="if: $data.customer.deliveryAddress">
+                            <span data-bind="text: $data.customer.deliveryAddress.street"></span> <span data-bind="text: $data.customer.deliveryAddress.postalCode"></span> <span data-bind="text: $data.customer.deliveryAddress.city"></span>
+                        </td>
                     </tr>
 
                     <tr>
 
-                        <td >AccountNbr:</td>
-                        <td data-bind="text: $data.accountNbr"></td>
+                        <td >BillingAddress:</td>
+                        <td data-bind="if: $data.customer.billingAddress">
+                            <span data-bind="text: $data.customer.billingAddress.street"></span> <span data-bind="text: $data.customer.billingAddress.postalCode"></span> <span data-bind="text: $data.customer.billingAddress.city"></span>
+                        </td>
                     </tr>
 
-                    <tr>
 
-                        <td >ChannelType:</td>
-                        <td data-bind="text: $data.channelType"></td>
-                    </tr>
 
 
 
@@ -103,25 +105,7 @@
 
 
                     </tbody>
-                    <tbody>
 
-
-
-                        <td >Created:</td>
-                        <td data-bind="text: created"></td>
-                    </tr>
-
-
-                    <tr>
-
-                        <td >Modified:</td>
-                        <td data-bind="text: modified"></td>
-                    </tr>
-
-
-
-
-                    </tbody>
                 </table>
 
             </div>
@@ -153,7 +137,7 @@ padding-left: 5px; font-size: large;">Summary</div>
     <div class="col-lg-12">
 <div class="panel panel-custom" data-bind="visible:authorizedPaymentdiffs().length">
     <div class="panel-heading" style="
-padding-left: 5px; font-size: large;">AuthorizedPaymentDiffs</div>
+padding-left: 5px; font-size: medium;">AuthorizedPaymentDiffs</div>
     <table class="table table-condensed table-warning bg-custom">
         <thead>
         <tr>
@@ -185,9 +169,9 @@ padding-left: 5px; font-size: large;">AuthorizedPaymentDiffs</div>
 
     <div class="row">
         <div class="col-lg-12">
-            <div class="panel panel-custom" data-bind="visible:authorizedPaymentdiffs2().length">
+            <div class="panel panel-custom" data-bind="visible:debitedPaymentDiffs().length">
                 <div class="panel-heading" style="
-padding-left: 5px; font-size: large;">AuthorizedPaymentDiffs</div>
+padding-left: 5px; font-size: medium;">AuthorizedPaymentDiffs</div>
                 <table class="table table-condensed table-warning bg-custom">
                     <thead>
                     <tr>
@@ -200,7 +184,7 @@ padding-left: 5px; font-size: large;">AuthorizedPaymentDiffs</div>
 
                     </tr>
                     </thead>
-                    <tbody data-bind="foreach: authorizedPaymentdiffs2">
+                    <tbody data-bind="foreach: debitedPaymentDiffs">
                     <tr>
                         <td data-bind="text: description"></td>
                         <td data-bind="text: articleNo"></td>
@@ -218,9 +202,9 @@ padding-left: 5px; font-size: large;">AuthorizedPaymentDiffs</div>
 
     <div class="row">
         <div class="col-lg-12">
-            <div class="panel panel-custom" data-bind="visible:authorizedPaymentdiffs3().length">
+            <div class="panel panel-custom" data-bind="visible:annulledPaymentDiffs().length">
                 <div class="panel-heading" style="
-padding-left: 5px; font-size: large;">AuthorizedPaymentDiffs</div>
+padding-left: 5px; font-size: medium;">AuthorizedPaymentDiffs</div>
                 <table class="table table-condensed table-warning bg-custom">
                     <thead>
                     <tr>
@@ -233,7 +217,7 @@ padding-left: 5px; font-size: large;">AuthorizedPaymentDiffs</div>
 
                     </tr>
                     </thead>
-                    <tbody data-bind="foreach: authorizedPaymentdiffs3">
+                    <tbody data-bind="foreach: annulledPaymentDiffs">
                     <tr>
                         <td data-bind="text: description"></td>
                         <td data-bind="text: articleNo"></td>
@@ -251,9 +235,9 @@ padding-left: 5px; font-size: large;">AuthorizedPaymentDiffs</div>
 
     <div class="row">
         <div class="col-lg-12">
-            <div class="panel panel-custom" data-bind="visible:authorizedPaymentdiffs4().length">
+            <div class="panel panel-custom" data-bind="visible:creditedPaymentDiffs().length">
                 <div class="panel-heading" style="
-padding-left: 5px; font-size: large;">PaymentActions</div>
+padding-left: 5px; font-size: medium;">AuthorizedPaymentDiffs</div>
                 <table class="table table-condensed table-warning bg-custom">
                     <thead>
                     <tr>
@@ -266,11 +250,71 @@ padding-left: 5px; font-size: large;">PaymentActions</div>
 
                     </tr>
                     </thead>
-                    <tbody data-bind="foreach: authorizedPaymentdiffs4">
+                    <tbody data-bind="foreach: creditedPaymentDiffs">
+                    <tr>
+                        <td data-bind="text: description"></td>
+                        <td data-bind="text: articleNo"></td>
+                        <td data-bind="text: quantity.quantity + quantity.unit"> </td>
+                        <td data-bind="text: unitAmountIncludingVat"></td>
+                        <td data-bind="text: vatRate"></td>
+                        <td data-bind="text: totalAmount">%</td>
+
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-custom" data-bind="visible:paymentActions().length">
+                <div class="panel-heading" style="
+padding-left: 5px; font-size: medium;">PaymentActions</div>
+                <table class="table table-condensed table-warning bg-custom">
+                    <thead>
+                    <tr>
+                        <th>Amount</th>
+                        <th>Created</th>
+                        <th>Type</th>
+
+
+                    </tr>
+                    </thead>
+                    <tbody data-bind="foreach: paymentActions">
                     <tr>
                         <td data-bind="text: amount"></td>
                         <td data-bind="text: created"></td>
                         <td data-bind="text: type"> </td>
+
+
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-custom" data-bind="visible: authorization">
+                <div class="panel-heading" style="
+padding-left: 5px; font-size: medium;">PaymentActions</div>
+                <table class="table table-condensed table-warning bg-custom">
+                    <thead>
+                    <tr>
+                        <th>Amount</th>
+                        <th>Created</th>
+                        <th>Type</th>
+
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td data-bind="text: authorization.amountWithVat"></td>
+                        <td data-bind="text: authorization.bankSystemAuthorizationToken"></td>
+                        <td data-bind="text: authorization.created"> </td>
 
 
                     </tr>
