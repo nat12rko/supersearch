@@ -177,6 +177,11 @@ var updateAggregation = function (aggregations) {
                 return color2(d.depth-1);
             }
 
+            if(comp=="store.representativename"){   //Optional
+
+              return "#C6DBEF";
+            }
+
 
 
 
