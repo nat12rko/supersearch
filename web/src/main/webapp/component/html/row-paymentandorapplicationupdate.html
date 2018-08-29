@@ -35,13 +35,18 @@
                     Phone: <span-search params="value:$data.phoneNbr2"></span-search><br/>
                      Street: <span-search params="value:$data.billingAddress.street"></span-search>
                       , <span-search params="value:$data.billingAddress.city"></span-search>
+
                 </span>
                     <br/>
 
 
 
+                    Total amount:<span data-bind="if:row.object.payment && row.object.payment.totalAmount" >
+                        <span data-bind= "text:row.object.payment.totalAmount"></span>
 
-                    Total amount: <span data-bind="text:row.object.payment.authorization.amountWithVat"></span>
+                    </span>
+
+
 
             </div>
             <div class="col-lg-3" >
@@ -49,7 +54,11 @@
                 Payment method: <span-search params="value:row.object.paymentMethod.type"></span-search><br/>
                 Account nbr: <span-search params="value: row.object.accountNbr"></span-search><br/>
                 IP: <span-search params="value:row.object.ip"></span-search><br/>
+                <div data-bind="if:row.object.application ">
+                <div data-bind="if:row.object.application.signed ">
                 Signed: <span-search params="value:row.object.application.signed"></span-search>
+                </div>
+                </div>
                 Identified: <span-search params="value:row.object.customer.identified"></span-search>
 
 

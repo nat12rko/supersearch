@@ -105,12 +105,7 @@
                     </tbody>
                     <tbody>
 
-                    <tr>
 
-                        <td >Item Description:</td>
-                        <td data-bind="text: authorizedPaymentdiffs"></td>
-                    </tr>
-                    <tr>
 
                         <td >Created:</td>
                         <td data-bind="text: created"></td>
@@ -154,7 +149,36 @@
 
 
         </div>
+    <div class="row">
+        <div class="col-lg-12">
+    <div class="panel panel-custom" data-bind="visible:authorizedPaymentdiffs().length">
+        <div class="panel-heading" style="
+    padding-left: 5px; font-size: large;">Summary</div>
+        <table class="table table-condensed table-warning bg-custom">
+            <thead>
+            <tr>
+                <th>Article desc</th>
+                <th>Article nbr</th>
+                <th>Quantity</th>
+                <th>Price excl. VAT</th>
+                <th>Unit measure</th>
+                <th>%-VAT</th>
 
+            </tr>
+            </thead>
+            <tbody data-bind="foreach: authorizedPaymentdiffs">
+            <tr>
+                <td data-bind="text: description"></td>
+                <td data-bind="text: articleNo"></td>
 
+                <td data-bind="text: unitAmountIncludingVat"></td>
+                <td data-bind="text: vatRate"></td>
+                <td data-bind="text: totalAmount">%</td>
 
+            </tr>
+            </tbody>
+        </table>
+    </div>
+        </div>
+    </div>
 </div>
