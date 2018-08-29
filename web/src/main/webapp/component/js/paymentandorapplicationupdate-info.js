@@ -31,7 +31,7 @@ define([], function() {
 
 
                         self.paymentupdate(data[i].object);
-                    date = new Date(self.paymentupdate.timestamp);
+                    date = new Date(data[i].object.timestamp);
 
 
                     if (date.getMinutes().toString().length < 2 || date.getHours().toString().length < 2) {

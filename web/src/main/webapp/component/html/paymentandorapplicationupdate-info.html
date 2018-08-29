@@ -69,7 +69,7 @@
         <div class="col-lg-6">
             <div class="panel panel-custom">
                 <div class="panel-heading" style="
-    padding-left: 5px; font-size: large;">Summary</div>
+    padding-left: 5px; font-size: large;">Customer Info</div>
                 <table class="table table-condensed table-warning bg-custom">
                     <tbody data-bind="with: $data.paymentupdate">
                     <tr >
@@ -130,55 +130,55 @@
         </div>
 
     </div>
-        <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-custom">
-                <div class="panel-heading" style="
-    padding-left: 5px; font-size: large;">Summary</div>
-                <table class="table table-condensed table-warning bg-custom" id="paytab">
-                    <tbody>
+    <!--<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-custom">
+            <div class="panel-heading" style="
+padding-left: 5px; font-size: large;">Summary</div>
+            <table class="table table-condensed table-warning bg-custom" id="paytab">
+                <tbody>
 
 
-                    </tbody>
-                </table>
-
-            </div>
-
+                </tbody>
+            </table>
 
         </div>
 
 
-        </div>
-    <div class="row">
-        <div class="col-lg-12">
-    <div class="panel panel-custom" data-bind="visible:authorizedPaymentdiffs().length">
-        <div class="panel-heading" style="
-    padding-left: 5px; font-size: large;">Summary</div>
-        <table class="table table-condensed table-warning bg-custom">
-            <thead>
-            <tr>
-                <th>Article desc</th>
-                <th>Article nbr</th>
-                <th>Quantity</th>
-                <th>Price excl. VAT</th>
-                <th>Unit measure</th>
-                <th>%-VAT</th>
-
-            </tr>
-            </thead>
-            <tbody data-bind="foreach: authorizedPaymentdiffs">
-            <tr>
-                <td data-bind="text: description"></td>
-                <td data-bind="text: articleNo"></td>
-
-                <td data-bind="text: unitAmountIncludingVat"></td>
-                <td data-bind="text: vatRate"></td>
-                <td data-bind="text: totalAmount">%</td>
-
-            </tr>
-            </tbody>
-        </table>
     </div>
-        </div>
+
+
+    </div>-->
+<div class="row">
+    <div class="col-lg-12">
+<div class="panel panel-custom" data-bind="visible:authorizedPaymentdiffs().length">
+    <div class="panel-heading" style="
+padding-left: 5px; font-size: large;">AuthorizedPaymentDiffs</div>
+    <table class="table table-condensed table-warning bg-custom">
+        <thead>
+        <tr>
+            <th>Item Description</th>
+            <th>ArticleNo</th>
+            <th>Quantity</th>
+            <th>UnitAmountIncludingVat</th>
+            <th>VatRate</th>
+            <th>TotalAmount</th>
+
+        </tr>
+        </thead>
+        <tbody data-bind="foreach: authorizedPaymentdiffs">
+        <tr>
+            <td data-bind="text: description"></td>
+            <td data-bind="text: articleNo"></td>
+            <td data-bind="text: quantity.quantity + quantity.unit"> </td>
+            <td data-bind="text: unitAmountIncludingVat"></td>
+            <td data-bind="text: vatRate"></td>
+            <td data-bind="text: totalAmount">%</td>
+
+        </tr>
+        </tbody>
+    </table>
+</div>
     </div>
+</div>
 </div>
