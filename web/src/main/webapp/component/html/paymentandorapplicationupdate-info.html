@@ -181,4 +181,102 @@ padding-left: 5px; font-size: large;">AuthorizedPaymentDiffs</div>
 </div>
     </div>
 </div>
+
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-custom" data-bind="visible:authorizedPaymentdiffs2().length">
+                <div class="panel-heading" style="
+padding-left: 5px; font-size: large;">AuthorizedPaymentDiffs</div>
+                <table class="table table-condensed table-warning bg-custom">
+                    <thead>
+                    <tr>
+                        <th>Item Description</th>
+                        <th>ArticleNo</th>
+                        <th>Quantity</th>
+                        <th>UnitAmountIncludingVat</th>
+                        <th>VatRate</th>
+                        <th>TotalAmount</th>
+
+                    </tr>
+                    </thead>
+                    <tbody data-bind="foreach: authorizedPaymentdiffs2">
+                    <tr>
+                        <td data-bind="text: description"></td>
+                        <td data-bind="text: articleNo"></td>
+                        <td data-bind="text: quantity.quantity + quantity.unit"> </td>
+                        <td data-bind="text: unitAmountIncludingVat"></td>
+                        <td data-bind="text: vatRate"></td>
+                        <td data-bind="text: totalAmount">%</td>
+
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-custom" data-bind="visible:authorizedPaymentdiffs3().length">
+                <div class="panel-heading" style="
+padding-left: 5px; font-size: large;">AuthorizedPaymentDiffs</div>
+                <table class="table table-condensed table-warning bg-custom">
+                    <thead>
+                    <tr>
+                        <th>Item Description</th>
+                        <th>ArticleNo</th>
+                        <th>Quantity</th>
+                        <th>UnitAmountIncludingVat</th>
+                        <th>VatRate</th>
+                        <th>TotalAmount</th>
+
+                    </tr>
+                    </thead>
+                    <tbody data-bind="foreach: authorizedPaymentdiffs3">
+                    <tr>
+                        <td data-bind="text: description"></td>
+                        <td data-bind="text: articleNo"></td>
+                        <td data-bind="text: quantity.quantity + quantity.unit"> </td>
+                        <td data-bind="text: unitAmountIncludingVat"></td>
+                        <td data-bind="text: vatRate"></td>
+                        <td data-bind="text: totalAmount">%</td>
+
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-custom" data-bind="visible:authorizedPaymentdiffs4().length">
+                <div class="panel-heading" style="
+padding-left: 5px; font-size: large;">PaymentActions</div>
+                <table class="table table-condensed table-warning bg-custom">
+                    <thead>
+                    <tr>
+                        <th>Item Description</th>
+                        <th>ArticleNo</th>
+                        <th>Quantity</th>
+                        <th>UnitAmountIncludingVat</th>
+                        <th>VatRate</th>
+                        <th>TotalAmount</th>
+
+                    </tr>
+                    </thead>
+                    <tbody data-bind="foreach: authorizedPaymentdiffs4">
+                    <tr>
+                        <td data-bind="text: amount"></td>
+                        <td data-bind="text: created"></td>
+                        <td data-bind="text: type"> </td>
+
+
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
