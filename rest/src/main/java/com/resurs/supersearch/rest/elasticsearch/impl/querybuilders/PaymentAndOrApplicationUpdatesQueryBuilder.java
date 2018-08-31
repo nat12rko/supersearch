@@ -18,7 +18,10 @@ import java.util.List;
 
 @Component
 public class PaymentAndOrApplicationUpdatesQueryBuilder implements com.resurs.supersearch.rest.elasticsearch.QueryBuilder {
-
+    /*@Value("${supersearch.paymentupdate.index}")
+    String indices;
+    @Value("${supersearch.paymentupdate.types}")
+    String types;*/
 
     private static String[] fields = {
 
@@ -28,18 +31,15 @@ public class PaymentAndOrApplicationUpdatesQueryBuilder implements com.resurs.su
             "customer.governmentId",
             "customer.email",
             "customer.countryCode",
-
             "customer.billingAddress.street",
-
             "customer.deliveryAddress.street",
-
+            "customer.deliveryAddress.city",
+            "customer.billingAddress.city",
             "store.representativeName",
             "payment.authorizedPaymentDiffs.description",
-
             "accountNbr",
             "paymentMethod.id",
             "channelType",
-
             "ip",
             "externalId",
             "paymentMethod.type",

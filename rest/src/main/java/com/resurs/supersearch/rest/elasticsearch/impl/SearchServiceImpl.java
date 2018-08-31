@@ -296,9 +296,9 @@ public class SearchServiceImpl implements SearchService {
             allFilterBuilder.must(rangeFilterBuilder);
         }
 
-       /* for (Filter filter : search.getFilters()) {
+        for (Filter filter : search.getFilters()) {
             allFilterBuilder.must(QueryBuilders.termQuery(filter.getField(), filter.getValue()));
-        }*/
+        }
     }
 
     private List<QueryBuilder> getSelectedQueryBuilders(List<SystemQueryEnum> systemQueryEnums) {
