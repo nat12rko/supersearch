@@ -19,17 +19,10 @@ import java.util.List;
 @Component
 public class PaymentAndOrApplicationUpdatesQueryBuilder implements com.resurs.supersearch.rest.elasticsearch.QueryBuilder {
 
-   /* @Value("${supersearch.paymentupdate.index}")
-    String indexes;
-
-    @Value("${supersearch.paymentupdate.types}")
-    String types;
-
-*/
 
     private static String[] fields = {
 
-            //"created",
+
             "modified",
             "customer.fullName.keyword",
             "customer.governmentId",
@@ -77,7 +70,7 @@ public class PaymentAndOrApplicationUpdatesQueryBuilder implements com.resurs.su
 
         QueryBuilder queryBuilder = QueryBuilders
                 .boolQuery()
-                .must(queryStringQueryBuilder);
+                .must(queryStringQueryBuilder).must(QueryBuilders.termsQuery("_type", getTypes()));
 
 
         return QueryBuilders.indicesQuery(queryBuilder, getIndexes().toArray(new String[0])).queryName(getQueryName());
@@ -93,16 +86,10 @@ public class PaymentAndOrApplicationUpdatesQueryBuilder implements com.resurs.su
     public List<AggregationBuilder> createAggregations(Search search) {
         List<AggregationBuilder> aggregationBuilders = new ArrayList<>();
 
-       // aggregationBuilders.add(AggregationBuilders.terms("timestamp").size(5).field("timestamp"));
-        ;
-
         aggregationBuilders.add(AggregationBuilders.terms("paymentMethod.type").size(5).field("paymentMethod.type").subAggregation(AggregationBuilders.terms("paymentStatus.keyword").size(5).field("paymentStatus.keyword")));
 
         aggregationBuilders.add(AggregationBuilders.terms("store.representativeName").size(5).field("store.representativeName"));
-        ;
 
-        //aggregationBuilders.add(AggregationBuilders.terms("payment.authorizedPaymentDiffs.keyword").size(5).field("payment.authorizedPaymentDiffs.keyword"));
-// aggregationBuilders.add(AggregationBuilders.terms("representativeName").size(5).field("paymentMethod.bankProductId.keyword"));
 
         return aggregationBuilders;
     }
@@ -114,7 +101,7 @@ public class PaymentAndOrApplicationUpdatesQueryBuilder implements com.resurs.su
         for (CountryCode countryCode : countryCodes) {
             boolFilterBuilder.should(
                     QueryBuilders.matchQuery(
-                            "customer.countrycode", countryCode.name()));
+                            "customer.countryCode", countryCode.name()));
 
 
         }

@@ -15,7 +15,7 @@ var greens = ["approved", "confirmed_not_fraud", "booked_thawed", "suspected_not
 
 var reds = ["denied", "rejected", "confirmed_fraud"];
 
-var yellows = ["suspected_fraud", "manual_inspection", "booked_frozen","signing_required","under_manual_inspection"];
+var yellows = ["suspected_fraud", "manual_inspection", "frozen", "booked_frozen","signing_required","under_manual_inspection"];
 
 var aggregation = function() {
 
@@ -58,7 +58,7 @@ var updateAggregation = function (aggregations) {
 
 
         var color2 = d3.scale.category20c();
-        var color1=d3.scale.category20c();
+        var color1=d3.scale.category10();
 
 
 
@@ -174,7 +174,7 @@ var updateAggregation = function (aggregations) {
 
           if(comp=="paymentmethod.type"){
 
-                return color2(d.depth-1);
+                return "#9ECAE1";
             }
 
             if(comp=="store.representativename"){   //Optional

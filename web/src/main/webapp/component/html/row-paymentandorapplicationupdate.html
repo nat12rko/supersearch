@@ -17,12 +17,13 @@
                 <div class="col-lg-2" >
                     <span-search params="value:row.object.paymentStatus"></span-search><br/>
                     <br/>
-                    <span data-bind="with : row.object.customer">
+                    <span data-bind="with:row.object.customer">
                     <span-search params="value:$data.governmentId"></span-search><br/>
                     <span-search params="value:$data.countryCode"></span-search>
                         <span-search params="value:$data.customerType"></span-search>
+                    </span>
 
-                </span>
+
 
                 </div>
 
@@ -41,7 +42,7 @@
 
 
 
-                    Total amount:<span data-bind="if:row.object.payment && row.object.payment.totalAmount" >
+                    Total amount:<span data-bind="if:row.object.payment" >
                         <span data-bind= "text:row.object.payment.totalAmount"></span>
 
                     </span>
@@ -65,13 +66,13 @@
             </div>
 
             <div class="col-lg-2" >
-                <span data-bind="with : row.object.payment">
-                Debited: <span-search params="value:$data.debited"></span-search><br/>
-                Credited: <span-search params="value:$data.credited"></span-search><br/>
-                Annulled: <span-search params="value:$data.annulled"></span-search><br/>
-                Creditable: <span-search params="value:$data.creditable"></span-search><br/>
-                Debitable: <span-search params="value:$data.debitable"></span-search><br/>
-                </span>
+
+                Debited:<span data-bind="if: row.object.payment "><span-search params="value:row.object.payment.debited"></span-search></span><br/>
+                Credited: <span data-bind="if: row.object.payment "><span-search params="value:row.object.payment.credited"></span-search></span><br/>
+                Annulled: <span data-bind="if: row.object.payment"><span-search params="value:row.object.payment.annulled"></span-search></span><br/>
+                Creditable:<span data-bind="if: row.object.payment "><span-search params="value:row.object.payment.creditable"></span-search></span><br/>
+                Debitable: <span data-bind="if: row.object.payment "><span-search params="value:row.object.payment.debitable"></span-search></span><br/>
+
             </div>
 
 

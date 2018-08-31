@@ -86,7 +86,7 @@ public class EcommerceQueryBuilder implements com.resurs.supersearch.rest.elasti
     public QueryBuilder createQuery(Search search) {
 
         QueryStringQueryBuilder queryStringQueryBuilder =
-                QueryBuilders.queryStringQuery(search.getSearchString()).lenient(true);     //Parse
+                QueryBuilders.queryStringQuery(search.getSearchString()).lenient(true);
 
         for (String field : fields) {
             queryStringQueryBuilder.field(field);
@@ -96,7 +96,7 @@ public class EcommerceQueryBuilder implements com.resurs.supersearch.rest.elasti
                 .boolQuery()
                 .must(queryStringQueryBuilder);
 
-        //return queryBuilder;
+
       return QueryBuilders.indicesQuery(queryBuilder, getIndexes().toArray(new String[0])).queryName(getQueryName());
     }
 

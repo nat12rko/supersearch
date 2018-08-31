@@ -115,7 +115,7 @@ function SearchViewModel() {
         {text: 'Multiupplys', id: 'MULTIUPPLYS'},
         {text: 'CreditRequest', id: 'CREDITREQUEST'},
         {text: 'Invoice', id: 'INVOICE'},
-        {text: 'Paymentupdate', id: 'PAYMENTUPDATE'}
+        {text: 'PaymentAndOrApplicationUpdate', id: 'PAYMENTUPDATE'}
     ]);
 
 
@@ -264,7 +264,7 @@ function ResultViewModel() {
                 self.searching  = false;
             }).done(function (data) {
 
-                updateAggregation(data.aggregates[0]);  //Check SearchResult class? This class modifies the circle on website
+                updateAggregation(data.aggregates[0]);
                 updateFacets(data.aggregates);
 
                 for (var i = 0; i < data.hits.length; i++) {
